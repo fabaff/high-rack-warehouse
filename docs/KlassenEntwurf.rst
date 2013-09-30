@@ -6,9 +6,11 @@ Lager
 Diese Klassen definieren das Lager und seine Teile
 
 Location (Lagerort)
+"""""""""""""""""""
 - der Lagerort beinhaltet eine bis mehrere Gassen
 
 Gap (Gasse)
+"""""""""""
 - die Gasse beinhaltet ein linkes und / oder ein rechte Grid
 - die Gasse hat eine eindeutige Nummer (aufsteigend)
 
