@@ -59,7 +59,7 @@
 \section{Vorwort}
 %
 \subsection{Zielgruppe}
-Dieses Dokument beschreibt die Anforderungen an eine Software-Lösung für die Simulation und Optimierung von Hochregallagern im Detail. Es enthält die Aspekte der gesuchten Lösung mit dem Fkous auf die technische Seite. Der Leser sollte ein grundlegendes Verständnis von Logistik und Lagerungssystem haben und mit der in diesem Bereich verwendeten Terminologie vertraut sein. 
+Dieses Dokument beschreibt die Anforderungen an eine Software-Lösung für die Simulation und Optimierung von Hochregallagern im Detail. Es enthält die Aspekte der gesuchten Lösung mit dem Fokus, welcher auf die technische Seite gerichtet ist. Der Leser sollte ein grundlegendes Verständnis von Logistik und Lagerungssystem haben und mit der in diesem Bereich verwendeten Terminologie vertraut sein. 
 %
 \subsection{Autoren}
 Die Autoren diesen Dokument sind:
@@ -82,16 +82,19 @@ Die Autoren diesen Dokument sind:
       \textbf{Version} & \textbf{Autor} & \textbf{Bemerkungen} \\
       \hline
       0 & Team & Skelett \\
+      0.1 & Team & erste Version, Dokumentation der Anforderungen \\
       \hline
     \end{tabular}
   \end{center}
 \end{table}
 %
-\subsection{Glossar}
-tbd
+%\subsection{Glossar}
+%tbd
 %
 \section{Einleitung}
-tbd
+Ein Hochregallager (HRL) beschreibt ein Lagersystem mit Plätzen in sogenannten Regalen. Hochregallager gibt ein in den unterschiedlichsten Ausprägungen. Die grössten Ausführungen besitzen Höhen bis etwa 50 m und können mehreren hunderttausend Plätze besitzen. Oftmals werden direkt Euro-Paletten als Träger für das Lagergut verwendet, ist das Lagergut zu klein, werden häufig spezielle Kunststoff-Behälter benutzt.\\
+Grobgesagt besteht ein Hochregallager aus einer bestimmten Anzahl von Gassen. Eine Gasse wiederum hat links und rechts Lagerplätze und im Freiraum bewegt sich ein Bediengerät. In einem manuellen Hochregallager ist dieser Raum so gross, dass mit einem Gabelstapler zwischen den Regalwänden manövriert werden kann. Bei automatischen Lagern fährt ein Bediengerät, welches von einem Lagerverwaltungssystem seine Befehle bekommt, ohne manuelle Interventionen in der Gasse und liefert das Lagergut zur Entnahmestelle..\\
+Die Hochregallager haben eine hohe Raumnutzung und bei der Erstellung sind hohe Investitionen nötig, da bei kleiner Ausführungen eine Halle um das Hochregallager gebaut werden muss. Bei grossen Varianten wird das Hochregal als Tragstruktur für das Gebäude mitbenutzt. 
 %
 \section{Benutzeranforderungen}
 %
@@ -132,16 +135,16 @@ tbd
   \item Szenario laden
   \item Szenario simulieren / berechnen
   \item Simuliertes Szenario auswerten / ausgeben
-  \item 
-  \item 
+%  \item 
+%  \item 
 \end{itemize}
 %
 \subsection{Nichtfunktionale Anforderungen}
 \begin{itemize}
   \item Lauffähig auf Standard-Hardware
   \item nur Standard-Software (JRE, Bibliotheken, etc.)
-  \item 
-  \item 
+%  \item 
+%  \item 
 \end{itemize}
 %
 \section{System-Evolution}
@@ -150,9 +153,9 @@ N/A
 \section{Testing}
 \begin{itemize}
   \item Unit tests
-  \item 
-  \item 
-  \item 
+%  \item 
+%  \item 
+%  \item 
 \end{itemize}
 %
 \section{Mögliche Szenarien / Use cases}
@@ -168,7 +171,7 @@ N/A
   \item Fixe Lagerplatzzuordnung (Reservation, defekte Lagerplätze, abgeschottete Lagerplätze für Gefahrengut)
   \item Befüllung (inital von leerem Lager / Nachbefüllung) (zufällig chaotisch, zeitoptimiert chaotisch, zugeordnet, Positionsoptimiert [ABC])
   \item Optimierung von bereits belegtem Lager aufgrund Zugriff-History
-  \item 
+%  \item 
 \end{itemize}
 
 
