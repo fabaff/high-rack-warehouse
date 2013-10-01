@@ -55,6 +55,7 @@
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 {\huge \textbf{Anforderungs-Dokumentation}} - \textbf{Hochregallager} \\
+\tableofcontents
 
 \section{Vorwort}
 %
@@ -112,7 +113,7 @@ Die Hochregallager haben eine hohe Raumnutzung und bei der Erstellung sind hohe 
   \item Keine unsinnig grossen (langlaufende) Simulationen
   \item Grafische Darstellung während der Simulation (informativ)
   \item Sprache der Applikation ist in Englisch
-  \item Ausgabe / Export der Ergebnisse auf Drucker oder als Dokument (z.B. .txt, .csv, .xml usw.)
+  \item Ausgabe / Export der Ergebnisse auf Drucker oder als Dokument (z.B. .txt, .csv, .xml, usw.)
 \end{itemize}
 
 %
@@ -162,12 +163,12 @@ N/A
 \section{Mögliche Szenarien / Use cases}
 %
 \begin{itemize}
-  \item Maschinenbaufirma im 1-Schichtbetrieb mit Fertigung / Montage / Service --> kurze Zugriffszeiten Tagsüber, freie Ressourcen während der Nacht
-  \item Versandhandel im 3-Schichtbetrieb mit Bereitstellung / Konvektionierung --> hoher Lagerdurchsatz, 24h-Zugriff für Ein-/Auslagerung
+  \item Maschinenbaufirma im 1-Schichtbetrieb mit Fertigung / Montage / Service -- kurze Zugriffszeiten Tagsüber, freie Ressourcen während der Nacht
+  \item Versandhandel im 3-Schichtbetrieb mit Bereitstellung / Konvektionierung --  hoher Lagerdurchsatz, 24h-Zugriff für Ein-/Auslagerung
   \item Gleichzeitiges Ein-/Auslagern, Queue
-  \item Mehrere Ein-/Ausgabeplätze pro Gasse (auf Z-Achse)
-  \item Mehrere Regalbediengeräte pro Gasse (auf X-Achse, bei mehreren Ein-/Ausgabeplätzen auch auf Z-Achse)
-  \item Mehrere Ladearme pro Regalbediengerät (mehrere Vertikal, Horizontal [ohne / mit Durchreichemöglichkeit], Radial)
+  \item Mehrere Ein-/Ausgabeplätze pro Gasse (auf z-Achse)
+  \item Mehrere Regalbediengeräte pro Gasse (auf x-Achse, bei mehreren Ein-/Ausgabeplätzen auch auf z-Achse)
+  \item Mehrere Ladearme pro Regalbediengerät (mehrere vertikal, horizontal [ohne / mit Durchreichemöglichkeit], radial)
   \item Vorgezogenes Auslagern (Bereitstellung noch im Lager)
   \item Aufall einer Gasse, Mehrplatzeinlagerung gleicher Teile in unterschiedlichen Gassen
   \item Fixe Lagerplatzzuordnung (Reservation, defekte Lagerplätze, abgeschottete Lagerplätze für Gefahrengut)
@@ -184,9 +185,17 @@ N/A
 %
 \section{Prioritäten-Liste}
 \begin{itemize}
-  \item 
-  \item 
-  \item 
+  \item Laden eines einfachen Szenarios (mit fixen Einstellungen)
+  \item Berechnung der Simulations-Eckdaten
+  \item Visuelle Darstellung des Szenario (2D) -- Überprüfung des Klassen-Diagramm, Abschätzung der Performance
+  \item Steigerung der Komplexität der Szenarien (einfache Input-Funktion, ASCII- oder Spreadsheet-Datei) -- Szenarien-Management
+  \item Simulierte Szenarien auswerten / einfache Daten-Ausgabe
+  \item Optimierung von einzelnen Szenarien (nach einer vorgegebenen Auswertung, nach vorgebener Strategie, Änderung der Hochregallager-Parameter)
+  \item Erweiterung der Export-Funktion (Spreadsheet oder ähnlich, für grafische Auswertungen)
+  \item Erweiterung der visuellen Repräsentation (3D)
+  \item Ausgabe für die Dimensionierung/Auslegung von Hochregallagern
+  \item Einbezug der Vorzone in Simulation/Optimierung
+  \item Multifunktionale Benutzeroberfläche für die Eingabe/Simulation/Auswertung/Auslegung
 \end{itemize}
 %
 \section{Sonstiges}
