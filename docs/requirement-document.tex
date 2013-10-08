@@ -13,13 +13,12 @@
 \usepackage{fancyhdr}
 \usepackage{sectsty}
 \usepackage[final]{pdfpages}
-\usepackage{threeparttable}
-\usepackage{gitinfo}
-\usepackage{totpages}
+%\usepackage{gitinfo}
+%\usepackage{totpages}
 \usepackage{datetime}
 \usepackage{subcaption}
-\usepackage[printonlyused]{acronym}
-\usepackage[toc]{glossaries}
+%\usepackage[printonlyused]{acronym}
+%\usepackage[toc]{glossaries}
 
 %Definitionen
 \includepdfset{pages=-} %Alle Seite importieren  Option: noautoscale
@@ -171,9 +170,9 @@ Dieser Abschnitt beschreibt mögliche Szenarien, welche in Simulationen betracht
   \item Mehrere Regalbediengeräte pro Gasse (auf x-Achse, bei mehreren Ein-/Ausgabeplätzen auch auf z-Achse)
   \item Mehrere Ladearme pro Regalbediengerät (mehrere vertikal, horizontal [ohne / mit Durchreichemöglichkeit], radial)
   \item Vorgezogenes Auslagern (Bereitstellung noch im Lager)
-  \item Aufall einer Gasse, Mehrplatzeinlagerung gleicher Teile in unterschiedlichen Gassen
+  \item Ausfall einer Gasse, Mehrplatzeinlagerung gleicher Teile in unterschiedlichen Gassen
   \item Fixe Lagerplatzzuordnung (Reservation, defekte Lagerplätze, abgeschottete Lagerplätze für Gefahrengut)
-  \item Befüllung (inital von leerem Lager / Nachbefüllung) (zufällig chaotisch, zeitoptimiert chaotisch, zugeordnet, Positionsoptimiert [ABC])
+  \item Befüllung (inital von leerem Lager / Nachbefüllung) (zufällig chaotisch, zeitoptimiert chaotisch, zugeordnet, positionsoptimiert [ABC])
   \item Optimierung von bereits belegtem Lager aufgrund Zugriff-History
 %  \item 
 \end{itemize}
@@ -184,8 +183,9 @@ Dieser Abschnitt beschreibt mögliche Szenarien, welche in Simulationen betracht
   \item Optimierung
 \end{itemize}
 %
-\section{Prioritäten-Liste}
-\begin{itemize}
+\section{Möglicher Ablauf der Arbeitsschritte}
+
+\begin{enumerate}
   \item Laden eines einfachen Szenarios (mit fixen Einstellungen)
   \item Berechnung der Simulations-Eckdaten
   \item Visuelle Darstellung des Szenario (2D) -- Überprüfung des Klassen-Diagramm, Abschätzung der Performance
@@ -197,7 +197,7 @@ Dieser Abschnitt beschreibt mögliche Szenarien, welche in Simulationen betracht
   \item Ausgabe für die Dimensionierung/Auslegung von Hochregallagern
   \item Einbezug der Vorzone in Simulation/Optimierung
   \item Multifunktionale Benutzeroberfläche für die Eingabe/Simulation/Auswertung/Auslegung
-\end{itemize}
+\end{enumerate}
 %
 \section{Sonstiges}
 \begin{itemize}
