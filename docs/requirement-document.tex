@@ -128,7 +128,7 @@ Die Hochregallager haben eine hohe Raumnutzung und bei der Erstellung sind hohe 
   \item Simulationssteuerung
     \begin{itemize}
     \item Diverse Modi (zeitliche Intervalle, so schnell wie möglich)
-    \item 
+    \item Definition von Zeiträumen, die betrachtet werden können.
 %    \item 
 %    \item 
   \end{itemize}
@@ -144,6 +144,12 @@ Die Hochregallager haben eine hohe Raumnutzung und bei der Erstellung sind hohe 
 \subsection{Nichtfunktionale Anforderungen}
 \begin{itemize}
   \item Keine unsinnig grossen (langlaufende) Simulationen
+    \begin{itemize}
+    \item Plausibilitätsprüfung vor Beginn
+    \item Prognose der Berechnungsdauer (ev. anhand von gewonnenen Daten während der Entwicklung)
+    \item Abbruch, resp. Warnung, bei Überschreitung einer definierten Grenze 
+%    \item 
+  \end{itemize}
   \item Grafische Darstellung während der Simulation (informativ)
   \item Sprache der Applikation ist in Englisch
   \item Ausgabe / Export der Ergebnisse auf Drucker oder als Dokument (z.B. .txt, .csv, .xml, usw.)
@@ -159,7 +165,7 @@ Die Hochregallager haben eine hohe Raumnutzung und bei der Erstellung sind hohe 
 %
 \section{System-Architektur}
 \begin{itemize}
-  \item Die Anwendung soll eine reine Clientanwendung sein
+  \item Die Anwendung soll eine reine Clientanwendung sein.
   \item Trennung von Simulation, Auswertung und Visualisierung: die Simulation soll unabhängig einer gewählten Visualisierung ablaufen. D.h. keine für die Simulation benötigte Logik oder Komponenten innerhalb der Visualisierung. Ebenfalls soll die Simulation unabhängig der gewünschten Auswertungsart ablaufen können.
 \end{itemize}
 %
@@ -182,8 +188,8 @@ Die Hochregallager haben eine hohe Raumnutzung und bei der Erstellung sind hohe 
 %  \item 
 \end{itemize}
 %
-\section{System-Evolution}
-N/A
+%\section{System-Evolution}
+%N/A
 %
 \section{Testing}
 \begin{itemize}
@@ -217,6 +223,26 @@ Dieser Abschnitt beschreibt mögliche Szenarien, welche in Simulationen betracht
   \item Optimierung
 \end{itemize}
 %
+\section{Ziele}
+%
+\subsection{Angestrebte Pflichtziele}
+\begin{enumerate}
+  \item Laden eines einfachen Szenarios mit einer Gasse und einigen wenigen Lagerplätzen. Darin soll das Ein- und Auslagern von einigen wenigen Gütern simuliert werden. Die Güter sollen dabei auf fix vorgegebenen Lagerplätzen eingelagert werden.
+  \item Die Simulation soll in einer einfachen Grafik (2D) visualisiert werden können. Dabei soll die Geschwindigkeit der Simulation an die Visualisierung angepasst werden können.
+  \item Die Simulation soll angepasst werden, so dass die Güter anhand einer Zugriffshistorie automatisch auf dem jeweils günstigsten Lagerplatz eingelagert werden. Dabei ist die Zugriffszeit entscheidend.
+  \item Die Simulation soll so angepasst werden, dass auch die physikalischen Eigenschaften der Güter berücksichtigt werden. Dabei sind das Gewicht, die Abmessungen, usw. entscheidend. Diese Eigenschaften beeinflussen die Geschwindigkeit des Laderoboters und ändern somit auch die Entscheidungsfindung zum optimalen Lagerplatz.
+  \item Das Szenario soll komplexer werden können, z.B. verschieden grosse Paletten oder Gefahrengutzonen.
+  \item Möglichkeit zum Laden einer vorgegebenen Liste von Einlagerungen, jeweils versehen mit einem Zeitstempel. Dadurch können dann mehrere Tage simuliert werden.
+\end{enumerate}
+%
+\subsection{Wunschziele}
+\begin{enumerate}
+  \item Möglichkeit zum Laden von Operationsplänen zum nächtlichen Vorbereiten der Güter für einen schnellen Zugriff am Morgen beim Auslagern.
+  \item Das Szenario erweitern, so dass der Laderoboter mehrere Güter auf einmal transportieren und einlagern kann. Ausserdem soll der Laderoboter die Güter untereinander tauschen können. Dies kann bis zu einem Paternoster-Laderoboter führen.
+  \item Erweiterung der Simulation und der Visualisierung auf die vorgesetzte Ladezone.
+  \item Visualisierung in 3D.
+\end{enumerate}
+%
 \section{Möglicher Ablauf der Arbeitsschritte}
 
 \begin{enumerate}
@@ -237,7 +263,7 @@ Dieser Abschnitt beschreibt mögliche Szenarien, welche in Simulationen betracht
 \begin{itemize}
   \item Repository: \href{https://github.com/fabaff/high-rack-warehouse}{https://github.com/fabaff/high-rack-warehouse}
   \item Dokumentation: \href{https://github.com/fabaff/high-rack-warehouse/tree/master/docs}{/docs}
-  \item Code: \href{https://github.com/fabaff/high-rack-warehouse/}{Pfad momentan unbestimmt}
+  \item Code: \href{https://github.com/fabaff/high-rack-warehouse/}{/src} (voraussichtlich)
 \end{itemize}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}
