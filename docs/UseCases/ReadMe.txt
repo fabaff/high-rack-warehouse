@@ -3,7 +3,7 @@ How to edit:
 - Open Browser
 - Choose website "https://www.draw.io"
 - On website click "File", "Open", "Search"
-- In PopUp-Window choose file whis you want to edit (*.xml)
+- In PopUp-Window choose file which you want to edit (*.xml)
 - Click "Open"
 
 How to save as graphic:
