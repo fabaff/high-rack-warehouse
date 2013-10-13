@@ -1,15 +1,19 @@
-SystemAnforderungen
-nicht genau genug -> besser beschreiben und einschränkungen definieren
+Besprechnung 04.10.2013
+=======================
 
-Ausgabe einer Warnung bei Unverhältnissmässigen Simulationsparamater
+System-Anforderungen
+--------------------
+- nicht genau genug -> besser beschreiben und einschränkungen definieren
 
-Simulation in Echtzeit und as fast as possible (und vielleicht noch andere geschwindigkeiten)
+- Ausgabe einer Warnung bei Unverhältnissmässigen Simulationsparamater
 
-Auftragsliste (Waren ein und ausgang) mit Zeitstempel (nicht alles auf einmal..)
+- Simulation in Echtzeit und as fast as possible (und vielleicht noch andere geschwindigkeiten)
 
-3.1/3.2 nicht klar -> anders und genauer formulieren
+- Auftragsliste (Waren ein und ausgang) mit Zeitstempel (nicht alles auf einmal..)
 
-10 Nummerierung
--> Methodik und Feature vermischung aufheben
+- 3.1/3.2 nicht klar -> anders und genauer formulieren
 
-=> Zielvereinbarung erstellen.. Was muss die app definitiv können, was vielleicht und was ist wunschdenken..
+- 10 Nummerierung -> Methodik und Feature vermischung aufheben
+
+
+Zielvereinbarung erstellen.. Was muss die app definitiv können, was vielleicht und was ist wunschdenken..
