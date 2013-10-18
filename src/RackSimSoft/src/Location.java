@@ -1,5 +1,4 @@
 
-import java.util.Vector;
 import java.util.ArrayList;
 
 /**
@@ -20,6 +19,8 @@ public class Location
 	
 
 	/**
+	 * Returns an instance (object) of the class Location
+	 * 
 	 * @return the instance of this class
 	 */
 	public static Location getInstance()
@@ -33,7 +34,7 @@ public class Location
 	}
 	
 	/**
-	 * Kreiert einen Lagerort. Die ID des Lagerortes muss angegeben werden.
+	 * Creates a Location. The ID of the Location must be given.
 	 * 
 	 * @param id	die ID des Lagerortes
 	 */
@@ -43,7 +44,7 @@ public class Location
 	}
 	
 	/**
-	 * @return	the next free locationID
+	 * @return the next free locationID
 	 */
 	private static int getNextID()
 	{
@@ -51,6 +52,8 @@ public class Location
 	}
 
 	/**
+	 * Returns the number of gaps allocated to the current Location
+	 * 
 	 * @return the number of gaps
 	 */
 	public int countGaps()
@@ -60,7 +63,9 @@ public class Location
 
 
 	/**
-	 * @param gap the gap to add
+	 * Adds a Gap to the current Location
+	 * 
+	 * @param gap	the gap to add
 	 */
 	public void addGap(Gap gap)
 	{
