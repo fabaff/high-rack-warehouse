@@ -19,7 +19,7 @@ public class Grid
 	private ArrayList<Column> columns = new ArrayList<Column>();
 	
 	/**
-	 * Creates a Grid. The ID of the Grid must be given.
+	 * Creates a Grid. The ID, length and the height of the Grid must be given.
 	 * 
 	 * @param id		the ID of the Grid
 	 * @param length	the length of the Grid
@@ -33,7 +33,7 @@ public class Grid
 	}
 	
 	/**
-	 * Creates a Grid. The ID of the Grid and the side must be given.
+	 * Creates a Grid. The ID, length, height and the side of the Grid must be given.
 	 * 
 	 * @param id		the ID of the Grid
 	 * @param length	the length of the Grid
@@ -80,7 +80,14 @@ public class Grid
 	 */
 	public void addrow(Row row)
 	{
-		rows.add(row.getRowID(), row);
+		if (this.checkMaxHeight(row))
+		{
+			rows.add(row.getRowID(), row);
+		}
+		/* ToDo, Fehlerhandling
+		else
+			throw Exception("Fehler");
+		*/
 	}
 	
 	/**
@@ -90,6 +97,45 @@ public class Grid
 	 */
 	public void addColumn(Column column)
 	{
-		columns.add(column.getColumnID(), column);
+		if (this.checkMaxLength(column))
+		{
+			columns.add(column.getColumnID(), column);
+		}
+		/* ToDo, Fehlerhandling
+		else
+			throw Exception("Fehler");
+		*/
+	}
+	
+	/**
+	 * Checks, if a Row can be added to the current Grid
+	 * Returns true, if row can be added, false if not
+	 * 
+	 * @param row	the Row to check for adding
+	 * @return row can be added
+	 */
+	public boolean checkMaxHeight(Row row)
+	{
+		/* ToDo
+		 * Prüfen, ob die maximale Höhe des Grid nicht überschritten wird
+		 * über alle Rows lopen, Höhen addieren
+		 */
+		return true;
+	}
+	
+	/**
+	 * Checks, if a Column can be added to the current Grid
+	 * Returns true, if column can be added, false if not
+	 * 
+	 * @param column	the Column to check for adding
+	 * @return column can be added
+	 */
+	public boolean checkMaxLength(Column column)
+	{
+		/* ToDo
+		 * Prüfen, ob die maximale Länge des Grid nicht überschritten wird
+		 * über alle Columns lopen, Längen addieren
+		 */
+		return true;
 	}
 }
