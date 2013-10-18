@@ -1,5 +1,5 @@
-Besprechnung 11.10.2013
-=======================
+Besprechung 11.10.2013
+======================
 
 System-Anforderungen
 --------------------
@@ -8,12 +8,12 @@ System-Anforderungen
   - 1 Minute in der Simulation muss 1 Minute in Echtzeit sein
 - Es muss eine Lagerzugriffsliste geladen werden können::
 
-    Zeit		Typ		Artikel		Lagerplatz
+    Zeit        Typ         Artikel     Lagerplatz
     ----------------------------------------------------------
-    07:05:13	Auslagerung	A
-    07:12:59	Auslagerung	F
+    07:05:13	Auslagerung A
+    07:12:59	Auslagerung F
     08:13:24	Einlagerung	C
-    09:12:09	Umlagerung	D		V62 --> c34
+    09:12:09	Umlagerung	D           V62 --> c34
     ...		...		...		...
     usw.
 
