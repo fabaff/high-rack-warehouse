@@ -84,17 +84,17 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.35"
-     inkscape:cx="375"
-     inkscape:cy="520"
+     inkscape:zoom="1.9076588"
+     inkscape:cx="371.42857"
+     inkscape:cy="748.57143"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="951"
-     inkscape:window-height="745"
-     inkscape:window-x="2"
-     inkscape:window-y="78"
-     inkscape:window-maximized="0" />
+     inkscape:window-width="1920"
+     inkscape:window-height="1172"
+     inkscape:window-x="1440"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1" />
   <metadata
      id="metadata5570">
     <rdf:RDF>
@@ -103,7 +103,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -162,7 +162,7 @@
            y="535.31348"
            x="266.59229"
            id="tspan10048"
-           sodipodi:role="line">x</tspan></text>
+           sodipodi:role="line">y</tspan></text>
       <text
          sodipodi:linespacing="125%"
          id="text10050"
@@ -190,13 +190,13 @@
        xml:space="preserve"
        style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Serif;-inkscape-font-specification:Serif"
        x="403.79068"
-       y="66.117653"
+       y="63.117184"
        id="text10058"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan10060"
          x="403.79068"
-         y="66.117653">n</tspan></text>
+         y="63.117184">n</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Serif;-inkscape-font-specification:Serif"
@@ -242,7 +242,7 @@
            y="537.21631"
            x="469.91864"
            id="tspan10048-3"
-           sodipodi:role="line">x</tspan></text>
+           sodipodi:role="line">y</tspan></text>
       <text
          sodipodi:linespacing="125%"
          id="text10050-4"
@@ -319,5 +319,14 @@
          id="tspan10187"
          x="501.38675"
          y="229.30386">Regal rects</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Serif;-inkscape-font-specification:Serif"
+       x="426.72342"
+       y="152.24248"
+       id="text3027"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3029"></tspan></text>
   </g>
 </svg>
