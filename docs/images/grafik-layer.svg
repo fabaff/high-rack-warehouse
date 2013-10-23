@@ -270,15 +270,15 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.98252984"
-     inkscape:cx="339.93759"
+     inkscape:cx="344.00871"
      inkscape:cy="706.86611"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1440"
-     inkscape:window-height="841"
-     inkscape:window-x="0"
-     inkscape:window-y="27"
+     inkscape:window-width="1920"
+     inkscape:window-height="1172"
+     inkscape:window-x="1440"
+     inkscape:window-y="0"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata7">
@@ -298,7 +298,10 @@
      id="layer1">
     <g
        id="g4232"
-       transform="matrix(1.5703101,0,0,1.5703101,-19.023221,-45.095237)">
+       transform="matrix(1.5703101,0,0,1.5703101,-19.023221,-45.095237)"
+       inkscape:export-filename="/home/fab/Documents/repos/high-rack-warehouse/docs/images/lagergitter.png"
+       inkscape:export-xdpi="254"
+       inkscape:export-ydpi="254">
       <path
          inkscape:connector-curvature="0"
          id="path2987-0-7"
@@ -370,11 +373,14 @@
            y="240.37126"
            x="185.53668"
            id="tspan5488"
-           sodipodi:role="line">x</tspan></text>
+           sodipodi:role="line">y</tspan></text>
     </g>
     <g
        id="g8490"
-       transform="matrix(0.78423664,0,0,0.78423664,-211.8163,357.81658)">
+       transform="matrix(0.78423664,0,0,0.78423664,-211.8163,357.81658)"
+       inkscape:export-filename="/home/fab/Documents/repos/high-rack-warehouse/docs/images/rbg-arm.png"
+       inkscape:export-xdpi="254"
+       inkscape:export-ydpi="254">
       <rect
          y="51.875832"
          x="540.18323"
@@ -412,7 +418,10 @@
     </g>
     <g
        id="g3117"
-       transform="translate(-77.75382,307.06617)">
+       transform="translate(-60.451547,306.04839)"
+       inkscape:export-filename="/home/fab/Documents/repos/high-rack-warehouse/docs/images/rbg-ausleger.png"
+       inkscape:export-xdpi="254"
+       inkscape:export-ydpi="254">
       <path
          transform="translate(-5.0065185,-0.45513804)"
          d="m 562.09551,180.54526 c 0,1.88524 -1.63018,3.41353 -3.6411,3.41353 -2.01093,0 -3.64111,-1.52829 -3.64111,-3.41353 0,-1.88525 1.63018,-3.41354 3.64111,-3.41354 2.01092,0 3.6411,1.52829 3.6411,3.41354 z"
@@ -531,7 +540,10 @@
     <g
        transform="matrix(1.4721223,0,0,1.4721223,-202.96339,118.7941)"
        id="g3276-1"
-       style="stroke:none">
+       style="stroke:none"
+       inkscape:export-filename="/home/fab/Documents/repos/high-rack-warehouse/docs/images/belegung.png"
+       inkscape:export-xdpi="254"
+       inkscape:export-ydpi="254">
       <rect
          y="100.04462"
          x="429.51907"
@@ -557,7 +569,10 @@
     <g
        id="g4232-6"
        transform="matrix(1.5703101,0,0,1.5703101,355.60385,-45.095237)"
-       style="opacity:0.3">
+       style="opacity:0.3"
+       inkscape:export-filename="/home/fab/Documents/repos/high-rack-warehouse/docs/images/belegung.png"
+       inkscape:export-xdpi="254"
+       inkscape:export-ydpi="254">
       <path
          inkscape:connector-curvature="0"
          id="path2987-0-7-5"
@@ -624,17 +639,20 @@
          id="text5486-3"
          y="240.37126"
          x="185.53668"
-         style="font-size:10.84076785999999970px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Serif;-inkscape-font-specification:Serif"
+         style="font-size:10.84076786px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Serif;-inkscape-font-specification:Serif"
          xml:space="preserve"><tspan
            y="240.37126"
            x="185.53668"
            id="tspan5488-2"
-           sodipodi:role="line">x</tspan></text>
+           sodipodi:role="line">y</tspan></text>
     </g>
     <g
        transform="matrix(1.4721223,0,0,1.4721223,-153.02426,118.79245)"
        id="g3276-1-6"
-       style="stroke:none">
+       style="stroke:none"
+       inkscape:export-filename="/home/fab/Documents/repos/high-rack-warehouse/docs/images/belegung.png"
+       inkscape:export-xdpi="254"
+       inkscape:export-ydpi="254">
       <rect
          y="100.04462"
          x="429.51907"
@@ -660,7 +678,10 @@
     <g
        transform="matrix(1.4721223,0,0,1.4721223,-153.02426,69.163038)"
        id="g3276-1-5"
-       style="stroke:none">
+       style="stroke:none"
+       inkscape:export-filename="/home/fab/Documents/repos/high-rack-warehouse/docs/images/belegung.png"
+       inkscape:export-xdpi="254"
+       inkscape:export-ydpi="254">
       <rect
          y="100.04462"
          x="429.51907"
@@ -686,7 +707,10 @@
     <g
        transform="matrix(1.4721223,0,0,1.4721223,-203.64627,17.052153)"
        id="g3276-1-2"
-       style="stroke:none">
+       style="stroke:none"
+       inkscape:export-filename="/home/fab/Documents/repos/high-rack-warehouse/docs/images/belegung.png"
+       inkscape:export-xdpi="254"
+       inkscape:export-ydpi="254">
       <rect
          y="100.04462"
          x="429.51907"
@@ -712,7 +736,10 @@
     <g
        transform="matrix(1.4721223,0,0,1.4721223,-202.65368,69.163032)"
        id="g3276-1-8"
-       style="stroke:none">
+       style="stroke:none"
+       inkscape:export-filename="/home/fab/Documents/repos/high-rack-warehouse/docs/images/belegung.png"
+       inkscape:export-xdpi="254"
+       inkscape:export-ydpi="254">
       <rect
          y="100.04462"
          x="429.51907"
@@ -738,7 +765,10 @@
     <g
        transform="matrix(1.4721223,0,0,1.4721223,-101.40967,119.28874)"
        id="g3276-1-69"
-       style="stroke:none">
+       style="stroke:none"
+       inkscape:export-filename="/home/fab/Documents/repos/high-rack-warehouse/docs/images/belegung.png"
+       inkscape:export-xdpi="254"
+       inkscape:export-ydpi="254">
       <rect
          y="100.04462"
          x="429.51907"
@@ -775,7 +805,10 @@
     <g
        transform="matrix(1.4721223,0,0,1.4721223,-576.89474,424.10413)"
        id="g3276-1-4"
-       style="opacity:0.3;stroke:none">
+       style="opacity:0.3;stroke:none"
+       inkscape:export-filename="/home/fab/Documents/repos/high-rack-warehouse/docs/images/rbg-arm.png"
+       inkscape:export-xdpi="254"
+       inkscape:export-ydpi="254">
       <rect
          y="100.04462"
          x="429.51907"
@@ -801,7 +834,10 @@
     <g
        id="g4232-6-7"
        transform="matrix(1.5703101,0,0,1.5703101,-18.3275,260.21479)"
-       style="opacity:0.3">
+       style="opacity:0.3"
+       inkscape:export-filename="/home/fab/Documents/repos/high-rack-warehouse/docs/images/rbg-arm.png"
+       inkscape:export-xdpi="254"
+       inkscape:export-ydpi="254">
       <path
          inkscape:connector-curvature="0"
          id="path2987-0-7-5-6"
@@ -868,17 +904,20 @@
          id="text5486-3-5"
          y="240.37126"
          x="185.53668"
-         style="font-size:10.84076785999999970px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Serif;-inkscape-font-specification:Serif"
+         style="font-size:10.84076786px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Serif;-inkscape-font-specification:Serif"
          xml:space="preserve"><tspan
            y="240.37126"
            x="185.53668"
            id="tspan5488-2-9"
-           sodipodi:role="line">x</tspan></text>
+           sodipodi:role="line">y</tspan></text>
     </g>
     <g
        transform="matrix(1.4721223,0,0,1.4721223,-526.95561,424.10248)"
        id="g3276-1-6-8"
-       style="opacity:0.3;stroke:none">
+       style="opacity:0.3;stroke:none"
+       inkscape:export-filename="/home/fab/Documents/repos/high-rack-warehouse/docs/images/rbg-arm.png"
+       inkscape:export-xdpi="254"
+       inkscape:export-ydpi="254">
       <rect
          y="100.04462"
          x="429.51907"
@@ -904,7 +943,10 @@
     <g
        transform="matrix(1.4721223,0,0,1.4721223,-526.95561,374.47306)"
        id="g3276-1-5-6"
-       style="opacity:0.3;stroke:none">
+       style="opacity:0.3;stroke:none"
+       inkscape:export-filename="/home/fab/Documents/repos/high-rack-warehouse/docs/images/rbg-arm.png"
+       inkscape:export-xdpi="254"
+       inkscape:export-ydpi="254">
       <rect
          y="100.04462"
          x="429.51907"
@@ -930,7 +972,10 @@
     <g
        transform="matrix(1.4721223,0,0,1.4721223,-577.57762,322.36218)"
        id="g3276-1-2-8"
-       style="opacity:0.3;stroke:none">
+       style="opacity:0.3;stroke:none"
+       inkscape:export-filename="/home/fab/Documents/repos/high-rack-warehouse/docs/images/rbg-arm.png"
+       inkscape:export-xdpi="254"
+       inkscape:export-ydpi="254">
       <rect
          y="100.04462"
          x="429.51907"
@@ -956,7 +1001,10 @@
     <g
        transform="matrix(1.4721223,0,0,1.4721223,-576.58503,374.47306)"
        id="g3276-1-8-7"
-       style="opacity:0.3;stroke:none">
+       style="opacity:0.3;stroke:none"
+       inkscape:export-filename="/home/fab/Documents/repos/high-rack-warehouse/docs/images/rbg-arm.png"
+       inkscape:export-xdpi="254"
+       inkscape:export-ydpi="254">
       <rect
          y="100.04462"
          x="429.51907"
@@ -982,7 +1030,10 @@
     <g
        transform="matrix(1.4721223,0,0,1.4721223,-475.34102,424.59877)"
        id="g3276-1-69-4"
-       style="opacity:0.3;stroke:none">
+       style="opacity:0.3;stroke:none"
+       inkscape:export-filename="/home/fab/Documents/repos/high-rack-warehouse/docs/images/rbg-arm.png"
+       inkscape:export-xdpi="254"
+       inkscape:export-ydpi="254">
       <rect
          y="100.04462"
          x="429.51907"
@@ -1007,7 +1058,10 @@
     </g>
     <g
        id="g4911"
-       transform="translate(-69,10)">
+       transform="translate(-55.768849,4.911096)"
+       inkscape:export-filename="/home/fab/Documents/repos/high-rack-warehouse/docs/images/rbg-ausleger.png"
+       inkscape:export-xdpi="254"
+       inkscape:export-ydpi="254">
       <g
          transform="matrix(0.78423664,0,0,0.78423664,110.09737,347.83346)"
          id="g8490-0"
@@ -1034,7 +1088,7 @@
            sodipodi:cy="399.01151"
            sodipodi:rx="6.3719325"
            sodipodi:ry="6.1443634"
-           d="m 519.31248,399.01151 a 6.3719325,6.1443634 0 1 1 -12.74386,0 6.3719325,6.1443634 0 1 1 12.74386,0 z"
+           d="m 519.31248,399.01151 c 0,3.39343 -2.85281,6.14436 -6.37193,6.14436 -3.51912,0 -6.37193,-2.75093 -6.37193,-6.14436 0,-3.39344 2.85281,-6.14437 6.37193,-6.14437 3.51912,0 6.37193,2.75093 6.37193,6.14437 z"
            transform="translate(13.174946,-32.537329)" />
         <path
            sodipodi:type="arc"
@@ -1044,7 +1098,7 @@
            sodipodi:cy="400.60449"
            sodipodi:rx="6.8270707"
            sodipodi:ry="6.3719325"
-           d="m 589.85893,400.60449 a 6.8270707,6.3719325 0 1 1 -13.65414,0 6.8270707,6.3719325 0 1 1 13.65414,0 z"
+           d="m 589.85893,400.60449 c 0,3.51912 -3.05658,6.37193 -6.82707,6.37193 -3.77049,0 -6.82707,-2.85281 -6.82707,-6.37193 0,-3.51912 3.05658,-6.37193 6.82707,-6.37193 3.77049,0 6.82707,2.85281 6.82707,6.37193 z"
            transform="translate(-21.236267,-34.118726)" />
       </g>
       <g
@@ -1162,7 +1216,7 @@
                y="240.37126"
                x="185.53668"
                id="tspan5488-2-9-0"
-               sodipodi:role="line">x</tspan></text>
+               sodipodi:role="line">y</tspan></text>
         </g>
         <g
            transform="matrix(1.4721223,0,0,1.4721223,-523.5431,528.75286)"
@@ -1299,7 +1353,10 @@
     <g
        id="g3117-0"
        transform="translate(52.493256,271.58283)"
-       style="opacity:0.3">
+       style="opacity:0.3"
+       inkscape:export-filename="/home/fab/Documents/repos/high-rack-warehouse/docs/images/lagergut.png"
+       inkscape:export-xdpi="254"
+       inkscape:export-ydpi="254">
       <path
          transform="translate(-5.0065185,-0.45513804)"
          d="m 562.09551,180.54526 c 0,1.88524 -1.63018,3.41353 -3.6411,3.41353 -2.01093,0 -3.64111,-1.52829 -3.64111,-3.41353 0,-1.88525 1.63018,-3.41354 3.64111,-3.41354 2.01092,0 3.6411,1.52829 3.6411,3.41354 z"
@@ -1355,6 +1412,19 @@
        width="35.057808"
        height="44.926235"
        x="621.61578"
-       y="414.76749" />
-  </g>
+       y="414.76749"
+       inkscape:export-filename="/home/fab/Documents/repos/high-rack-warehouse/docs/images/lagergut.png"
+       inkscape:export-xdpi="254"
+       inkscape:export-ydpi="254" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3192"
+       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:Serif;font-style:normal;font-weight:normal;font-size:16px;line-height:125%;letter-spacing:0px;word-spacing:0px;-inkscape-font-specification:Serif;font-stretch:normal;font-variant:normal"><flowRegion
+         id="flowRegion3194"><rect
+           id="rect3196"
+           width="293.12088"
+           height="277.85416"
+           x="390.82782"
+           y="65.114815" /></flowRegion><flowPara
+         id="flowPara3198" /></flowRoot>  </g>
 </svg>
