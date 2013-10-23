@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 /**
  * @author mschaerer
+ * 
  * Das Lagergestell innerhalb einer Gasse ist in Reihen und Spalten unterteilt,
  * welche die eigentlichen Lagerplätze beinhaltet
  */
@@ -82,7 +83,7 @@ public class Grid
 	{
 		if (this.checkMaxHeight(row))
 		{
-			rows.add(row.getRowID(), row);
+			rows.add(row.getRowID() - 1, row);
 		}
 		/* ToDo, Fehlerhandling
 		else
@@ -99,7 +100,7 @@ public class Grid
 	{
 		if (this.checkMaxLength(column))
 		{
-			columns.add(column.getColumnID(), column);
+			columns.add(column.getColumnID() - 1, column);
 		}
 		/* ToDo, Fehlerhandling
 		else
@@ -137,5 +138,15 @@ public class Grid
 		 * über alle Columns lopen, Längen addieren
 		 */
 		return true;
+	}
+
+	/**
+	 * Returns the ID of the current Grid
+	 * 
+	 * @return the gridID
+	 */
+	public int getGridID()
+	{
+		return gridID;
 	}
 }

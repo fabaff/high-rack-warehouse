@@ -4,23 +4,27 @@
 
 /**
  * @author mschaerer
- *
+ * 
+ * 
  */
 public class Row
 {
 	private int rowID;
 	private int height;
+	private int zCoordinate;
 	
 	/**
-	 * Creates a Row. The ID and the height of the Row must be given.
+	 * Creates a Row. The ID, the height and the Z-coordinate of the Row must be given.
 	 * 
 	 * @param id		the ID of the Row
 	 * @param height	the height of the Row
+	 * @param z			the Z-coordinate of the Row
 	 */
-	public Row(int id, int height)
+	public Row(int id, int height, int z)
 	{
 		this.rowID = id;
-		this.setHeight(height);
+		this.height = height;
+		this.zCoordinate = z;
 	}
 	
 	/**
@@ -44,12 +48,12 @@ public class Row
 	}
 
 	/**
-	 * Sets the height of the current Row
+	 * Returns the Z-coordinate of the current Row
 	 * 
-	 * @param height the height to set
+	 * @return the zCoordinate
 	 */
-	public void setHeight(int height)
+	public int getZCoordinate()
 	{
-		this.height = height;
+		return zCoordinate;
 	}
 }

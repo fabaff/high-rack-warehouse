@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 /**
  * @author mschaerer
+ * 
  * Der Lagerort eines Szenarios, definiert die Gesamtgrösse eines Lagers
  * Der Lagerort ist einzigartig. Nur ein Lagerort kann existieren.
  */
@@ -69,6 +70,6 @@ public class Location
 	 */
 	public void addGap(Gap gap)
 	{
-		gaps.add(gap.getGapID(), gap);
+		gaps.add(gap.getGapID() - 1, gap);
 	}
 }

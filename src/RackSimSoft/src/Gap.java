@@ -4,6 +4,7 @@
 
 /**
  * @author mschaerer
+ * 
  * Die Gasse beinhaltet 1 oder 2 Lagergestelle auf der linken und / oder rechten Seite der Gasse
  * Die Gasse ist einem Lagerort zugeordnet
  */
@@ -12,15 +13,18 @@ public class Gap
 	private int gapID;
 	private Grid gridLeft;
 	private Grid gridRight;
+	private int xCoordinate;
 
 	/**
-	 * Creates a Gap. The ID of the Gap must be given.
+	 * Creates a Gap. The ID and the X-coordinate of the Gap must be given.
 	 * 
 	 * @param id	the ID of the Gap
+	 * @param x		the X-coordinate of the Gap
 	 */
-	public Gap(int id)
+	public Gap(int id, int x)
 	{
 		this.gapID = id;
+		this.xCoordinate = x;
 	}
 	
 	/**
@@ -31,6 +35,16 @@ public class Gap
 	public int getGapID()
 	{
 		return gapID;
+	}
+	
+	/**
+	 * Returns the X-coordinate of the current Gap
+	 * 
+	 * @return the xCoordinate
+	 */
+	public int getXCoordinate()
+	{
+		return xCoordinate;
 	}
 	
 	/**
