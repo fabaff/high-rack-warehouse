@@ -1,4 +1,6 @@
 
+package Location;
+
 import java.util.ArrayList;
 
 /**
@@ -70,6 +72,6 @@ public class Location
 	 */
 	public void addGap(Gap gap)
 	{
-		gaps.add(gap.getGapID() - 1, gap);
+		gaps.add(gap.getGapID(), gap);
 	}
 }

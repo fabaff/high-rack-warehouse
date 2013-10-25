@@ -1,3 +1,6 @@
+
+package Location;
+
 /**
  * 
  */
@@ -58,9 +61,9 @@ public class Gap
 	{
 		switch (grid.getGridSide())
 		{
-			case 1: gridLeft = grid;
+			case 0: gridLeft = grid;
 				break;
-			case 2: gridRight = grid;
+			case 1: gridRight = grid;
 				break;
 
 			/* ToDo: Exceptionhandling

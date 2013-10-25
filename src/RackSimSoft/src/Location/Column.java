@@ -1,3 +1,6 @@
+
+package Location;
+
 /**
  * 
  */
@@ -8,21 +11,21 @@
  */
 public class Column
 {
-	private int columnID;
-	private int length;
+	private String columnID;
+	private int width;
 	private int yCoordinate;
 	
 	/**
-	 * Creates a Column. The ID, the length and the Y-coordinate of the Column must be given.
+	 * Creates a Column. The ID, the width and the Y-coordinate of the Column must be given.
 	 * 
 	 * @param id		the ID of the Column
-	 * @param length	the length of the Column
+	 * @param width	the width of the Column
 	 * @param y			the Y-coordinate of the Column
 	 */
-	public Column(int id, int length, int y)
+	public Column(String id, int width, int y)
 	{
 		this.columnID = id;
-		this.setLength(length);
+		this.setWidth(width);
 		this.yCoordinate = y;
 	}
 	
@@ -31,29 +34,29 @@ public class Column
 	 * 
 	 * @return the columnID
 	 */
-	public int getColumnID()
+	public String getColumnID()
 	{
 		return columnID;
 	}
 
 	/**
-	 * Returns the height of the current Column
+	 * Returns the width of the current Column
 	 * 
-	 * @return the height
+	 * @return the width
 	 */
-	public int getLength()
+	public int getWidth()
 	{
-		return length;
+		return width;
 	}
 
 	/**
-	 * Sets the length of the current Column
+	 * Sets the width of the current Column
 	 * 
-	 * @param length the length to set
+	 * @param width the length to set
 	 */
-	public void setLength(int length)
+	public void setWidth(int width)
 	{
-		this.length = length;
+		this.width = width;
 	}
 	
 	/**
