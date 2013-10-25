@@ -13,7 +13,7 @@ package Location;
  */
 public class Gap
 {
-	private int gapID;
+	private String gapID;
 	private Grid gridLeft;
 	private Grid gridRight;
 	private int xCoordinate;
@@ -24,7 +24,7 @@ public class Gap
 	 * @param id	the ID of the Gap
 	 * @param x		the X-coordinate of the Gap
 	 */
-	public Gap(int id, int x)
+	public Gap(String id, int x)
 	{
 		this.gapID = id;
 		this.xCoordinate = x;
@@ -35,7 +35,7 @@ public class Gap
 	 * 
 	 * @return the gapID
 	 */
-	public int getGapID()
+	public String getGapID()
 	{
 		return gapID;
 	}

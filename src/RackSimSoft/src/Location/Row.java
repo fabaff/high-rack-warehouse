@@ -12,7 +12,7 @@ package Location;
  */
 public class Row
 {
-	private int rowID;
+	private String rowID;
 	private int height;
 	private int zCoordinate;
 	
@@ -23,7 +23,7 @@ public class Row
 	 * @param height	the height of the Row
 	 * @param z			the Z-coordinate of the Row
 	 */
-	public Row(int id, int height, int z)
+	public Row(String id, int height, int z)
 	{
 		this.rowID = id;
 		this.height = height;
@@ -35,7 +35,7 @@ public class Row
 	 * 
 	 * @return the rowID
 	 */
-	public int getRowID()
+	public String getRowID()
 	{
 		return rowID;
 	}

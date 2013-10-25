@@ -16,11 +16,9 @@ import java.util.ArrayList;
 public class Location
 {
 	private static Location instance;
-	private int locationID;
+	private String locationID;
 	private ArrayList<Gap> gaps = new ArrayList<Gap>();
 	
-	
-
 	/**
 	 * Returns an instance (object) of the class Location
 	 * 
@@ -30,7 +28,7 @@ public class Location
 	{
 		if (instance == null)
 		{
-			instance = new Location(getNextID());
+			instance = new Location("My Location");
 		}
 		
 		return instance;
@@ -41,17 +39,9 @@ public class Location
 	 * 
 	 * @param id	die ID des Lagerortes
 	 */
-	private Location(int id)
+	private Location(String id)
 	{
 		this.locationID = id;
-	}
-	
-	/**
-	 * @return the next free locationID
-	 */
-	private static int getNextID()
-	{
-		return 1;
 	}
 
 	/**
@@ -64,7 +54,6 @@ public class Location
 		return gaps.size();
 	}
 
-
 	/**
 	 * Adds a Gap to the current Location
 	 * 
@@ -72,6 +61,6 @@ public class Location
 	 */
 	public void addGap(Gap gap)
 	{
-		gaps.add(gap.getGapID(), gap);
+		gaps.add(gap);
 	}
 }

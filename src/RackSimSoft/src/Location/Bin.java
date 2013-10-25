@@ -14,8 +14,10 @@ package Location;
 public class Bin
 {
 	private String binID;
+	private String gapID;
+	private String gridID;
 	private String columnID;
-	private int rowID;
+	private String rowID;
 	
 	/**
 	 * Creates a Bin. The ID of the Bin must be given.
@@ -27,6 +29,14 @@ public class Bin
 		this.binID = id;
 	}
 	
+	public void placeBin(String gapID, String gridID, String columnID, String rowID)
+	{
+		this.gapID = gapID;
+		this.gridID = gridID;
+		this.columnID = columnID;
+		this.rowID = rowID;
+	}
+
 	/**
 	 * Returns the ID of the current Bin
 	 * 
@@ -37,12 +47,6 @@ public class Bin
 		return binID;
 	}
 	
-	public void placeBin(Column column, Row row)
-	{
-		this.setColumnID(columnID);
-		this.setRowID(rowID);
-	}
-
 	/**
 	 * Returns the columnID in which this Bin has been placed
 	 * 
@@ -51,35 +55,5 @@ public class Bin
 	public String getColumnID()
 	{
 		return columnID;
-	}
-
-	/**
-	 * Places the Bin in a Column
-	 * 
-	 * @param columnID the columnID to set
-	 */
-	private void setColumnID(String columnID)
-	{
-		this.columnID = columnID;
-	}
-	
-	/**
-	 * Returns the rowID in which this Bin has been placed
-	 * 
-	 * @return the rowID
-	 */
-	public int getRowID()
-	{
-		return rowID;
-	}
-
-	/**
-	 * Places the Bin in a Row
-	 * 
-	 * @param rowID the rowID to set
-	 */
-	private void setRowID(int rowID)
-	{
-		this.rowID = rowID;
 	}
 }

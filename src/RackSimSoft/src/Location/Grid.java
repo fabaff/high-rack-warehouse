@@ -15,7 +15,8 @@ import java.util.Hashtable;
  */
 public class Grid
 {
-	private int gridID;
+	private String gridID;
+	private String gapID;
 	private int gridSide = -1;
 	private int width;
 	private int height;
@@ -31,9 +32,10 @@ public class Grid
 	 * @param columnArray[]		the Columns to be added to the Grid
 	 * @param rowArray[]		the Rows to be added to the Grid
 	 */
-	public Grid(int id, int gridSide, Row rowArray[] , Column columnArray[])
+	public Grid(String id, Gap gap, int gridSide, Row rowArray[] , Column columnArray[])
 	{
 		this.gridID = id;
+		this.gapID = gap.getGapID();
 		this.gridSide = gridSide;
 		this.rowArray = rowArray;
 		this.columnArray = columnArray;
@@ -64,10 +66,10 @@ public class Grid
 		{
 			for (int j = 0; j < rowArray.length; j++)
 			{
-				Column column = columnArray[j];
-				Row row = rowArray[i];
-				Bin bin = new Bin(column.getColumnID() + " " + row.getRowID());
-				bin.placeBin(column, row);
+				Column column = columnArray[i];
+				Row row = rowArray[j];
+				Bin bin = new Bin(this.gapID + this.gridSide + "-" + this.gridID + "-" + column.getColumnID() + "-" + row.getRowID());
+				bin.placeBin(this.gapID, this.gridID, column.getColumnID(), row.getRowID());
 				binTable.put(bin.getBinID(), bin);
 			}
 		}
@@ -93,7 +95,7 @@ public class Grid
 	 * 
 	 * @return the gridID
 	 */
-	public int getGridID()
+	public String getGridID()
 	{
 		return gridID;
 	}
