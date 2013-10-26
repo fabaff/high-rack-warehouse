@@ -63,4 +63,24 @@ public class Location
 	{
 		gaps.add(gap);
 	}
+	
+	/**
+	 * Returns the list of gaps allocated to the current Location
+	 * 
+	 * @return the list of gaps
+	 */
+	public ArrayList<Gap> getGaps()
+	{
+		return gaps;
+	}
+	
+	/**
+	 * Returns the ID of the current Location
+	 * 
+	 * @return the locationID
+	 */
+	public String getLocationID()
+	{
+		return locationID;
+	}
 }

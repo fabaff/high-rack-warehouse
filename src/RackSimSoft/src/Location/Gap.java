@@ -14,8 +14,9 @@ package Location;
 public class Gap
 {
 	private String gapID;
-	private Grid gridLeft;
-	private Grid gridRight;
+	private Grid gridLeft = null;
+	private Grid gridRight = null;
+	private int width;
 	private int xCoordinate;
 
 	/**
@@ -59,11 +60,12 @@ public class Gap
 	 */
 	public void addGrid(Grid grid)
 	{
+		// Grid auf die richtige Seite im Gap legen
 		switch (grid.getGridSide())
 		{
-			case 0: gridLeft = grid;
+			case 0: this.gridLeft = grid;
 				break;
-			case 1: gridRight = grid;
+			case 1: this.gridRight = grid;
 				break;
 
 			/* ToDo: Exceptionhandling
@@ -71,5 +73,25 @@ public class Gap
 				break;
 			*/
 		}
+	}
+
+	/**
+	 * Returns the Grid assigned to the left hand side
+	 * 
+	 * @return the gridLeft
+	 */
+	public Grid getGridLeft()
+	{
+		return gridLeft;
+	}
+
+	/**
+	 * Returns the Grid assigned to the right hand side
+	 * 
+	 * @return the gridRight
+	 */
+	public Grid getGridRight()
+	{
+		return gridRight;
 	}
 }

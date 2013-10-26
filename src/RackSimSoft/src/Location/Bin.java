@@ -19,22 +19,30 @@ public class Bin
 	private String columnID;
 	private String rowID;
 	
+	private int xCoordinate;
+	private int yCoordinate;
+	private int zCoordinate;
+	
 	/**
 	 * Creates a Bin. The ID of the Bin must be given.
 	 * 
-	 * @param id		the ID of the Column
+	 * 
 	 */
-	public Bin(String id)
+	public Bin(String binID)
 	{
-		this.binID = id;
+		this.binID = binID;
 	}
 	
-	public void placeBin(String gapID, String gridID, String columnID, String rowID)
+	public void placeBin(Gap gap, Grid grid, Column column, Row row)
 	{
-		this.gapID = gapID;
-		this.gridID = gridID;
-		this.columnID = columnID;
-		this.rowID = rowID;
+		this.gapID = gap.getGapID();
+		this.gridID = grid.getGridID();
+		this.columnID = column.getColumnID();
+		this.rowID = row.getRowID();
+		
+		this.xCoordinate = gap.getXCoordinate();
+		this.yCoordinate = column.getYCoordinate();
+		this.zCoordinate = row.getZCoordinate();
 	}
 
 	/**
@@ -48,12 +56,32 @@ public class Bin
 	}
 	
 	/**
-	 * Returns the columnID in which this Bin has been placed
+	 * Returns the X-coordinate of the current Bin
 	 * 
-	 * @return the columnID
+	 * @return the X-coordinate
 	 */
-	public String getColumnID()
+	public int getX()
 	{
-		return columnID;
+		return xCoordinate;
+	}
+	
+	/**
+	 * Returns the Y-coordinate of the current Bin
+	 * 
+	 * @return the Y-coordinate
+	 */
+	public int getY()
+	{
+		return yCoordinate;
+	}
+	
+	/**
+	 * Returns the Z-coordinate of the current Bin
+	 * 
+	 * @return the Z-coordinate
+	 */
+	public int getZ()
+	{
+		return zCoordinate;
 	}
 }

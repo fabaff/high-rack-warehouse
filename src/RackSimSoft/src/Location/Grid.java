@@ -20,26 +20,28 @@ public class Grid
 	private int gridSide = -1;
 	private int width;
 	private int height;
-	private Column[] columnArray;
-	private Row[] rowArray;
-	private Bin[] binArray;
 	private Hashtable<String, Bin> binTable;
+	private Bin binArray[][];
 	
 	/**
 	 * Creates a Grid. The ID, the Columns and the Rows of the Grid must be given.
 	 * 
-	 * @param id				the ID of the Grid
+	 * @param gridID			the ID of the Grid
+	 * @param gapID				the ID of the Gap in which the Grid is integrated
+	 * @param gridSide			the side of the Grid in the Gap
 	 * @param columnArray[]		the Columns to be added to the Grid
 	 * @param rowArray[]		the Rows to be added to the Grid
 	 */
-	public Grid(String id, Gap gap, int gridSide, Row rowArray[] , Column columnArray[])
+	public Grid(String gridID, Gap gap, int gridSide, Column columnArray[], Row rowArray[])
 	{
-		this.gridID = id;
+		// Für das Grid rechts müssen die Kolonnen vertauscht werden
+		// Grid links: Nullpunkt unten links
+		// Grid rechts: Nullpunkt unten rechts
+		
+		this.gridID = gridID;
 		this.gapID = gap.getGapID();
 		this.gridSide = gridSide;
-		this.rowArray = rowArray;
-		this.columnArray = columnArray;
-		this.binTable = createBinTable(columnArray, rowArray);
+		this.binTable = createBinContainer(gap, columnArray, rowArray);
 		
 		int width = 0;
 		// Calculate Width
@@ -58,9 +60,10 @@ public class Grid
 		this.height = height;
 	}
 	
-	private Hashtable<String, Bin> createBinTable(Column[] columnArray, Row[] rowArray)
+	private Hashtable<String, Bin> createBinContainer(Gap gap, Column[] columnArray, Row[] rowArray)
 	{
 		Hashtable<String, Bin> binTable = new Hashtable<String, Bin>();
+		binArray = new Bin[columnArray.length][rowArray.length];
 		
 		for (int i = 0; i < columnArray.length; i++)
 		{
@@ -68,15 +71,40 @@ public class Grid
 			{
 				Column column = columnArray[i];
 				Row row = rowArray[j];
-				Bin bin = new Bin(this.gapID + this.gridSide + "-" + this.gridID + "-" + column.getColumnID() + "-" + row.getRowID());
-				bin.placeBin(this.gapID, this.gridID, column.getColumnID(), row.getRowID());
+				Bin bin = new Bin(this.gapID + "-" + this.gridSide + "-" + this.gridID + "-" + column.getColumnID() + "-" + row.getRowID());
+				bin.placeBin(gap, this, column, row);
+				
+				// In Hashtabelle
 				binTable.put(bin.getBinID(), bin);
+				
+				// In Array
+				binArray[i][j] = bin;
 			}
 		}
 		
 		return binTable;
 	}
-
+	
+	/**
+	 * Returns the table containing all Bins of the current Grid
+	 * 
+	 * @return the binTable
+	 */
+	public Hashtable<String, Bin> getBinTable()
+	{
+		return this.binTable;
+	}
+	
+	/**
+	 * Returns an array containing all Bins of the current Grid
+	 * 
+	 * @return the binArray
+	 */
+	public Bin[][] getBinArray()
+	{
+		return binArray;
+	}
+	
 	/**
 	 * Returns the side of the current Grid
 	 * Left side = 1
