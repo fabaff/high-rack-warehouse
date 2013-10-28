@@ -19,12 +19,18 @@ public class CreateLocation
 		printLocation(myLocation);
 		
 		// Einen bestimmten Lagerplatz holen und die Koordinaten ausgeben
-		/*
-		 * ToDo
-		 * 
-		 * Via Lagerort/Gassen/Grids/binArray einene bestimmten Lagerplatz holen
-		 */
-		//Bin bin = getBin("0-0-0-2-0");
+		String binID;
+		Bin bin;
+		
+		binID = "0-0-0-2-0";
+		System.out.println("\n\nDie Koordinaten des Lagerplatzes " + binID + " lauten:");
+		bin = myLocation.getBin(binID);
+		System.out.println(bin.getX() + "/" + bin.getY() + "/" + bin.getZ());
+		
+		binID = "0-1-1-2-1";
+		System.out.println("\n\nDie Koordinaten des Lagerplatzes " + binID + " lauten:");
+		bin = myLocation.getBin(binID);
+		System.out.println(bin.getX() + "/" + bin.getY() + "/" + bin.getZ());
 	}
 
 	// Lagerort erzeugen

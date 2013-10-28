@@ -10,13 +10,13 @@ package Location;
  * 
  * Die Gasse beinhaltet 1 oder 2 Lagergestelle auf der linken und / oder rechten Seite der Gasse
  * Die Gasse ist einem Lagerort zugeordnet
+ * Die Gasse wird in ein linkes und rechtes Lagergestell unterteilt.
  */
 public class Gap
 {
 	private String gapID;
 	private Grid gridLeft = null;
 	private Grid gridRight = null;
-	private int width;
 	private int xCoordinate;
 
 	/**

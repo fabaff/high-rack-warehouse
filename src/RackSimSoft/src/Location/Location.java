@@ -12,6 +12,7 @@ import java.util.ArrayList;
  * 
  * Der Lagerort eines Szenarios, definiert die Gesamtgrösse eines Lagers
  * Der Lagerort ist einzigartig. Nur ein Lagerort kann existieren.
+ * DerLagerort wird in Gassen unterteilt.
  */
 public class Location
 {
@@ -82,5 +83,39 @@ public class Location
 	public String getLocationID()
 	{
 		return locationID;
+	}
+	
+	public Bin getBin(String binID)
+	{
+		int i = this.countGaps() - 1;
+		int j;
+		Gap gap = null;
+		Grid grid = null;
+		Bin bin = null;
+		
+		while ((i >= 0) && (bin == null))
+		{
+			gap = gaps.get(i);
+			j = 1;
+			while ((j >= 0) && (bin == null))
+			{
+				if (j == 1)
+					// Rechtes Grid prüfen
+					grid = gap.getGridLeft();
+				else
+					// Linkes Grid prüfen
+					grid = gap.getGridRight();
+				
+				if (grid != null)
+				{
+					bin = grid.getBin(binID);
+				}
+				
+				j--;
+			}
+			i--;
+		}
+		
+		return bin;
 	}
 }

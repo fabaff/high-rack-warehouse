@@ -34,10 +34,6 @@ public class Grid
 	 */
 	public Grid(String gridID, Gap gap, int gridSide, Column columnArray[], Row rowArray[])
 	{
-		// Für das Grid rechts müssen die Kolonnen vertauscht werden
-		// Grid links: Nullpunkt unten links
-		// Grid rechts: Nullpunkt unten rechts
-		
 		this.gridID = gridID;
 		this.gapID = gap.getGapID();
 		this.gridSide = gridSide;
@@ -103,6 +99,16 @@ public class Grid
 	public Bin[][] getBinArray()
 	{
 		return binArray;
+	}
+	
+	/**
+	 * Returns a Bin if assigned to current Grid
+	 * 
+	 * @return the binArray
+	 */
+	public Bin getBin(String binID)
+	{
+		return this.binTable.get(binID);
 	}
 	
 	/**
