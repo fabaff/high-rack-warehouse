@@ -22,6 +22,7 @@ public class Grid
 	private int height;
 	private Hashtable<String, Bin> binTable;
 	private Bin binArray[][];
+	private int xCoordinate;
 	
 	/**
 	 * Creates a Grid. The ID, the Columns and the Rows of the Grid must be given.
@@ -37,10 +38,23 @@ public class Grid
 		this.gridID = gridID;
 		this.gapID = gap.getGapID();
 		this.gridSide = gridSide;
-		this.binTable = createBinContainer(gap, columnArray, rowArray);
 		
-		int width = 0;
+		if (gridSide == 0)
+		{
+			// Linkes Grid
+			this.xCoordinate = gap.getXCoordinate();
+		}
+		else
+		{
+			// Rechtes Grid
+			this.xCoordinate = gap.getXCoordinate() + gap.getWidth();
+		}
+		
+		// Lagerplätze erzeugen und in Container abfüllen
+		createBins(gap, columnArray, rowArray);
+		
 		// Calculate Width
+		int width = 0;
 		for(Column column : columnArray)
 		{
 			width += column.getWidth();
@@ -56,10 +70,10 @@ public class Grid
 		this.height = height;
 	}
 	
-	private Hashtable<String, Bin> createBinContainer(Gap gap, Column[] columnArray, Row[] rowArray)
+	private void createBins(Gap gap, Column[] columnArray, Row[] rowArray)
 	{
-		Hashtable<String, Bin> binTable = new Hashtable<String, Bin>();
-		binArray = new Bin[columnArray.length][rowArray.length];
+		this.binTable = new Hashtable<String, Bin>();
+		this.binArray = new Bin[columnArray.length][rowArray.length];
 		
 		for (int i = 0; i < columnArray.length; i++)
 		{
@@ -77,8 +91,6 @@ public class Grid
 				binArray[i][j] = bin;
 			}
 		}
-		
-		return binTable;
 	}
 	
 	/**
@@ -113,9 +125,9 @@ public class Grid
 	
 	/**
 	 * Returns the side of the current Grid
-	 * Left side = 1
-	 * Right side = 2
-	 * if no side has been attached = 0
+	 * Left side = 0
+	 * Right side = 1
+	 * if no side has been attached = -1
 	 * 
 	 * @return the gridSide
 	 */
@@ -152,5 +164,15 @@ public class Grid
 	public int getHeight()
 	{
 		return height;
+	}
+	
+	/**
+	 * Returns the X-coordinate of the current Grid
+	 * 
+	 * @return the xCoordinate
+	 */
+	public int getXCoordinate()
+	{
+		return xCoordinate;
 	}
 }

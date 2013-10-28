@@ -31,6 +31,16 @@ public class CreateLocation
 		System.out.println("\n\nDie Koordinaten des Lagerplatzes " + binID + " lauten:");
 		bin = myLocation.getBin(binID);
 		System.out.println(bin.getX() + "/" + bin.getY() + "/" + bin.getZ());
+		
+		binID = "1-0-2-3-1";
+		System.out.println("\n\nDie Koordinaten des Lagerplatzes " + binID + " lauten:");
+		bin = myLocation.getBin(binID);
+		System.out.println(bin.getX() + "/" + bin.getY() + "/" + bin.getZ());
+		
+		binID = "1-1-3-2-0";
+		System.out.println("\n\nDie Koordinaten des Lagerplatzes " + binID + " lauten:");
+		bin = myLocation.getBin(binID);
+		System.out.println(bin.getX() + "/" + bin.getY() + "/" + bin.getZ());
 	}
 
 	// Lagerort erzeugen
@@ -45,7 +55,7 @@ public class CreateLocation
 		int columnCounter = 4;  // Anzahl Spalten pro Grid
 		int rowCounter = 2;  // Anzahl Reihen pro Grid
 		int width = 1000;  // Offset X-Koordinate (Breite der Gassen)
-		int depth = 800; // Tiefe des Grids
+		int depth = 800;  // Tiefe des Grids
 		int height = 1000;  // Offset Z-Koordinate (Höhe der Reihen)
 		int length = 1500;  // Offset Y-Koordinate (Breite der Spalten)
 		
@@ -56,7 +66,7 @@ public class CreateLocation
 		int columnCounter = 7;  // Anzahl Spalten pro Grid
 		int rowCounter = 30;  // Anzahl Reihen pro Grid
 		int width = 1000;  // Offset X-Koordinate (Breite der Gassen)
-		int depth = 600; // Tiefe des Grids
+		int depth = 600;  // Tiefe des Grids
 		int height = 1000;  // Offset Z-Koordinate (Höhe der Reihen)
 		int length = 1500;  // Offset Y-Koordinate (Breite der Spalten)
 		*/
@@ -66,7 +76,7 @@ public class CreateLocation
 		// Gaps erstellen
 		for (int i = 0; i < gapCount; i++)
 		{
-			Gap gap = new Gap("" + i, (i * 2 * depth) + depth + (i * width));  // id, X-coordinate
+			Gap gap = new Gap("" + i, width, (i * 2 * depth) + depth + (i * width));  // id, X-coordinate
 		
 			// Grids erstellen
 			for (int j = 0; j < 2; j++)
@@ -106,7 +116,7 @@ public class CreateLocation
 		System.out.println("Anzahl Gassen: " + myLocation.countGaps());
 		
 		// Alle Gassen holen
-		ArrayList<Gap> gaps = myLocation.getGaps();
+		ArrayList<Gap> gaps = myLocation.getGapList();
 		
 		// Von jeder Gasse die Grids holen
 		for(Gap gap : gaps)

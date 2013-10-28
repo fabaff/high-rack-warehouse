@@ -16,8 +16,8 @@ public class Bin
 	private String binID;
 	private String gapID;
 	private String gridID;
-	private String columnID;
-	private String rowID;
+	
+	private int gridSide = -1;
 	
 	private int xCoordinate;
 	private int yCoordinate;
@@ -37,10 +37,10 @@ public class Bin
 	{
 		this.gapID = gap.getGapID();
 		this.gridID = grid.getGridID();
-		this.columnID = column.getColumnID();
-		this.rowID = row.getRowID();
 		
-		this.xCoordinate = gap.getXCoordinate();
+		this.gridSide = grid.getGridSide();
+		
+		this.xCoordinate = grid.getXCoordinate();
 		this.yCoordinate = column.getYCoordinate();
 		this.zCoordinate = row.getZCoordinate();
 	}
@@ -53,6 +53,26 @@ public class Bin
 	public String getBinID()
 	{
 		return binID;
+	}
+	
+	/**
+	 * Returns the ID of the assigned Grid
+	 * 
+	 * @return the gridID
+	 */
+	public String getgridID()
+	{
+		return gridID;
+	}
+	
+	/**
+	 * Returns the ID of the assigned Gap
+	 * 
+	 * @return the gapID
+	 */
+	public String getgapID()
+	{
+		return gapID;
 	}
 	
 	/**
@@ -83,5 +103,18 @@ public class Bin
 	public int getZ()
 	{
 		return zCoordinate;
+	}
+	
+	/**
+	 * Returns the side of the current Bin
+	 * Left side = 0
+	 * Right side = 1
+	 * if no side has been attached = -1
+	 * 
+	 * @return the gridSide
+	 */
+	public int getGridSide()
+	{
+		return gridSide;
 	}
 }

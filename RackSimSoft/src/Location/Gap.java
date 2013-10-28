@@ -17,17 +17,20 @@ public class Gap
 	private String gapID;
 	private Grid gridLeft = null;
 	private Grid gridRight = null;
+	private int width;
 	private int xCoordinate;
 
 	/**
-	 * Creates a Gap. The ID and the X-coordinate of the Gap must be given.
+	 * Creates a Gap. The ID, the width and the X-coordinate of the Gap must be given.
 	 * 
 	 * @param id	the ID of the Gap
+	 * @param width	the width of the Gap
 	 * @param x		the X-coordinate of the Gap
 	 */
-	public Gap(String id, int x)
+	public Gap(String id, int width, int x)
 	{
 		this.gapID = id;
+		this.width = width;
 		this.xCoordinate = x;
 	}
 	
@@ -49,6 +52,16 @@ public class Gap
 	public int getXCoordinate()
 	{
 		return xCoordinate;
+	}
+	
+	/**
+	 * Returns the width of the current Gap
+	 * 
+	 * @return the width
+	 */
+	public int getWidth()
+	{
+		return width;
 	}
 	
 	/**
