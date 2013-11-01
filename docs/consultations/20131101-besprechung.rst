@@ -26,5 +26,5 @@ Zentraler Eventhandler für Opitmierung wohl geeigneter als viele einzelne Eventh
 
 /TODO
 Modell erstellen
-Datenstrucktur festlegen
-Eventhandler bestimmen
+Datenstrucktur festlegen (Zustandsverwaltung usw)
+Eventhandler bestimmen (oder Agenten / Master-System)
