@@ -23,7 +23,7 @@ import Gui2D.*;
 //import java.util.Map.Entry;
 //import java.util.Set;
 
-public class CreateLocation
+public class CreateLocation2
 {
 	public static void main(String[] args)
 	{
@@ -41,7 +41,7 @@ public class CreateLocation
 		printBin(myLocation, "1-1-3-2-0");
 		
 		// Gui erstellen
-		createAndShowGui(myLocation);
+		createAndShowGui();
 	}
 	
 	
@@ -207,7 +207,7 @@ public class CreateLocation
 	}
 	
 	
-	private static void createAndShowGui(Location myLocation)
+	private static void createAndShowGui()
 	{
 		// Fenster erstellen
 		MainFrame frame = new MainFrame();
@@ -242,16 +242,11 @@ public class CreateLocation
 		c.ipady = 20;
 		
 		JLayeredPane layeredPane = null;
-		GridComponent gridComponent = null;
-		
-		// Aktive Gasse soll Gasse 2 sein
-		// Gasse 2 holen, Grids aus Gasse holen
-		Gap gap = myLocation.getGap("1");
-		System.out.println("gap bekommen: " + gap.getGapID());
-		Grid grid;
+		RectangleComponent rectangle = null;
+		int width, heigth, border;
 		
 		// Im GridLayout (3 Spalten, 2 Reihen) jeweils ein neues LayeredPane hinzufügen,
-		// in 2 davon wird ein Grid (aus Package Location, bzw. Gui2D) gezeichnet
+		// in dieses kommt ein neues Pane auf welchem ein Rectangle gezeichnet wird
 		for (int i = 0; i < 3; i++)
 		{
 			for (int j = 0; j < 2; j++)
@@ -266,29 +261,29 @@ public class CreateLocation
 		        layeredPane.setBorder(BorderFactory.createTitledBorder(
 		                                    "This is a layered Pane"));
 		        
-		        System.out.println("Aktuelles Grid (Layout i / j): " + i + "/" + j);
+		        // Rectangle erstellen und auf LayeredPane legen, Layer 0
+		        width = 150;
+		        heigth = 100;
+		        border = 10;
+		        rectangle = new RectangleComponent("1", width, heigth, border);
+		        rectangle.setBounds(20, 20, width, heigth);
+		        layeredPane.add(rectangle, 0);
 		        
-		        // Grid erstellen und auf LayeredPane legen, Layer 0
-		        if ((j == 0) && ((i == 0) || (i == 2)))
-		        {
-		        	// Das richtige Grid holen (Links oder Rechts)
-		        	if (i == 0)
-		        	{
-		        		System.out.println("grid links wird gesucht...");
-		        		grid = gap.getGridLeft();
-		        		System.out.println("grid links bekommen");
-		        	}
-		        	else
-		        	{
-		        		System.out.println("grid rechts wird gesucht...");
-		        		grid = gap.getGridRight();
-		        		System.out.println("grid rechts bekommen");
-		        	}
-		        	
-			        gridComponent = new GridComponent(grid);
-			        gridComponent.setBounds(20, 20, gridComponent.getWidth(), gridComponent.getHeight());
-			        layeredPane.add(gridComponent, 0);
-		        }
+		        // Rectangle erstellen und auf LayeredPane legen, Layer 1
+		        width = 150;
+		        heigth = 100;
+		        border = 5;
+		        rectangle = new RectangleComponent("2", width, heigth, border);
+		        rectangle.setBounds(40, 40, width, heigth);
+		        layeredPane.add(rectangle, 1);
+		        
+		        // Rectangle erstellen und auf LayeredPane legen, Layer 2
+		        width = 150;
+		        heigth = 100;
+		        border = 3;
+		        rectangle = new RectangleComponent("3", width, heigth, border);
+		        rectangle.setBounds(60, 60, width, heigth);
+		        layeredPane.add(rectangle, 1);
 		        
 		        // Layer auf das MainPane legen
 		        pane.add(layeredPane, c);
