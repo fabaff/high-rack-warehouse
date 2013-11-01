@@ -23,3 +23,8 @@ Mögliche Events:
 
 
 Zentraler Eventhandler für Opitmierung wohl geeigneter als viele einzelne Eventhandler.
+
+/TODO
+Modell erstellen
+Datenstrucktur festlegen
+Eventhandler bestimmen
