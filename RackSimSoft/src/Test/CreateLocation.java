@@ -209,6 +209,8 @@ public class CreateLocation
 	
 	private static void createAndShowGui(Location myLocation)
 	{
+		double guiCoordinateFactor = 0.08;
+		
 		// Fenster erstellen
 		MainFrame frame = new MainFrame();
 		
@@ -243,12 +245,15 @@ public class CreateLocation
 		
 		JLayeredPane layeredPane = null;
 		GridComponent gridComponent = null;
+		BinComponent binComponent = null;
 		
 		// Aktive Gasse soll Gasse 2 sein
 		// Gasse 2 holen, Grids aus Gasse holen
 		Gap gap = myLocation.getGap("1");
-		System.out.println("gap bekommen: " + gap.getGapID());
 		Grid grid;
+		Bin binArray[][];
+		int xOffset = 20;
+		int yOffset = 20;
 		
 		// Im GridLayout (3 Spalten, 2 Reihen) jeweils ein neues LayeredPane hinzufügen,
 		// in 2 davon wird ein Grid (aus Package Location, bzw. Gui2D) gezeichnet
@@ -262,11 +267,8 @@ public class CreateLocation
 				c.weighty = 1;
 				
 				layeredPane = new JLayeredPane();
-				layeredPane.setPreferredSize(new Dimension(200, 150));
-		        layeredPane.setBorder(BorderFactory.createTitledBorder(
-		                                    "This is a layered Pane"));
-		        
-		        System.out.println("Aktuelles Grid (Layout i / j): " + i + "/" + j);
+				layeredPane.setPreferredSize(new Dimension(50, 40));
+		        layeredPane.setBorder(BorderFactory.createTitledBorder("This is a layered Pane"));
 		        
 		        // Grid erstellen und auf LayeredPane legen, Layer 0
 		        if ((j == 0) && ((i == 0) || (i == 2)))
@@ -274,20 +276,31 @@ public class CreateLocation
 		        	// Das richtige Grid holen (Links oder Rechts)
 		        	if (i == 0)
 		        	{
-		        		System.out.println("grid links wird gesucht...");
 		        		grid = gap.getGridLeft();
-		        		System.out.println("grid links bekommen");
 		        	}
 		        	else
 		        	{
-		        		System.out.println("grid rechts wird gesucht...");
 		        		grid = gap.getGridRight();
-		        		System.out.println("grid rechts bekommen");
 		        	}
 		        	
-			        gridComponent = new GridComponent(grid);
-			        gridComponent.setBounds(20, 20, gridComponent.getWidth(), gridComponent.getHeight());
+			        gridComponent = new GridComponent(grid, guiCoordinateFactor);
+			        gridComponent.setBounds(xOffset, yOffset, gridComponent.getWidth(), gridComponent.getHeight());
 			        layeredPane.add(gridComponent, 0);
+			        
+			        // Bins erstellen und auf LayeredPane legen, Layer 1
+			        binArray = grid.getBinArray();
+			        for (Bin[] bins : binArray)
+			        {
+			        	for (Bin bin : bins)
+				        {
+				        	System.out.println(bin.getBinID());
+			        		binComponent = new BinComponent(bin, guiCoordinateFactor);
+					        binComponent.setBounds(xOffset + binComponent.getYOffset(), yOffset + binComponent.getZOffset(), binComponent.getWidth() + 10, binComponent.getHeight() + 10);
+					        System.out.println("BinID: " + bin.getBinID() + ", Y-Offset: " + binComponent.getYOffset() + ", Z-Offset: " + binComponent.getZOffset() +
+					        		           ", Breite: " + binComponent.getWidth() + ", Höhe: " + binComponent.getHeight());
+					        layeredPane.add(binComponent, 1);
+				        }
+			        }
 		        }
 		        
 		        // Layer auf das MainPane legen

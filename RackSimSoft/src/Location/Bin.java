@@ -16,7 +16,8 @@ public class Bin
 	private String binID;
 	private String gapID;
 	private String gridID;
-	
+	private int width;
+	private int height;
 	private int gridSide = -1;
 	
 	private int xCoordinate;
@@ -43,6 +44,9 @@ public class Bin
 		this.xCoordinate = grid.getXCoordinate();
 		this.yCoordinate = column.getYCoordinate();
 		this.zCoordinate = row.getZCoordinate();
+		
+		this.width = column.getWidth();
+		this.height = row.getHeight();
 	}
 
 	/**
@@ -103,6 +107,26 @@ public class Bin
 	public int getZ()
 	{
 		return zCoordinate;
+	}
+	
+	/**
+	 * Returns the width of the current Bin
+	 * 
+	 * @return the width
+	 */
+	public int getWidth()
+	{
+		return width;
+	}
+	
+	/**
+	 * Returns the height of the current Bin
+	 * 
+	 * @return the height
+	 */
+	public int getHeight()
+	{
+		return height;
 	}
 	
 	/**

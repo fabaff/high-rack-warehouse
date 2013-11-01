@@ -280,9 +280,9 @@ public class CreateLocation2
 		        // Rectangle erstellen und auf LayeredPane legen, Layer 2
 		        width = 150;
 		        heigth = 100;
-		        border = 3;
+		        border = 1;
 		        rectangle = new RectangleComponent("3", width, heigth, border);
-		        rectangle.setBounds(60, 60, width, heigth);
+		        rectangle.setBounds(60, 60, width + 1, heigth + 1);
 		        layeredPane.add(rectangle, 1);
 		        
 		        // Layer auf das MainPane legen
