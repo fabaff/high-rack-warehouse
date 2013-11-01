@@ -247,8 +247,8 @@ public class CreateLocation
 		GridComponent gridComponent = null;
 		BinComponent binComponent = null;
 		
-		// Aktive Gasse soll Gasse 2 sein
-		// Gasse 2 holen, Grids aus Gasse holen
+		// Aktive Gasse soll Gasse 1 sein
+		// Gasse 11 holen, Grids aus Gasse holen
 		Gap gap = myLocation.getGap("1");
 		Grid grid;
 		Bin binArray[][];
@@ -295,7 +295,7 @@ public class CreateLocation
 				        {
 				        	System.out.println(bin.getBinID());
 			        		binComponent = new BinComponent(bin, guiCoordinateFactor);
-					        binComponent.setBounds(xOffset + binComponent.getYOffset(), yOffset + binComponent.getZOffset(), binComponent.getWidth() + 10, binComponent.getHeight() + 10);
+					        binComponent.setBounds(xOffset + binComponent.getYOffset(), yOffset + binComponent.getZOffset(), binComponent.getWidth(), binComponent.getHeight());
 					        System.out.println("BinID: " + bin.getBinID() + ", Y-Offset: " + binComponent.getYOffset() + ", Z-Offset: " + binComponent.getZOffset() +
 					        		           ", Breite: " + binComponent.getWidth() + ", Höhe: " + binComponent.getHeight());
 					        layeredPane.add(binComponent, 1);
