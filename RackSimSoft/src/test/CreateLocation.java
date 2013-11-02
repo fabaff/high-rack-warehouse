@@ -1,4 +1,4 @@
-package Test;
+package test;
 
 import java.awt.Container;
 import java.awt.Dimension;
@@ -14,10 +14,10 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
-import java.util.ArrayList;
+import gui2D.*;
+import location.*;
 
-import Location.*;
-import Gui2D.*;
+import java.util.ArrayList;
 
 //import java.util.Hashtable;
 //import java.util.Map.Entry;
@@ -27,38 +27,38 @@ public class CreateLocation
 {
 	public static void main(String[] args)
 	{
-		// Lagerort erzeugen
+		// Creates a location
 		Location myLocation = createLocation();
 		System.out.println("Location wurde erzeugt...");
 		
-		// Lagerort ausgeben
+		// Prints the location
 		printLocation(myLocation);
 		
-		// Einen bestimmten Lagerplatz holen und die Koordinaten ausgeben
+		// Gets predefined bin and prints their coordinates
 		printBin(myLocation, "0-0-0-2-0");
 		printBin(myLocation, "0-1-1-2-1");
 		printBin(myLocation, "1-0-2-3-1");
 		printBin(myLocation, "1-1-3-2-0");
 		
-		// Gui erstellen
+		// Creates GUI
 		createAndShowGui(myLocation);
 	}
 	
 	
-	// Lagerort erzeugen
+	// Creates a location
 	private static Location createLocation()
 	{
 		// Lagerort erstellen
 		Location myLocation = Location.getInstance();
 		
 		
-		// Einfaches Modell:
+		// Simple model: 
 		int gapCount = 2;  // Anzahl Gassen
 		int columnCounter = 4;  // Anzahl Spalten pro Grid
 		int rowCounter = 2;  // Anzahl Reihen pro Grid
 		int width = 1000;  // Offset X-Koordinate (Breite der Gassen)
 		int depth = 800;  // Tiefe des Grids
-		int height = 1000;  // Offset Z-Koordinate (Höhe der Reihen)
+		int height = 1000;  // Offset Z-Koordinate (Hï¿½he der Reihen)
 		int length = 1500;  // Offset Y-Koordinate (Breite der Spalten)
 		
 		
@@ -69,13 +69,13 @@ public class CreateLocation
 		int rowCounter = 30;  // Anzahl Reihen pro Grid
 		int width = 1000;  // Offset X-Koordinate (Breite der Gassen)
 		int depth = 600;  // Tiefe des Grids
-		int height = 1000;  // Offset Z-Koordinate (Höhe der Reihen)
+		int height = 1000;  // Offset Z-Koordinate (Hï¿½he der Reihen)
 		int length = 1500;  // Offset Y-Koordinate (Breite der Spalten)
 		*/
 		
 		int gridID = 0;
 		
-		// Gaps erstellen
+		// Creates gaps
 		for (int i = 0; i < gapCount; i++)
 		{
 			Gap gap = new Gap("" + i, width, (i * 2 * depth) + depth + (i * width));  // id, X-coordinate
@@ -86,7 +86,7 @@ public class CreateLocation
 				Row rowArray[] = new Row[rowCounter];
 				Column columnArray[] = new Column[columnCounter];
 				
-				// Arrays abfüllen mit Breite bzw. Höhe
+				// Arrays abfï¿½llen mit Breite bzw. Hï¿½he
 				for (int k = 0; k < columnArray.length; k++)
 				{					
 					columnArray[k] = new Column("" + k, length, k * length);  // id, width, Y-coordinate
@@ -135,9 +135,9 @@ public class CreateLocation
 			grid = gap.getGridLeft();
 			if (grid != null)
 			{
-				System.out.println("\n\t\tGrid Links:\n\t\tID = " + grid.getGridID() + "\n\t\tgridSide = " + grid.getGridSide() + "\n\t\tBreite = " + grid.getWidth() + "\n\t\tHöhe = " + grid.getHeight());
+				System.out.println("\n\t\tGrid Links:\n\t\tID = " + grid.getGridID() + "\n\t\tgridSide = " + grid.getGridSide() + "\n\t\tBreite = " + grid.getWidth() + "\n\t\tHï¿½he = " + grid.getHeight());
 				
-				// Über alle Lagerplätze im Grid loopen
+				// ï¿½ber alle Lagerplï¿½tze im Grid loopen
 				Bin bin;
 				
 				/*
@@ -167,9 +167,9 @@ public class CreateLocation
 			grid = gap.getGridRight();
 			if (grid != null)
 			{
-				System.out.println("\n\t\tGrid Rechts:\n\t\tID = " + grid.getGridID() + "\n\t\tgridSide = " + grid.getGridSide() + "\n\t\tBreite = " + grid.getWidth() + "\n\t\tHöhe = " + grid.getHeight());
+				System.out.println("\n\t\tGrid Rechts:\n\t\tID = " + grid.getGridID() + "\n\t\tgridSide = " + grid.getGridSide() + "\n\t\tBreite = " + grid.getWidth() + "\n\t\tHï¿½he = " + grid.getHeight());
 				
-				// Über alle Lagerplätze im Grid loopen
+				// ï¿½ber alle Lagerplï¿½tze im Grid loopen
 				Bin bin;
 				
 				/*
@@ -214,24 +214,24 @@ public class CreateLocation
 		// Fenster erstellen
 		MainFrame frame = new MainFrame();
 		
-		// Menü erstellen
+		// Menï¿½ erstellen
 		JMenuBar menuBar = new JMenuBar();
 		
 		JMenu menu = new JMenu("Datei");
 		menu.setMnemonic(KeyEvent.VK_D);
 		
-		// Menüitem erstellen
+		// Menï¿½item erstellen
 		JMenuItem menuItem = new JMenuItem("Was auch immer...", KeyEvent.VK_T);
-		// Zugriff über Alt + 1
+		// Zugriff ï¿½ber Alt + 1
 		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
 		
-		// Menüitem auf Menü legen
+		// Menï¿½item auf Menï¿½ legen
 		menu.add(menuItem);
 		
-		// Menü auf Menübar legen
+		// Menï¿½ auf Menï¿½bar legen
 		menuBar.add(menu);
 		
-		// Menübar auf Frame legen
+		// Menï¿½bar auf Frame legen
 		frame.setJMenuBar(menuBar);
 				
 		// MainPane erstellen
@@ -255,7 +255,7 @@ public class CreateLocation
 		int xOffset = 20;
 		int yOffset = 20;
 		
-		// Im GridLayout (3 Spalten, 2 Reihen) jeweils ein neues LayeredPane hinzufügen,
+		// Im GridLayout (3 Spalten, 2 Reihen) jeweils ein neues LayeredPane hinzufï¿½gen,
 		// in 2 davon wird ein Grid (aus Package Location, bzw. Gui2D) gezeichnet
 		for (int i = 0; i < 3; i++)
 		{
@@ -297,7 +297,7 @@ public class CreateLocation
 			        		binComponent = new BinComponent(bin, guiCoordinateFactor);
 					        binComponent.setBounds(xOffset + binComponent.getYOffset(), yOffset + binComponent.getZOffset(), binComponent.getWidth(), binComponent.getHeight());
 					        System.out.println("BinID: " + bin.getBinID() + ", Y-Offset: " + binComponent.getYOffset() + ", Z-Offset: " + binComponent.getZOffset() +
-					        		           ", Breite: " + binComponent.getWidth() + ", Höhe: " + binComponent.getHeight());
+					        		           ", Breite: " + binComponent.getWidth() + ", Hoehe: " + binComponent.getHeight());
 					        layeredPane.add(binComponent, 1);
 				        }
 			        }
