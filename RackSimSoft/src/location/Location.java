@@ -1,19 +1,14 @@
-
-package Location;
+package location;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
 
 /**
- * 
- */
-
-/**
  * @author mschaerer
  * 
- * Der Lagerort eines Szenarios, definiert die Gesamtgrösse eines Lagers
- * Der Lagerort ist einzigartig. Nur ein Lagerort kann existieren.
- * Der Lagerort wird in Gassen unterteilt.
+ * The location defines the overall size of the storage unit. The location
+ * is unique and only can exists once. 
+ * The location contains gaps.
  */
 public class Location
 {
@@ -23,7 +18,7 @@ public class Location
 	private ArrayList<Gap> gapList = new ArrayList<Gap>();
 	
 	/**
-	 * Returns an instance (object) of the class Location
+	 * Returns an instance (object) of the class location.
 	 * 
 	 * @return the instance of this class
 	 */
@@ -38,9 +33,9 @@ public class Location
 	}
 	
 	/**
-	 * Creates a Location. The ID of the Location must be given.
+	 * Creates a Location. The ID of the location must be given.
 	 * 
-	 * @param id	die ID des Lagerortes
+	 * @param id	ID of the location
 	 */
 	private Location(String id)
 	{
@@ -48,7 +43,7 @@ public class Location
 	}
 
 	/**
-	 * Returns the number of gaps allocated to the current Location
+	 * Returns the number of gaps allocated to the current location.
 	 * 
 	 * @return the number of gaps
 	 */
@@ -58,21 +53,21 @@ public class Location
 	}
 
 	/**
-	 * Adds a Gap to the current Location
+	 * Adds a Gap to the current location.
 	 * 
 	 * @param gap	the gap to add
 	 */
 	public void addGap(Gap gap)
 	{
-		// In Hashtabelle
+		// To hash table
 		gapTable.put(gap.getGapID(), gap);
 		
-		// In ArrayList
+		// To array list
 		gapList.add(gap);
 	}
 	
 	/**
-	 * Returns the list of gaps allocated to the current Location
+	 * Returns the list of gaps allocated to the current location.
 	 * 
 	 * @return the list of gaps
 	 */
@@ -82,7 +77,7 @@ public class Location
 	}
 	
 	/**
-	 * Returns the ID of the current Location
+	 * Returns the ID of the current location.
 	 * 
 	 * @return the locationID
 	 */
@@ -92,7 +87,7 @@ public class Location
 	}
 	
 	/**
-	 * Returns the Bin for the current binID
+	 * Returns the Bin for the current binID.
 	 * 
 	 * @param binID	the binID
 	 * @return the Bin
@@ -112,10 +107,10 @@ public class Location
 			while ((j >= 0) && (bin == null))
 			{
 				if (j == 1)
-					// Rechtes Grid prüfen
+					// Check right grid
 					grid = gap.getGridLeft();
 				else
-					// Linkes Grid prüfen
+					// Check left grid
 					grid = gap.getGridRight();
 				
 				if (grid != null)
@@ -132,7 +127,7 @@ public class Location
 	}
 	
 	/**
-	 * Returns the Gap for the current gapID
+	 * Returns the Gap for the current gapID.
 	 * 
 	 * @param gapID	the gapID
 	 * @return the Gap
