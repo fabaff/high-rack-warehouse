@@ -200,10 +200,8 @@ public class CreateLocation
 	private static void printBin(Location location, String binID)
 	{
 		Bin bin;
-		
-		System.out.println("\nDie Koordinaten des Lagerplatzes " + binID + " lauten:");
 		bin = location.getBin(binID);
-		System.out.println(bin.getX() + "/" + bin.getY() + "/" + bin.getZ());
+		System.out.println("Die Koordinaten des Lagerplatzes " + binID + " lauten: " + bin.getX() + "/" + bin.getY() + "/" + bin.getZ());
 	}
 	
 	
@@ -247,7 +245,7 @@ public class CreateLocation
 		GridComponent gridComponent = null;
 		BinComponent binComponent = null;
 		
-		// Aktive gap should be gap 1
+		// Active gap should be gap 1
 		// Get gap 1 and its grids
 		Gap gap = myLocation.getGap("1");
 		Grid grid;
