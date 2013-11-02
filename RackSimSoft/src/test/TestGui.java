@@ -1,4 +1,4 @@
-package Test;
+package test;
 
 import java.awt.Container;
 import java.awt.Dimension;
@@ -8,8 +8,8 @@ import java.awt.GridBagLayout;
 import javax.swing.BorderFactory;
 import javax.swing.JLayeredPane;
 
-import Gui2D.MainFrame;
-import Gui2D.RectangleComponent;
+import gui2D.MainFrame;
+import gui2D.RectangleComponent;
 
 public class TestGui
 {
@@ -37,7 +37,7 @@ public class TestGui
 		RectangleComponent rectangle = null;
 		int width, heigth, border;
 		
-		// Im GridLayout (3 Spalten, 2 Reihen) jeweils ein neues LayeredPane hinzufügen,
+		// Im GridLayout (3 Spalten, 2 Reihen) jeweils ein neues LayeredPane hinzufï¿½gen,
 		// in dieses kommt ein neues Pane auf welchem ein Rectangle gezeichnet wird
 		for (int i = 0; i < 3; i++)
 		{
