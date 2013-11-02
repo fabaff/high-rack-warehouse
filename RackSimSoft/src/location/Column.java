@@ -1,5 +1,5 @@
 
-package Location;
+package location;
 
 /**
  * 
@@ -8,6 +8,7 @@ package Location;
 /**
  * @author mschaerer
  *
+ * The column is the vertical element of the grid. 
  */
 public class Column
 {
@@ -16,11 +17,12 @@ public class Column
 	private int yCoordinate;
 	
 	/**
-	 * Creates a Column. The ID, the width and the Y-coordinate of the Column must be given.
+	 * Creates a Column. The ID, the width, and the y coordinate of the
+	 * column must be given.
 	 * 
-	 * @param id		the ID of the Column
-	 * @param width	the width of the Column
-	 * @param y			the Y-coordinate of the Column
+	 * @param id 	the ID of the column
+	 * @param width	the width of the column
+	 * @param y 	the y coordinate of the column
 	 */
 	public Column(String id, int width, int y)
 	{
@@ -30,9 +32,9 @@ public class Column
 	}
 	
 	/**
-	 * Returns the ID of the current Column
+	 * Returns the ID of the current column.
 	 * 
-	 * @return the columnID
+	 * @return the ColumnID
 	 */
 	public String getColumnID()
 	{
@@ -40,7 +42,7 @@ public class Column
 	}
 
 	/**
-	 * Returns the width of the current Column
+	 * Returns the width of the current column.
 	 * 
 	 * @return the width
 	 */
@@ -50,7 +52,7 @@ public class Column
 	}
 
 	/**
-	 * Sets the width of the current Column
+	 * Sets the width of the current column.
 	 * 
 	 * @param width the length to set
 	 */
@@ -60,9 +62,9 @@ public class Column
 	}
 	
 	/**
-	 * Returns the Z-coordinate of the current Row
+	 * Returns the y coordinate of the current row.
 	 * 
-	 * @return the zCoordinate
+	 * @return the YCoordinate
 	 */
 	public int getYCoordinate()
 	{
