@@ -1,4 +1,4 @@
-package Gui2D;
+package gui2D;
 
 import java.awt.BasicStroke;
 import java.awt.Graphics;
