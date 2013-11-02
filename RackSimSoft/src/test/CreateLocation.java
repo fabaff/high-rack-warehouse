@@ -23,6 +23,9 @@ import java.util.ArrayList;
 //import java.util.Map.Entry;
 //import java.util.Set;
 
+/**
+ * This is a basic tester for the creation of a storage location.
+ */
 public class CreateLocation
 {
 	public static void main(String[] args)
@@ -48,7 +51,9 @@ public class CreateLocation
 		createAndShowGui(myLocation);
 	}
 		
-	// Creates a location
+	/**
+	 * Create a location to work with.
+	 */
 	private static Location createLocation()
 	{
 		// Creates a location
@@ -113,7 +118,11 @@ public class CreateLocation
 	}
 	
 	
-	// Print location for checking
+	/**
+	 * Prints out all relevant elements of a location.
+	 * 
+	 * @param location the location to display
+	 */
 	private static void printLocation(Location myLocation)
 	{
 		System.out.println("(Bin ID = [gapID]-[gridSide]-[gridID]-[columnID]-[rowID])");
@@ -199,6 +208,12 @@ public class CreateLocation
 		}
 	}
 	
+	/**
+	 * Takes the binID and give back the xyz coordinates.
+	 * 
+	 * @param location  the location
+	 * @param binID		the binID of the bin to show
+	 */
 	private static void printBin(Location location, String binID)
 	{
 		Bin bin;
@@ -206,7 +221,11 @@ public class CreateLocation
 		System.out.println(binID + " : " + bin.getX() + "/" + bin.getY() + "/" + bin.getZ());
 	}
 	
-	
+	/**
+	 * Creates the GUI for the given location.
+	 * 
+	 * @param location  the location
+	 */	
 	private static void createAndShowGui(Location myLocation)
 	{
 		double guiCoordinateFactor = 0.08;
