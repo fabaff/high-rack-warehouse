@@ -1,6 +1,6 @@
-package Gui2D;
+package gui2D;
 
-import Location.Bin;
+import location.Bin;
 
 public class BinComponent extends RectangleComponent
 {
