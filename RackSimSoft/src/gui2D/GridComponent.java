@@ -1,6 +1,6 @@
-package Gui2D;
+package gui2D;
 
-import Location.Grid;
+import location.Grid;
 
 public class GridComponent extends RectangleComponent
 {
