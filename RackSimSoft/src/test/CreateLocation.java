@@ -30,27 +30,29 @@ public class CreateLocation
 		// Creates a location
 		Location myLocation = createLocation();
 		System.out.println("Location was created...");
+		System.out.println("-------------------------------------------------");
 		
 		// Prints the location
 		printLocation(myLocation);
-		
+		System.out.println("-------------------------------------------------");
+
 		// Gets predefined bin and prints their coordinates
+		System.out.println("Die Koordinaten der folgenden Lagerplaetzes sind:");
 		printBin(myLocation, "0-0-0-2-0");
 		printBin(myLocation, "0-1-1-2-1");
 		printBin(myLocation, "1-0-2-3-1");
 		printBin(myLocation, "1-1-3-2-0");
+		System.out.println("-------------------------------------------------");
 		
 		// Creates GUI
 		createAndShowGui(myLocation);
 	}
-	
-	
+		
 	// Creates a location
 	private static Location createLocation()
 	{
 		// Creates a location
-		Location myLocation = Location.getInstance();
-		
+		Location myLocation = Location.getInstance();	
 		
 		// Simple model: 
 		int gapCount = 2;  // Anzahl Gassen
@@ -201,7 +203,7 @@ public class CreateLocation
 	{
 		Bin bin;
 		bin = location.getBin(binID);
-		System.out.println("Die Koordinaten des Lagerplatzes " + binID + " lauten: " + bin.getX() + "/" + bin.getY() + "/" + bin.getZ());
+		System.out.println(binID + " : " + bin.getX() + "/" + bin.getY() + "/" + bin.getZ());
 	}
 	
 	
