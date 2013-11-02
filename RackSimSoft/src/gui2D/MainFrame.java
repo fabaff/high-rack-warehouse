@@ -1,5 +1,5 @@
 
-package Gui2D;
+package gui2D;
 
 import javax.swing.JFrame;
 
@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 /**
  * @author mschaerer
  * 
- * Der Rahmen für das GUI. Auf diesen Rahmen werden alle anderen Komponenten gelegt.
+ * Der Rahmen fï¿½r das GUI. Auf diesen Rahmen werden alle anderen Komponenten gelegt.
  */
 
 public class MainFrame extends JFrame
