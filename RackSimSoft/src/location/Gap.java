@@ -1,16 +1,11 @@
-
-package Location;
-
-/**
- * 
- */
+package location;
 
 /**
  * @author mschaerer
  * 
- * Die Gasse beinhaltet 1 oder 2 Lagergestelle auf der linken und / oder rechten Seite der Gasse
- * Die Gasse ist einem Lagerort zugeordnet
- * Die Gasse wird in ein linkes und rechtes Lagergestell unterteilt.
+ * The gap contains two grids of bins. The bins are placed on the left and the
+ * right side of the gap. Every gap is associated to a location.
+ * The gaps are divided into a left an a right grid.
  */
 public class Gap
 {
@@ -21,11 +16,12 @@ public class Gap
 	private int xCoordinate;
 
 	/**
-	 * Creates a Gap. The ID, the width and the X-coordinate of the Gap must be given.
+	 * Creates a Gap. The ID, the width and the x coordinate of the gap must
+	 * be given.
 	 * 
-	 * @param id	the ID of the Gap
-	 * @param width	the width of the Gap
-	 * @param x		the X-coordinate of the Gap
+	 * @param id	the ID of the gap
+	 * @param width	the width of the gap
+	 * @param x		the x coordinate of the gap
 	 */
 	public Gap(String id, int width, int x)
 	{
@@ -35,7 +31,7 @@ public class Gap
 	}
 	
 	/**
-	 * Returns the ID of the current Gap
+	 * Returns the ID of the current gap.
 	 * 
 	 * @return the gapID
 	 */
@@ -45,7 +41,7 @@ public class Gap
 	}
 	
 	/**
-	 * Returns the X-coordinate of the current Gap
+	 * Returns the x coordinate of the current gap
 	 * 
 	 * @return the xCoordinate
 	 */
