@@ -29,7 +29,7 @@ public class CreateLocation
 	{
 		// Creates a location
 		Location myLocation = createLocation();
-		System.out.println("Location wurde erzeugt...");
+		System.out.println("Location was created...");
 		
 		// Prints the location
 		printLocation(myLocation);
@@ -48,7 +48,7 @@ public class CreateLocation
 	// Creates a location
 	private static Location createLocation()
 	{
-		// Lagerort erstellen
+		// Creates a location
 		Location myLocation = Location.getInstance();
 		
 		
@@ -58,7 +58,7 @@ public class CreateLocation
 		int rowCounter = 2;  // Anzahl Reihen pro Grid
 		int width = 1000;  // Offset X-Koordinate (Breite der Gassen)
 		int depth = 800;  // Tiefe des Grids
-		int height = 1000;  // Offset Z-Koordinate (H�he der Reihen)
+		int height = 1000;  // Offset Z-Koordinate (Hoehe der Reihen)
 		int length = 1500;  // Offset Y-Koordinate (Breite der Spalten)
 		
 		
@@ -69,7 +69,7 @@ public class CreateLocation
 		int rowCounter = 30;  // Anzahl Reihen pro Grid
 		int width = 1000;  // Offset X-Koordinate (Breite der Gassen)
 		int depth = 600;  // Tiefe des Grids
-		int height = 1000;  // Offset Z-Koordinate (H�he der Reihen)
+		int height = 1000;  // Offset Z-Koordinate (Hoehe der Reihen)
 		int length = 1500;  // Offset Y-Koordinate (Breite der Spalten)
 		*/
 		
@@ -80,30 +80,30 @@ public class CreateLocation
 		{
 			Gap gap = new Gap("" + i, width, (i * 2 * depth) + depth + (i * width));  // id, X-coordinate
 		
-			// Grids erstellen
+			// Creates grids
 			for (int j = 0; j < 2; j++)
 			{
 				Row rowArray[] = new Row[rowCounter];
 				Column columnArray[] = new Column[columnCounter];
 				
-				// Arrays abf�llen mit Breite bzw. H�he
+				// Filling the arrays with width and height
 				for (int k = 0; k < columnArray.length; k++)
 				{					
-					columnArray[k] = new Column("" + k, length, k * length);  // id, width, Y-coordinate
+					columnArray[k] = new Column("" + k, length, k * length);  // id, width, y coordinate
 				}
 				
 				for (int k = 0; k < rowArray.length; k++)
 				{					
-					rowArray[k] = new Row("" + k, height, k * height);  // id, height, Z-coordinate
+					rowArray[k] = new Row("" + k, height, k * height);  // id, height, z coordinate
 				}
 				
-				// Grid erzeugen und an Gap zuweisen
+				// Creates grid and assign it to a gap
 				Grid grid = new Grid("" + gridID, gap, j % 2, columnArray, rowArray);
 				gap.addGrid(grid);
 				gridID ++;
 			}
 			
-			// Gap (mit zugewiesenen Grids) an Location zuweisen
+			// Assign gap (with assigned grids) to the location
 			myLocation.addGap(gap);
 		}
 		
@@ -111,33 +111,33 @@ public class CreateLocation
 	}
 	
 	
-	// Lagerort ausgeben zum anschauen
+	// Print location for checking
 	private static void printLocation(Location myLocation)
 	{
 		System.out.println("(Bin ID = [gapID]-[gridSide]-[gridID]-[columnID]-[rowID])");
 		System.out.println("\nLocation:\nID = " + myLocation.getLocationID());
 		System.out.println("Anzahl Gassen: " + myLocation.countGaps());
 		
-		// Alle Gassen holen
+		// Load all gaps
 		ArrayList<Gap> gaps = myLocation.getGapList();
 		
-		// Von jeder Gasse die Grids holen
+		// Load the grids of the gap
 		for(Gap gap : gaps)
 		{
-			System.out.println("\n\tGap:\n\tID = " + gap.getGapID() + "\n\tX-Koordinate = " + gap.getXCoordinate() + "\n\tBreite = " + gap.getWidth());
+			System.out.println("\n\tGap:\n\tID = " + gap.getGapID() + "\n\tx-Koordinate = " + gap.getXCoordinate() + "\n\tBreite = " + gap.getWidth());
 			
 			//Hashtable<String, Bin> binTable;
 			
 			Bin binArray[][];
 			Grid grid;
 			
-			// Linkes Grid
+			// Left grid
 			grid = gap.getGridLeft();
 			if (grid != null)
 			{
-				System.out.println("\n\t\tGrid Links:\n\t\tID = " + grid.getGridID() + "\n\t\tgridSide = " + grid.getGridSide() + "\n\t\tBreite = " + grid.getWidth() + "\n\t\tH�he = " + grid.getHeight());
+				System.out.println("\n\t\tGrid Links:\n\t\tID = " + grid.getGridID() + "\n\t\tgridSide = " + grid.getGridSide() + "\n\t\tBreite = " + grid.getWidth() + "\n\t\tHoehe = " + grid.getHeight());
 				
-				// �ber alle Lagerpl�tze im Grid loopen
+				// Loop over all bins in the grid
 				Bin bin;
 				
 				/*
@@ -163,13 +163,13 @@ public class CreateLocation
 				}
 			}
 			
-			// Rechtes Grid
+			// Grid right
 			grid = gap.getGridRight();
 			if (grid != null)
 			{
-				System.out.println("\n\t\tGrid Rechts:\n\t\tID = " + grid.getGridID() + "\n\t\tgridSide = " + grid.getGridSide() + "\n\t\tBreite = " + grid.getWidth() + "\n\t\tH�he = " + grid.getHeight());
+				System.out.println("\n\t\tGrid Rechts:\n\t\tID = " + grid.getGridID() + "\n\t\tgridSide = " + grid.getGridSide() + "\n\t\tBreite = " + grid.getWidth() + "\n\t\tHoehe = " + grid.getHeight());
 				
-				// �ber alle Lagerpl�tze im Grid loopen
+				// Looping over the bin in the gap
 				Bin bin;
 				
 				/*
@@ -211,30 +211,30 @@ public class CreateLocation
 	{
 		double guiCoordinateFactor = 0.08;
 		
-		// Fenster erstellen
+		// Creates windows
 		MainFrame frame = new MainFrame();
 		
-		// Men� erstellen
+		// Creates menu
 		JMenuBar menuBar = new JMenuBar();
 		
 		JMenu menu = new JMenu("Datei");
 		menu.setMnemonic(KeyEvent.VK_D);
 		
-		// Men�item erstellen
+		// Creates menuitem
 		JMenuItem menuItem = new JMenuItem("Was auch immer...", KeyEvent.VK_T);
-		// Zugriff �ber Alt + 1
+		// Access with Alt + 1
 		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
 		
-		// Men�item auf Men� legen
+		// Put menuitem in the menu
 		menu.add(menuItem);
 		
-		// Men� auf Men�bar legen
+		// Put menu on menubar
 		menuBar.add(menu);
 		
-		// Men�bar auf Frame legen
+		// Put menubar on frame
 		frame.setJMenuBar(menuBar);
-				
-		// MainPane erstellen
+			
+		// Creates MainPane
 		Container pane = frame.getContentPane();
 		pane.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
@@ -247,16 +247,16 @@ public class CreateLocation
 		GridComponent gridComponent = null;
 		BinComponent binComponent = null;
 		
-		// Aktive Gasse soll Gasse 1 sein
-		// Gasse 11 holen, Grids aus Gasse holen
+		// Aktive gap should be gap 1
+		// Get gap 1 and its grids
 		Gap gap = myLocation.getGap("1");
 		Grid grid;
 		Bin binArray[][];
 		int xOffset = 20;
 		int yOffset = 20;
 		
-		// Im GridLayout (3 Spalten, 2 Reihen) jeweils ein neues LayeredPane hinzuf�gen,
-		// in 2 davon wird ein Grid (aus Package Location, bzw. Gui2D) gezeichnet
+		// Add to the GridLayout (3 columns, 2 rows) for every field a
+		// LayeredPane. Two contains a grid (from Pkg location gui2D)
 		for (int i = 0; i < 3; i++)
 		{
 			for (int j = 0; j < 2; j++)
@@ -270,10 +270,10 @@ public class CreateLocation
 				layeredPane.setPreferredSize(new Dimension(50, 40));
 		        layeredPane.setBorder(BorderFactory.createTitledBorder("This is a layered Pane"));
 		        
-		        // Grid erstellen und auf LayeredPane legen, Layer 0
+		        // Creates grid and puts it on LayeredPane as layer 0
 		        if ((j == 0) && ((i == 0) || (i == 2)))
 		        {
-		        	// Das richtige Grid holen (Links oder Rechts)
+		        	// Get the correct grid (left or right)
 		        	if (i == 0)
 		        	{
 		        		grid = gap.getGridLeft();
@@ -287,7 +287,7 @@ public class CreateLocation
 			        gridComponent.setBounds(xOffset, yOffset, gridComponent.getWidth(), gridComponent.getHeight());
 			        layeredPane.add(gridComponent, 0);
 			        
-			        // Bins erstellen und auf LayeredPane legen, Layer 1
+			        // Creates bins and put them on LayeredPane as layer 1
 			        binArray = grid.getBinArray();
 			        for (Bin[] bins : binArray)
 			        {
@@ -303,12 +303,12 @@ public class CreateLocation
 			        }
 		        }
 		        
-		        // Layer auf das MainPane legen
+		        // Put layer on MainPane
 		        pane.add(layeredPane, c);
 			}
 		}
 		
-		// GUI anzeigen
+		// Display GUI
 		frame.pack();
 		frame.setVisible(true);
 	}
