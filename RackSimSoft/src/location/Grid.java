@@ -1,17 +1,12 @@
-
-package Location;
+package location;
 
 import java.util.Hashtable;
 
 /**
- * 
- */
-
-/**
  * @author mschaerer
  * 
- * Das Lagergestell innerhalb einer Gasse ist in Reihen und Spalten unterteilt,
- * welche die eigentlichen Lagerplätze beinhaltet
+ * The storage units are divided into columns and rows inside a gap which
+ * contains the bins.
  */
 public class Grid
 {
@@ -25,13 +20,14 @@ public class Grid
 	private int xCoordinate;
 	
 	/**
-	 * Creates a Grid. The ID, the Columns and the Rows of the Grid must be given.
+	 * Creates a grid. The ID, the columns and the rows of the grid must be
+	 * given.
 	 * 
-	 * @param gridID			the ID of the Grid
-	 * @param gapID				the ID of the Gap in which the Grid is integrated
-	 * @param gridSide			the side of the Grid in the Gap
-	 * @param columnArray[]		the Columns to be added to the Grid
-	 * @param rowArray[]		the Rows to be added to the Grid
+	 * @param gridID			the ID of the grid
+	 * @param gapID				the ID of the gap in which the grid is integrated
+	 * @param gridSide			the side of the grid in the gap
+	 * @param columnArray[]		the columns to be added to the grid
+	 * @param rowArray[]		the rows to be added to the grid
 	 */
 	public Grid(String gridID, Gap gap, int gridSide, Column columnArray[], Row rowArray[])
 	{
@@ -41,19 +37,19 @@ public class Grid
 		
 		if (gridSide == 0)
 		{
-			// Linkes Grid
+			// Left grid
 			this.xCoordinate = gap.getXCoordinate();
 		}
 		else
 		{
-			// Rechtes Grid
+			// Right grid
 			this.xCoordinate = gap.getXCoordinate() + gap.getWidth();
 		}
 		
-		// Lagerplätze erzeugen und in Container abfüllen
+		// Creates bins and puts those into a container
 		createBins(gap, columnArray, rowArray);
 		
-		// Calculate Width
+		// Calculate width
 		int width = 0;
 		for(Column column : columnArray)
 		{
@@ -61,7 +57,7 @@ public class Grid
 		}
 		this.width = width;
 		
-		// Calculate Height
+		// Calculate height
 		int height = 0;
 		for(Row row : rowArray)
 		{
@@ -84,17 +80,17 @@ public class Grid
 				Bin bin = new Bin(this.gapID + "-" + this.gridSide + "-" + this.gridID + "-" + column.getColumnID() + "-" + row.getRowID());
 				bin.placeBin(gap, this, column, row);
 				
-				// In Hashtabelle
+				// Hash table
 				binTable.put(bin.getBinID(), bin);
 				
-				// In Array
+				// Array
 				binArray[i][j] = bin;
 			}
 		}
 	}
 	
 	/**
-	 * Returns the table containing all Bins of the current Grid
+	 * Returns the table containing all bins of the current grid.
 	 * 
 	 * @return the binTable
 	 */
@@ -104,7 +100,7 @@ public class Grid
 	}
 	
 	/**
-	 * Returns an array containing all Bins of the current Grid
+	 * Returns an array containing all bins of the current grid.
 	 * 
 	 * @return the binArray
 	 */
@@ -114,7 +110,7 @@ public class Grid
 	}
 	
 	/**
-	 * Returns a Bin if assigned to current Grid
+	 * Returns a bin if assigned to current grid.
 	 * 
 	 * @return the binArray
 	 */
@@ -124,7 +120,7 @@ public class Grid
 	}
 	
 	/**
-	 * Returns the side of the current Grid
+	 * Returns the side of the current grid.
 	 * Left side = 0
 	 * Right side = 1
 	 * if no side has been attached = -1
@@ -137,7 +133,7 @@ public class Grid
 	}
 	
 	/**
-	 * Returns the ID of the current Grid
+	 * Returns the ID of the current grid.
 	 * 
 	 * @return the gridID
 	 */
@@ -147,7 +143,7 @@ public class Grid
 	}
 
 	/**
-	 * Returns the width of the current Grid
+	 * Returns the width of the current grid.
 	 * 
 	 * @return the width
 	 */
@@ -157,7 +153,7 @@ public class Grid
 	}
 
 	/**
-	 * Returns the height of the current Grid
+	 * Returns the height of the current grid.
 	 * 
 	 * @return the height
 	 */
@@ -167,7 +163,7 @@ public class Grid
 	}
 	
 	/**
-	 * Returns the X-coordinate of the current Grid
+	 * Returns the x coordinate of the current grid.
 	 * 
 	 * @return the xCoordinate
 	 */
