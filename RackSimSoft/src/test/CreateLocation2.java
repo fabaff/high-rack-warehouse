@@ -1,4 +1,4 @@
-package Test;
+package test;
 
 import java.awt.Container;
 import java.awt.Dimension;
@@ -14,10 +14,10 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
-import java.util.ArrayList;
+import gui2D.*;
+import location.*;
 
-import Location.*;
-import Gui2D.*;
+import java.util.ArrayList;
 
 //import java.util.Hashtable;
 //import java.util.Map.Entry;
@@ -58,7 +58,7 @@ public class CreateLocation2
 		int rowCounter = 2;  // Anzahl Reihen pro Grid
 		int width = 1000;  // Offset X-Koordinate (Breite der Gassen)
 		int depth = 800;  // Tiefe des Grids
-		int height = 1000;  // Offset Z-Koordinate (Höhe der Reihen)
+		int height = 1000;  // Offset Z-Koordinate (Hï¿½he der Reihen)
 		int length = 1500;  // Offset Y-Koordinate (Breite der Spalten)
 		
 		
@@ -69,7 +69,7 @@ public class CreateLocation2
 		int rowCounter = 30;  // Anzahl Reihen pro Grid
 		int width = 1000;  // Offset X-Koordinate (Breite der Gassen)
 		int depth = 600;  // Tiefe des Grids
-		int height = 1000;  // Offset Z-Koordinate (Höhe der Reihen)
+		int height = 1000;  // Offset Z-Koordinate (Hï¿½he der Reihen)
 		int length = 1500;  // Offset Y-Koordinate (Breite der Spalten)
 		*/
 		
@@ -86,7 +86,7 @@ public class CreateLocation2
 				Row rowArray[] = new Row[rowCounter];
 				Column columnArray[] = new Column[columnCounter];
 				
-				// Arrays abfüllen mit Breite bzw. Höhe
+				// Arrays abfï¿½llen mit Breite bzw. Hï¿½he
 				for (int k = 0; k < columnArray.length; k++)
 				{					
 					columnArray[k] = new Column("" + k, length, k * length);  // id, width, Y-coordinate
@@ -135,9 +135,9 @@ public class CreateLocation2
 			grid = gap.getGridLeft();
 			if (grid != null)
 			{
-				System.out.println("\n\t\tGrid Links:\n\t\tID = " + grid.getGridID() + "\n\t\tgridSide = " + grid.getGridSide() + "\n\t\tBreite = " + grid.getWidth() + "\n\t\tHöhe = " + grid.getHeight());
+				System.out.println("\n\t\tGrid Links:\n\t\tID = " + grid.getGridID() + "\n\t\tgridSide = " + grid.getGridSide() + "\n\t\tBreite = " + grid.getWidth() + "\n\t\tHï¿½he = " + grid.getHeight());
 				
-				// Über alle Lagerplätze im Grid loopen
+				// ï¿½ber alle Lagerplï¿½tze im Grid loopen
 				Bin bin;
 				
 				/*
@@ -167,9 +167,9 @@ public class CreateLocation2
 			grid = gap.getGridRight();
 			if (grid != null)
 			{
-				System.out.println("\n\t\tGrid Rechts:\n\t\tID = " + grid.getGridID() + "\n\t\tgridSide = " + grid.getGridSide() + "\n\t\tBreite = " + grid.getWidth() + "\n\t\tHöhe = " + grid.getHeight());
+				System.out.println("\n\t\tGrid Rechts:\n\t\tID = " + grid.getGridID() + "\n\t\tgridSide = " + grid.getGridSide() + "\n\t\tBreite = " + grid.getWidth() + "\n\t\tHï¿½he = " + grid.getHeight());
 				
-				// Über alle Lagerplätze im Grid loopen
+				// ï¿½ber alle Lagerplï¿½tze im Grid loopen
 				Bin bin;
 				
 				/*
@@ -212,24 +212,24 @@ public class CreateLocation2
 		// Fenster erstellen
 		MainFrame frame = new MainFrame();
 		
-		// Menü erstellen
+		// Menï¿½ erstellen
 		JMenuBar menuBar = new JMenuBar();
 		
 		JMenu menu = new JMenu("Datei");
 		menu.setMnemonic(KeyEvent.VK_D);
 		
-		// Menüitem erstellen
+		// Menï¿½item erstellen
 		JMenuItem menuItem = new JMenuItem("Was auch immer...", KeyEvent.VK_T);
-		// Zugriff über Alt + 1
+		// Zugriff ï¿½ber Alt + 1
 		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
 		
-		// Menüitem auf Menü legen
+		// Menï¿½item auf Menï¿½ legen
 		menu.add(menuItem);
 		
-		// Menü auf Menübar legen
+		// Menï¿½ auf Menï¿½bar legen
 		menuBar.add(menu);
 		
-		// Menübar auf Frame legen
+		// Menï¿½bar auf Frame legen
 		frame.setJMenuBar(menuBar);
 				
 		// MainPane erstellen
@@ -245,7 +245,7 @@ public class CreateLocation2
 		RectangleComponent rectangle = null;
 		int width, heigth, border;
 		
-		// Im GridLayout (3 Spalten, 2 Reihen) jeweils ein neues LayeredPane hinzufügen,
+		// Im GridLayout (3 Spalten, 2 Reihen) jeweils ein neues LayeredPane hinzufï¿½gen,
 		// in dieses kommt ein neues Pane auf welchem ein Rectangle gezeichnet wird
 		for (int i = 0; i < 3; i++)
 		{
