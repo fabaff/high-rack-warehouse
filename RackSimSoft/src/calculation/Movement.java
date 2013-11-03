@@ -10,10 +10,32 @@ import location.*;
  */
 
 public class Movement {
-	private double ySpeed = 2;
-	private double zSpeed = 2;
+	private double xSpeed = 2; // Only relevant for the delivery
+	private double ySpeed = 2; // Speed in y axis
+	private double zSpeed = 2; // Speed in x axis
+	private double lSpeed = 1; // Loading speed
 	private double acceleration = 0.5f;
 	private double deceleration = 0.5f;
+	
+	
+	/**
+	 * Time for a complete loading cycle (from the loading zone to the bin)
+	 * and back to standby location.
+	 * 
+	 * @return the time consumption for a complete loading cycle
+	 */
+	public double cTime(Location location, String binID1, String binID2)
+	{
+		// Loading time
+		double ptime = pTime();
+		// Traveling time
+		double mtime = mTime(location, binID1, binID2);
+		// Placing time
+		double gtime = gTime();
+		
+		double cTime = ptime + mtime + gtime + mtime;
+		return cTime;	
+	}
 
 	/**
 	 * Calculates the moving time between two given positions inside the grid.
@@ -25,21 +47,13 @@ public class Movement {
 	 */
 	public double mTime(Location location, String binID1, String binID2)
 	{
-		Bin point1 = location.getBin(binID1);
-		Bin point2 = location.getBin(binID2);
-		
-		// Get coordinates of all involved points
-		int y1 = point1.getY();
-		int z1 = point1.getZ();
+		Distance distance = new Distance();
 
-		int y2 = point2.getY();
-		int z2 = point2.getZ();
-		
-		int distance = Distance.getyDistance(Location location, String binID1, String binID2);
+		double track = distance.mDistance(location, binID1, binID2);
 		
 		double aTime = aTime(ySpeed, acceleration);
 		double dTime = dTime(ySpeed, deceleration);
-		double lTime = lTime(ySpeed, 100);
+		double lTime = lTime(ySpeed, track/1000);
 		double tTime = aTime + lTime + dTime;	
 		return tTime;
 	}
@@ -88,4 +102,31 @@ public class Movement {
 		double dTime = ySpeed / deceleration;
 		return dTime;	
 	}
+	
+	/**
+	 * Calculates the time for loading the good on the operating unit beam.
+	 * 
+	 * @param xSpeed   the traveling speed for the loading process	
+	 * @param distance the distance from the bin to the beam (middle of the gap)
+	 * 
+	 * @return the time for picking or unloading goods in bins
+	 */
+	public double gTime()
+	{
+	
+		double gTime = 5;
+		return gTime;	
+	}
+	
+	/**
+	 * Operating time in the interface area to the loading zone.
+	 * 
+	 * @return the needed time for operating in the loading zone
+	 */
+	public double pTime()
+	{
+		double pTime = 2 / lSpeed;
+		return pTime;	
+	}
+	
 }
