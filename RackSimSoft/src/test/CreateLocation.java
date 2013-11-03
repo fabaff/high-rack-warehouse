@@ -56,7 +56,8 @@ public class CreateLocation
 		
 		// Prints some calculated times
 		System.out.println("Zeiten:");
-		printTime(myLocation, "0-0-0-2-0", "1-1-3-2-0");
+		printTime(myLocation, "0-0-0-0-0", "0-0-0-2-0");
+		printTime(myLocation, "0-0-0-0-0", "0-0-0-3-1");
 		
 		System.out.println("-------------------------------------------------");
 		
@@ -257,7 +258,6 @@ public class CreateLocation
 
 		double zeroDistance2 = distance.zeroDistance(location, binID2);
 		System.out.println(binID2 + " zu 0/0:\t" + zeroDistance2);
-
 		
 		int xDistance = distance.xDistance(location, bin1.getgapID(), binID1);
 		System.out.println("x-Distanz:\t" + xDistance + " (bis in die Mitte der Gasse)");
@@ -270,20 +270,29 @@ public class CreateLocation
 		
 		double mDistance = distance.mDistance(location, binID1, binID2);
 		System.out.println("Distanz:\t" + mDistance);
-
 	}
 	
 	/**
-	 * Takes two binIDs and calculates the needed time for the operating unit
-	 * to get there.
+	 * Prints the needed time for putting good into their assigned bin.
 	 * 
 	 * @param location  the location
-	 * @param binID1	the binID of the bin to start
-	 * @param binID2	the binID of the bin to go
+	 * @param binID	the binID of the bin to place the good
 	 */
 	private static void printTime(Location location, String binID1, String binID2)
 	{
-		System.out.println("Kommt bald...");
+		Movement movement = new Movement();
+		double cTime = movement.cTime(location, binID1, binID2);
+		
+		double mTime = movement.mTime(location, binID1, binID2);
+		double gTime = movement.gTime();
+		double pTime = movement.pTime();
+
+		System.out.println("Kompl. Zyklus:\t\t" + cTime);
+		
+		System.out.println("\tBeladen:\t" + pTime);
+		System.out.println("\tHinfahrt:\t" + mTime);
+		System.out.println("\tEntladen:\t" + gTime);
+		System.out.println("\tRückfahrt:\t" + mTime);
 	}
 	
 	/**
