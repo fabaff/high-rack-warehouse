@@ -113,7 +113,6 @@ public class Movement {
 	 */
 	public double gTime()
 	{
-	
 		double gTime = 5;
 		return gTime;	
 	}
@@ -128,5 +127,4 @@ public class Movement {
 		double pTime = 2 / lSpeed;
 		return pTime;	
 	}
-	
 }
