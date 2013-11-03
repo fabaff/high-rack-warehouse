@@ -50,7 +50,7 @@ public class CreateLocation
 
 		// Prints some calculated times
 		System.out.println("Abstaende:");
-		printDistance(myLocation, "0-0-0-0-0", "0-0-0-3-1");
+		printDistance(myLocation, "0-0-0-2-0", "0-0-0-3-1");
 		
 		System.out.println("-------------------------------------------------");
 		
@@ -246,14 +246,21 @@ public class CreateLocation
 		Distance distance = new Distance();
 		
 		Bin bin1;
-		bin1 = location.getBin(binID1);
 		Bin bin2;
+		bin1 = location.getBin(binID1);
 		bin2 = location.getBin(binID2);
 		System.out.print(binID1 + " : " + bin1.getX() + "/" + bin1.getY() + "/" + bin1.getZ() + " --- ");
 		System.out.println(binID2 + " : " + bin2.getX() + "/" + bin2.getY() + "/" + bin2.getZ());
 		
+		double zeroDistance1 = distance.zeroDistance(location, binID1);
+		System.out.println(binID1 + " zu 0/0:\t" + zeroDistance1);
+
+		double zeroDistance2 = distance.zeroDistance(location, binID2);
+		System.out.println(binID2 + " zu 0/0:\t" + zeroDistance2);
+
+		
 		int xDistance = distance.xDistance(location, bin1.getgapID(), binID1);
-		System.out.println("x-Distanz:\t" + xDistance + " (to the middle of the gap)");
+		System.out.println("x-Distanz:\t" + xDistance + " (bis in die Mitte der Gasse)");
 		
 		int yDistance = distance.yDistance(location, binID1, binID2);
 		System.out.println("y-Distanz:\t" + yDistance);
