@@ -103,7 +103,7 @@ public class Bin
 	}
 	
 	/**
-	 * Returns the z coordinate of the current bin
+	 * Returns the z coordinate of the current bin.
 	 * 
 	 * @return the z coordinate
 	 */
@@ -113,7 +113,7 @@ public class Bin
 	}
 	
 	/**
-	 * Returns the width of the current bin
+	 * Returns the width of the current bin.
 	 * 
 	 * @return the width
 	 */
@@ -123,7 +123,7 @@ public class Bin
 	}
 	
 	/**
-	 * Returns the height of the current bin
+	 * Returns the height of the current bin.
 	 * 
 	 * @return the height
 	 */
@@ -133,7 +133,7 @@ public class Bin
 	}
 	
 	/**
-	 * Returns the side of the current bin
+	 * Returns the side of the current bin.
 	 * Left side = 0
 	 * Right side = 1
 	 * if no side has been attached = -1
