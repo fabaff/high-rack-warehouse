@@ -26,6 +26,23 @@ public class Distance {
 				Math.pow((bin.getZ()), 2)));
 		return zeroDistance;
 	}
+	/**
+	 * Calculates the x distance of a bin to the middle of the gap.
+	 * 
+	 * @param location
+     * @param binID1
+	 * @param binID2
+	 */
+	public int xDistance(Location location, String gapID, String binID)
+	{
+		Gap gap;
+		gap = location.getGap(gapID);
+		Bin bin;
+		bin = location.getBin(binID);
+		
+		int xDistance = (gap.getWidth() / 2) + (bin.getWidth() / 2);
+		return xDistance;
+	}
 	
 	/**
 	 * Calculates the y distance of two bins in the grid.
@@ -61,24 +78,6 @@ public class Distance {
 		return zDistance;
 	}
 
-	/**
-	 * Calculates the x distance of a bin to the middle of the gap.
-	 * 
-	 * @param location
-     * @param binID1
-	 * @param binID2
-	 */
-	public int xDistance(Location location, String gapID, String binID)
-	{
-		Gap gap;
-		gap = location.getGap(gapID);
-		Bin bin;
-		bin = location.getBin(binID);
-		
-		int xDistance = (gap.getWidth() / 2) + (bin.getWidth() / 2);
-		return xDistance;
-	}
-	
 	/**
 	 * Calculates the distance of two bins in the grid which is the traveling
 	 * distance for the operating unit.
