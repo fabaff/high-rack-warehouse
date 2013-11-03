@@ -16,6 +16,7 @@ import javax.swing.KeyStroke;
 
 import gui2D.*;
 import location.*;
+import calculation.*;
 
 import java.util.ArrayList;
 
@@ -45,6 +46,18 @@ public class CreateLocation
 		printBin(myLocation, "0-1-1-2-1");
 		printBin(myLocation, "1-0-2-3-1");
 		printBin(myLocation, "1-1-3-2-0");
+		System.out.println("-------------------------------------------------");
+
+		// Prints some calculated times
+		System.out.println("Abstaende:");
+		printDistance(myLocation, "0-0-0-0-0", "0-0-0-3-1");
+		
+		System.out.println("-------------------------------------------------");
+		
+		// Prints some calculated times
+		System.out.println("Zeiten:");
+		printTime(myLocation, "0-0-0-2-0", "1-1-3-2-0");
+		
 		System.out.println("-------------------------------------------------");
 		
 		// Creates GUI
@@ -219,6 +232,51 @@ public class CreateLocation
 		Bin bin;
 		bin = location.getBin(binID);
 		System.out.println(binID + " : " + bin.getX() + "/" + bin.getY() + "/" + bin.getZ());
+	}
+	
+	/**
+	 * Takes two binIDs and calculates the distances between those bins.
+	 * 
+	 * @param location  the location
+	 * @param binID1	the binID of the bin to start
+	 * @param binID2	the binID of the bin to go
+	 */
+	private static void printDistance(Location location, String binID1, String binID2)
+	{
+		Distance distance = new Distance();
+		
+		Bin bin1;
+		bin1 = location.getBin(binID1);
+		Bin bin2;
+		bin2 = location.getBin(binID2);
+		System.out.print(binID1 + " : " + bin1.getX() + "/" + bin1.getY() + "/" + bin1.getZ() + " --- ");
+		System.out.println(binID2 + " : " + bin2.getX() + "/" + bin2.getY() + "/" + bin2.getZ());
+		
+		int xDistance = distance.xDistance(location, bin1.getgapID(), binID1);
+		System.out.println("x-Distanz:\t" + xDistance + " (to the middle of the gap)");
+		
+		int yDistance = distance.yDistance(location, binID1, binID2);
+		System.out.println("y-Distanz:\t" + yDistance);
+		
+		int zDistance = distance.zDistance(location, binID1, binID2);
+		System.out.println("z-Distanz:\t" + zDistance);
+		
+		double mDistance = distance.mDistance(location, binID1, binID2);
+		System.out.println("Distanz:\t" + mDistance);
+
+	}
+	
+	/**
+	 * Takes two binIDs and calculates the needed time for the operating unit
+	 * to get there.
+	 * 
+	 * @param location  the location
+	 * @param binID1	the binID of the bin to start
+	 * @param binID2	the binID of the bin to go
+	 */
+	private static void printTime(Location location, String binID1, String binID2)
+	{
+		System.out.println("Kommt bald...");
 	}
 	
 	/**
