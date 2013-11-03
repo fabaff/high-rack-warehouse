@@ -87,7 +87,7 @@ public class Movement {
 	 */
 	private double aTime(double ySpeed2, double acceleration)
 	{
-		double aTime = ySpeed2 / acceleration;
+		double aTime = ySpeed / acceleration;
 		return aTime;	
 	}
 	
