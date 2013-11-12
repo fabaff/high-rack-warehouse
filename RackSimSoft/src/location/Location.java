@@ -1,4 +1,7 @@
+
 package location;
+
+import item.ItemAllocation;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -16,6 +19,7 @@ public class Location
 	private String locationID;
 	private Hashtable<String, Gap> gapTable = new Hashtable<String, Gap>();
 	private ArrayList<Gap> gapList = new ArrayList<Gap>();
+	private ItemAllocation itemAllocation;
 	
 	/**
 	 * Returns an instance (object) of the class Location.
@@ -27,6 +31,7 @@ public class Location
 		if (instance == null)
 		{
 			instance = new Location("My Location");
+			instance.itemAllocation = ItemAllocation.getInstance();
 		}
 		
 		return instance;
@@ -69,7 +74,7 @@ public class Location
 	/**
 	 * Returns a copy of the list of gaps allocated to the current location.
 	 * 
-	 * @return the list of gaps
+	 * @return a copy of the list of gaps
 	 */
 	public ArrayList<Gap> getGapListCopy()
 	{
@@ -80,6 +85,39 @@ public class Location
 		}
 		
 		return gapListCopy;
+	}
+	
+	/**
+	 * Returns a list of bins allocated to the current location.
+	 * 
+	 * @return the list of bins
+	 */
+	public ArrayList<Bin> getBinList()
+	{
+		ArrayList<Bin> binList = new ArrayList<Bin>();
+		Grid grid;
+		for (Gap gap : this.gapList)
+		{
+			grid = gap.getGridLeft();
+			for (Bin[] binArray : grid.getBinArray())
+			{
+				for (Bin bin : binArray)
+				{
+					binList.add(bin);
+				}
+			}
+			
+			grid = gap.getGridRight();
+			for (Bin[] binArray : grid.getBinArray())
+			{
+				for (Bin bin : binArray)
+				{
+					binList.add(bin);
+				}
+			}
+		}
+		
+		return binList;
 	}
 	
 	/**
@@ -141,5 +179,15 @@ public class Location
 	public Gap getGap(String gapID)
 	{	
 		return gapTable.get(gapID);
+	}
+
+	/**
+	 * Returns the ItemAllocation of this Location
+	 * 
+	 * @return the itemAllocation
+	 */
+	public ItemAllocation getItemAllocation()
+	{
+		return itemAllocation;
 	}
 }

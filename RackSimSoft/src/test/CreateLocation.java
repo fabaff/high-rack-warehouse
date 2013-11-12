@@ -1,5 +1,15 @@
+
 package test;
 
+import gui2D.BinComponent;
+import gui2D.GridComponent;
+import gui2D.MainFrame;
+import item.Item;
+import item.ItemAllocation;
+import location.*;
+import calculation.*;
+
+import java.util.ArrayList;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -14,12 +24,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
-import gui2D.*;
-import location.*;
-import calculation.*;
-
-import java.util.ArrayList;
-
 //import java.util.Hashtable;
 //import java.util.Map.Entry;
 //import java.util.Set;
@@ -31,9 +35,22 @@ public class CreateLocation
 {
 	public static void main(String[] args)
 	{
+		System.out.println();
+		System.out.println("-------------------------------------------------");
+		
+		// Creates some items
+		ArrayList<Item> itemList = createItems();
+		System.out.println("Items were created...");
+		System.out.println("-------------------------------------------------");
+		
 		// Creates a location
 		Location myLocation = createLocation();
-		System.out.println("Location was created...");
+		System.out.println("Location and ItemAllocation were created...");
+		System.out.println("-------------------------------------------------");
+		
+		// Adds items to location
+		addItems(myLocation, itemList);
+		System.out.println("Items were added...");
 		System.out.println("-------------------------------------------------");
 		
 		// Prints the location
@@ -65,6 +82,23 @@ public class CreateLocation
 		createAndShowGui(myLocation);
 	}
 		
+	/**
+	 * Create a list of items
+	 */
+	private static ArrayList<Item> createItems()
+	{
+		ArrayList<Item> itemList = new ArrayList<Item>();
+		Item item;
+		
+		for (int i = 0; i <= 200; i++)
+		{
+			item = Item.getInstance("Item " + i);
+			itemList.add(item);
+		}
+		
+		return itemList;
+	}
+	
 	/**
 	 * Create a location to work with.
 	 */
@@ -131,6 +165,37 @@ public class CreateLocation
 		return myLocation;
 	}
 	
+	/**
+	 * Adds items to some of the bins.
+	 * 
+	 * @param location the location to add the items to
+	 * @param itemList a list with the items to add
+	 */
+	private static void addItems(Location myLocation, ArrayList<Item> itemList)
+	{
+		Item item;
+		ItemAllocation itemAllocation = myLocation.getItemAllocation();
+		ArrayList<Bin> binList = myLocation.getBinList();
+		
+		// Add item to every n'th Bin
+		int n = 3;
+		int i = 0;
+		int j = 0;
+		for(Bin bin : binList)
+		{
+			i++;
+			if ((i % (n + j)) == 0)
+			{
+				if (i > itemList.size())
+				{
+					i = j;
+					j++;
+				}
+				item = itemList.get(i);
+				itemAllocation.addItem(item, bin);
+			}
+		}
+	}
 	
 	/**
 	 * Prints out all relevant elements of a location.
@@ -139,6 +204,10 @@ public class CreateLocation
 	 */
 	private static void printLocation(Location myLocation)
 	{
+		// Load ItemAllocation
+		ItemAllocation itemAllocation = myLocation.getItemAllocation();
+		Item item;
+		
 		System.out.println("(Bin ID = [gapID]-[gridSide]-[gridID]-[columnID]-[rowID])");
 		System.out.println("\nLocation:\nID = " + myLocation.getLocationID());
 		System.out.println("Anzahl Gassen: " + myLocation.countGaps());
@@ -183,7 +252,13 @@ public class CreateLocation
 					for(int j = 0; j < binArray[i].length; j++)
 					{
 						bin = binArray[i][j];
-						System.out.println("\n\t\t\tBin:\n\t\t\tID = " + bin.getBinID() + "\n\t\t\tKoordinaten (X/Y/Z) = " + bin.getX() + "/" + bin.getY() + "/" + bin.getZ());
+						item = itemAllocation.getItem(bin.getBinID());
+						System.out.println();
+						System.out.println("\t\t\tBin:");
+						System.out.println("\t\t\tID = " + bin.getBinID());
+						System.out.println("\t\t\tKoordinaten (X/Y/Z) = " + bin.getX() + "/" + bin.getY() + "/" + bin.getZ());
+						if (item != null)
+							System.out.println("\t\t\tArtikel: " + item.getItemID());
 					}	
 				}
 			}
@@ -215,7 +290,13 @@ public class CreateLocation
 					for(int j = 0; j < binArray[i].length; j++)
 					{
 						bin = binArray[i][j];
-						System.out.println("\n\t\t\tBin:\n\t\t\tID = " + bin.getBinID() + "\n\t\t\tKoordinaten (X/Y/Z) = " + bin.getX() + "/" + bin.getY() + "/" + bin.getZ());
+						item = itemAllocation.getItem(bin.getBinID());
+						System.out.println();
+						System.out.println("\t\t\tBin:");
+						System.out.println("\t\t\tID = " + bin.getBinID());
+						System.out.println("\t\t\tKoordinaten (X/Y/Z) = " + bin.getX() + "/" + bin.getY() + "/" + bin.getZ());
+						if (item != null)
+							System.out.println("\t\t\tArtikel: " + item.getItemID());
 					}	
 				}
 			}
