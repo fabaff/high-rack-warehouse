@@ -144,7 +144,7 @@ public class CreateLocation
 		System.out.println("Anzahl Gassen: " + myLocation.countGaps());
 		
 		// Load all gaps
-		ArrayList<Gap> gaps = myLocation.getGapList();
+		ArrayList<Gap> gaps = myLocation.getGapListCopy();
 		
 		// Load the grids of the gap
 		for(Gap gap : gaps)

@@ -7,7 +7,7 @@ import java.util.Hashtable;
  * @author mschaerer
  * 
  * The location defines the overall size of the storage unit. The location
- * is unique and only can exists once. 
+ * is unique and can only exists once.
  * The location contains gaps.
  */
 public class Location
@@ -18,7 +18,7 @@ public class Location
 	private ArrayList<Gap> gapList = new ArrayList<Gap>();
 	
 	/**
-	 * Returns an instance (object) of the class location.
+	 * Returns an instance (object) of the class Location.
 	 * 
 	 * @return the instance of this class
 	 */
@@ -37,9 +37,9 @@ public class Location
 	 * 
 	 * @param id	ID of the location
 	 */
-	private Location(String id)
+	private Location(String locationID)
 	{
-		this.locationID = id;
+		this.locationID = locationID;
 	}
 
 	/**
@@ -67,13 +67,19 @@ public class Location
 	}
 	
 	/**
-	 * Returns the list of gaps allocated to the current location.
+	 * Returns a copy of the list of gaps allocated to the current location.
 	 * 
 	 * @return the list of gaps
 	 */
-	public ArrayList<Gap> getGapList()
+	public ArrayList<Gap> getGapListCopy()
 	{
-		return gapList;
+		ArrayList<Gap> gapListCopy = new ArrayList<Gap>();
+		for (int i = 0; i < gapList.size(); i++)
+		{
+			gapListCopy.add(i, gapList.get(i));
+		}
+		
+		return gapListCopy;
 	}
 	
 	/**
@@ -83,7 +89,7 @@ public class Location
 	 */
 	public String getLocationID()
 	{
-		return locationID;
+		return this.locationID;
 	}
 	
 	/**

@@ -1,10 +1,11 @@
+
 package location;
 
 /**
  * @author mschaerer
  * 
- * The bin is the smallest unit inside the location. The bins takes the good
- * for storage. A bin can only take one good.
+ * The bin is the smallest unit inside the location. The bins takes the item
+ * for storage. A bin can only take one item.
  */
 public class Bin
 {
