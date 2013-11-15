@@ -69,7 +69,7 @@ public class RackFeeder
 	 * 
 	 * @param yCoordinate the yCoordinate to set
 	 */
-	public void setYCoordinate(int yCoordinate)
+	private void setYCoordinate(int yCoordinate)
 	{
 		this.yCoordinate = yCoordinate;
 	}
@@ -89,7 +89,7 @@ public class RackFeeder
 	 * 
 	 * @param zCoordinate the zCoordinate to set
 	 */
-	public void setZCoordinate(int zCoordinate)
+	private void setZCoordinate(int zCoordinate)
 	{
 		this.zCoordinate = zCoordinate;
 	}
@@ -109,8 +109,31 @@ public class RackFeeder
 	 * 
 	 * @param item the item to set
 	 */
-	public void setItem(Item item)
+	public void loadItem(Item item)
 	{
 		this.item = item;
+	}
+	
+	/**
+	 * Returns the item loaded to the rack feeder.
+	 * The rack feeder is empty after.
+	 * 
+	 * @param item the item to set
+	 */
+	public Item unloadItem()
+	{
+		return this.item;
+	}
+	
+	/**
+	 * Moves the rack feeder to the new position
+	 * 
+	 * @param yCoordinate the Y-coordinate to move to
+	 * @param zCoordinate the Z-coordinate to move to
+	 */
+	public void move(int yCoordinate, int zCoordinate)
+	{
+		this.setYCoordinate(yCoordinate);
+		this.setZCoordinate(zCoordinate);
 	}
 }
