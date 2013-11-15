@@ -101,7 +101,36 @@ public class CreateLocation
 		
 		for (int i = 0; i <= itemCounter; i++)
 		{
+			// Create item
 			item = Item.getInstance("Item " + i);
+			
+			// Create random item description
+			//---------------------
+			char[] symbols = new char[36];
+			for (int idx = 0; idx < 10; ++idx)
+			{
+				symbols[idx] = (char) ('0' + idx);
+			}
+				
+			for (int idx = 10; idx < 36; ++idx)
+			{
+				symbols[idx] = (char) ('a' + idx - 10);
+			}
+			
+			Random random = new Random();
+			char[] buf;
+			int length = 15;
+			buf = new char[length];
+
+			for (int idx = 0; idx < buf.length; ++idx)
+			{
+				buf[idx] = symbols[random.nextInt(symbols.length)];
+			}
+			//---------------------
+			
+			// Set item description
+			item.setItemDescription(new String(buf));
+			
 			itemList.add(item);
 		}
 		
@@ -212,7 +241,7 @@ public class CreateLocation
 		{
 			itemID = "Item " + i;
 			binString = getBinString(location, itemID);
-			System.out.println("Artikel " + itemID + " : " + binString);
+			System.out.println("Artikel " + itemID + " (" + Item.getItemDescription(itemID) + ") : " + binString);
 		}
 	}
 	
@@ -300,7 +329,7 @@ public class CreateLocation
 						System.out.println("\t\t\tID = " + bin.getBinID());
 						System.out.println("\t\t\tKoordinaten (X/Y/Z) = " + bin.getX() + "/" + bin.getY() + "/" + bin.getZ());
 						if (item != null)
-							System.out.println("\t\t\tArtikel: " + item.getItemID());
+							System.out.println("\t\t\tArtikel: " + item.getItemID() + " (" + item.getItemDescription() + ")");
 					}	
 				}
 			}
@@ -338,7 +367,7 @@ public class CreateLocation
 						System.out.println("\t\t\tID = " + bin.getBinID());
 						System.out.println("\t\t\tKoordinaten (X/Y/Z) = " + bin.getX() + "/" + bin.getY() + "/" + bin.getZ());
 						if (item != null)
-							System.out.println("\t\t\tArtikel: " + item.getItemID());
+							System.out.println("\t\t\tArtikel: " + item.getItemID() + " (" + item.getItemDescription() + ")");
 					}	
 				}
 			}
