@@ -9,6 +9,7 @@ import location.*;
 
 public class Distance {
 	private int distance;
+	private int xDistance;
 	private int yDistance;
 	private int zDistance;
 	
