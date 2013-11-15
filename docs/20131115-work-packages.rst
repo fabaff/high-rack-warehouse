@@ -1,11 +1,11 @@
 Work packages 15. November 2013
 ===============================
 
-# Definition für Lagerort (Generierung der Lager-Struktur)
-# Liste mit Lagergütern (Artikelliste)
-# Liste für die Belgung eines Lagerort (Belegungsliste) bei bereits gefüllten
-  Lagerorten
-# Liste für Operationen (Auftragsliste)
+#. Definition für Lagerort (Generierung der Lager-Struktur)
+#. Liste mit Lagergütern (Artikelliste)
+#. Liste für die Belgung eines Lagerort (Belegungsliste) bei bereits gefüllten
+   Lagerorten
+#. Liste für Operationen (Auftragsliste)
  
 Lager-Struktur
 --------------
