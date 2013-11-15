@@ -136,9 +136,14 @@ public class ItemAllocation
 	{
 		ArrayList<Bin> binListOriginal = this.getBinList(itemID);
 		ArrayList<Bin> binListCopy = new ArrayList<Bin>();
-		for (int i = 0; i < binListOriginal.size(); i++)
+		
+		// Wurde der Artikel gefunden?
+		if (binListOriginal != null)
 		{
-			binListCopy.add(i, binListOriginal.get(i));
+			for (int i = 0; i < binListOriginal.size(); i++)
+			{
+				binListCopy.add(i, binListOriginal.get(i));
+			}
 		}
 		
 		return binListCopy;

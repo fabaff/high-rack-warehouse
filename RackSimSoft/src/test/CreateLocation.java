@@ -10,6 +10,8 @@ import location.*;
 import calculation.*;
 
 import java.util.ArrayList;
+import java.util.Random;
+
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -33,14 +35,16 @@ import javax.swing.KeyStroke;
  */
 public class CreateLocation
 {
+	private static int itemCounter = 20;
+	
 	public static void main(String[] args)
-	{
+	{		
 		System.out.println();
 		System.out.println("-------------------------------------------------");
 		
 		// Creates some items
 		ArrayList<Item> itemList = createItems();
-		System.out.println("Items were created...");
+		System.out.println(itemCounter + " items were created...");
 		System.out.println("-------------------------------------------------");
 		
 		// Creates a location
@@ -51,6 +55,11 @@ public class CreateLocation
 		// Adds items to location
 		addItems(myLocation, itemList);
 		System.out.println("Items were added...");
+		System.out.println("-------------------------------------------------");
+		
+		// Prints item allocation
+		System.out.println("Folgende Artikel sind in diesen Lagerplätzen eingelagert:");
+		printItems(myLocation);
 		System.out.println("-------------------------------------------------");
 		
 		// Prints the location
@@ -90,7 +99,7 @@ public class CreateLocation
 		ArrayList<Item> itemList = new ArrayList<Item>();
 		Item item;
 		
-		for (int i = 0; i <= 200; i++)
+		for (int i = 0; i <= itemCounter; i++)
 		{
 			item = Item.getInstance("Item " + i);
 			itemList.add(item);
@@ -176,25 +185,58 @@ public class CreateLocation
 		Item item;
 		ItemAllocation itemAllocation = myLocation.getItemAllocation();
 		ArrayList<Bin> binList = myLocation.getBinList();
+		Bin bin;
 		
-		// Add item to every n'th Bin
-		int n = 3;
-		int i = 0;
-		int j = 0;
-		for(Bin bin : binList)
+		// Add items to Bin
+		Random random = new Random();
+		int counter = random.nextInt(binList.size());
+		for (int i = 0; i <= counter; i ++)
 		{
-			i++;
-			if ((i % (n + j)) == 0)
-			{
-				if (i > itemList.size())
-				{
-					i = j;
-					j++;
-				}
-				item = itemList.get(i);
-				itemAllocation.addItem(item, bin);
-			}
+			bin = binList.get(random.nextInt(binList.size()));
+			item = itemList.get(random.nextInt(itemList.size()));
+			itemAllocation.addItem(item, bin);
 		}
+	}
+	
+	/**
+	 * Prints the allocated Bin to a the specified Items
+	 * 
+	 * @param location  the location
+	 */
+	private static void printItems(Location location)
+	{
+		String itemID;
+		String binString;
+		
+		for (int i = 1; i <= itemCounter; i++)
+		{
+			itemID = "Item " + i;
+			binString = getBinString(location, itemID);
+			System.out.println("Artikel " + itemID + " : " + binString);
+		}
+	}
+	
+	/**
+	 * Returns the allocated Bin to a specific Item ID
+	 * 
+	 * @param location  the location
+	 * @param itemID	the itemID of the item
+	 * @return binID	the binID
+	 */
+	private static String getBinString(Location location, String itemID)
+	{
+		ArrayList<Bin> bins = location.getBinList(itemID);
+		String binString = "";
+		
+		for (Bin bin : bins)
+		{
+			binString += (bin.getBinID() + ", ");
+		}
+		
+		if (bins.size() > 0)
+			binString = binString.substring(0, binString.length() - 2);
+		
+		return binString;
 	}
 	
 	/**

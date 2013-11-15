@@ -190,4 +190,16 @@ public class Location
 	{
 		return itemAllocation;
 	}
+	
+	/**
+	 * Returns the list of Bin for the current itemID.
+	 * 
+	 * @param itemID	the itemID
+	 * @return the list of Bin
+	 */
+	public ArrayList<Bin> getBinList(String itemID)
+	{
+		ItemAllocation itemAllocation = this.getItemAllocation();
+		return itemAllocation.getBinListCopy(itemID);
+	}
 }
