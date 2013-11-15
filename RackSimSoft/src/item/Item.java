@@ -16,6 +16,7 @@ public class Item
 	private static ArrayList<Item> itemList = new ArrayList<Item>();
 	
 	private String itemID;
+	private String itemDescription;
 	
 	/**
 	 * Creates an item. The ID of the item must be given.
@@ -25,6 +26,7 @@ public class Item
 	private Item(String itemID)
 	{
 		this.itemID = itemID;
+		this.itemDescription = "";
 	}
 	
 	/**
@@ -76,6 +78,41 @@ public class Item
 		
 		// To array list
 		itemList.add(item);
+	}
+
+	/**
+	 * Returns the description of the current item
+	 * 
+	 * @return the itemDescription
+	 */
+	public String getItemDescription()
+	{
+		return this.itemDescription;
+	}
+	
+	/**
+	 * Returns the description of the current item
+	 * 
+	 * @return the itemDescription
+	 */
+	public static String getItemDescription(String itemID)
+	{
+		String itemDescription = "";
+		Item item = itemTable.get(itemID);
+		if (item != null)
+			itemDescription = item.getItemDescription();
+		
+		return itemDescription;
+	}
+
+	/**
+	 * Sets the description of the current item
+	 * 
+	 * @param itemDescription the itemDescription to set
+	 */
+	public void setItemDescription(String itemDescription)
+	{
+		this.itemDescription = itemDescription;
 	}
 }
 
