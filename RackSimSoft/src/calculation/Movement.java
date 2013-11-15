@@ -12,11 +12,10 @@ import location.*;
 public class Movement {
 	private double xSpeed = 2; // Only relevant for the delivery
 	private double ySpeed = 2; // Speed in y axis
-	private double zSpeed = 2; // Speed in x axis
+	private double zSpeed = 2; // Speed in z axis
 	private double lSpeed = 1; // Loading speed
 	private double acceleration = 0.5f;
 	private double deceleration = 0.5f;
-	
 	
 	/**
 	 * Time for a complete loading cycle (from the loading zone to the bin)
