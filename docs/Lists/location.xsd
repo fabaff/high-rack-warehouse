@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="Location">
+    <xsd:complexType>
+	<xsd:element name="gap">
+	
+	<xsd:element name="grid">
+	
+      <xsd:sequence>
+        <xsd:element name="Column">
+			<xsd:attribute name="width" type="xsd:integer"></xsd:attribute>
+        </xsd:element>
+        <xsd:element name="Row">
+			<xsd:attribute name="height" type="xsd:integer"></xsd:attribute>
+        </xsd:element>
+      </xsd:sequence>
+	
+	<xsd:attribute name="depth" type="xsd:integer"></xsd:attribute>
+	<xsd:attribute name="GridSide" type="xsd:integer"></xsd:attribute>
+	</xsd:element>
+	
+	</xsd:element>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>
