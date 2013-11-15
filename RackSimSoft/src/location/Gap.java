@@ -14,6 +14,7 @@ public class Gap
 	private Grid gridRight = null;
 	private int width;
 	private int xCoordinate;
+	private RackFeeder rackFeeder;
 
 	/**
 	 * Creates a Gap. The ID, the width and the x coordinate of the gap must
@@ -28,6 +29,7 @@ public class Gap
 		this.gapID = id;
 		this.width = width;
 		this.xCoordinate = x;
+		this.rackFeeder = new RackFeeder(this);
 	}
 	
 	/**
@@ -37,7 +39,7 @@ public class Gap
 	 */
 	public String getGapID()
 	{
-		return gapID;
+		return this.gapID;
 	}
 	
 	/**
@@ -47,7 +49,7 @@ public class Gap
 	 */
 	public int getXCoordinate()
 	{
-		return xCoordinate;
+		return this.xCoordinate;
 	}
 	
 	/**
@@ -57,7 +59,7 @@ public class Gap
 	 */
 	public int getWidth()
 	{
-		return width;
+		return this.width;
 	}
 	
 	/**
@@ -91,7 +93,7 @@ public class Gap
 	 */
 	public Grid getGridLeft()
 	{
-		return gridLeft;
+		return this.gridLeft;
 	}
 
 	/**
@@ -101,6 +103,16 @@ public class Gap
 	 */
 	public Grid getGridRight()
 	{
-		return gridRight;
+		return this.gridRight;
+	}
+	
+	/**
+	 * Returns the RackFeeder assigned to this gap
+	 * 
+	 * @return the rackFeeder
+	 */
+	public RackFeeder getRackFeeder()
+	{
+		return this.rackFeeder;
 	}
 }
