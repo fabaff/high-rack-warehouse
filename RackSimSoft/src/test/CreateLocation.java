@@ -88,7 +88,7 @@ public class CreateLocation
 		System.out.println("-------------------------------------------------");
 		
 		// Creates GUI
-		createAndShowGui(myLocation);
+		//createAndShowGui(myLocation);
 	}
 		
 	/**
@@ -278,6 +278,7 @@ public class CreateLocation
 		// Load ItemAllocation
 		ItemAllocation itemAllocation = myLocation.getItemAllocation();
 		Item item;
+		RackFeeder rackFeeder;
 		
 		System.out.println("(Bin ID = [gapID]-[gridSide]-[gridID]-[columnID]-[rowID])");
 		System.out.println("\nLocation:\nID = " + myLocation.getLocationID());
@@ -289,8 +290,21 @@ public class CreateLocation
 		// Load the grids of the gap
 		for(Gap gap : gaps)
 		{
-			System.out.println("\n\tGap:\n\tID = " + gap.getGapID() + "\n\tx-Koordinate = " + gap.getXCoordinate() + "\n\tBreite = " + gap.getWidth());
+			// Get rack feeder
+			rackFeeder = gap.getRackFeeder();
 			
+			System.out.println();
+			System.out.println("\tGap:");
+			System.out.println("\tID = " + gap.getGapID());
+			System.out.println("\tX-Koordinate = " + gap.getXCoordinate());
+			System.out.println("\tBreite = " + gap.getWidth());
+			System.out.println();
+			System.out.println("\tZugehöriges RBG:");
+			System.out.println("\tID = " + rackFeeder.getrackFeederID());
+			System.out.println("\tX-Koordinate = " + rackFeeder.getXCoordinate());
+			System.out.println("\tY-Koordinate = " + rackFeeder.getYCoordinate());
+			System.out.println("\tZ-Koordinate = " + rackFeeder.getZCoordinate());
+			System.out.println("\tArtikel auf RBG = " + rackFeeder.getItem());
 			//Hashtable<String, Bin> binTable;
 			
 			Bin binArray[][];
