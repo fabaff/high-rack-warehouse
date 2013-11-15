@@ -5,7 +5,7 @@
 00005;Article 5
 00006;Article 6
 00007;Article 7
-00008   Article 8
+00008;Article 8
 00009;Article 9
 00010;Article 10
 00011;Article 11
