@@ -9,13 +9,34 @@ import location.*;
  * inclined in side the yz area of the grid.
  */
 
-public class Movement {
-	private double xSpeed = 2; // Only relevant for the delivery
-	private double ySpeed = 2; // Speed in y axis
-	private double zSpeed = 2; // Speed in z axis
-	private double lSpeed = 1; // Loading speed
-	private double acceleration = 0.5f;
-	private double deceleration = 0.5f;
+public class Movement
+{
+	private double xSpeed; // Only relevant for the delivery
+	private double ySpeed; // Speed in y axis
+	private double zSpeed; // Speed in z axis
+	private double lSpeed; // Loading speed
+	private double acceleration;
+	private double deceleration;
+	
+	/**
+	 * Creates a Movement object.
+	 * 
+	 * @param xSpeed the xSpeed to set
+	 * @param ySpeed the ySpeed to set
+	 * @param zSpeed the zSpeed to set
+	 * @param lSpeed the lSpeed to set
+	 * @param acceleration the acceleration to set
+	 * @param deceleration the deceleration to set
+	 */
+	public Movement(double xSpeed, double ySpeed, double zSpeed, double lSpeed, double accelaration, double decalaration)
+	{
+		this.xSpeed = xSpeed;
+		this.ySpeed = ySpeed;
+		this.zSpeed = zSpeed;
+		this.lSpeed = lSpeed;
+		this.acceleration = accelaration;
+		this.deceleration = decalaration;
+	}
 	
 	/**
 	 * Time for a complete loading cycle (from the loading zone to the bin)
@@ -124,6 +145,6 @@ public class Movement {
 	public double pTime()
 	{
 		double pTime = 2 / lSpeed;
-		return pTime;	
+		return pTime;
 	}
 }
