@@ -7,13 +7,14 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Reading data from external files as input for creating of all needed elements.
+ * Reading data from external files as input for creating of all needed
+ * elements.
  */
 public class ReadingFiles {
-	final static boolean DEBUG = true;
 	final static Charset ENCODING = StandardCharsets.UTF_8;
 	
 	/**
@@ -24,16 +25,27 @@ public class ReadingFiles {
 	public void readArticles(String FileName) throws IOException 
 	{
 		Path path = Paths.get(FileName);
-		try (Scanner scanner =  new Scanner(path, ENCODING.name())){
+		int line = 0;
+		ArrayList<String> errors = new ArrayList<String>();
+		try (Scanner scanner =  new Scanner(path, ENCODING.name()))
+		{
 			while (scanner.hasNextLine()){
-				if (DEBUG) {
-					log(scanner.nextLine());
+				String parts[];
+				String string = scanner.nextLine();
+				if (string.contains(";"))
+				{
+					parts = string.split(";");
+					line++;
+					Item.getInstance(parts[0]).setItemDescription(parts[1]);
 				} else {
-					String string = scanner.nextLine();
-					String[] parts = string.split("\t");
-					Item.getInstance(parts[0]).setItemDescription(parts[1]);	
+					errors.add("Error on line " + line);
 				}
-			}      
+			}			
+			if (errors.size() != 0) {
+			for (String s : errors)
+			    System.out.println(s);
+			}
+			System.out.println("Total processed lines: " + line);
 	    }
 	}
 
@@ -45,18 +57,19 @@ public class ReadingFiles {
 	public void readLocation(String FileName) throws IOException 
 	{
 		Path path = Paths.get(FileName);
-		try (Scanner scanner =  new Scanner(path, ENCODING.name())){
-			while (scanner.hasNextLine()){				
-				if (DEBUG) {
-					log(scanner.nextLine());
-				};
+		try (Scanner scanner =  new Scanner(path, ENCODING.name()))
+		{
+			while (scanner.hasNextLine())
+			{
 				// Code goes here...
+				log(scanner.nextLine());
 			}      
 	    }
 	}
 	    
 	/**
-	 * For debugging only. Prints the given element to STDOUT.
+	 * For debugging only. Prints the given element to STDOUT aka Console in
+	 * Eclipse.
 	 * 
 	 * @param data The value to print
 	 */	
