@@ -1,5 +1,7 @@
 package helper;
 
+import item.Item;
+
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
@@ -26,8 +28,11 @@ public class ReadingFiles {
 			while (scanner.hasNextLine()){
 				if (DEBUG) {
 					log(scanner.nextLine());
-				};
-				// Code goes here...
+				} else {
+					String string = scanner.nextLine();
+					String[] parts = string.split("\t");
+					Item.getInstance(parts[0]).setItemDescription(parts[1]);	
+				}
 			}      
 	    }
 	}
