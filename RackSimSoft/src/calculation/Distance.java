@@ -2,7 +2,6 @@ package calculation;
 
 import location.*;
 
-
 /**
  * Calculations on the yz area in the grid.
  */
@@ -12,6 +11,7 @@ public class Distance {
 	private int xDistance;
 	private int yDistance;
 	private int zDistance;
+	private int lDistance;
 	
 	/**
 	 * Calculates the distance of a bin to the zero point in the grid.
@@ -98,33 +98,73 @@ public class Distance {
 				bin2.getY()), 2) + Math.pow((bin1.getZ() - bin2.getZ()), 2)));
 		return mDistance;
 	}
+
+	/**
+	 * Calculates the distance in the interface area.
+	 * 
+	 * @param location
+     * @param binID1
+	 */
+	public double lDistance(Location location, String binID1)
+	{
+		Bin bin1;
+		bin1 = location.getBin(binID1);
+		double lDistance = bin1.getWidth();
+		return lDistance;
+	}
 	
 	/**
 	 * Returns the distance between two points.
 	 * 
 	 * @return the distance between two point
 	 */
-	public int getDistance() {
+	public int getDistance()
+	{
 		return distance;
 	}
 
-	public void setDistance(int distance) {
+	public void setDistance(int distance)
+	{
 		this.distance = distance;
 	}
 
-	public int getyDistance() {
+	public int getxDistance()
+	{
+		return xDistance;
+	}
+
+	public void setxDistance(int xDistance)
+	{
+		this.xDistance = xDistance;
+	}
+	
+	public int getyDistance() 
+	{
 		return yDistance;
 	}
 
-	public void setyDistance(int yDistance) {
+	public void setyDistance(int yDistance) 
+	{
 		this.yDistance = yDistance;
 	}
 
-	public int getzDistance() {
+	public int getzDistance()
+	{
 		return zDistance;
 	}
 
-	public void setzDistance(int zDistance) {
+	public void setzDistance(int zDistance)
+	{
 		this.zDistance = zDistance;
+	}
+	
+	public int getlDistance() 
+	{
+		return lDistance;
+	}
+
+	public void setlDistance(int lDistance) 
+	{
+		this.lDistance = lDistance;
 	}
 }
