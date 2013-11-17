@@ -58,7 +58,7 @@ public class CreateLocation
 		System.out.println("-------------------------------------------------");
 		
 		// Prints item allocation
-		System.out.println("Folgende Artikel sind in diesen Lagerplätzen eingelagert:");
+		System.out.println("Folgende Artikel sind in diesen Lagerplaetzen eingelagert:");
 		printItems(myLocation);
 		System.out.println("-------------------------------------------------");
 		
@@ -84,6 +84,8 @@ public class CreateLocation
 		System.out.println("Zeiten:");
 		printTime(myLocation, "0-0-0-0-0", "0-0-0-2-0");
 		printTime(myLocation, "0-0-0-0-0", "0-0-0-3-1");
+		printTime(myLocation, "0-0-0-2-0", "0-0-0-3-1");
+
 		
 		System.out.println("-------------------------------------------------");
 		
@@ -299,7 +301,7 @@ public class CreateLocation
 			System.out.println("\tX-Koordinate = " + gap.getXCoordinate());
 			System.out.println("\tBreite = " + gap.getWidth());
 			System.out.println();
-			System.out.println("\tZugehöriges RBG:");
+			System.out.println("\tZugehoeriges RBG:");
 			System.out.println("\tID = " + rackFeeder.getrackFeederID());
 			System.out.println("\tX-Koordinate = " + rackFeeder.getXCoordinate());
 			System.out.println("\tY-Koordinate = " + rackFeeder.getYCoordinate());
@@ -446,19 +448,10 @@ public class CreateLocation
 	 */
 	private static void printTime(Location location, String binID1, String binID2)
 	{
-		Movement movement = new Movement();
+		Movement movement = new Movement(2.0, 2.0, 2.0, 2.0, 0.5, 0.5);
 		double cTime = movement.cTime(location, binID1, binID2);
 		
-		double mTime = movement.mTime(location, binID1, binID2);
-		double gTime = movement.gTime();
-		double pTime = movement.pTime();
-
 		System.out.println("Kompl. Zyklus:\t\t" + cTime);
-		
-		System.out.println("\tBeladen:\t" + pTime);
-		System.out.println("\tHinfahrt:\t" + mTime);
-		System.out.println("\tEntladen:\t" + gTime);
-		System.out.println("\tRÃ¼ckfahrt:\t" + mTime);
 	}
 	
 	/**
