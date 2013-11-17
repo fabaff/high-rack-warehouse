@@ -28,14 +28,14 @@ public class Movement
 	 * @param acceleration the acceleration to set
 	 * @param deceleration the deceleration to set
 	 */
-	public Movement(double xSpeed, double ySpeed, double zSpeed, double lSpeed, double accelaration, double decalaration)
+	public Movement(double xSpeed, double ySpeed, double zSpeed, double lSpeed, double acceleration, double deceleration)
 	{
 		this.xSpeed = xSpeed;
 		this.ySpeed = ySpeed;
 		this.zSpeed = zSpeed;
 		this.lSpeed = lSpeed;
-		this.acceleration = accelaration;
-		this.deceleration = decalaration;
+		this.acceleration = acceleration;
+		this.deceleration = deceleration;
 	}
 	
 	/**
@@ -46,14 +46,21 @@ public class Movement
 	 */
 	public double cTime(Location location, String binID1, String binID2)
 	{
+		Distance distance = new Distance();
+
+		double track = distance.mDistance(location, binID1, binID2);
+		
+		double xDistance = distance.getxDistance();
+		double lDistance = distance.getlDistance();
+		
 		// Loading time
-		double ptime = pTime();
+		double ptime = pTime(lSpeed, lDistance);
 		// Traveling time
 		double mtime = mTime(location, binID1, binID2);
 		// Placing time
-		double gtime = gTime();
+		double xtime = xTime(xSpeed, xDistance);
 		
-		double cTime = ptime + mtime + gtime + mtime;
+		double cTime = ptime + mtime + xtime + mtime;
 		return cTime;	
 	}
 
@@ -81,11 +88,11 @@ public class Movement
 	/**
 	 * Calculates the max. time to move to the latest bin in the grid.
 	 */
-	public int maxTime()
-	{
-		int time = 100000;
-		return time;
-	}
+//	public int maxTime()
+//	{
+//		int time = 100000;
+//		return time;
+//	}
 
 	/**
 	 * Calculates the time which is needed for linear traveling.
@@ -131,20 +138,23 @@ public class Movement
 	 * 
 	 * @return the time for picking or unloading goods in bins
 	 */
-	public double gTime()
+	public double xTime(double xSpeed, double distance)
 	{
-		double gTime = 5;
-		return gTime;	
+		double xTime = distance / xSpeed;
+		return xTime;
 	}
 	
 	/**
 	 * Operating time in the interface area to the loading zone.
 	 * 
+	 * @param Speed   the traveling speed for the loading process	
+	 * @param distance the y distance from the beam to the interface area
+	 * 
 	 * @return the needed time for operating in the loading zone
 	 */
-	public double pTime()
+	public double pTime(double lSpeed, double distance)
 	{
-		double pTime = 2 / lSpeed;
+		double pTime = distance / lSpeed;
 		return pTime;
 	}
 }
