@@ -5,7 +5,7 @@ import location.*;
 /**
  * The operating unit is moving inside the gap in the direction of the 
  * y axis and its beam is only able to move in the direction of the z axis.
- * The superposition of both moving vectors let the operating unit move
+ * The super position of both moving vectors let the operating unit move
  * inclined in side the yz area of the grid.
  */
 
@@ -37,7 +37,8 @@ public class Movement
 		this.acceleration = acceleration;
 		this.deceleration = deceleration;
 	}
-	
+	// TODO cTime ist nur als Test gedacht. Die Zeiten muessen den Events
+	// zugeordnet sein und koennen nicht den gesamten Vorgang abdecken.
 	/**
 	 * Time for a complete loading cycle (from the loading zone to the bin)
 	 * and back to standby location.
@@ -47,8 +48,6 @@ public class Movement
 	public double cTime(Location location, String binID1, String binID2)
 	{
 		Distance distance = new Distance();
-
-		double track = distance.mDistance(location, binID1, binID2);
 		
 		double xDistance = distance.getxDistance();
 		double lDistance = distance.getlDistance();
@@ -80,29 +79,22 @@ public class Movement
 		
 		double aTime = aTime(ySpeed, acceleration);
 		double dTime = dTime(ySpeed, deceleration);
-		double lTime = lTime(ySpeed, track/1000);
+		double lTime = lTime(ySpeed, zSpeed, track/1000);
 		double tTime = aTime + lTime + dTime;	
 		return tTime;
 	}
 
-	/**
-	 * Calculates the max. time to move to the latest bin in the grid.
-	 */
-//	public int maxTime()
-//	{
-//		int time = 100000;
-//		return time;
-//	}
-
+	// TODO Achtung: ungeprueft
 	/**
 	 * Calculates the time which is needed for linear traveling.
 	 * 
 	 * @param ySpeed 		
 	 * @param distance	
 	 */
-	private double lTime(double ySpeed, double distance)
+	private double lTime(double ySpeed, double zSpeed, double distance)
 	{
-		double lTime = distance / ySpeed;
+		double speed = Math.round(Math.sqrt(Math.pow((ySpeed), 2) + Math.pow((zSpeed), 2)));
+		double lTime = distance / speed;
 		return lTime;	
 	}
 	
@@ -112,7 +104,7 @@ public class Movement
 	 * @param ySpeed2 		
 	 * @param acceleration	
 	 */
-	private double aTime(double ySpeed2, double acceleration)
+	private double aTime(double ySpeed, double acceleration)
 	{
 		double aTime = ySpeed / acceleration;
 		return aTime;	
