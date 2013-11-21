@@ -21,6 +21,7 @@ public class Bin
 	private int xCoordinate;
 	private int yCoordinate;
 	private int zCoordinate;
+	private int uCoordinate;
 	
 	/**
 	 * Creates a bin. The ID of the bin must be given.
@@ -50,6 +51,17 @@ public class Bin
 		this.xCoordinate = grid.getXCoordinate();
 		this.yCoordinate = column.getYCoordinate();
 		this.zCoordinate = row.getZCoordinate();
+		
+		if (grid.getGridSide() == 0)
+		{
+			// Left Grid
+			this.uCoordinate = (grid.getDepth() * -1);
+		}
+		else
+		{
+			// Right Grid
+			this.uCoordinate = grid.getDepth();
+		}
 		
 		this.width = column.getWidth();
 		this.height = row.getHeight();
@@ -116,13 +128,23 @@ public class Bin
 	}
 	
 	/**
+	 * Returns the u coordinate of the current bin.
+	 * 
+	 * @return the u coordinate
+	 */
+	public int getU()
+	{
+		return uCoordinate;
+	}
+	
+	/**
 	 * Returns the coordinate of the current bin.
 	 * 
 	 * @return the coordinate
 	 */
 	public Coordinate getCoordinate()
 	{
-		Coordinate coordinate = new Coordinate(this.getX(), this.getY(), this.getZ());
+		Coordinate coordinate = new Coordinate(this.getX(), this.getY(), this.getZ(), this.getU());
 		return coordinate;
 	}
 	

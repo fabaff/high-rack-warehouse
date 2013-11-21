@@ -63,60 +63,128 @@ public class Movement
 	*/
 	
 	/**
-	 * Calculates the time, which is needed to move the rack feeder the given distance.
+	 * Calculates the time, which is needed to move the rack feeder the given distance in the chosen axes.
+	 * If the given String is null or empty, the time will be calculated for all axes with any difference in distance.
 	 * 
 	 * @return the time
 	 */
-	public int getTime()
+	public int getTime(String direction)
 	{
+		System.out.println("TEST TEST TEST: given direction " + direction);
+		
 		int time = -1;
 		
 		// Check the directions
 		int xDistance = distance.getXDistance();
 		int yDistance = distance.getYDistance();
 		int zDistance = distance.getZDistance();
-		
-		String direction = getDirectionString(xDistance, yDistance, zDistance);
+		int uDistance = distance.getUDistance();
+		System.out.println("TEST TEST TEST: Distances Y/Z " + yDistance + "/" + zDistance);
 		ArrayList<InnerMovement> innerMovementList = new ArrayList<InnerMovement>();
 		
-		
+		if ((direction == null) || (direction.equals("")))
+		{
+			direction = getDirectionString(xDistance, yDistance, zDistance, uDistance);
+		}
+		else
+		{
+			// Proof, if any distance is zero
+			if ((direction.substring(0, 1).equals("1")) && (xDistance == 0))
+				direction = "0" + direction.substring(1);
+			
+			if ((direction.substring(1, 2).equals("1")) && (yDistance == 0))
+				direction = direction.substring(0, 1) + "0" + direction.substring(2);
+			
+			if ((direction.substring(2, 3).equals("1")) && (zDistance == 0))
+				direction = direction.substring(0, 2) + "0" + direction.substring(3);
+			
+			if ((direction.substring(3, 4).equals("1")) && (uDistance == 0))
+				direction = direction.substring(0, 3) + "0";
+		}
+	
+		System.out.println("TEST TEST TEST: new direction " + direction);
+		// direction: "XYZU", 1 means true, 0 means false
 		switch (direction)
 		{
-			case "" :
+			case "0000" :
 				time = 0;
 				break;
 			
-			case "X" :
-				innerMovementList.add(new InnerMovement(xDistance, rackFeeder.getXSpeed(), rackFeeder.getAcceleration(), rackFeeder.getDeceleration()));
-				break;
-			
-			case "XY" :
-				innerMovementList.add(new InnerMovement(xDistance, rackFeeder.getXSpeed(), rackFeeder.getAcceleration(), rackFeeder.getDeceleration()));
-				innerMovementList.add(new InnerMovement(yDistance, rackFeeder.getYSpeed(), rackFeeder.getAcceleration(), rackFeeder.getDeceleration()));
-				break;
-			
-			case "XZ" :
-				innerMovementList.add(new InnerMovement(xDistance, rackFeeder.getXSpeed(), rackFeeder.getAcceleration(), rackFeeder.getDeceleration()));
-				innerMovementList.add(new InnerMovement(zDistance, rackFeeder.getZSpeed(), rackFeeder.getAcceleration(), rackFeeder.getDeceleration()));
+			case "1000" :
+				innerMovementList.add(new InnerMovement("X", xDistance, rackFeeder.getXSpeed(), rackFeeder.getXAcceleration(), rackFeeder.getXDeceleration()));
 				break;
 				
-			case "XYZ" :
-				innerMovementList.add(new InnerMovement(xDistance, rackFeeder.getXSpeed(), rackFeeder.getAcceleration(), rackFeeder.getDeceleration()));
-				innerMovementList.add(new InnerMovement(yDistance, rackFeeder.getYSpeed(), rackFeeder.getAcceleration(), rackFeeder.getDeceleration()));
-				innerMovementList.add(new InnerMovement(zDistance, rackFeeder.getZSpeed(), rackFeeder.getAcceleration(), rackFeeder.getDeceleration()));
+			case "0100" :
+				innerMovementList.add(new InnerMovement("Y", yDistance, rackFeeder.getYSpeed(), rackFeeder.getYAcceleration(), rackFeeder.getYDeceleration()));
 				break;
 			
-			case "Y" :
-				innerMovementList.add(new InnerMovement(yDistance, rackFeeder.getYSpeed(), rackFeeder.getAcceleration(), rackFeeder.getDeceleration()));
+			case "1100" :
+				innerMovementList.add(new InnerMovement("X", xDistance, rackFeeder.getXSpeed(), rackFeeder.getXAcceleration(), rackFeeder.getXDeceleration()));
+				innerMovementList.add(new InnerMovement("Y", yDistance, rackFeeder.getYSpeed(), rackFeeder.getYAcceleration(), rackFeeder.getYDeceleration()));
+				break;
+				
+			case "0010" :
+				innerMovementList.add(new InnerMovement("Z", zDistance, rackFeeder.getZSpeed(), rackFeeder.getZAcceleration(), rackFeeder.getZDeceleration()));
 				break;
 			
-			case "YZ" :
-				innerMovementList.add(new InnerMovement(yDistance, rackFeeder.getYSpeed(), rackFeeder.getAcceleration(), rackFeeder.getDeceleration()));
-				innerMovementList.add(new InnerMovement(zDistance, rackFeeder.getZSpeed(), rackFeeder.getAcceleration(), rackFeeder.getDeceleration()));
+			case "1010" :
+				innerMovementList.add(new InnerMovement("X", xDistance, rackFeeder.getXSpeed(), rackFeeder.getXAcceleration(), rackFeeder.getXDeceleration()));
+				innerMovementList.add(new InnerMovement("Z", zDistance, rackFeeder.getZSpeed(), rackFeeder.getZAcceleration(), rackFeeder.getZDeceleration()));
 				break;
-			
-			case "Z" :
-				innerMovementList.add(new InnerMovement(zDistance, rackFeeder.getZSpeed(), rackFeeder.getAcceleration(), rackFeeder.getDeceleration()));
+				
+			case "0110" :
+				innerMovementList.add(new InnerMovement("Y", yDistance, rackFeeder.getYSpeed(), rackFeeder.getYAcceleration(), rackFeeder.getYDeceleration()));
+				innerMovementList.add(new InnerMovement("Z", zDistance, rackFeeder.getZSpeed(), rackFeeder.getZAcceleration(), rackFeeder.getZDeceleration()));
+				break;
+				
+			case "1110" :
+				innerMovementList.add(new InnerMovement("X", xDistance, rackFeeder.getXSpeed(), rackFeeder.getXAcceleration(), rackFeeder.getXDeceleration()));
+				innerMovementList.add(new InnerMovement("Y", yDistance, rackFeeder.getYSpeed(), rackFeeder.getYAcceleration(), rackFeeder.getYDeceleration()));
+				innerMovementList.add(new InnerMovement("Z", zDistance, rackFeeder.getZSpeed(), rackFeeder.getZAcceleration(), rackFeeder.getZDeceleration()));
+				break;
+				
+			case "0001" :
+				innerMovementList.add(new InnerMovement("U", uDistance, rackFeeder.getUSpeed(), rackFeeder.getUAcceleration(), rackFeeder.getUDeceleration()));
+				break;
+				
+			case "1001" :
+				innerMovementList.add(new InnerMovement("X", xDistance, rackFeeder.getXSpeed(), rackFeeder.getXAcceleration(), rackFeeder.getXDeceleration()));
+				innerMovementList.add(new InnerMovement("U", uDistance, rackFeeder.getUSpeed(), rackFeeder.getUAcceleration(), rackFeeder.getUDeceleration()));
+				break;
+				
+			case "0101" :
+				innerMovementList.add(new InnerMovement("Y", yDistance, rackFeeder.getYSpeed(), rackFeeder.getYAcceleration(), rackFeeder.getYDeceleration()));
+				innerMovementList.add(new InnerMovement("U", uDistance, rackFeeder.getUSpeed(), rackFeeder.getUAcceleration(), rackFeeder.getUDeceleration()));
+				break;
+				
+			case "1101" :
+				innerMovementList.add(new InnerMovement("X", xDistance, rackFeeder.getXSpeed(), rackFeeder.getXAcceleration(), rackFeeder.getXDeceleration()));
+				innerMovementList.add(new InnerMovement("Y", yDistance, rackFeeder.getYSpeed(), rackFeeder.getYAcceleration(), rackFeeder.getYDeceleration()));
+				innerMovementList.add(new InnerMovement("U", uDistance, rackFeeder.getUSpeed(), rackFeeder.getUAcceleration(), rackFeeder.getUDeceleration()));
+				break;
+				
+			case "0011" :
+				innerMovementList.add(new InnerMovement("Z", zDistance, rackFeeder.getZSpeed(), rackFeeder.getZAcceleration(), rackFeeder.getZDeceleration()));
+				innerMovementList.add(new InnerMovement("U", uDistance, rackFeeder.getUSpeed(), rackFeeder.getUAcceleration(), rackFeeder.getUDeceleration()));
+				break;
+				
+			case "1011" :
+				innerMovementList.add(new InnerMovement("X", xDistance, rackFeeder.getXSpeed(), rackFeeder.getXAcceleration(), rackFeeder.getXDeceleration()));
+				innerMovementList.add(new InnerMovement("Z", zDistance, rackFeeder.getZSpeed(), rackFeeder.getZAcceleration(), rackFeeder.getZDeceleration()));
+				innerMovementList.add(new InnerMovement("U", uDistance, rackFeeder.getUSpeed(), rackFeeder.getUAcceleration(), rackFeeder.getUDeceleration()));
+				break;
+				
+			case "0111" :
+				innerMovementList.add(new InnerMovement("Y", yDistance, rackFeeder.getYSpeed(), rackFeeder.getYAcceleration(), rackFeeder.getYDeceleration()));
+				innerMovementList.add(new InnerMovement("Z", zDistance, rackFeeder.getZSpeed(), rackFeeder.getZAcceleration(), rackFeeder.getZDeceleration()));
+				innerMovementList.add(new InnerMovement("U", uDistance, rackFeeder.getUSpeed(), rackFeeder.getUAcceleration(), rackFeeder.getUDeceleration()));
+				break;
+				
+			case "1111" :
+				innerMovementList.add(new InnerMovement("X", xDistance, rackFeeder.getXSpeed(), rackFeeder.getXAcceleration(), rackFeeder.getXDeceleration()));
+				innerMovementList.add(new InnerMovement("Y", yDistance, rackFeeder.getYSpeed(), rackFeeder.getYAcceleration(), rackFeeder.getYDeceleration()));
+				innerMovementList.add(new InnerMovement("Z", zDistance, rackFeeder.getZSpeed(), rackFeeder.getZAcceleration(), rackFeeder.getZDeceleration()));
+				innerMovementList.add(new InnerMovement("U", uDistance, rackFeeder.getUSpeed(), rackFeeder.getUAcceleration(), rackFeeder.getUDeceleration()));
 				break;
 		}
 		
@@ -140,8 +208,52 @@ public class Movement
 				time = getTwoAxisTime(innerMovementList, 0, 2);  // Time after second 2 axis
 				time = getTwoAxisTime(innerMovementList, 1, 2);  // Time after third 2 axis (final)
 				break;
+				
+			case 4 :
+				// Calc each time for 2 axis. The speed will be changed for the faster axis, if time for both axis is different.
+				time = getTwoAxisTime(innerMovementList, 0, 1);  // Time after first 2 axis
+				time = getTwoAxisTime(innerMovementList, 0, 2);  // Time after second 2 axis
+				time = getTwoAxisTime(innerMovementList, 0, 3);  // Time after third 2 axis
+				time = getTwoAxisTime(innerMovementList, 1, 2);  // Time after fourth 2 axis
+				time = getTwoAxisTime(innerMovementList, 1, 3);  // Time after fifth 2 axis
+				time = getTwoAxisTime(innerMovementList, 2, 3);  // Time after sixth 2 axis (final)
+				break;
 		}
 		
+		// Maybe the values speed, acceleration, deceleration have been changed. Set the new values back to the rack feeder here.
+		String axis;
+		
+		for(InnerMovement innerMovement : innerMovementList)
+		{
+			axis = innerMovement.axis;
+			switch (axis)
+			{
+				case "X" :
+					rackFeeder.setXSpeed(innerMovement.speed);
+					rackFeeder.setXAcceleration(innerMovement.acceleration);
+					rackFeeder.setXDeceleration(innerMovement.deceleration);
+					break;
+					
+				case "Y" :
+					rackFeeder.setYSpeed(innerMovement.speed);
+					rackFeeder.setYAcceleration(innerMovement.acceleration);
+					rackFeeder.setYDeceleration(innerMovement.deceleration);
+					break;
+					
+				case "Z" :
+					rackFeeder.setZSpeed(innerMovement.speed);
+					rackFeeder.setZAcceleration(innerMovement.acceleration);
+					rackFeeder.setZDeceleration(innerMovement.deceleration);
+					break;
+					
+				case "U" :
+					rackFeeder.setUSpeed(innerMovement.speed);
+					rackFeeder.setUAcceleration(innerMovement.acceleration);
+					rackFeeder.setUDeceleration(innerMovement.deceleration);
+					break;
+			}
+		}
+				
 		return time;
 	}
 	
@@ -171,12 +283,16 @@ public class Movement
 				factor = (time1 / time2);
 				innerMovement2.setSpeed(innerMovement2.speed / factor);
 				
+				// TODO	Beschleunigung und Negativbeschleunigung neu setzen!
+				
 				time = time1;
 			}
 			else
 			{
 				factor = (time2 / time1);
 				innerMovement1.setSpeed(innerMovement1.speed / factor);
+				
+				// TODO	Beschleunigung und Negativbeschleunigung neu setzen!
 				
 				time = time2;
 			}
@@ -195,11 +311,16 @@ public class Movement
 		// TODO	Beschleunigung und Negativbeschleunigung berücksichtigen!
 		
 		InnerMovement innerMovement = innerMovementList.get(which);
+		System.out.println("TEST TEST TEST: Distance / Speed von " + innerMovement.axis + ": " + innerMovement.distance + "/" + innerMovement.speed);
 		int time = (int) Math.round(innerMovement.distance / innerMovement.speed);
+		
+		System.out.println("TEST TEST TEST: Distances / Speed von " + innerMovement.axis + ": " + innerMovement.distance + "/" + innerMovement.speed);
+		System.out.println("TEST TEST TEST: Time von " + innerMovement.axis + ": " + time);
 		
 		return time;
 	}
 	
+	/*
 	private String getDirectionString(int xDistance, int yDistance, int zDistance)
 	{
 		String direction = "";
@@ -251,6 +372,35 @@ public class Movement
 			}
 		}
 		
+		return direction;
+	}
+	*/
+	
+	private String getDirectionString(int xDistance, int yDistance, int zDistance, int uDistance)
+	{
+		String direction = "";
+		
+		if (xDistance != 0)
+			direction = direction + "1";
+		else
+			direction = direction + "0";
+		
+		if (yDistance != 0)
+			direction = direction + "1";
+		else
+			direction = direction + "0";
+		
+		if (zDistance != 0)
+			direction = direction + "1";
+		else
+			direction = direction + "0";
+		
+		if (uDistance != 0)
+			direction = direction + "1";
+		else
+			direction = direction + "0";
+		
+		// direction: "XYZU"
 		return direction;
 	}
 	
@@ -388,13 +538,15 @@ public class Movement
 	 */
 	private class InnerMovement
 	{
+		private String axis;
 		private int distance;
 		private double speed;
 		private double acceleration;
 		private double deceleration;
 		
-		private InnerMovement(int distance, double speed, double acceleration, double deceleration)
+		private InnerMovement(String axis, int distance, double speed, double acceleration, double deceleration)
 		{
+			this.axis = axis;
 			this.distance = distance;
 			this.speed = speed;
 			this.acceleration = acceleration;

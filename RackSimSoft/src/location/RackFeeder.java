@@ -15,21 +15,38 @@ public class RackFeeder
 	private int xCoordinate = 0;
 	private int yCoordinate = 0;
 	private int zCoordinate = 0;
+	private int uCoordinate = 0;
 	private Item item = null;
+	
+	// Speed is given in mm/ms which is the same as m/s
+	// This means, 1 mm/ms = 3.6 km/h
+	// Acceleration is given in um/ms^2 which is the same as m/s^2	// TODO diese Einheit prüfen
 	
 	private final double MAX_X_SPEED = 2; // Only relevant for the delivery
 	private final double MAX_Y_SPEED = 2; // Speed in y axis
 	private final double MAX_Z_SPEED = 2; // Speed in z axis
 	private final double MAX_U_SPEED = 1; // Loading speed, U is the parallel-axis to X
-	private final double MAX_ACCELERATION = 0.5;
-	private final double MAX_DECELERATION = 0.5;
+	private final double MAX_X_ACCELERATION = 0.5;
+	private final double MAX_X_DECELERATION = 0.5;
+	private final double MAX_Y_ACCELERATION = 0.5;
+	private final double MAX_Y_DECELERATION = 0.5;
+	private final double MAX_Z_ACCELERATION = 0.5;
+	private final double MAX_Z_DECELERATION = 0.5;
+	private final double MAX_U_ACCELERATION = 0.5;
+	private final double MAX_U_DECELERATION = 0.5;
 	
 	private double xSpeed;
 	private double ySpeed;
 	private double zSpeed;
 	private double uSpeed;
-	private double acceleration;
-	private double deceleration;
+	private double xAcceleration;
+	private double xDeceleration;
+	private double yAcceleration;
+	private double yDeceleration;
+	private double zAcceleration;
+	private double zDeceleration;
+	private double uAcceleration;
+	private double uDeceleration;
 	
 	/**
 	 * Creates a Rack Feeder.
@@ -41,12 +58,20 @@ public class RackFeeder
 	{
 		this.gap = gap;
 		
+		this.xCoordinate = gap.getXCoordinate();
+		
 		this.setXSpeed(this.MAX_X_SPEED);
 		this.setYSpeed(this.MAX_Y_SPEED);
 		this.setZSpeed(this.MAX_Z_SPEED);
 		this.setUSpeed(this.MAX_U_SPEED);
-		this.setAcceleration(this.MAX_ACCELERATION);
-		this.setDeceleration(this.MAX_DECELERATION);
+		this.setXAcceleration(this.MAX_X_ACCELERATION);
+		this.setXDeceleration(this.MAX_X_DECELERATION);
+		this.setYAcceleration(this.MAX_Y_ACCELERATION);
+		this.setYDeceleration(this.MAX_Y_DECELERATION);
+		this.setZAcceleration(this.MAX_Z_ACCELERATION);
+		this.setZDeceleration(this.MAX_Z_DECELERATION);
+		this.setUAcceleration(this.MAX_U_ACCELERATION);
+		this.setUDeceleration(this.MAX_U_DECELERATION);
 	}
 	
 	/**
@@ -128,6 +153,26 @@ public class RackFeeder
 	{
 		this.zCoordinate = zCoordinate;
 	}
+	
+	/**
+	 * Returns the U-coordinate of the current rack feeder.
+	 * 
+	 * @return the uCoordinate
+	 */
+	public int getU()
+	{
+		return this.uCoordinate;
+	}
+
+	/**
+	 * Sets the U-coordinate of the current rack feeder.
+	 * 
+	 * @param uCoordinate the zCoordinate to set
+	 */
+	private void setU(int uCoordinate)
+	{
+		this.uCoordinate = uCoordinate;
+	}
 
 	/**
 	 * Returns the coordinate of the current rack feeder.
@@ -136,7 +181,7 @@ public class RackFeeder
 	 */
 	public Coordinate getCoordinate()
 	{
-		Coordinate coordinate = new Coordinate(this.getX(), this.getY(), this.getZ());
+		Coordinate coordinate = new Coordinate(this.getX(), this.getY(), this.getZ(), this.getU());
 		return coordinate;
 	}
 	
@@ -150,6 +195,7 @@ public class RackFeeder
 		this.setX(coordinate.getX());
 		this.setY(coordinate.getY());
 		this.setZ(coordinate.getZ());
+		this.setU(coordinate.getU());
 	}
 	
 	/**
@@ -304,48 +350,186 @@ public class RackFeeder
 	}
 
 	/**
-	 * Returns the current acceleration of the rack feeder.
+	 * Returns the current x acceleration of the rack feeder.
 	 * 
-	 * @return the acceleration
+	 * @return the xAcceleration
 	 */
-	public double getAcceleration()
+	public double getXAcceleration()
 	{
-		return acceleration;
+		return xAcceleration;
 	}
 
 	/**
-	 * Sets the current acceleration of the rack feeder.
+	 * Sets the current x acceleration of the rack feeder.
 	 * The acceleration is set to maximum value if the new acceleration is 0 or it exceeds the maximum acceleration.
 	 * 
 	 * @param acceleration the acceleration to set
 	 */
-	public void setAcceleration(double newAcceleration)
+	public void setXAcceleration(double newAcceleration)
 	{
-		if ((newAcceleration > this.MAX_ACCELERATION) || (newAcceleration == 0))
-			newAcceleration = this.MAX_ACCELERATION;
-		this.acceleration = newAcceleration;
+		if ((newAcceleration > this.MAX_X_ACCELERATION) || (newAcceleration == 0))
+			newAcceleration = this.MAX_X_ACCELERATION;
+		this.xAcceleration = newAcceleration;
 	}
 
 	/**
-	 * Returns the current deceleration of the rack feeder.
-	 * The deceleration is set to maximum value if the new deceleration is 0 or it exceeds the maximum deceleration.
+	 * Returns the current x deceleration of the rack feeder.
+	 * The x deceleration is set to maximum value if the new deceleration is 0 or it exceeds the maximum deceleration.
 	 * 
-	 * @return the deceleration
+	 * @return the xDeceleration
 	 */
-	public double getDeceleration()
+	public double getXDeceleration()
 	{
-		return deceleration;
+		return xDeceleration;
 	}
 
 	/**
-	 * Sets the current deceleration of the rack feeder.
+	 * Sets the current xDeceleration of the rack feeder.
 	 * 
-	 * @param deceleration the deceleration to set
+	 * @param xDeceleration the deceleration to set
 	 */
-	public void setDeceleration(double newDeceleration)
+	public void setXDeceleration(double newDeceleration)
 	{
-		if ((newDeceleration > this.MAX_DECELERATION) || (newDeceleration == 0))
-			newDeceleration = this.MAX_DECELERATION;
-		this.deceleration = newDeceleration;
+		if ((newDeceleration > this.MAX_X_DECELERATION) || (newDeceleration == 0))
+			newDeceleration = this.MAX_X_DECELERATION;
+		this.xDeceleration = newDeceleration;
+	}
+	
+	/**
+	 * Returns the current y acceleration of the rack feeder.
+	 * 
+	 * @return the yAcceleration
+	 */
+	public double getYAcceleration()
+	{
+		return yAcceleration;
+	}
+
+	/**
+	 * Sets the current y acceleration of the rack feeder.
+	 * The acceleration is set to maximum value if the new acceleration is 0 or it exceeds the maximum acceleration.
+	 * 
+	 * @param acceleration the acceleration to set
+	 */
+	public void setYAcceleration(double newAcceleration)
+	{
+		if ((newAcceleration > this.MAX_Y_ACCELERATION) || (newAcceleration == 0))
+			newAcceleration = this.MAX_Y_ACCELERATION;
+		this.yAcceleration = newAcceleration;
+	}
+
+	/**
+	 * Returns the current y deceleration of the rack feeder.
+	 * The y deceleration is set to maximum value if the new deceleration is 0 or it exceeds the maximum deceleration.
+	 * 
+	 * @return the yDeceleration
+	 */
+	public double getYDeceleration()
+	{
+		return yDeceleration;
+	}
+
+	/**
+	 * Sets the current yDeceleration of the rack feeder.
+	 * 
+	 * @param yDeceleration the deceleration to set
+	 */
+	public void setYDeceleration(double newDeceleration)
+	{
+		if ((newDeceleration > this.MAX_Y_DECELERATION) || (newDeceleration == 0))
+			newDeceleration = this.MAX_Y_DECELERATION;
+		this.yDeceleration = newDeceleration;
+	}
+	
+	/**
+	 * Returns the current z acceleration of the rack feeder.
+	 * 
+	 * @return the zAcceleration
+	 */
+	public double getZAcceleration()
+	{
+		return zAcceleration;
+	}
+
+	/**
+	 * Sets the current z acceleration of the rack feeder.
+	 * The acceleration is set to maximum value if the new acceleration is 0 or it exceeds the maximum acceleration.
+	 * 
+	 * @param acceleration the acceleration to set
+	 */
+	public void setZAcceleration(double newAcceleration)
+	{
+		if ((newAcceleration > this.MAX_Z_ACCELERATION) || (newAcceleration == 0))
+			newAcceleration = this.MAX_Z_ACCELERATION;
+		this.zAcceleration = newAcceleration;
+	}
+
+	/**
+	 * Returns the current z deceleration of the rack feeder.
+	 * The z deceleration is set to maximum value if the new deceleration is 0 or it exceeds the maximum deceleration.
+	 * 
+	 * @return the zDeceleration
+	 */
+	public double getZDeceleration()
+	{
+		return zDeceleration;
+	}
+
+	/**
+	 * Sets the current zDeceleration of the rack feeder.
+	 * 
+	 * @param zDeceleration the deceleration to set
+	 */
+	public void setZDeceleration(double newDeceleration)
+	{
+		if ((newDeceleration > this.MAX_Z_DECELERATION) || (newDeceleration == 0))
+			newDeceleration = this.MAX_Z_DECELERATION;
+		this.zDeceleration = newDeceleration;
+	}
+	
+	/**
+	 * Returns the current u acceleration of the rack feeder.
+	 * 
+	 * @return the uAcceleration
+	 */
+	public double getUAcceleration()
+	{
+		return uAcceleration;
+	}
+
+	/**
+	 * Sets the current u acceleration of the rack feeder.
+	 * The acceleration is set to maximum value if the new acceleration is 0 or it exceeds the maximum acceleration.
+	 * 
+	 * @param acceleration the acceleration to set
+	 */
+	public void setUAcceleration(double newAcceleration)
+	{
+		if ((newAcceleration > this.MAX_U_ACCELERATION) || (newAcceleration == 0))
+			newAcceleration = this.MAX_U_ACCELERATION;
+		this.uAcceleration = newAcceleration;
+	}
+
+	/**
+	 * Returns the current u deceleration of the rack feeder.
+	 * The u deceleration is set to maximum value if the new deceleration is 0 or it exceeds the maximum deceleration.
+	 * 
+	 * @return the uDeceleration
+	 */
+	public double getUDeceleration()
+	{
+		return uDeceleration;
+	}
+
+	/**
+	 * Sets the current uDeceleration of the rack feeder.
+	 * 
+	 * @param uDeceleration the deceleration to set
+	 */
+	public void setUDeceleration(double newDeceleration)
+	{
+		if ((newDeceleration > this.MAX_U_DECELERATION) || (newDeceleration == 0))
+			newDeceleration = this.MAX_U_DECELERATION;
+		this.uDeceleration = newDeceleration;
 	}
 }

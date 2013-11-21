@@ -70,17 +70,42 @@ public class Distance
 	}
 	
 	/**
-	 * Calculates the overall distance between 2 coordinates.
+	 * Calculates the u distance between 2 coordinates.
+	 * This distance can be negative!
+	 * 
+	 * @return the uDistance	 
+	 * */
+	public int getUDistance()
+	{
+		int uDistance = this.targetCoordinate.getU() - this.startCoordinate.getU(); 
+		return uDistance;
+	}
+	
+	/**
+	 * Calculates the overall distance between 2 coordinates in the chosen axes.
 	 * This distance is always positive!
 	 * 
 	 * @return the zDistance	 
 	 * */
-	public int getDistanceLength()
+	public int getDistanceLength(String direction)
 	{
-		int xDistance = this.getXDistance();
-		int yDistance = this.getYDistance();
-		int zDistance = this.getZDistance();
-		int length = (int) Math.round(Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2) + Math.pow(zDistance, 2)));
+		// direction: "XYZU", 1 means true, 0 or other signs means false
+		
+		int xDistance = 0;
+		int yDistance = 0;
+		int zDistance = 0;
+		int uDistance = 0;
+		
+		if (direction.substring(0, 1).equals("1"))
+			xDistance = this.getXDistance();
+		if (direction.substring(1, 2).equals("1"))
+			yDistance = this.getYDistance();
+		if (direction.substring(2, 3).equals("1"))
+			zDistance = this.getZDistance();
+		if (direction.substring(3, 4).equals("1"))
+			uDistance = this.getUDistance();
+		
+		int length = (int) Math.round(Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2) + Math.pow(zDistance, 2) + Math.pow(uDistance, 2)));
 		
 		return length;
 	}

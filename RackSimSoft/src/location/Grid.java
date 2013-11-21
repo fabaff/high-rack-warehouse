@@ -15,6 +15,7 @@ public class Grid
 	private int gridSide = -1;
 	private int width;
 	private int height;
+	private int depth;
 	private Hashtable<String, Bin> binTable;
 	private Bin binArray[][];
 	private int xCoordinate;
@@ -29,11 +30,12 @@ public class Grid
 	 * @param columnArray[]		the columns to be added to the grid
 	 * @param rowArray[]		the rows to be added to the grid
 	 */
-	public Grid(String gridID, Gap gap, int gridSide, Column columnArray[], Row rowArray[])
+	public Grid(String gridID, Gap gap, int gridSide, Column columnArray[], Row rowArray[], int depth)
 	{
 		this.gridID = gridID;
 		this.gapID = gap.getGapID();
 		this.gridSide = gridSide;
+		this.depth = depth;
 		
 		if (gridSide == 0)
 		{
@@ -160,6 +162,16 @@ public class Grid
 	public int getHeight()
 	{
 		return height;
+	}
+	
+	/**
+	 * Returns the depth of the current grid.
+	 * 
+	 * @return the depth
+	 */
+	public int getDepth()
+	{
+		return depth;
 	}
 	
 	/**

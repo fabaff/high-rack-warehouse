@@ -15,8 +15,15 @@ import java.util.Hashtable;
  */
 public class Location
 {
+	public static enum MeasurementUnit
+	{
+		MM, CM, DM, M
+	}
+	
 	private static Location instance;
 	private String locationID;
+	private MeasurementUnit measurementUnit = MeasurementUnit.MM;
+	private int measurementUnitFactor = 1;
 	private Hashtable<String, Gap> gapTable = new Hashtable<String, Gap>();
 	private ArrayList<Gap> gapList = new ArrayList<Gap>();
 	private ItemAllocation itemAllocation;
@@ -26,11 +33,11 @@ public class Location
 	 * 
 	 * @return the instance of this class
 	 */
-	public static Location getInstance()
+	public static Location getInstance(String locationID, MeasurementUnit measurementUnit)
 	{
 		if (instance == null)
 		{
-			instance = new Location("My Location");
+			instance = new Location(locationID, measurementUnit);
 			instance.itemAllocation = ItemAllocation.getInstance();
 		}
 		
@@ -38,13 +45,34 @@ public class Location
 	}
 	
 	/**
-	 * Creates a Location. The ID of the location must be given.
+	 * Creates a Location. The ID of the location and the measurement unit must be given.
 	 * 
 	 * @param id	ID of the location
+	 * @param measurementUnit	The measurement unit of the location
 	 */
-	private Location(String locationID)
+	private Location(String locationID, MeasurementUnit measurementUnit)
 	{
 		this.locationID = locationID;
+		this.measurementUnit = measurementUnit;
+		
+		switch (this.getMeasurementUnit())
+		{
+			case MM :
+				this.measurementUnitFactor = 1;
+				break;
+				
+			case CM :
+				this.measurementUnitFactor = 10;
+				break;
+				
+			case DM :
+				this.measurementUnitFactor = 100;
+				break;
+				
+			case M :
+				this.measurementUnitFactor = 1000;
+				break;
+		}
 	}
 
 	/**
@@ -128,6 +156,57 @@ public class Location
 	public String getLocationID()
 	{
 		return this.locationID;
+	}
+	
+	/**
+	 * Returns the MeasurementUnit of the current location.
+	 * 
+	 * @return the measurement unit
+	 */
+	public MeasurementUnit getMeasurementUnit()
+	{
+		return this.measurementUnit;
+	}
+	
+	/**
+	 * Returns the MeasurementUnit of the current location as a String.
+	 * 
+	 * @return the measurement unit string
+	 */
+	public String getMeasurementUnitString()
+	{
+		String measurementUnitString = null;
+		
+		switch (this.getMeasurementUnit())
+		{
+			case MM :
+				measurementUnitString = "mm";
+				break;
+				
+			case CM :
+				measurementUnitString = "cm";
+				break;
+				
+			case DM :
+				measurementUnitString = "dm";
+				break;
+				
+			case M :
+				measurementUnitString = "m";
+				break;
+		}
+		
+		return measurementUnitString;
+	}
+	
+	/**
+	 * Returns the factor of measurement for the current location.
+	 * 
+	 * @return the measurement unit factor
+	 */
+	public int getMeasurementUnitFactor()
+	{
+		return this.measurementUnitFactor;
 	}
 	
 	/**

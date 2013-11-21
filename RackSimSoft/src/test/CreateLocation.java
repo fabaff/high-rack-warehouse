@@ -67,7 +67,7 @@ public class CreateLocation
 		System.out.println("-------------------------------------------------");
 
 		// Gets predefined bin and prints their coordinates
-		System.out.println("Die Koordinaten der folgenden Lagerplaetze sind:");
+		System.out.println("Die Koordinaten der folgenden Lagerplaetze sind (X/Y/Z/U):");
 		printBin(myLocation, "0-0-0-2-0");
 		printBin(myLocation, "0-1-1-2-1");
 		printBin(myLocation, "1-0-2-3-1");
@@ -90,8 +90,8 @@ public class CreateLocation
 		
 		// Print some moves of rack feeder
 		System.out.println("Zeiten zum fahren des RBG:");
-		printMove(myLocation, "0", "0-0-0-2-1");  // GapID, BinID
-		printMove(myLocation, "1", "1-1-3-2-0");  // GapID, BinID
+		printMove(myLocation, "0", "0-0-0-2-1");  // Location, GapID, BinID
+		printMove(myLocation, "1", "1-1-3-2-0");  // Location, GapID, BinID
 		
 		System.out.println("-------------------------------------------------");
 		
@@ -150,19 +150,17 @@ public class CreateLocation
 	 */
 	private static Location createLocation()
 	{
-		// Creates a location
-		Location myLocation = Location.getInstance();	
-		
-		// Simple model: 
+		// Simple model:
 		int gapCount = 2;  // Anzahl Gassen
 		int columnCounter = 4;  // Anzahl Spalten pro Grid
 		int rowCounter = 2;  // Anzahl Reihen pro Grid
+		Location.MeasurementUnit measurementUnit = Location.MeasurementUnit.MM;	// Possible values = "MM", "CM", "DM", "M"
 		int width = 1000;  // Offset X-Koordinate (Breite der Gassen)
 		int depth = 800;  // Tiefe des Grids
 		int height = 1000;  // Offset Z-Koordinate (Hoehe der Reihen)
 		int length = 1500;  // Offset Y-Koordinate (Breite der Spalten)
 		
-		
+	
 		// Komplizierteres Modell:
 		/*
 		int gapCount = 4;  // Anzahl Gassen
@@ -173,6 +171,9 @@ public class CreateLocation
 		int height = 1000;  // Offset Z-Koordinate (Hoehe der Reihen)
 		int length = 1500;  // Offset Y-Koordinate (Breite der Spalten)
 		*/
+		
+		// Creates a location
+		Location myLocation = Location.getInstance("My Location", measurementUnit);
 		
 		int gridID = 0;
 		
@@ -199,7 +200,7 @@ public class CreateLocation
 				}
 				
 				// Creates grid and assign it to a gap
-				Grid grid = new Grid("" + gridID, gap, j % 2, columnArray, rowArray);
+				Grid grid = new Grid("" + gridID, gap, j % 2, columnArray, rowArray, depth);
 				gap.addGrid(grid);
 				gridID ++;
 			}
@@ -312,6 +313,11 @@ public class CreateLocation
 			System.out.println("\tX-Koordinate = " + rackFeeder.getX());
 			System.out.println("\tY-Koordinate = " + rackFeeder.getY());
 			System.out.println("\tZ-Koordinate = " + rackFeeder.getZ());
+			System.out.println("\tU-Koordinate = " + rackFeeder.getU());
+			System.out.println("\tX-Speed / -Beschl. / -Reduktion = " + rackFeeder.getXSpeed() + "/" + rackFeeder.getXAcceleration() + "/" + rackFeeder.getXDeceleration());
+			System.out.println("\tY-Speed / -Beschl. / -Reduktion = " + rackFeeder.getYSpeed() + "/" + rackFeeder.getYAcceleration() + "/" + rackFeeder.getYDeceleration());
+			System.out.println("\tZ-Speed / -Beschl. / -Reduktion = " + rackFeeder.getZSpeed() + "/" + rackFeeder.getZAcceleration() + "/" + rackFeeder.getZDeceleration());
+			System.out.println("\tU-Speed / -Beschl. / -Reduktion = " + rackFeeder.getUSpeed() + "/" + rackFeeder.getUAcceleration() + "/" + rackFeeder.getUDeceleration());
 			System.out.println("\tArtikel auf RBG = " + rackFeeder.getItem());
 			//Hashtable<String, Bin> binTable;
 			
@@ -349,7 +355,7 @@ public class CreateLocation
 						System.out.println();
 						System.out.println("\t\t\tBin:");
 						System.out.println("\t\t\tID = " + bin.getBinID());
-						System.out.println("\t\t\tKoordinaten (X/Y/Z) = " + bin.getX() + "/" + bin.getY() + "/" + bin.getZ());
+						System.out.println("\t\t\tKoordinaten (X/Y/Z/U) = " + bin.getX() + "/" + bin.getY() + "/" + bin.getZ() + "/" + bin.getU());
 						if (item != null)
 							System.out.println("\t\t\tArtikel: " + item.getItemID() + " (" + item.getItemDescription() + ")");
 					}	
@@ -387,7 +393,7 @@ public class CreateLocation
 						System.out.println();
 						System.out.println("\t\t\tBin:");
 						System.out.println("\t\t\tID = " + bin.getBinID());
-						System.out.println("\t\t\tKoordinaten (X/Y/Z) = " + bin.getX() + "/" + bin.getY() + "/" + bin.getZ());
+						System.out.println("\t\t\tKoordinaten (X/Y/Z/U) = " + bin.getX() + "/" + bin.getY() + "/" + bin.getZ() + "/" + bin.getU());
 						if (item != null)
 							System.out.println("\t\t\tArtikel: " + item.getItemID() + " (" + item.getItemDescription() + ")");
 					}	
@@ -406,7 +412,7 @@ public class CreateLocation
 	{
 		Bin bin;
 		bin = location.getBin(binID);
-		System.out.println(binID + " : " + bin.getX() + "/" + bin.getY() + "/" + bin.getZ());
+		System.out.println(binID + " : " + bin.getX() + "/" + bin.getY() + "/" + bin.getZ() + "/" + bin.getU());
 	}
 	
 	/**
@@ -422,21 +428,21 @@ public class CreateLocation
 		Bin bin2;
 		bin1 = location.getBin(binID1);
 		bin2 = location.getBin(binID2);
-		System.out.print(binID1 + " : " + bin1.getX() + "/" + bin1.getY() + "/" + bin1.getZ() + " --- ");
-		System.out.println(binID2 + " : " + bin2.getX() + "/" + bin2.getY() + "/" + bin2.getZ());
+		System.out.print(binID1 + " : " + bin1.getX() + "/" + bin1.getY() + "/" + bin1.getZ() + "/" + bin1.getU() + " --- ");
+		System.out.println(binID2 + " : " + bin2.getX() + "/" + bin2.getY() + "/" + bin2.getZ() + "/" + bin2.getU());
 		
-		Coordinate zeroCoordinate = new Coordinate(bin1.getX(), 0, 0);
+		Coordinate zeroCoordinate = new Coordinate(bin1.getX(), 0, 0, 0);
 		Distance distance;
 		int distanceLength;
 		int coordinateDistance;
 		
 		distance = new Distance(bin1.getCoordinate(), zeroCoordinate);
-		distanceLength = distance.getDistanceLength();
-		System.out.println(binID1 + " zu 0/0:\t" + distanceLength);
+		distanceLength = distance.getDistanceLength("0110");
+		System.out.println(binID1 + " zu X/0/0/U:\t" + distanceLength);
 
 		distance = new Distance(bin2.getCoordinate(), zeroCoordinate);
-		distanceLength = distance.getDistanceLength();
-		System.out.println(binID2 + " zu 0/0:\t" + distanceLength);
+		distanceLength = distance.getDistanceLength("0110");
+		System.out.println(binID2 + " zu X/0/0/U:\t" + distanceLength);
 		
 		/*
 		int xDistance = distance.getXDistance(location, bin1.getgapID(), binID1);
@@ -483,8 +489,8 @@ public class CreateLocation
 		
 		System.out.println("Rack Feeder " + rackFeeder.getrackFeederID());
 		System.out.println("Bin " + bin.getBinID());
-		System.out.println("Strecke: " + distance.getDistanceLength());
-		System.out.println("Zeit: " + movement.getTime());
+		System.out.println("Strecke: " + distance.getDistanceLength("0110"));  // "XYZU"
+		System.out.println("Zeit: " + movement.getTime("0110"));
 	}
 	
 	/**
