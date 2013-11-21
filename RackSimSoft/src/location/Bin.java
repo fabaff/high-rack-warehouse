@@ -1,6 +1,8 @@
 
 package location;
 
+import calculation.Coordinate;
+
 /**
  * @author mschaerer
  * 
@@ -111,6 +113,17 @@ public class Bin
 	public int getZ()
 	{
 		return zCoordinate;
+	}
+	
+	/**
+	 * Returns the coordinate of the current bin.
+	 * 
+	 * @return the coordinate
+	 */
+	public Coordinate getCoordinate()
+	{
+		Coordinate coordinate = new Coordinate(this.getX(), this.getY(), this.getZ());
+		return coordinate;
 	}
 	
 	/**

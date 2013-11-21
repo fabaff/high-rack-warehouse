@@ -1,6 +1,10 @@
 package calculation;
 
-import location.*;
+import java.util.ArrayList;
+
+import location.RackFeeder;
+
+//import location.*;
 
 /**
  * The operating unit is moving inside the gap in the direction of the 
@@ -11,12 +15,30 @@ import location.*;
 
 public class Movement
 {
+	private Distance distance;
+	private RackFeeder rackFeeder;
+	
+	/*
 	private double xSpeed; // Only relevant for the delivery
 	private double ySpeed; // Speed in y axis
 	private double zSpeed; // Speed in z axis
-	private double lSpeed; // Loading speed
+	private double uSpeed; // Loading speed
 	private double acceleration;
 	private double deceleration;
+	*/
+	
+	/**
+	 * Creates a Movement.
+	 * The distance and the rack feeder to move to must be given.
+	 * 
+	 * @param distance the distance to move
+	 * @param rackFeeder the rack feeder which moves the given distance
+	 */
+	public Movement(Distance distance, RackFeeder rackFeeder)
+	{
+		this.distance = distance;
+		this.rackFeeder = rackFeeder;
+	}
 	
 	/**
 	 * Creates a Movement object.
@@ -28,15 +50,210 @@ public class Movement
 	 * @param acceleration the acceleration to set
 	 * @param deceleration the deceleration to set
 	 */
-	public Movement(double xSpeed, double ySpeed, double zSpeed, double lSpeed, double acceleration, double deceleration)
+	/*
+	public Movement(double xSpeed, double ySpeed, double zSpeed, double uSpeed, double acceleration, double deceleration)
 	{
 		this.xSpeed = xSpeed;
 		this.ySpeed = ySpeed;
 		this.zSpeed = zSpeed;
-		this.lSpeed = lSpeed;
+		this.uSpeed = uSpeed;
 		this.acceleration = acceleration;
 		this.deceleration = deceleration;
 	}
+	*/
+	
+	/**
+	 * Calculates the time, which is needed to move the rack feeder the given distance.
+	 * 
+	 * @return the time
+	 */
+	public int getTime()
+	{
+		int time = -1;
+		
+		// Check the directions
+		int xDistance = distance.getXDistance();
+		int yDistance = distance.getYDistance();
+		int zDistance = distance.getZDistance();
+		
+		String direction = getDirectionString(xDistance, yDistance, zDistance);
+		ArrayList<InnerMovement> innerMovementList = new ArrayList<InnerMovement>();
+		
+		
+		switch (direction)
+		{
+			case "" :
+				time = 0;
+				break;
+			
+			case "X" :
+				innerMovementList.add(new InnerMovement(xDistance, rackFeeder.getXSpeed(), rackFeeder.getAcceleration(), rackFeeder.getDeceleration()));
+				break;
+			
+			case "XY" :
+				innerMovementList.add(new InnerMovement(xDistance, rackFeeder.getXSpeed(), rackFeeder.getAcceleration(), rackFeeder.getDeceleration()));
+				innerMovementList.add(new InnerMovement(yDistance, rackFeeder.getYSpeed(), rackFeeder.getAcceleration(), rackFeeder.getDeceleration()));
+				break;
+			
+			case "XZ" :
+				innerMovementList.add(new InnerMovement(xDistance, rackFeeder.getXSpeed(), rackFeeder.getAcceleration(), rackFeeder.getDeceleration()));
+				innerMovementList.add(new InnerMovement(zDistance, rackFeeder.getZSpeed(), rackFeeder.getAcceleration(), rackFeeder.getDeceleration()));
+				break;
+				
+			case "XYZ" :
+				innerMovementList.add(new InnerMovement(xDistance, rackFeeder.getXSpeed(), rackFeeder.getAcceleration(), rackFeeder.getDeceleration()));
+				innerMovementList.add(new InnerMovement(yDistance, rackFeeder.getYSpeed(), rackFeeder.getAcceleration(), rackFeeder.getDeceleration()));
+				innerMovementList.add(new InnerMovement(zDistance, rackFeeder.getZSpeed(), rackFeeder.getAcceleration(), rackFeeder.getDeceleration()));
+				break;
+			
+			case "Y" :
+				innerMovementList.add(new InnerMovement(yDistance, rackFeeder.getYSpeed(), rackFeeder.getAcceleration(), rackFeeder.getDeceleration()));
+				break;
+			
+			case "YZ" :
+				innerMovementList.add(new InnerMovement(yDistance, rackFeeder.getYSpeed(), rackFeeder.getAcceleration(), rackFeeder.getDeceleration()));
+				innerMovementList.add(new InnerMovement(zDistance, rackFeeder.getZSpeed(), rackFeeder.getAcceleration(), rackFeeder.getDeceleration()));
+				break;
+			
+			case "Z" :
+				innerMovementList.add(new InnerMovement(zDistance, rackFeeder.getZSpeed(), rackFeeder.getAcceleration(), rackFeeder.getDeceleration()));
+				break;
+		}
+		
+		switch (innerMovementList.size())
+		{
+			case 0 :
+				time = 0;
+				break;
+				
+			case 1 :
+				time = getOneAxisTime(innerMovementList, 0);
+				break;
+				
+			case 2 :
+				time = getTwoAxisTime(innerMovementList, 0, 1);
+				break;
+				
+			case 3 :
+				// Calc each time for 2 axis. The speed will be changed for the faster axis, if time for both axis is different.
+				time = getTwoAxisTime(innerMovementList, 0, 1);  // Time after first 2 axis
+				time = getTwoAxisTime(innerMovementList, 0, 2);  // Time after second 2 axis
+				time = getTwoAxisTime(innerMovementList, 1, 2);  // Time after third 2 axis (final)
+				break;
+		}
+		
+		return time;
+	}
+	
+	/**
+	 * Calculates the time, which is needed to move the rack feeder the given distance in 2 axis.
+	 * If the time for both axis were different, the speed will be changed for the faster axis.
+	 * 
+	 * @return the time
+	 */
+	private int getTwoAxisTime(ArrayList<InnerMovement> innerMovementList, int which1, int which2)
+	{
+		// TODO	Beschleunigung und Negativbeschleunigung berücksichtigen!
+		
+		int time1 = getOneAxisTime(innerMovementList, which1);
+		int time2 = getOneAxisTime(innerMovementList, which2);
+		int time = time1;
+		
+		// If times are not equal, reduce speed of faster axis to prevent the same time for moving
+		if (time1 != time2)
+		{
+			double factor;
+			InnerMovement innerMovement1 = innerMovementList.get(0);
+			InnerMovement innerMovement2 = innerMovementList.get(1);
+			
+			if (time1 > time2)
+			{
+				factor = (time1 / time2);
+				innerMovement2.setSpeed(innerMovement2.speed / factor);
+				
+				time = time1;
+			}
+			else
+			{
+				factor = (time2 / time1);
+				innerMovement1.setSpeed(innerMovement1.speed / factor);
+				
+				time = time2;
+			}
+		}
+		
+		return time;
+	}
+	
+	/**
+	 * Calculates the time, which is needed to move the rack feeder the given distance in 1 axis.
+	 * 
+	 * @return the time
+	 */
+	private int getOneAxisTime(ArrayList<InnerMovement> innerMovementList, int which)
+	{
+		// TODO	Beschleunigung und Negativbeschleunigung berücksichtigen!
+		
+		InnerMovement innerMovement = innerMovementList.get(which);
+		int time = (int) Math.round(innerMovement.distance / innerMovement.speed);
+		
+		return time;
+	}
+	
+	private String getDirectionString(int xDistance, int yDistance, int zDistance)
+	{
+		String direction = "";
+		
+		if (xDistance != 0)
+		{
+			if (yDistance != 0)
+			{
+				if (zDistance != 0)
+				{
+					direction = "XYZ";
+				}
+				else
+				{
+					direction = "XY";
+				}
+			}
+			else
+			{
+				if (zDistance != 0)
+				{
+					direction = "XZ";
+				}
+				else
+				{
+					direction = "X";
+				}
+			}
+		}
+		else
+		{
+			if (yDistance != 0)
+			{
+				if (zDistance != 0)
+				{
+					direction = "YZ";
+				}
+				else
+				{
+					direction = "Y";
+				}
+			}
+			else
+			{
+				if (zDistance != 0)
+				{
+					direction = "Z";
+				}
+			}
+		}
+		
+		return direction;
+	}
+	
 	// TODO cTime ist nur als Test gedacht. Die Zeiten muessen den Events
 	// zugeordnet sein und koennen nicht den gesamten Vorgang abdecken.
 	/**
@@ -45,6 +262,7 @@ public class Movement
 	 * 
 	 * @return the time consumption for a complete loading cycle
 	 */
+	/*
 	public double cTime(Location location, String binID1, String binID2)
 	{
 		Distance distance = new Distance();
@@ -62,7 +280,8 @@ public class Movement
 		double cTime = ptime + mtime + xtime + mtime;
 		return cTime;	
 	}
-
+	*/
+	
 	/**
 	 * Calculates the moving time between two given positions inside the grid.
 	 * 
@@ -71,11 +290,12 @@ public class Movement
 	 * @param acceleration 	
 	 * @param deceleration	
 	 */
+	/*
 	public double mTime(Location location, String binID1, String binID2)
 	{
 		Distance distance = new Distance();
 
-		double track = distance.mDistance(location, binID1, binID2);
+		double track = distance.getMDistance(location, binID1, binID2);
 		
 		double aTime = aTime(ySpeed, acceleration);
 		double dTime = dTime(ySpeed, deceleration);
@@ -83,7 +303,8 @@ public class Movement
 		double tTime = aTime + lTime + dTime;	
 		return tTime;
 	}
-
+	*/
+	
 	// TODO Achtung: ungeprueft
 	/**
 	 * Calculates the time which is needed for linear traveling.
@@ -91,12 +312,14 @@ public class Movement
 	 * @param ySpeed 		
 	 * @param distance	
 	 */
+	/*
 	private double lTime(double ySpeed, double zSpeed, double distance)
 	{
 		double speed = Math.round(Math.sqrt(Math.pow((ySpeed), 2) + Math.pow((zSpeed), 2)));
 		double lTime = distance / speed;
 		return lTime;	
 	}
+	*/
 	
 	/**
 	 * Calculates the time which is needed for the acceleration.
@@ -104,11 +327,13 @@ public class Movement
 	 * @param ySpeed2 		
 	 * @param acceleration	
 	 */
+	/*
 	private double aTime(double ySpeed, double acceleration)
 	{
 		double aTime = ySpeed / acceleration;
 		return aTime;	
 	}
+	*/
 	
 	/**
 	 * Calculates the time which is needed for the deceleration.
@@ -116,11 +341,13 @@ public class Movement
 	 * @param ySpeed 		
 	 * @param deceleration	
 	 */
+	/*
 	private double dTime(double ySpeed, double deceleration)
 	{
 		double dTime = ySpeed / deceleration;
 		return dTime;	
 	}
+	*/
 	
 	/**
 	 * Calculates the time for loading the good on the operating unit beam.
@@ -130,11 +357,13 @@ public class Movement
 	 * 
 	 * @return the time for picking or unloading goods in bins
 	 */
+	/*
 	public double xTime(double xSpeed, double distance)
 	{
 		double xTime = distance / xSpeed;
 		return xTime;
 	}
+	*/
 	
 	/**
 	 * Operating time in the interface area to the loading zone.
@@ -144,9 +373,47 @@ public class Movement
 	 * 
 	 * @return the needed time for operating in the loading zone
 	 */
+	/*
 	public double pTime(double lSpeed, double distance)
 	{
 		double pTime = distance / lSpeed;
 		return pTime;
+	}
+	*/
+	
+	/**
+	 * @author mschaerer
+	 *
+	 * The InnerMovement is a helper to store all relevant informations for calculating time of moving.
+	 */
+	private class InnerMovement
+	{
+		private int distance;
+		private double speed;
+		private double acceleration;
+		private double deceleration;
+		
+		private InnerMovement(int distance, double speed, double acceleration, double deceleration)
+		{
+			this.distance = distance;
+			this.speed = speed;
+			this.acceleration = acceleration;
+			this.deceleration = deceleration;
+		}
+		
+		private void setSpeed(double speed)
+		{
+			this.speed = speed;
+		}
+		
+		private void setAcceleration(double acceleration)
+		{
+			this.acceleration = acceleration;
+		}
+		
+		private void setDeceleration(double deceleration)
+		{
+			this.deceleration = deceleration;
+		}
 	}
 }

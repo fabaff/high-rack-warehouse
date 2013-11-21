@@ -1,6 +1,7 @@
 
 package location;
 
+import calculation.Coordinate;
 import item.Item;
 
 /**
@@ -19,14 +20,14 @@ public class RackFeeder
 	private final double MAX_X_SPEED = 2; // Only relevant for the delivery
 	private final double MAX_Y_SPEED = 2; // Speed in y axis
 	private final double MAX_Z_SPEED = 2; // Speed in z axis
-	private final double MAX_L_SPEED = 1; // Loading speed
+	private final double MAX_U_SPEED = 1; // Loading speed, U is the parallel-axis to X
 	private final double MAX_ACCELERATION = 0.5;
 	private final double MAX_DECELERATION = 0.5;
 	
 	private double xSpeed;
 	private double ySpeed;
 	private double zSpeed;
-	private double lSpeed;
+	private double uSpeed;
 	private double acceleration;
 	private double deceleration;
 	
@@ -43,7 +44,7 @@ public class RackFeeder
 		this.setXSpeed(this.MAX_X_SPEED);
 		this.setYSpeed(this.MAX_Y_SPEED);
 		this.setZSpeed(this.MAX_Z_SPEED);
-		this.setLSpeed(this.MAX_L_SPEED);
+		this.setUSpeed(this.MAX_U_SPEED);
 		this.setAcceleration(this.MAX_ACCELERATION);
 		this.setDeceleration(this.MAX_DECELERATION);
 	}
@@ -59,7 +60,7 @@ public class RackFeeder
 	}
 	
 	/**
-	 * Returns the width of the current RackFeeder
+	 * Returns the width of the current RackFeeder.
 	 * 
 	 * @return the width
 	 */
@@ -69,67 +70,90 @@ public class RackFeeder
 	}
 	
 	/**
-	 * Returns the X-coordinate of the current rack feeder
+	 * Returns the X-coordinate of the current rack feeder.
 	 * 
 	 * @return the xCoordinate
 	 */
-	public int getXCoordinate()
+	public int getX()
 	{
 		return this.xCoordinate;
 	}
 	
 	/**
-	 * Sets the X-coordinate of the current rack feeder
+	 * Sets the X-coordinate of the current rack feeder.
 	 * 
 	 * @param xCoordinate the xCoordinate to set
 	 */
-	private void setXCoordinate(int xCoordinate)
+	private void setX(int xCoordinate)
 	{
 		this.xCoordinate = xCoordinate;
 	}
 	
 	/**
-	 * Returns the Y-coordinate of the current rack feeder
+	 * Returns the Y-coordinate of the current rack feeder.
 	 * 
 	 * @return the yCoordinate
 	 */
-	public int getYCoordinate()
+	public int getY()
 	{
 		return this.yCoordinate;
 	}
 
 	/**
-	 * Sets the Y-coordinate of the current rack feeder
+	 * Sets the Y-coordinate of the current rack feeder.
 	 * 
 	 * @param yCoordinate the yCoordinate to set
 	 */
-	private void setYCoordinate(int yCoordinate)
+	private void setY(int yCoordinate)
 	{
 		this.yCoordinate = yCoordinate;
 	}
 
 	/**
-	 * Returns the Z-coordinate of the current rack feeder
+	 * Returns the Z-coordinate of the current rack feeder.
 	 * 
 	 * @return the zCoordinate
 	 */
-	public int getZCoordinate()
+	public int getZ()
 	{
 		return this.zCoordinate;
 	}
 
 	/**
-	 * Sets the Z-coordinate of the current rack feeder
+	 * Sets the Z-coordinate of the current rack feeder.
 	 * 
 	 * @param zCoordinate the zCoordinate to set
 	 */
-	private void setZCoordinate(int zCoordinate)
+	private void setZ(int zCoordinate)
 	{
 		this.zCoordinate = zCoordinate;
 	}
 
 	/**
-	 * Returns the item loaded to the rack feeder
+	 * Returns the coordinate of the current rack feeder.
+	 * 
+	 * @return the coordinate
+	 */
+	public Coordinate getCoordinate()
+	{
+		Coordinate coordinate = new Coordinate(this.getX(), this.getY(), this.getZ());
+		return coordinate;
+	}
+	
+	/**
+	 * Sets the coordinate of the current rack feeder.
+	 * 
+	 * @param coordinate the coordinate to set
+	 */
+	public void setCoordinate(Coordinate coordinate)
+	{
+		this.setX(coordinate.getX());
+		this.setY(coordinate.getY());
+		this.setZ(coordinate.getZ());
+	}
+	
+	/**
+	 * Returns the item loaded to the rack feeder.
 	 * 
 	 * @return the item
 	 */
@@ -139,7 +163,7 @@ public class RackFeeder
 	}
 
 	/**
-	 * Sets the item loaded to the rack feeder
+	 * Sets the item loaded to the rack feeder.
 	 * 
 	 * @param item the item to set
 	 */
@@ -166,29 +190,29 @@ public class RackFeeder
 	}
 	
 	/**
-	 * Moves the rack feeder to the new position
+	 * Moves the rack feeder to the new position.
 	 * 
 	 * @param xCoordinate the X-coordinate to move to
 	 */
 	public void moveX(int xCoordinate)
 	{
-		this.setXCoordinate(xCoordinate);
+		this.setX(xCoordinate);
 	}
 	
 	/**
-	 * Moves the rack feeder to the new position
+	 * Moves the rack feeder to the new position.
 	 * 
 	 * @param yCoordinate the Y-coordinate to move to
 	 * @param zCoordinate the Z-coordinate to move to
 	 */
 	public void moveYZ(int yCoordinate, int zCoordinate)
 	{
-		this.setYCoordinate(yCoordinate);
-		this.setZCoordinate(zCoordinate);
+		this.setY(yCoordinate);
+		this.setZ(zCoordinate);
 	}
 
 	/**
-	 * Returns the current x speed of the rack feeder
+	 * Returns the current x speed of the rack feeder.
 	 * 
 	 * @return the xSpeed
 	 */
@@ -211,7 +235,7 @@ public class RackFeeder
 	}
 
 	/**
-	 * Returns the current y speed of the rack feeder
+	 * Returns the current y speed of the rack feeder.
 	 * 
 	 * @return the ySpeed
 	 */
@@ -221,7 +245,7 @@ public class RackFeeder
 	}
 
 	/**
-	 * Sets the current y speed of the rack feeder
+	 * Sets the current y speed of the rack feeder.
 	 * The speed is set to maximum value if the new speed is 0 or it exceeds the maximum speed.
 	 * 
 	 * @param ySpeed the ySpeed to set
@@ -234,7 +258,7 @@ public class RackFeeder
 	}
 
 	/**
-	 * Returns the current z speed of the rack feeder
+	 * Returns the current z speed of the rack feeder.
 	 * 
 	 * @return the zSpeed
 	 */
@@ -244,7 +268,7 @@ public class RackFeeder
 	}
 
 	/**
-	 * Sets the current z speed of the rack feeder
+	 * Sets the current z speed of the rack feeder.
 	 * The speed is set to maximum value if the new speed is 0 or it exceeds the maximum speed.
 	 * 
 	 * @param zSpeed the zSpeed to set
@@ -257,30 +281,30 @@ public class RackFeeder
 	}
 	
 	/**
-	 * Returns the current l speed of the rack feeder
+	 * Returns the current l speed of the rack feeder.
 	 * 
 	 * @return the lSpeed
 	 */
-	public double getLSpeed()
+	public double getUSpeed()
 	{
-		return lSpeed;
+		return uSpeed;
 	}
 
 	/**
-	 * Sets the current l speed of the rack feeder
+	 * Sets the current u speed of the rack feeder.
 	 * The speed is set to maximum value if the new speed is 0 or it exceeds the maximum speed.
 	 * 
-	 * @param lSpeed the lSpeed to set
+	 * @param uSpeed the uSpeed to set
 	 */
-	public void setLSpeed(double newLSpeed)
+	public void setUSpeed(double newUSpeed)
 	{
-		if ((newLSpeed > this.MAX_L_SPEED) || (newLSpeed == 0))
-			newLSpeed = this.MAX_L_SPEED;
-		this.lSpeed = newLSpeed;
+		if ((newUSpeed > this.MAX_U_SPEED) || (newUSpeed == 0))
+			newUSpeed = this.MAX_U_SPEED;
+		this.uSpeed = newUSpeed;
 	}
 
 	/**
-	 * Returns the current acceleration of the rack feeder
+	 * Returns the current acceleration of the rack feeder.
 	 * 
 	 * @return the acceleration
 	 */
@@ -290,7 +314,7 @@ public class RackFeeder
 	}
 
 	/**
-	 * Sets the current acceleration of the rack feeder
+	 * Sets the current acceleration of the rack feeder.
 	 * The acceleration is set to maximum value if the new acceleration is 0 or it exceeds the maximum acceleration.
 	 * 
 	 * @param acceleration the acceleration to set
@@ -303,7 +327,7 @@ public class RackFeeder
 	}
 
 	/**
-	 * Returns the current deceleration of the rack feeder
+	 * Returns the current deceleration of the rack feeder.
 	 * The deceleration is set to maximum value if the new deceleration is 0 or it exceeds the maximum deceleration.
 	 * 
 	 * @return the deceleration
@@ -314,7 +338,7 @@ public class RackFeeder
 	}
 
 	/**
-	 * Sets the current deceleration of the rack feeder
+	 * Sets the current deceleration of the rack feeder.
 	 * 
 	 * @param deceleration the deceleration to set
 	 */

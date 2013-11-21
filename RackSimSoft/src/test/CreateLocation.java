@@ -67,7 +67,7 @@ public class CreateLocation
 		System.out.println("-------------------------------------------------");
 
 		// Gets predefined bin and prints their coordinates
-		System.out.println("Die Koordinaten der folgenden Lagerplaetzes sind:");
+		System.out.println("Die Koordinaten der folgenden Lagerplaetze sind:");
 		printBin(myLocation, "0-0-0-2-0");
 		printBin(myLocation, "0-1-1-2-1");
 		printBin(myLocation, "1-0-2-3-1");
@@ -76,16 +76,22 @@ public class CreateLocation
 
 		// Prints some calculated times
 		System.out.println("Abstaende:");
-		printDistance(myLocation, "0-0-0-2-0", "0-0-0-3-1");
+		printDistance(myLocation, "0-0-0-3-1", "0-0-0-2-0");
 		
 		System.out.println("-------------------------------------------------");
 		
+		/*
 		// Prints some calculated times
 		System.out.println("Zeiten:");
 		printTime(myLocation, "0-0-0-0-0", "0-0-0-2-0");
 		printTime(myLocation, "0-0-0-0-0", "0-0-0-3-1");
 		printTime(myLocation, "0-0-0-2-0", "0-0-0-3-1");
-
+		*/
+		
+		// Print some moves of rack feeder
+		System.out.println("Zeiten zum fahren des RBG:");
+		printMove(myLocation, "0", "0-0-0-2-1");  // GapID, BinID
+		printMove(myLocation, "1", "1-1-3-2-0");  // GapID, BinID
 		
 		System.out.println("-------------------------------------------------");
 		
@@ -303,9 +309,9 @@ public class CreateLocation
 			System.out.println();
 			System.out.println("\tZugehoeriges RBG:");
 			System.out.println("\tID = " + rackFeeder.getrackFeederID());
-			System.out.println("\tX-Koordinate = " + rackFeeder.getXCoordinate());
-			System.out.println("\tY-Koordinate = " + rackFeeder.getYCoordinate());
-			System.out.println("\tZ-Koordinate = " + rackFeeder.getZCoordinate());
+			System.out.println("\tX-Koordinate = " + rackFeeder.getX());
+			System.out.println("\tY-Koordinate = " + rackFeeder.getY());
+			System.out.println("\tZ-Koordinate = " + rackFeeder.getZ());
 			System.out.println("\tArtikel auf RBG = " + rackFeeder.getItem());
 			//Hashtable<String, Bin> binTable;
 			
@@ -412,8 +418,6 @@ public class CreateLocation
 	 */
 	private static void printDistance(Location location, String binID1, String binID2)
 	{
-		Distance distance = new Distance();
-		
 		Bin bin1;
 		Bin bin2;
 		bin1 = location.getBin(binID1);
@@ -421,23 +425,36 @@ public class CreateLocation
 		System.out.print(binID1 + " : " + bin1.getX() + "/" + bin1.getY() + "/" + bin1.getZ() + " --- ");
 		System.out.println(binID2 + " : " + bin2.getX() + "/" + bin2.getY() + "/" + bin2.getZ());
 		
-		double zeroDistance1 = distance.zeroDistance(location, binID1);
-		System.out.println(binID1 + " zu 0/0:\t" + zeroDistance1);
+		Coordinate zeroCoordinate = new Coordinate(bin1.getX(), 0, 0);
+		Distance distance;
+		int distanceLength;
+		int coordinateDistance;
+		
+		distance = new Distance(bin1.getCoordinate(), zeroCoordinate);
+		distanceLength = distance.getDistanceLength();
+		System.out.println(binID1 + " zu 0/0:\t" + distanceLength);
 
-		double zeroDistance2 = distance.zeroDistance(location, binID2);
-		System.out.println(binID2 + " zu 0/0:\t" + zeroDistance2);
+		distance = new Distance(bin2.getCoordinate(), zeroCoordinate);
+		distanceLength = distance.getDistanceLength();
+		System.out.println(binID2 + " zu 0/0:\t" + distanceLength);
 		
-		int xDistance = distance.xDistance(location, bin1.getgapID(), binID1);
+		/*
+		int xDistance = distance.getXDistance(location, bin1.getgapID(), binID1);
 		System.out.println("x-Distanz:\t" + xDistance + " (bis in die Mitte der Gasse)");
+		*/
 		
-		int yDistance = distance.yDistance(location, binID1, binID2);
-		System.out.println("y-Distanz:\t" + yDistance);
+		distance = new Distance(bin1.getCoordinate(), bin2.getCoordinate());
+		coordinateDistance = distance.getXDistance();
+		System.out.println("x-Distanz:\t" + coordinateDistance);
+		coordinateDistance = distance.getYDistance();
+		System.out.println("y-Distanz:\t" + coordinateDistance);
+		coordinateDistance = distance.getZDistance();
+		System.out.println("z-Distanz:\t" + coordinateDistance);
 		
-		int zDistance = distance.zDistance(location, binID1, binID2);
-		System.out.println("z-Distanz:\t" + zDistance);
-		
-		double mDistance = distance.mDistance(location, binID1, binID2);
+		/*
+		double mDistance = distance.getMDistance(location, binID1, binID2);
 		System.out.println("Distanz:\t" + mDistance);
+		*/
 	}
 	
 	/**
@@ -446,12 +463,28 @@ public class CreateLocation
 	 * @param location  the location
 	 * @param binID	the binID of the bin to place the good
 	 */
+	/*
 	private static void printTime(Location location, String binID1, String binID2)
 	{
 		Movement movement = new Movement(2.0, 2.0, 2.0, 2.0, 0.5, 0.5);
 		double cTime = movement.cTime(location, binID1, binID2);
 		
 		System.out.println("Kompl. Zyklus:\t\t" + cTime);
+	}
+	*/
+	
+	
+	private static void printMove(Location myLocation, String gapID, String binID)
+	{
+		RackFeeder rackFeeder = myLocation.getGap(gapID).getRackFeeder();
+		Bin bin = myLocation.getBin(binID);
+		Distance distance = new Distance(rackFeeder.getCoordinate(), bin.getCoordinate());
+		Movement movement = new Movement(distance, rackFeeder);
+		
+		System.out.println("Rack Feeder " + rackFeeder.getrackFeederID());
+		System.out.println("Bin " + bin.getBinID());
+		System.out.println("Strecke: " + distance.getDistanceLength());
+		System.out.println("Zeit: " + movement.getTime());
 	}
 	
 	/**
