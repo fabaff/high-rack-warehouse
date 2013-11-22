@@ -1,0 +1,5 @@
+Location [1];<ID>;<GapCount>;<MeasurementUnit>
+Gap [1..*];<ID>;<X-Size>;<LeftGridID>;<RigthGridID>;<ColumnCount>;<RowCount>
+Grid [2];<ID>;<U-Size>
+Column [1..*];<ID>;<Y-Size>
+Row [1..*];<ID>;<Z-Size>
