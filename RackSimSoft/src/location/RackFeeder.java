@@ -85,13 +85,13 @@ public class RackFeeder
 	}
 	
 	/**
-	 * Returns the width of the current RackFeeder.
+	 * Returns the xSize of the current RackFeeder.
 	 * 
-	 * @return the width
+	 * @return the xSize
 	 */
-	public int getWidth()
+	public int getXSize()
 	{
-		return gap.getWidth();
+		return gap.getXSize();
 	}
 	
 	/**

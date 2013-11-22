@@ -93,7 +93,7 @@ public class CreateLocation
 		// Creates GUI
 		//createAndShowGui(myLocation);
 	}
-		
+	
 	/**
 	 * Create a list of items
 	 */
@@ -301,7 +301,7 @@ public class CreateLocation
 			System.out.println("\tGap:");
 			System.out.println("\tID = " + gap.getGapID());
 			System.out.println("\tX-Koordinate = " + gap.getXCoordinate());
-			System.out.println("\tBreite = " + gap.getWidth());
+			System.out.println("\tBreite = " + gap.getXSize());
 			System.out.println();
 			System.out.println("\tZugehoeriges RBG:");
 			System.out.println("\tID = " + rackFeeder.getrackFeederID());
@@ -323,7 +323,7 @@ public class CreateLocation
 			grid = gap.getGridLeft();
 			if (grid != null)
 			{
-				System.out.println("\n\t\tGrid Links:\n\t\tID = " + grid.getGridID() + "\n\t\tgridSide = " + grid.getGridSide() + "\n\t\tBreite = " + grid.getWidth() + "\n\t\tHoehe = " + grid.getHeight());
+				System.out.println("\n\t\tGrid Links:\n\t\tID = " + grid.getGridID() + "\n\t\tgridSide = " + grid.getGridSide() + "\n\t\tBreite = " + grid.getYSize() + "\n\t\tHoehe = " + grid.getZSize());
 				
 				// Loop over all bins in the grid
 				Bin bin;
@@ -361,7 +361,7 @@ public class CreateLocation
 			grid = gap.getGridRight();
 			if (grid != null)
 			{
-				System.out.println("\n\t\tGrid Rechts:\n\t\tID = " + grid.getGridID() + "\n\t\tgridSide = " + grid.getGridSide() + "\n\t\tBreite = " + grid.getWidth() + "\n\t\tHoehe = " + grid.getHeight());
+				System.out.println("\n\t\tGrid Rechts:\n\t\tID = " + grid.getGridID() + "\n\t\tgridSide = " + grid.getGridSide() + "\n\t\tBreite = " + grid.getYSize() + "\n\t\tHoehe = " + grid.getZSize());
 				
 				// Looping over the bin in the gap
 				Bin bin;
