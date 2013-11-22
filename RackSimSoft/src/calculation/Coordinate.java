@@ -70,4 +70,17 @@ public class Coordinate
 	{
 		return uCoordinate;
 	}
+	
+	/**
+	 * Overrides the method of the upper class.
+	 * 
+	 * @return the String
+	 */
+	public String toString()
+	{
+		String str = "";
+		str = "(X/Y/Z/U) : " + this.getX() + "/" + this.getY() + "/" + this.getZ() + "/" + this.getU();
+		
+		return str;
+	}
 }

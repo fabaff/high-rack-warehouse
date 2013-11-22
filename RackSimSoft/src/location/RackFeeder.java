@@ -185,11 +185,13 @@ public class RackFeeder
 		return coordinate;
 	}
 	
+	// Funktion darf nicht verwendet werden, da nicht in allen Achsen gleichzeitig gefahren werden darf!
 	/**
 	 * Sets the coordinate of the current rack feeder.
 	 * 
 	 * @param coordinate the coordinate to set
 	 */
+	/*
 	public void setCoordinate(Coordinate coordinate)
 	{
 		this.setX(coordinate.getX());
@@ -197,6 +199,7 @@ public class RackFeeder
 		this.setZ(coordinate.getZ());
 		this.setU(coordinate.getU());
 	}
+	*/
 	
 	/**
 	 * Returns the item loaded to the rack feeder.
@@ -256,7 +259,64 @@ public class RackFeeder
 		this.setY(yCoordinate);
 		this.setZ(zCoordinate);
 	}
+	
+	/**
+	 * Moves the rack feeder to the new position.
+	 * 
+	 * @param uCoordinate the U-coordinate to move to
+	 */
+	public void moveU(int uCoordinate)
+	{
+		this.setU(uCoordinate);
+	}
 
+	/**
+	 * Sets the speed, the acceleration and the deceleration of the rack feeder to the maximum in all axes.
+	 * 
+	 */
+	public void setMax()
+	{
+		this.setMaxSpeed();
+		this.setMaxAcceleration();
+		this.setMaxDeceleration();
+	}
+	
+	/**
+	 * Sets the speed of the rack feeder to the maximum in all axes.
+	 * 
+	 */
+	public void setMaxSpeed()
+	{
+		this.setXSpeed(0);
+		this.setYSpeed(0);
+		this.setZSpeed(0);
+		this.setUSpeed(0);
+	}
+	
+	/**
+	 * Sets the acceleration of the rack feeder to the maximum in all axes.
+	 * 
+	 */
+	public void setMaxAcceleration()
+	{
+		this.setXAcceleration(0);
+		this.setYAcceleration(0);
+		this.setZAcceleration(0);
+		this.setUAcceleration(0);
+	}
+	
+	/**
+	 * Sets the deceleration of the rack feeder to the maximum in all axes.
+	 * 
+	 */
+	public void setMaxDeceleration()
+	{
+		this.setXDeceleration(0);
+		this.setYDeceleration(0);
+		this.setZDeceleration(0);
+		this.setUDeceleration(0);
+	}
+	
 	/**
 	 * Returns the current x speed of the rack feeder.
 	 * 

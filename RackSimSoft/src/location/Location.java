@@ -1,6 +1,7 @@
 
 package location;
 
+import item.Item;
 import item.ItemAllocation;
 
 import java.util.ArrayList;
@@ -280,5 +281,29 @@ public class Location
 	{
 		ItemAllocation itemAllocation = this.getItemAllocation();
 		return itemAllocation.getBinListCopy(itemID);
+	}
+	
+	/**
+	 * Returns the item for the current binID.
+	 * 
+	 * @param binID	the binID
+	 * @return the item
+	 */
+	public Item getItem(String binID)
+	{
+		ItemAllocation itemAllocation = this.getItemAllocation();
+		return itemAllocation.getItem(binID);
+	}
+	
+	/**
+	 * Removes the Item from the current Bin.
+	 * 
+	 * @param bin	the bin to remove the item from
+	 * @return the removed item
+	 */
+	public Item removeItem(Bin bin)
+	{
+		ItemAllocation itemAllocation = this.getItemAllocation();
+		return itemAllocation.removeItem(bin);
 	}
 }

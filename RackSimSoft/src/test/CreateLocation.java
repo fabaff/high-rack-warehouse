@@ -77,23 +77,18 @@ public class CreateLocation
 		// Prints some calculated times
 		System.out.println("Abstaende:");
 		printDistance(myLocation, "0-0-0-3-1", "0-0-0-2-0");
-		
 		System.out.println("-------------------------------------------------");
-		
-		/*
-		// Prints some calculated times
-		System.out.println("Zeiten:");
-		printTime(myLocation, "0-0-0-0-0", "0-0-0-2-0");
-		printTime(myLocation, "0-0-0-0-0", "0-0-0-3-1");
-		printTime(myLocation, "0-0-0-2-0", "0-0-0-3-1");
-		*/
 		
 		// Print some moves of rack feeder
 		System.out.println("Zeiten zum fahren des RBG:");
 		printMove(myLocation, "0", "0-0-0-2-1");  // Location, GapID, BinID
 		printMove(myLocation, "1", "1-1-3-2-0");  // Location, GapID, BinID
-		
 		System.out.println("-------------------------------------------------");
+		
+		// Prints a complete cycle
+		System.out.println("Ein kompletter Zyklus:");
+		System.out.println();
+		printCycle(myLocation, "0", "0-1-1-1-1");  // Location, GapID, BinID
 		
 		// Creates GUI
 		//createAndShowGui(myLocation);
@@ -451,11 +446,13 @@ public class CreateLocation
 		
 		distance = new Distance(bin1.getCoordinate(), bin2.getCoordinate());
 		coordinateDistance = distance.getXDistance();
-		System.out.println("x-Distanz:\t" + coordinateDistance);
+		System.out.println("X-Distanz:\t" + coordinateDistance);
 		coordinateDistance = distance.getYDistance();
-		System.out.println("y-Distanz:\t" + coordinateDistance);
+		System.out.println("Y-Distanz:\t" + coordinateDistance);
 		coordinateDistance = distance.getZDistance();
-		System.out.println("z-Distanz:\t" + coordinateDistance);
+		System.out.println("Z-Distanz:\t" + coordinateDistance);
+		coordinateDistance = distance.getUDistance();
+		System.out.println("U-Distanz:\t" + coordinateDistance);
 		
 		/*
 		double mDistance = distance.getMDistance(location, binID1, binID2);
@@ -479,18 +476,149 @@ public class CreateLocation
 	}
 	*/
 	
-	
 	private static void printMove(Location myLocation, String gapID, String binID)
 	{
 		RackFeeder rackFeeder = myLocation.getGap(gapID).getRackFeeder();
 		Bin bin = myLocation.getBin(binID);
 		Distance distance = new Distance(rackFeeder.getCoordinate(), bin.getCoordinate());
 		Movement movement = new Movement(distance, rackFeeder);
+		String direction;
 		
+		direction = "0110";  // nur YZ von "XYZU"
 		System.out.println("Rack Feeder " + rackFeeder.getrackFeederID());
 		System.out.println("Bin " + bin.getBinID());
-		System.out.println("Strecke: " + distance.getDistanceLength("0110"));  // "XYZU"
-		System.out.println("Zeit: " + movement.getTime("0110"));
+		System.out.println("Strecke: " + distance.getDistanceLength(direction));
+		System.out.println("Zeit: " + movement.getTime(direction));
+		// Die Bechleunigungen und Geschwindigkeiten wieder reseten, da diese in der Funktion geändert wurden
+		rackFeeder.setMax();
+		
+		direction = "0010";  // nur Z von "XYZU"
+		System.out.println("Rack Feeder " + rackFeeder.getrackFeederID());
+		System.out.println("Bin " + bin.getBinID());
+		System.out.println("Strecke: " + distance.getDistanceLength(direction));
+		System.out.println("Zeit: " + movement.getTime(direction));
+		// Die Bechleunigungen und Geschwindigkeiten wieder reseten, da diese in der Funktion geändert wurden
+		rackFeeder.setMax();
+				
+		direction = "1000";  // nur X von "XYZU"
+		System.out.println("Rack Feeder " + rackFeeder.getrackFeederID());
+		System.out.println("Bin " + bin.getBinID());
+		System.out.println("Strecke: " + distance.getDistanceLength(direction));
+		System.out.println("Zeit: " + movement.getTime(direction));
+		// Die Bechleunigungen und Geschwindigkeiten wieder reseten, da diese in der Funktion geändert wurden
+		rackFeeder.setMax();
+				
+		direction = "0001";  // nur U von "XYZU"
+		System.out.println("Rack Feeder " + rackFeeder.getrackFeederID());
+		System.out.println("Bin " + bin.getBinID());
+		System.out.println("Strecke: " + distance.getDistanceLength(direction));
+		System.out.println("Zeit: " + movement.getTime(direction));
+		// Die Bechleunigungen und Geschwindigkeiten wieder reseten, da diese in der Funktion geändert wurden
+		rackFeeder.setMax();
+	}
+	
+	private static void printCycle(Location myLocation, String gapID, String binID)
+	{
+		RackFeeder rackFeeder = myLocation.getGap(gapID).getRackFeeder();
+		Bin bin = myLocation.getBin(binID);
+		Distance distance;
+		Movement movement;
+		String direction;
+		String itemID;
+		Item item;
+		
+		System.out.println("RBG ist auf Position " + rackFeeder.getCoordinate().toString());
+		item = rackFeeder.getItem();
+		if (item != null)
+			itemID = item.getItemID();
+		else
+			itemID = "";
+		System.out.println("Artikel auf dem RBG " + itemID);
+		
+		System.out.println("Bin ist auf Position " + bin.getCoordinate().toString());
+		item = myLocation.getItem(bin.getBinID());
+		if (item != null)
+			itemID = item.getItemID();
+		else
+			itemID = "";
+		System.out.println("Artikel im Bin " + itemID);
+		System.out.println();
+		
+		System.out.println("Fahre RBG bis vor das Bin:");
+		direction = "0110";
+		distance = new Distance(rackFeeder.getCoordinate(), bin.getCoordinate());
+		movement = new Movement(distance, rackFeeder);
+		System.out.println("Distanz (mm): " + distance.getDistanceLength(direction));
+		System.out.println("Zeit (ms): " + movement.getTime(direction));
+		System.out.println("Geschwindigkeiten (mm/ms) in X/Y/Z/U: " + rackFeeder.getXSpeed() + "/" + rackFeeder.getYSpeed() + "/" + rackFeeder.getZSpeed() + "/" + rackFeeder.getUSpeed());
+		// Fahren
+		rackFeeder.moveYZ(bin.getY(), bin.getZ());
+		// Alles zurücksetzen auf Maximum
+		rackFeeder.setMax();
+		System.out.println("RBG ist auf Position " + rackFeeder.getCoordinate().toString());
+		System.out.println();
+		
+		System.out.println("Fahre RBG in das Bin hinein:");
+		direction = "0001";
+		distance = new Distance(rackFeeder.getCoordinate(), bin.getCoordinate());
+		movement = new Movement(distance, rackFeeder);
+		System.out.println("Distanz (mm): " + distance.getDistanceLength(direction));
+		System.out.println("Zeit (ms): " + movement.getTime(direction));
+		System.out.println("Geschwindigkeiten (mm/ms) in X/Y/Z/U: " + rackFeeder.getXSpeed() + "/" + rackFeeder.getYSpeed() + "/" + rackFeeder.getZSpeed() + "/" + rackFeeder.getUSpeed());
+		// Fahren
+		rackFeeder.moveU(bin.getU());
+		// Alles zurücksetzen auf Maximum
+		rackFeeder.setMax();
+		System.out.println("RBG ist auf Position " + rackFeeder.getCoordinate().toString());
+		System.out.println();
+		
+		System.out.println("Lade Artikel vom Bin auf RBG:");
+		// Artikel umladen
+		item = myLocation.removeItem(bin);
+		rackFeeder.loadItem(item);
+		
+		item = rackFeeder.getItem();
+		if (item != null)
+			itemID = item.getItemID();
+		else
+			itemID = "";
+		System.out.println("Artikel auf dem RBG " + itemID);
+		
+		item = myLocation.getItem(bin.getBinID());
+		if (item != null)
+			itemID = item.getItemID();
+		else
+			itemID = "";
+		System.out.println("Artikel im Bin " + itemID);
+		System.out.println();
+		
+		System.out.println("Fahre RBG aus dem Bin hinaus:");
+		direction = "0001";
+		distance = new Distance(rackFeeder.getCoordinate(), bin.getCoordinate());
+		movement = new Movement(distance, rackFeeder);
+		System.out.println("Distanz (mm): " + distance.getDistanceLength(direction));
+		System.out.println("Zeit (ms): " + movement.getTime(direction));
+		System.out.println("Geschwindigkeiten (mm/ms) in X/Y/Z/U: " + rackFeeder.getXSpeed() + "/" + rackFeeder.getYSpeed() + "/" + rackFeeder.getZSpeed() + "/" + rackFeeder.getUSpeed());
+		// Fahren
+		rackFeeder.moveU(bin.getU());
+		// Alles zurücksetzen auf Maximum
+		rackFeeder.setMax();
+		System.out.println("RBG ist auf Position " + rackFeeder.getCoordinate().toString());
+		System.out.println();
+		
+		System.out.println("Fahre RBG wieder auf Nullposition:");
+		direction = "0110";
+		distance = new Distance(rackFeeder.getCoordinate(), new Coordinate(rackFeeder.getX(), 0, 0, 0));
+		movement = new Movement(distance, rackFeeder);
+		System.out.println("Distanz (mm): " + distance.getDistanceLength(direction));
+		System.out.println("Zeit (ms): " + movement.getTime(direction));
+		System.out.println("Geschwindigkeiten (mm/ms) in X/Y/Z/U: " + rackFeeder.getXSpeed() + "/" + rackFeeder.getYSpeed() + "/" + rackFeeder.getZSpeed() + "/" + rackFeeder.getUSpeed());
+		// Fahren
+		rackFeeder.moveYZ(bin.getY(), bin.getZ());
+		// Alles zurücksetzen auf Maximum
+		rackFeeder.setMax();
+		System.out.println("RBG ist auf Position " + rackFeeder.getCoordinate().toString());
+		System.out.println();
 	}
 	
 	/**

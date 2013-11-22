@@ -80,7 +80,7 @@ public class ItemAllocation
 	/**
 	 * Removes the Item from the current Bin.
 	 * 
-	 * @param bin	the bin to add the item to
+	 * @param bin	the bin to remove the item from
 	 * @return the removed item
 	 */
 	public Item removeItem(Bin bin)

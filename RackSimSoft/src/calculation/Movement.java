@@ -70,7 +70,7 @@ public class Movement
 	 */
 	public int getTime(String direction)
 	{
-		System.out.println("TEST TEST TEST: given direction " + direction);
+		//System.out.println("TEST TEST TEST: given direction " + direction);
 		
 		int time = -1;
 		
@@ -79,7 +79,7 @@ public class Movement
 		int yDistance = distance.getYDistance();
 		int zDistance = distance.getZDistance();
 		int uDistance = distance.getUDistance();
-		System.out.println("TEST TEST TEST: Distances Y/Z " + yDistance + "/" + zDistance);
+		//System.out.println("TEST TEST TEST: Distances Y/Z " + yDistance + "/" + zDistance);
 		ArrayList<InnerMovement> innerMovementList = new ArrayList<InnerMovement>();
 		
 		if ((direction == null) || (direction.equals("")))
@@ -102,7 +102,7 @@ public class Movement
 				direction = direction.substring(0, 3) + "0";
 		}
 	
-		System.out.println("TEST TEST TEST: new direction " + direction);
+		//System.out.println("TEST TEST TEST: new direction " + direction);
 		// direction: "XYZU", 1 means true, 0 means false
 		switch (direction)
 		{
@@ -311,11 +311,10 @@ public class Movement
 		// TODO	Beschleunigung und Negativbeschleunigung berücksichtigen!
 		
 		InnerMovement innerMovement = innerMovementList.get(which);
-		System.out.println("TEST TEST TEST: Distance / Speed von " + innerMovement.axis + ": " + innerMovement.distance + "/" + innerMovement.speed);
-		int time = (int) Math.round(innerMovement.distance / innerMovement.speed);
+		int time = (int) Math.abs(Math.round(innerMovement.distance / innerMovement.speed));
 		
-		System.out.println("TEST TEST TEST: Distances / Speed von " + innerMovement.axis + ": " + innerMovement.distance + "/" + innerMovement.speed);
-		System.out.println("TEST TEST TEST: Time von " + innerMovement.axis + ": " + time);
+		//System.out.println("TEST TEST TEST: Distance / Speed von " + innerMovement.axis + ": " + innerMovement.distance + " / " + innerMovement.speed);
+		//System.out.println("TEST TEST TEST: Time von " + innerMovement.axis + ": " + time);
 		
 		return time;
 	}
