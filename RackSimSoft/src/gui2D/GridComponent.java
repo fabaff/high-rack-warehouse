@@ -9,7 +9,7 @@ public class GridComponent extends RectangleComponent
 	
 	public GridComponent(Grid grid, double guiCoordinateFactor)
 	{
-		super(grid.getGridID(), (int) (guiCoordinateFactor * grid.getYSize()), (int) (guiCoordinateFactor * grid.getZSize()), gridBorder);
+		super(grid.getGridID(), (int) (guiCoordinateFactor * grid.getWidth()), (int) (guiCoordinateFactor * grid.getHeight()), gridBorder);
 	}
 	
 	public int getWidth()

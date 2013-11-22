@@ -12,7 +12,7 @@ public class Gap
 	private String gapID;
 	private Grid gridLeft = null;
 	private Grid gridRight = null;
-	private int xSize;
+	private int width;
 	private int xCoordinate;
 	private RackFeeder rackFeeder;
 
@@ -24,10 +24,10 @@ public class Gap
 	 * @param width	the width of the gap
 	 * @param x		the x coordinate of the gap
 	 */
-	public Gap(String id, int xSize, int x)
+	public Gap(String id, int width, int x)
 	{
 		this.gapID = id;
-		this.xSize = xSize;
+		this.width = width;
 		this.xCoordinate = x;
 		this.rackFeeder = new RackFeeder(this);
 	}
@@ -53,13 +53,13 @@ public class Gap
 	}
 	
 	/**
-	 * Returns the xSize of the current Gap
+	 * Returns the width of the current Gap
 	 * 
-	 * @return the xSize
+	 * @return the width
 	 */
-	public int getXSize()
+	public int getWidth()
 	{
-		return this.xSize;
+		return this.width;
 	}
 	
 	/**

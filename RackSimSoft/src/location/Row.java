@@ -8,7 +8,7 @@ package location;
 public class Row
 {
 	private String rowID;
-	private int zSize;
+	private int height;
 	private int zCoordinate;
 	
 	/**
@@ -16,13 +16,13 @@ public class Row
 	 * must be given.
 	 * 
 	 * @param id		the ID of the Row
-	 * @param zSize		the zSize of the Row
+	 * @param height	the height of the Row
 	 * @param z			the z coordinate of the Row
 	 */
-	public Row(String id, int zSize, int z)
+	public Row(String id, int height, int z)
 	{
 		this.rowID = id;
-		this.zSize = zSize;
+		this.height = height;
 		this.zCoordinate = z;
 	}
 	
@@ -37,13 +37,13 @@ public class Row
 	}
 
 	/**
-	 * Returns the zSize of the current row.
+	 * Returns the height of the current row.
 	 * 
-	 * @return the zSize
+	 * @return the height
 	 */
-	public int getZSize()
+	public int getHeight()
 	{
-		return zSize;
+		return height;
 	}
 
 	/**

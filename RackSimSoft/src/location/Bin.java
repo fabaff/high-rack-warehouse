@@ -14,8 +14,8 @@ public class Bin
 	private String binID;
 	private String gapID;
 	private String gridID;
-	private int ySize;
-	private int zSize;
+	private int width;
+	private int height;
 	private int gridSide = -1;
 	
 	private int xCoordinate;
@@ -55,16 +55,16 @@ public class Bin
 		if (grid.getGridSide() == 0)
 		{
 			// Left Grid
-			this.uCoordinate = (grid.getXSize() * -1);
+			this.uCoordinate = (grid.getDepth() * -1);
 		}
 		else
 		{
 			// Right Grid
-			this.uCoordinate = grid.getXSize();
+			this.uCoordinate = grid.getDepth();
 		}
 		
-		this.ySize = column.getYSize();
-		this.zSize = row.getZSize();
+		this.width = column.getWidth();
+		this.height = row.getHeight();
 	}
 
 	/**
@@ -175,23 +175,23 @@ public class Bin
 	}
 	
 	/**
-	 * Returns the ySize of the current bin.
+	 * Returns the width of the current bin.
 	 * 
-	 * @return the ySize
+	 * @return the width
 	 */
-	public int getYSize()
+	public int getWidth()
 	{
-		return ySize;
+		return width;
 	}
 	
 	/**
-	 * Returns the zSize of the current bin.
+	 * Returns the height of the current bin.
 	 * 
-	 * @return the zSize
+	 * @return the height
 	 */
-	public int getZSize()
+	public int getHeight()
 	{
-		return zSize;
+		return height;
 	}
 	
 	/**
