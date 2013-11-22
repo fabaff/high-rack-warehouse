@@ -24,6 +24,9 @@ public class ReadingFiles {
 	 */
 	public void readArticles(String FileName) throws IOException 
 	{
+		/* Format of the file
+		 * Article-No; Article description
+		 */
 		Path path = Paths.get(FileName);
 		int line = 0;
 		ArrayList<String> errors = new ArrayList<String>();
@@ -56,6 +59,13 @@ public class ReadingFiles {
 	 */
 	public void readLocation(String FileName) throws IOException 
 	{
+		/* Format of the file
+		 * Location [1];<ID>;<GapCount>;<MeasurementUnit>
+		 * Gap [1..*];<ID>;<X-Size>;<LeftGridID>;<RigthGridID>;<ColumnCount>;<RowCount>
+		 * Grid [2];<ID>;<U-Size>
+		 * Column [1..*];<ID>;<Y-Size>
+		 * Row [1..*];<ID>;<Z-Size>
+		 */
 		Path path = Paths.get(FileName);
 		try (Scanner scanner =  new Scanner(path, ENCODING.name()))
 		{
