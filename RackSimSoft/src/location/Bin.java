@@ -149,6 +149,32 @@ public class Bin
 	}
 	
 	/**
+	 * Returns the coordinate of the current bin for the chosen axes.
+	 * 
+	 * @param axes	the axes taken for the coordinate
+	 * @return the coordinate
+	 */
+	public Coordinate getCoordinate(String axes)
+	{
+		int xCoordinate = 0;
+		int yCoordinate = 0;
+		int zCoordinate = 0;
+		int uCoordinate = 0;
+		
+		if (axes.substring(0, 1).equals("1"))
+			xCoordinate = this.getX();
+		if (axes.substring(1, 2).equals("1"))
+			yCoordinate = this.getY();
+		if (axes.substring(2, 3).equals("1"))
+			zCoordinate = this.getZ();
+		if (axes.substring(3, 4).equals("1"))
+			uCoordinate = this.getU();
+		
+		Coordinate coordinate = new Coordinate(xCoordinate, yCoordinate, zCoordinate, uCoordinate);
+		return coordinate;
+	}
+	
+	/**
 	 * Returns the width of the current bin.
 	 * 
 	 * @return the width

@@ -267,9 +267,9 @@ public class Movement
 	{
 		// TODO	Beschleunigung und Negativbeschleunigung berücksichtigen!
 		
-		int time1 = getOneAxisTime(innerMovementList, which1);
-		int time2 = getOneAxisTime(innerMovementList, which2);
-		int time = time1;
+		double time1 = getOneAxisTime(innerMovementList, which1);
+		double time2 = getOneAxisTime(innerMovementList, which2);
+		double time = time1;
 		
 		// If times are not equal, reduce speed of faster axis to prevent the same time for moving
 		if (time1 != time2)
@@ -290,6 +290,7 @@ public class Movement
 			else
 			{
 				factor = (time2 / time1);
+				
 				innerMovement1.setSpeed(innerMovement1.speed / factor);
 				
 				// TODO	Beschleunigung und Negativbeschleunigung neu setzen!
@@ -298,7 +299,7 @@ public class Movement
 			}
 		}
 		
-		return time;
+		return (int) time;
 	}
 	
 	/**
