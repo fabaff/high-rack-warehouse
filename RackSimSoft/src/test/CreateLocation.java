@@ -533,7 +533,7 @@ public class CreateLocation
 			itemID = item.getItemID();
 		else
 			itemID = "";
-		System.out.println("Artikel auf dem RBG " + itemID);
+		System.out.println("Artikel auf dem RBG: " + itemID);
 		
 		System.out.println("Bin ist auf Position " + bin.getCoordinate().toString());
 		item = myLocation.getItem(bin.getBinID());
@@ -541,7 +541,7 @@ public class CreateLocation
 			itemID = item.getItemID();
 		else
 			itemID = "";
-		System.out.println("Artikel im Bin " + itemID);
+		System.out.println("Artikel im Bin: " + itemID);
 		System.out.println();
 		
 		System.out.println("Fahre RBG bis vor das Bin:");
@@ -582,14 +582,14 @@ public class CreateLocation
 			itemID = item.getItemID();
 		else
 			itemID = "";
-		System.out.println("Artikel auf dem RBG " + itemID);
+		System.out.println("Artikel auf dem RBG: " + itemID);
 		
 		item = myLocation.getItem(bin.getBinID());
 		if (item != null)
 			itemID = item.getItemID();
 		else
 			itemID = "";
-		System.out.println("Artikel im Bin " + itemID);
+		System.out.println("Artikel im Bin: " + itemID);
 		System.out.println();
 		
 		System.out.println("Fahre RBG aus dem Bin hinaus:");
