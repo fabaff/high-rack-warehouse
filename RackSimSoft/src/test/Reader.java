@@ -14,8 +14,8 @@ public class Reader {
 	    readerArticles.readArticles(article_file);
 	    
 	    // Location
-		String location_file = "location1.txt";
-		ReadingFiles readerLocation = new ReadingFiles();
-	    readerLocation.readLocation(location_file);
+		//String location_file = "location.xml";
+		//ReadingFiles readerLocation = new ReadingFiles();
+	    //readerLocation.readLocation(location_file);
 	}
 }

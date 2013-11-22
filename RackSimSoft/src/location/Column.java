@@ -13,7 +13,7 @@ package location;
 public class Column
 {
 	private String columnID;
-	private int width;
+	private int ySize;
 	private int yCoordinate;
 	
 	/**
@@ -24,10 +24,10 @@ public class Column
 	 * @param width	the width of the column
 	 * @param y 	the y coordinate of the column
 	 */
-	public Column(String id, int width, int y)
+	public Column(String id, int ySize, int y)
 	{
 		this.columnID = id;
-		this.setWidth(width);
+		this.ySize = ySize;
 		this.yCoordinate = y;
 	}
 	
@@ -38,29 +38,19 @@ public class Column
 	 */
 	public String getColumnID()
 	{
-		return columnID;
+		return this.columnID;
 	}
 
 	/**
-	 * Returns the width of the current column.
+	 * Returns the ySize of the current column.
 	 * 
-	 * @return the width
+	 * @return the ySize
 	 */
-	public int getWidth()
+	public int getYSize()
 	{
-		return width;
+		return this.ySize;
 	}
 
-	/**
-	 * Sets the width of the current column.
-	 * 
-	 * @param width the length to set
-	 */
-	public void setWidth(int width)
-	{
-		this.width = width;
-	}
-	
 	/**
 	 * Returns the y coordinate of the current row.
 	 * 

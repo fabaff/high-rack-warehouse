@@ -11,7 +11,7 @@ public class BinComponent extends RectangleComponent
 	
 	public BinComponent(Bin bin, double guiCoordinateFactor)
 	{
-		super(bin.getBinID(), (int) (guiCoordinateFactor * bin.getWidth()), (int) (guiCoordinateFactor * bin.getHeight()), binBorder);
+		super(bin.getBinID(), (int) (guiCoordinateFactor * bin.getYSize()), (int) (guiCoordinateFactor * bin.getZSize()), binBorder);
 		yOffset = (int) (guiCoordinateFactor * bin.getY());
 		zOffset = (int) (guiCoordinateFactor * bin.getZ());
 	}
