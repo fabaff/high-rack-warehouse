@@ -17,5 +17,10 @@ public class Reader {
 		String location_file = "location1.txt";
 		ReadingFiles readerLocation = new ReadingFiles();
 	    readerLocation.readLocation(location_file);
+	    
+	    // Jobs
+		String jobs_file = "job_list.txt";
+		ReadingFiles readerJobs = new ReadingFiles();
+	    readerJobs.readJobs(jobs_file);
 	}
 }
