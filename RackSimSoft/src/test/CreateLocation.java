@@ -490,7 +490,7 @@ public class CreateLocation
 		System.out.println("Direction: " + direction);
 		System.out.println("Strecke: " + distance.getDistanceLength(direction));
 		System.out.println("Zeit: " + movement.getTime(direction));
-		// Die Bechleunigungen und Geschwindigkeiten wieder reseten, da diese in der Funktion geändert wurden
+		// Die Bechleunigungen und Geschwindigkeiten wieder reseten, da diese in der Funktion geaendert wurden
 		rackFeeder.setMax();
 		System.out.println();
 		
@@ -500,7 +500,7 @@ public class CreateLocation
 		System.out.println("Direction: " + direction);
 		System.out.println("Strecke: " + distance.getDistanceLength(direction));
 		System.out.println("Zeit: " + movement.getTime(direction));
-		// Die Bechleunigungen und Geschwindigkeiten wieder reseten, da diese in der Funktion geändert wurden
+		// Die Bechleunigungen und Geschwindigkeiten wieder reseten, da diese in der Funktion geaendert wurden
 		rackFeeder.setMax();
 		System.out.println();
 				
@@ -510,7 +510,7 @@ public class CreateLocation
 		System.out.println("Direction: " + direction);
 		System.out.println("Strecke: " + distance.getDistanceLength(direction));
 		System.out.println("Zeit: " + movement.getTime(direction));
-		// Die Bechleunigungen und Geschwindigkeiten wieder reseten, da diese in der Funktion geändert wurden
+		// Die Bechleunigungen und Geschwindigkeiten wieder reseten, da diese in der Funktion geaendert wurden
 		rackFeeder.setMax();
 		System.out.println();
 				
@@ -520,7 +520,7 @@ public class CreateLocation
 		System.out.println("Direction: " + direction);
 		System.out.println("Strecke: " + distance.getDistanceLength(direction));
 		System.out.println("Zeit: " + movement.getTime(direction));
-		// Die Bechleunigungen und Geschwindigkeiten wieder reseten, da diese in der Funktion geändert wurden
+		// Die Bechleunigungen und Geschwindigkeiten wieder reseten, da diese in der Funktion geaendert wurden
 		rackFeeder.setMax();
 		System.out.println();
 	}
@@ -562,7 +562,7 @@ public class CreateLocation
 		System.out.println("Geschwindigkeiten (mm/ms) in X/Y/Z/U: " + rackFeeder.getXSpeed() + "/" + rackFeeder.getYSpeed() + "/" + rackFeeder.getZSpeed() + "/" + rackFeeder.getUSpeed());
 		// Fahren
 		rackFeeder.moveYZ(bin.getY(), bin.getZ());
-		// Alles zurücksetzen auf Maximum
+		// Alles zuruecksetzen auf Maximum
 		rackFeeder.setMax();
 		System.out.println("RBG ist auf Position " + rackFeeder.getCoordinate().toString());
 		System.out.println();
@@ -576,7 +576,7 @@ public class CreateLocation
 		System.out.println("Geschwindigkeiten (mm/ms) in X/Y/Z/U: " + rackFeeder.getXSpeed() + "/" + rackFeeder.getYSpeed() + "/" + rackFeeder.getZSpeed() + "/" + rackFeeder.getUSpeed());
 		// Fahren
 		rackFeeder.moveU(bin.getU());
-		// Alles zurücksetzen auf Maximum
+		// Alles zuruecksetzen auf Maximum
 		rackFeeder.setMax();
 		System.out.println("RBG ist auf Position " + rackFeeder.getCoordinate().toString());
 		System.out.println();
@@ -611,7 +611,7 @@ public class CreateLocation
 		System.out.println("Geschwindigkeiten (mm/ms) in X/Y/Z/U: " + rackFeeder.getXSpeed() + "/" + rackFeeder.getYSpeed() + "/" + rackFeeder.getZSpeed() + "/" + rackFeeder.getUSpeed());
 		// Fahren
 		rackFeeder.moveU(coordinate.getU());
-		// Alles zurücksetzen auf Maximum
+		// Alles zuruecksetzen auf Maximum
 		rackFeeder.setMax();
 		System.out.println("RBG ist auf Position " + rackFeeder.getCoordinate().toString());
 		System.out.println();
@@ -626,7 +626,7 @@ public class CreateLocation
 		System.out.println("Geschwindigkeiten (mm/ms) in X/Y/Z/U: " + rackFeeder.getXSpeed() + "/" + rackFeeder.getYSpeed() + "/" + rackFeeder.getZSpeed() + "/" + rackFeeder.getUSpeed());
 		// Fahren
 		rackFeeder.moveYZ(coordinate.getY(), coordinate.getZ());
-		// Alles zurücksetzen auf Maximum
+		// Alles zuruecksetzen auf Maximum
 		rackFeeder.setMax();
 		System.out.println("RBG ist auf Position " + rackFeeder.getCoordinate().toString());
 		System.out.println();
