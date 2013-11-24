@@ -214,6 +214,7 @@ public class ReadingFiles {
 				{
 					parts = string.split(";");
 					line++;
+					//Code goes here...
 					System.out.println(parts[0] + " : " + parts[1] + " : " + parts[2]);
 				} else {
 					errors.add("Error on line " + line);
@@ -229,7 +230,6 @@ public class ReadingFiles {
 			System.out.println("Total processed lines: " + line + "\n");
 	    }
 	}
-	
 	
 	/**
 	 * For debugging only. Prints the given element to STDOUT aka Console in
