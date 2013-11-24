@@ -73,23 +73,24 @@ public class ReadingFiles {
 		 * 
 		 * Sample data:
 		 * 	Location;my location;3;MM
-			Gap;Gasse1;1000;Grid1;Grid2;7;4
-			Grid;Grid1;1000
-			Grid;Grid2;1000
-			Column;A;1200
-			Column;B;800
-			Column;C;800
-			Column;D;1200
-			Column;E;1000
-			Column;F;1000
-			Column;G;1200
-			Row;1;600
-			Row;2;800
-			Row;3;500
-			Row;4;600
+		 *  Gap;Gasse1;1000;Grid1;Grid2;7;4
+		 *  Grid;Grid1;1000
+		 *  Grid;Grid2;1000
+		 *  Column;A;1200
+		 *  Column;B;800
+		 *  Column;C;800
+		 *  Column;D;1200
+		 *  Column;E;1000
+		 *  Column;F;1000
+		 *  Column;G;1200
+		 *  Row;1;600
+		 *  Row;2;800
+		 *  Row;3;500
+		 *  Row;4;600
 		 */
 		Path path = Paths.get(FileName);
 		Location myLocation;
+		Gap gap;
 
 		int line = 0;
 		ArrayList<String> errors = new ArrayList<String>();
@@ -107,6 +108,7 @@ public class ReadingFiles {
 
 					if (parts[0].equals("Location"))
 					{
+						// Location;my location;3;MM
 						System.out.println("--- Location created");
 						Location.MeasurementUnit measurementUnit;
 					
@@ -132,27 +134,35 @@ public class ReadingFiles {
 					
 					if (parts[0].equals("Gap"))
 					{
+						// Gap;Gasse1;1000;Grid1;Grid2;7;4
 						System.out.println("--- Gap created");
-						Gap gap = new Gap(parts[1], Integer.parseInt(parts[2]), Integer.parseInt(parts[3]));
-
+						System.out.println(parts[1] + " " + parts[2]);
+						gap = new Gap(parts[1], Integer.parseInt(parts[2]), Integer.parseInt(parts[3]));
 					}
 					
 					if (parts[0].equals("Grid"))
 					{
-						System.out.println("---Grid");
+						// Grid;Grid1;1000
+						System.out.println("--- Grid created");
+						System.out.println(parts[1] + " " + Integer.parseInt(parts[2]));
+						//Grid grid = new Grid("" + gridID, gap, j % 2, columnArray, rowArray, depth);
 					}
 					
 					if (parts[0].equals("Column"))
 					{
-						System.out.println("---Column");
+						// Column;A;1200
+						System.out.println("--- Columns created");
+						System.out.println(parts[1] + " " + Integer.parseInt(parts[2]));
+						//columnArray[k] = new Column("" + k, length, k * length);
 					}
 					
 					if (parts[0].equals("Row"))
 					{
-						System.out.println("---Row");
+						// Row;1;600
+						System.out.println("--- Rows created");
+						System.out.println(parts[1] + " " + Integer.parseInt(parts[2]));
+						//rowArray[k] = new Row("" + k, height, k * height);
 					}
-
-
 				} else {
 					errors.add("Error on line " + line);
 				}
@@ -164,6 +174,7 @@ public class ReadingFiles {
 				}
 			}
 			System.out.println("Total processed lines: " + line);
+			//return myLocation;
 	    }
 				/*
 				Location
@@ -171,16 +182,13 @@ public class ReadingFiles {
 				Grid
 				Gap gap = new Gap("" + i, width, (i * 2 * depth) + depth + (i * width));
 				
+				columnArray[k] = new Column("" + k, length, k * length);
+				rowArray[k] = new Row("" + k, height, k * height);
 				
-				columnArray[k] = new Column("" + k, length, k * length);  // id, width, y coordinate
-				rowArray[k] = new Row("" + k, height, k * height);  // id, height, z coordinate
-
 				Grid grid = new Grid("" + gridID, gap, j % 2, columnArray, rowArray, depth);
 				gap.addGrid(grid);
-				gridID ++;
 				
 				myLocation.addGap(gap);
-
 				*/
 	}
 	    
