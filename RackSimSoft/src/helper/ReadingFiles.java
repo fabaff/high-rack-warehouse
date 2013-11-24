@@ -191,7 +191,46 @@ public class ReadingFiles {
 				myLocation.addGap(gap);
 				*/
 	}
-	    
+
+	/**
+	 * Reading the job data from a flat text file.
+	 * 
+	 * @param FileName Path and file name of the file.
+	 */
+	public void readJobs(String FileName) throws IOException 
+	{
+		/* Format of the file
+		 * <Timestamp>;<Operation>;<Article>;[optional values]
+		 */
+		Path path = Paths.get(FileName);
+		int line = 0;
+		ArrayList<String> errors = new ArrayList<String>();
+		try (Scanner scanner =  new Scanner(path, ENCODING.name()))
+		{
+			while (scanner.hasNextLine()){
+				String parts[];
+				String string = scanner.nextLine();
+				if (string.contains(";"))
+				{
+					parts = string.split(";");
+					line++;
+					System.out.println(parts[0] + " : " + parts[1] + " : " + parts[2]);
+				} else {
+					errors.add("Error on line " + line);
+				}
+			}			
+			if (errors.size() != 0)
+			{
+				for (String s : errors)
+				{
+					System.out.println(s);
+				}
+			}
+			System.out.println("Total processed lines: " + line + "\n");
+	    }
+	}
+	
+	
 	/**
 	 * For debugging only. Prints the given element to STDOUT aka Console in
 	 * Eclipse.
