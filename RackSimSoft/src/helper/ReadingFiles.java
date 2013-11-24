@@ -102,7 +102,6 @@ public class ReadingFiles {
 				if (string.contains(";"))
 				{
 					//System.out.println(string);
-					
 					parts = string.split(";");
 					line++;
 
@@ -215,7 +214,7 @@ public class ReadingFiles {
 					parts = string.split(";");
 					line++;
 					//Code goes here...
-					System.out.println(parts[0] + " : " + parts[1] + " : " + parts[2]);
+					//System.out.println(parts[0] + " : " + parts[1] + " : " + parts[2]);
 				} else {
 					errors.add("Error on line " + line);
 				}
