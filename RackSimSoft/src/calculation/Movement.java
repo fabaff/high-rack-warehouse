@@ -18,15 +18,6 @@ public class Movement
 	private Distance distance;
 	private RackFeeder rackFeeder;
 	
-	/*
-	private double xSpeed; // Only relevant for the delivery
-	private double ySpeed; // Speed in y axis
-	private double zSpeed; // Speed in z axis
-	private double uSpeed; // Loading speed
-	private double acceleration;
-	private double deceleration;
-	*/
-	
 	/**
 	 * Creates a Movement.
 	 * The distance and the rack feeder to move to must be given.
@@ -41,28 +32,6 @@ public class Movement
 	}
 	
 	/**
-	 * Creates a Movement object.
-	 * 
-	 * @param xSpeed the xSpeed to set
-	 * @param ySpeed the ySpeed to set
-	 * @param zSpeed the zSpeed to set
-	 * @param lSpeed the lSpeed to set
-	 * @param acceleration the acceleration to set
-	 * @param deceleration the deceleration to set
-	 */
-	/*
-	public Movement(double xSpeed, double ySpeed, double zSpeed, double uSpeed, double acceleration, double deceleration)
-	{
-		this.xSpeed = xSpeed;
-		this.ySpeed = ySpeed;
-		this.zSpeed = zSpeed;
-		this.uSpeed = uSpeed;
-		this.acceleration = acceleration;
-		this.deceleration = deceleration;
-	}
-	*/
-	
-	/**
 	 * Calculates the time, which is needed to move the rack feeder the given distance in the chosen axes.
 	 * If the given String is null or empty, the time will be calculated for all axes with any difference in distance.
 	 * 
@@ -70,8 +39,6 @@ public class Movement
 	 */
 	public int getTime(String direction)
 	{
-		//System.out.println("TEST TEST TEST: given direction " + direction);
-		
 		int time = -1;
 		
 		// Check the directions
@@ -79,7 +46,7 @@ public class Movement
 		int yDistance = distance.getYDistance();
 		int zDistance = distance.getZDistance();
 		int uDistance = distance.getUDistance();
-		//System.out.println("TEST TEST TEST: Distances Y/Z " + yDistance + "/" + zDistance);
+		
 		ArrayList<InnerMovement> innerMovementList = new ArrayList<InnerMovement>();
 		
 		if ((direction == null) || (direction.equals("")))
@@ -101,9 +68,7 @@ public class Movement
 			if ((direction.substring(3, 4).equals("1")) && (uDistance == 0))
 				direction = direction.substring(0, 3) + "0";
 		}
-	
-		//System.out.println("TEST TEST TEST: new direction " + direction);
-		// direction: "XYZU", 1 means true, 0 means false
+		
 		switch (direction)
 		{
 			case "0000" :
@@ -267,9 +232,9 @@ public class Movement
 	{
 		// TODO	Beschleunigung und Negativbeschleunigung berücksichtigen!
 		
-		int time1 = getOneAxisTime(innerMovementList, which1);
-		int time2 = getOneAxisTime(innerMovementList, which2);
-		int time = time1;
+		double time1 = getOneAxisTime(innerMovementList, which1);
+		double time2 = getOneAxisTime(innerMovementList, which2);
+		double time = time1;
 		
 		// If times are not equal, reduce speed of faster axis to prevent the same time for moving
 		if (time1 != time2)
@@ -290,6 +255,7 @@ public class Movement
 			else
 			{
 				factor = (time2 / time1);
+				
 				innerMovement1.setSpeed(innerMovement1.speed / factor);
 				
 				// TODO	Beschleunigung und Negativbeschleunigung neu setzen!
@@ -298,7 +264,7 @@ public class Movement
 			}
 		}
 		
-		return time;
+		return (int) time;
 	}
 	
 	/**
@@ -313,68 +279,18 @@ public class Movement
 		InnerMovement innerMovement = innerMovementList.get(which);
 		int time = (int) Math.abs(Math.round(innerMovement.distance / innerMovement.speed));
 		
-		//System.out.println("TEST TEST TEST: Distance / Speed von " + innerMovement.axis + ": " + innerMovement.distance + " / " + innerMovement.speed);
-		//System.out.println("TEST TEST TEST: Time von " + innerMovement.axis + ": " + time);
-		
 		return time;
 	}
 	
-	/*
-	private String getDirectionString(int xDistance, int yDistance, int zDistance)
-	{
-		String direction = "";
-		
-		if (xDistance != 0)
-		{
-			if (yDistance != 0)
-			{
-				if (zDistance != 0)
-				{
-					direction = "XYZ";
-				}
-				else
-				{
-					direction = "XY";
-				}
-			}
-			else
-			{
-				if (zDistance != 0)
-				{
-					direction = "XZ";
-				}
-				else
-				{
-					direction = "X";
-				}
-			}
-		}
-		else
-		{
-			if (yDistance != 0)
-			{
-				if (zDistance != 0)
-				{
-					direction = "YZ";
-				}
-				else
-				{
-					direction = "Y";
-				}
-			}
-			else
-			{
-				if (zDistance != 0)
-				{
-					direction = "Z";
-				}
-			}
-		}
-		
-		return direction;
-	}
-	*/
-	
+	/**
+	 * Helpermethod
+	 * 
+	 * @param xDistance
+	 * @param yDistance
+	 * @param zDistance
+	 * @param uDistance
+	 * @return
+	 */
 	private String getDirectionString(int xDistance, int yDistance, int zDistance, int uDistance)
 	{
 		String direction = "";
@@ -454,22 +370,6 @@ public class Movement
 	}
 	*/
 	
-	// TODO Achtung: ungeprueft
-	/**
-	 * Calculates the time which is needed for linear traveling.
-	 * 
-	 * @param ySpeed 		
-	 * @param distance	
-	 */
-	/*
-	private double lTime(double ySpeed, double zSpeed, double distance)
-	{
-		double speed = Math.round(Math.sqrt(Math.pow((ySpeed), 2) + Math.pow((zSpeed), 2)));
-		double lTime = distance / speed;
-		return lTime;	
-	}
-	*/
-	
 	/**
 	 * Calculates the time which is needed for the acceleration.
 	 * 
@@ -533,7 +433,7 @@ public class Movement
 	/**
 	 * @author mschaerer
 	 *
-	 * The InnerMovement is a helper to store all relevant informations for calculating time of moving.
+	 * The InnerMovement is a helper class to store all relevant informations for calculating time of moving.
 	 */
 	private class InnerMovement
 	{

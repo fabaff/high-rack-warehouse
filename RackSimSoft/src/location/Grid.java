@@ -12,12 +12,12 @@ public class Grid
 {
 	private String gridID;
 	private String gapID;
-	private int gridSide = -1;
-	private int width;
-	private int height;
-	private int depth;
 	private Hashtable<String, Bin> binTable;
 	private Bin binArray[][];
+	private int gridSide = -1;
+	private int ySize;
+	private int zSize;
+	private int xSize;
 	private int xCoordinate;
 	
 	/**
@@ -30,12 +30,12 @@ public class Grid
 	 * @param columnArray[]		the columns to be added to the grid
 	 * @param rowArray[]		the rows to be added to the grid
 	 */
-	public Grid(String gridID, Gap gap, int gridSide, Column columnArray[], Row rowArray[], int depth)
+	public Grid(String gridID, Gap gap, int gridSide, Column columnArray[], Row rowArray[], int xSize)
 	{
 		this.gridID = gridID;
 		this.gapID = gap.getGapID();
 		this.gridSide = gridSide;
-		this.depth = depth;
+		this.xSize = xSize;
 		
 		if (gridSide == 0)
 		{
@@ -45,27 +45,27 @@ public class Grid
 		else
 		{
 			// Right grid
-			this.xCoordinate = gap.getXCoordinate() + gap.getWidth();
+			this.xCoordinate = gap.getXCoordinate() + gap.getXSize();
 		}
 		
 		// Creates bins and puts those into a container
 		createBins(gap, columnArray, rowArray);
 		
-		// Calculate width
-		int width = 0;
+		// Calculate ySize
+		int ySize = 0;
 		for(Column column : columnArray)
 		{
-			width += column.getWidth();
+			ySize += column.getYSize();
 		}
-		this.width = width;
+		this.ySize = ySize;
 		
 		// Calculate height
-		int height = 0;
+		int zSize = 0;
 		for(Row row : rowArray)
 		{
-			height += row.getHeight();
+			zSize += row.getZSize();
 		}
-		this.height = height;
+		this.zSize = zSize;
 	}
 	
 	private void createBins(Gap gap, Column[] columnArray, Row[] rowArray)
@@ -145,13 +145,13 @@ public class Grid
 	}
 
 	/**
-	 * Returns the width of the current grid.
+	 * Returns the ySize of the current grid.
 	 * 
-	 * @return the width
+	 * @return the ySize
 	 */
-	public int getWidth()
+	public int getYSize()
 	{
-		return width;
+		return ySize;
 	}
 
 	/**
@@ -159,9 +159,9 @@ public class Grid
 	 * 
 	 * @return the height
 	 */
-	public int getHeight()
+	public int getZSize()
 	{
-		return height;
+		return zSize;
 	}
 	
 	/**
@@ -169,9 +169,9 @@ public class Grid
 	 * 
 	 * @return the depth
 	 */
-	public int getDepth()
+	public int getXSize()
 	{
-		return depth;
+		return xSize;
 	}
 	
 	/**
