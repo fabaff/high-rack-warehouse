@@ -20,7 +20,7 @@ public class RackFeeder
 	
 	// Speed is given in mm/ms which is the same as m/s
 	// This means, 1 mm/ms = 3.6 km/h
-	// Acceleration is given in um/ms^2 which is the same as m/s^2	// TODO diese Einheit prüfen
+	// Acceleration is given in um/ms^2 which is the same as m/s^2	// TODO diese Einheit prueï¿½fen
 	
 	private final double MAX_X_SPEED = 2; // Only relevant for the delivery
 	private final double MAX_Y_SPEED = 2; // Speed in y axis
@@ -185,7 +185,8 @@ public class RackFeeder
 		return coordinate;
 	}
 	
-	// Funktion darf nicht verwendet werden, da nicht in allen Achsen gleichzeitig gefahren werden darf!
+	// DO NOT use this function. It's not allowed to move on all axis at the
+	// same time.
 	/**
 	 * Sets the coordinate of the current rack feeder.
 	 * 
@@ -220,7 +221,6 @@ public class RackFeeder
 	{
 		// TODO
 		// Exception if rack feeder is not empty
-		
 		this.item = item;
 	}
 	
