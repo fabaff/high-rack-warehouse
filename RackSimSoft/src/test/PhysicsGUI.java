@@ -14,9 +14,9 @@ class PhysicsGUI extends JPanel
     {
     	// Physikalische Werte
     	// Y-Achse
-    	double vY = 30;
-    	double aY = 1;
-    	double dY = -1;
+    	double vY = 100;
+    	double aY = 10;
+    	double dY = -9;
     	// Z-Achse
     	double vZ = 10;
     	double aZ = 1;
@@ -83,10 +83,7 @@ class PhysicsGUI extends JPanel
         {
         	System.out.println("Fehler in Y, Geschwindigkeit zu hoch für die gegebene Distanz und die Beschleunigungen!");
         	// v neu berechnen
-        	
-        	/*
-        	//vY = Math.sqrt((2 * sY) / ((1 / aY) + (1 / dY)));
-        	vY = Math.sqrt(2 * sY);
+        	vY = Math.sqrt((2 * sY * aY * Math.abs(dY)) / (aY + Math.abs(dY)));
         	System.out.println("Neues vY: " + vY);
         	// Alle Werte neu berechnen
         	saY = Math.abs(Math.pow(vY, 2) / (2 * aY));
@@ -95,16 +92,14 @@ class PhysicsGUI extends JPanel
         	tdY = Math.abs(vY / dY);
         	svY = sY - (saY + sdY);
         	tvY = svY / vY;
-        	*/
+        	
         }
         if (tvZ < 0)
         {
         	System.out.println("Fehler in Z, Geschwindigkeit zu hoch für die gegebene Distanz und die Beschleunigungen!");
         	// v neu berechnen
+        	vZ = Math.sqrt((2 * sZ * aZ * Math.abs(dZ)) / (aZ + Math.abs(dZ)));
         	
-        	/*
-        	vZ = Math.sqrt((2 * sZ) / ((1 / aZ) + (1 / dZ)));
-        	System.out.println("Neues vZ: " + vZ);
         	// Alle Werte neu berechnen
         	saZ = Math.abs(Math.pow(vZ, 2) / (2 * aZ));
         	taZ = (vZ / aZ);
@@ -112,7 +107,6 @@ class PhysicsGUI extends JPanel
         	tdZ = Math.abs(vZ / dZ);
         	svZ = sZ - (saZ + sdZ);
         	tvZ = svZ / vZ;
-        	*/
         }
         
         System.out.println("----------------------");
