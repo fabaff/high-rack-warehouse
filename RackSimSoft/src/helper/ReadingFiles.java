@@ -214,6 +214,7 @@ public class ReadingFiles {
 					parts = string.split(";");
 					line++;
 					//Code goes here...
+					// TODO Create an object that can hold the data.
 					//System.out.println(parts[0] + " : " + parts[1] + " : " + parts[2]);
 				} else {
 					errors.add("Error on line " + line);
