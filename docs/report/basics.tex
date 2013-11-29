@@ -28,7 +28,7 @@ Der Koordinatenursprung befinet sich in der linken unteren Ecke der Regalwand (G
   \end{center}
 \end{figure}
 %
-In Abbildung %\ref{fig:wand} sind ebenfalls die verwendete Farbzuordung für die Lagerplätze (Bins) ersichtlich.
+In Abbildung \ref{fig:wand} sind ebenfalls die verwendete Farbzuordung für die Lagerplätze (Bins) ersichtlich.
 %
 \begin{table}
   \caption{Farbzuordung Lagerplätze}
@@ -45,7 +45,7 @@ In Abbildung %\ref{fig:wand} sind ebenfalls die verwendete Farbzuordung für die
 
 %
 \subsubsection{Klappung}
-Für die zweidimensionale Darstellung wurde eine Lagergasse gemäss Abbildung %\ref{fig:klapp} aufgefaltet, respektive aufgeklappt.
+Für die zweidimensionale Darstellung wurde eine Lagergasse gemäss Abbildung \ref{fig:klapp} aufgefaltet, respektive aufgeklappt.
 %
 \begin{figure}[h]
   \begin{center}
@@ -59,12 +59,21 @@ Für die zweidimensionale Darstellung wurde eine Lagergasse gemäss Abbildung %\
 \subsection{Mathematische Grundlagen}
 Regalbediengerät bewegt sich zwischen den Lagerwänden auf der y- und der z-Achse. Der Arm des Regalbediengerät verfährt auf der y-Achse und der Ausleger auf der z-Achse. Die Bewegungen auf beiden Achsen lassen somit beliebige Verfahrwege auf der yz-Ebene zu. 
 %
+Die Grundgleichung für die Geschwidigkeit in der Ebene lautet:
+%
 \begin{equation}
-\alpha = \arcsin \frac{f}{\sqrt{a-v} * \vec{b} + d_{g}}
+v = \frac{s}{t}
 \end{equation}
-
-
-
+%
+Die Fahrt des Regalbediengerät besteht aus einer Phase für die Beschleunigung, einer Phase der gleichförmigen Bewegung mit möglichst maximaler Geschwindigkeit und einem Bremsabschnitt, resp. einer Verzögerungsphase, am Ende. 
+%
+Die kürzeste Fahrzeit ergibt sich auch mehreren Faktoren. Die Synchronisationsgerade ist ein in diesem Zusammenhang oft verwendeter Begriff, welcher die optimale Fahrbahn des Regalbediengerät beschreibt. Dieser Fahrbahn führt jedoch nicht zur optimalen Fahrzeit, da unter Umständen beide Achsen gebremst werden müssten. Wir haben aber den Ansatz gewählt, dass, wenn möglich, nur auf der schnelleren Achse die Geschwindigkeit reduziert wird, was dazuführt, dass sich die zweite Achse entsprechend ihrem Maximum fortbewegen kann.
+%
+Ein Grenzfall tritt auf, wenn die zu bewältigende Strecke kleiner wird als die Summe der Wege von der Beschleunigung und Verzögerung bei konstanten Beschleunigungen/Verzögerungen und Geschwindigkeiten. 
+%
+\begin{equation}
+v = \sqrt{\frac{2 \cdot s \cdot a \cdot d}{(a+d)}}
+\end{equation}
 %
 \subsection{Simulationstechnische Grundlagen}
 
