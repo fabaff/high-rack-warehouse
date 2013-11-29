@@ -20,7 +20,8 @@ public class RackFeeder
 	
 	// Speed is given in mm/ms which is the same as m/s
 	// This means, 1 mm/ms = 3.6 km/h
-	// Acceleration is given in um/ms^2 which is the same as m/s^2	// TODO diese Einheit prue�fen
+	// Acceleration is given in um/ms^2 which is the same as m/s^2
+	// TODO diese Einheit pruefen
 	
 	private final double MAX_X_SPEED = 2; // Only relevant for the delivery
 	private final double MAX_Y_SPEED = 2; // Speed in y axis
@@ -271,7 +272,8 @@ public class RackFeeder
 	}
 
 	/**
-	 * Sets the speed, the acceleration and the deceleration of the rack feeder to the maximum in all axes.
+	 * Sets the speed, the acceleration and the deceleration of the rack 
+	 * feeder to the maximum in all axes.
 	 * 
 	 */
 	public void setMax()
@@ -329,7 +331,8 @@ public class RackFeeder
 
 	/**
 	 * Sets the current x speed of the rack feeder.
-	 * The speed is set to maximum value if the new speed is 0 or it exceeds the maximum speed.
+	 * The speed is set to maximum value if the new speed is 0 or it exceeds 
+	 * the maximum speed.
 	 * 
 	 * @param xSpeed the xSpeed to set
 	 */
@@ -352,7 +355,8 @@ public class RackFeeder
 
 	/**
 	 * Sets the current y speed of the rack feeder.
-	 * The speed is set to maximum value if the new speed is 0 or it exceeds the maximum speed.
+	 * The speed is set to maximum value if the new speed is 0 or it exceeds 
+	 * the maximum speed.
 	 * 
 	 * @param ySpeed the ySpeed to set
 	 */
@@ -375,7 +379,8 @@ public class RackFeeder
 
 	/**
 	 * Sets the current z speed of the rack feeder.
-	 * The speed is set to maximum value if the new speed is 0 or it exceeds the maximum speed.
+	 * The speed is set to maximum value if the new speed is 0 or it exceeds 
+	 * the maximum speed.
 	 * 
 	 * @param zSpeed the zSpeed to set
 	 */
@@ -398,7 +403,8 @@ public class RackFeeder
 
 	/**
 	 * Sets the current u speed of the rack feeder.
-	 * The speed is set to maximum value if the new speed is 0 or it exceeds the maximum speed.
+	 * The speed is set to maximum value if the new speed is 0 or it exceeds 
+	 * the maximum speed.
 	 * 
 	 * @param uSpeed the uSpeed to set
 	 */
@@ -421,7 +427,8 @@ public class RackFeeder
 
 	/**
 	 * Sets the current x acceleration of the rack feeder.
-	 * The acceleration is set to maximum value if the new acceleration is 0 or it exceeds the maximum acceleration.
+	 * The acceleration is set to maximum value if the new acceleration is 0 
+	 * or it exceeds the maximum acceleration.
 	 * 
 	 * @param acceleration the acceleration to set
 	 */
@@ -434,7 +441,8 @@ public class RackFeeder
 
 	/**
 	 * Returns the current x deceleration of the rack feeder.
-	 * The x deceleration is set to maximum value if the new deceleration is 0 or it exceeds the maximum deceleration.
+	 * The x deceleration is set to maximum value if the new deceleration is 
+	 * 0 or it exceeds the maximum deceleration.
 	 * 
 	 * @return the xDeceleration
 	 */
@@ -467,7 +475,8 @@ public class RackFeeder
 
 	/**
 	 * Sets the current y acceleration of the rack feeder.
-	 * The acceleration is set to maximum value if the new acceleration is 0 or it exceeds the maximum acceleration.
+	 * The acceleration is set to maximum value if the new acceleration is 0 
+	 * or it exceeds the maximum acceleration.
 	 * 
 	 * @param acceleration the acceleration to set
 	 */
@@ -480,7 +489,8 @@ public class RackFeeder
 
 	/**
 	 * Returns the current y deceleration of the rack feeder.
-	 * The y deceleration is set to maximum value if the new deceleration is 0 or it exceeds the maximum deceleration.
+	 * The y deceleration is set to maximum value if the new deceleration is 
+	 * 0 or it exceeds the maximum deceleration.
 	 * 
 	 * @return the yDeceleration
 	 */
@@ -513,7 +523,8 @@ public class RackFeeder
 
 	/**
 	 * Sets the current z acceleration of the rack feeder.
-	 * The acceleration is set to maximum value if the new acceleration is 0 or it exceeds the maximum acceleration.
+	 * The acceleration is set to maximum value if the new acceleration is 0 
+	 * or it exceeds the maximum acceleration.
 	 * 
 	 * @param acceleration the acceleration to set
 	 */
@@ -526,7 +537,8 @@ public class RackFeeder
 
 	/**
 	 * Returns the current z deceleration of the rack feeder.
-	 * The z deceleration is set to maximum value if the new deceleration is 0 or it exceeds the maximum deceleration.
+	 * The z deceleration is set to maximum value if the new deceleration is 0
+	 * or it exceeds the maximum deceleration.
 	 * 
 	 * @return the zDeceleration
 	 */
@@ -559,7 +571,8 @@ public class RackFeeder
 
 	/**
 	 * Sets the current u acceleration of the rack feeder.
-	 * The acceleration is set to maximum value if the new acceleration is 0 or it exceeds the maximum acceleration.
+	 * The acceleration is set to maximum value if the new acceleration is 0
+	 * or it exceeds the maximum acceleration.
 	 * 
 	 * @param acceleration the acceleration to set
 	 */
@@ -572,7 +585,8 @@ public class RackFeeder
 
 	/**
 	 * Returns the current u deceleration of the rack feeder.
-	 * The u deceleration is set to maximum value if the new deceleration is 0 or it exceeds the maximum deceleration.
+	 * The u deceleration is set to maximum value if the new deceleration is 0
+	 * or it exceeds the maximum deceleration.
 	 * 
 	 * @return the uDeceleration
 	 */
