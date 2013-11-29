@@ -14,13 +14,13 @@ class PhysicsGUI extends JPanel
     {
     	// Physikalische Werte
     	// Y-Achse
-    	double vY = 10;
+    	double vY = 100;
     	double aY = 1;
-    	double cY = -1;
+    	double dY = -1;
     	// Z-Achse
     	double vZ = 10;
     	double aZ = 1;
-    	double cZ = -1;
+    	double dZ = -1;
     	
     	// Weg
     	double sY = 900;
@@ -63,52 +63,64 @@ class PhysicsGUI extends JPanel
         double taZ = (vZ / aZ);
 
         // Bremsweg
-        double scY = Math.abs(Math.pow(vY, 2) / (2 * cY));
-        double scZ = Math.abs(Math.pow(vZ, 2) / (2 * cZ));
+        double sdY = Math.abs(Math.pow(vY, 2) / (2 * dY));
+        double sdZ = Math.abs(Math.pow(vZ, 2) / (2 * dZ));
         
         // Bremszeit
-        double tcY = Math.abs(vY / cY);
-        double tcZ = Math.abs(vZ / cZ);
+        double tdY = Math.abs(vY / dY);
+        double tdZ = Math.abs(vZ / dZ);
         
         // Restweg zum fahren mit max. Geschwindigkeit
-        double svY = sY - (saY + scY);
-        double svZ = sZ - (saZ + scZ);
+        double svY = sY - (saY + sdY);
+        double svZ = sZ - (saZ + sdZ);
         
         // Zeit zum fahren mit max. Geschwindigkeit
         double tvY = svY / vY;
         double tvZ = svZ / vZ;
         
+        // Prüfen, ob Weg überschritten wird
+        if (tvY < 0)
+        {
+        	System.out.println("Fehler in Y, Geschwindigkeit zu hoch für die gegebene Distanz und die Beschleunigungen!");
+        	
+        	
+        }
+        if (tvZ < 0)
+        {
+        	System.out.println("Fehler in Z, Geschwindigkeit zu hoch für die gegebene Distanz und die Beschleunigungen!");
+        }
+        
         System.out.println("----------------------");
         System.out.println("----------------------");
         System.out.println("Beschleunigungszeit Y: " + taY);
         System.out.println("Fahrzeit Y: " + tvY);
-        System.out.println("Bremszeit Y: " + tcY);
-        System.out.println("Total Zeit Y: " + (taY + tvY + tcY));
+        System.out.println("Bremszeit Y: " + tdY);
+        System.out.println("Total Zeit Y: " + (taY + tvY + tdY));
         System.out.println("");
         System.out.println("Beschleunigungsweg Y: " + saY);
         System.out.println("Fahrweg Y: " + svY);
-        System.out.println("Bremsweg Y: " + scY);
-        System.out.println("Total Weg Y: " + (saY + svY + scY));
+        System.out.println("Bremsweg Y: " + sdY);
+        System.out.println("Total Weg Y: " + (saY + svY + sdY));
         System.out.println("----------------------");
         
         System.out.println("Beschleunigungszeit Z: " + taZ);
         System.out.println("Fahrzeit Z: " + tvZ);
-        System.out.println("Bremszeit Z: " + tcZ);
-        System.out.println("Total Zeit Z: " + (taZ + tvZ + tcZ));
+        System.out.println("Bremszeit Z: " + tdZ);
+        System.out.println("Total Zeit Z: " + (taZ + tvZ + tdZ));
         System.out.println("");
         System.out.println("Beschleunigungsweg Z: " + saZ);
         System.out.println("Fahrweg Z: " + svZ);
-        System.out.println("Bremsweg Z: " + scZ);
-        System.out.println("Total Weg Z: " + (saZ + svZ + scZ));
+        System.out.println("Bremsweg Z: " + sdZ);
+        System.out.println("Total Weg Z: " + (saZ + svZ + sdZ));
         System.out.println("----------------------");
         System.out.println("----------------------");
         
         
         // Total
-        double maxTime = (taY + tvY + tcY);
-        if (maxTime < (taZ + tvZ + tcZ))
+        double maxTime = (taY + tvY + tdY);
+        if (maxTime < (taZ + tvZ + tdZ))
         {
-        	maxTime = (taZ + tvZ + tcZ);
+        	maxTime = (taZ + tvZ + tdZ);
         }
         
         
@@ -158,19 +170,19 @@ class PhysicsGUI extends JPanel
         	// Bremsen
         	// -------
         	// Nur ändern, wenn Y noch gebremst wird
-        	if ((t <= (int) ((taY * factor) + (tvY * factor) + (tcY * factor))) && (t > (int) ((taY * factor) + (tvY * factor))))
+        	if ((t <= (int) ((taY * factor) + (tvY * factor) + (tdY * factor))) && (t > (int) ((taY * factor) + (tvY * factor))))
         	{
         		//t = (t - (taY * factor) - (tvY * factor));
-        		current_sY = saY + svY + ((vY * (t - (taY * factor) - (tvY * factor))) + (0.5 * cY * Math.pow((t - (taY * factor) - (tvY * factor)), 2)));
+        		current_sY = saY + svY + ((vY * (t - (taY * factor) - (tvY * factor))) + (0.5 * dY * Math.pow((t - (taY * factor) - (tvY * factor)), 2)));
         		//current_sY = saY + svY + ((vY * (t - (taY * factor) - (tvY * factor))) + (0.5 * cY * Math.pow((t - (taY * factor) - (tvY * factor)), 2)));
         		//System.out.println("Bremsen Y: " + current_sY + "  bei t: " + t);
         		//System.out.println("Y bremst bei i: " + t);
         	}
         	
         	// Nur ändern, wenn Z noch gebremst wird
-        	if ((t <= (int) ((taZ * factor) + (tvZ * factor) + (tcZ * factor))) && (t > (int) ((taZ * factor) + (tvZ * factor))))
+        	if ((t <= (int) ((taZ * factor) + (tvZ * factor) + (tdZ * factor))) && (t > (int) ((taZ * factor) + (tvZ * factor))))
         	{
-        		current_sZ = saZ + svZ + ((vZ * (t - (taZ * factor) - (tvZ * factor))) + (0.5 * cZ * Math.pow((t - (taZ * factor) - (tvZ * factor)), 2)));
+        		current_sZ = saZ + svZ + ((vZ * (t - (taZ * factor) - (tvZ * factor))) + (0.5 * dZ * Math.pow((t - (taZ * factor) - (tvZ * factor)), 2)));
         		//current_sZ = saZ + svZ + ((vY * t) + (0.5 * cZ * Math.pow(t - (taZ * factor) - (tvZ * factor), 2)));
         		//System.out.println("Bremsen Z: " + current_sZ + "  bei t: " + t + "   Werte saZ/svZ/Rest: " + saZ + "/" + svZ + "/" + ((vZ * (t - (taZ * factor) - (tvZ * factor))) + (0.5 * cZ * Math.pow((t - (taZ * factor) - (tvZ * factor)), 2))));
         		//System.out.println("Z bremst bei i: " + t);
