@@ -1,8 +1,8 @@
 Events
-=======================
+======
 
 Global
-
+------
 	StoreEvent
 		1 Get next free Gap
 		2 Select Gap (first to be free?)
@@ -11,13 +11,9 @@ Global
 		3.3 Set RBG to 0.0
 		4 Load Item to RBG
 		5 Store Item in Bin
-		
-	
-		
-	
-
 
 Zustände
+--------
 	pro Gasse
 	RBG Einlagern
 		Eventnr.	Koord.	Zustand
