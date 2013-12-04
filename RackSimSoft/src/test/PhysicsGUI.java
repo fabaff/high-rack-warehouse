@@ -29,7 +29,7 @@ class PhysicsGUI extends JPanel
     	double sZ = 900;
     	
     	// FAKTOR
-        double factor = 1;
+        //double factor = 1;
     	
     	double current_sY = 0;
     	double current_sZ = 0;
@@ -144,77 +144,62 @@ class PhysicsGUI extends JPanel
         }
         
         
-        for (int t = 0; t <= (maxTime * factor); t++)
+        for (int t = 0; t <= maxTime; t++)
         {
-        	//System.out.print("t :" + t + "/" + factor + " s    ");
-        	
-        	
         	// Beschleunigen
         	// -------------
         	// Nur ändern, wenn Y noch beschleunigt wird
-        	if (t <= (taY * factor))
+        	if (t <= taY)
         	{
-        		current_sY = Math.round(Math.abs(0.5 * aY * Math.pow(t / factor, 2)));
+        		current_sY = Math.round(Math.abs(0.5 * aY * Math.pow(t, 2)));
         		//System.out.println("Y beschleunigt bei i: " + t);
         	}
         	
         	// Nur ändern, wenn Z noch beschleunigt wird
-        	if (t <= (taZ * factor))
+        	if (t <= taZ)
         	{
-        		current_sZ = Math.round(Math.abs(0.5 * aZ * Math.pow(t / factor, 2)));
+        		current_sZ = Math.round(Math.abs(0.5 * aZ * Math.pow(t, 2)));
         		//System.out.println("Z beschleunigt bei i: " + t);
         	}
         	// +++++++++++++
         	
         	
-        	
         	// Fahren
         	// ------
         	// Nur ändern, wenn Y schon / noch fahren muss
-        	if ((t <= (int) ((taY * factor) + (tvY * factor))) && (t > (taY * factor)))
+        	if ((t <= (int) (taY + tvY)) && (t > taY))
         	{
-        		current_sY = saY + (vY * (t - (taY * factor)));
+        		current_sY = saY + (vY * (t - taY));
         		//System.out.println("Y faehrt bei i: " + t);
         	}
         	
         	// Nur ändern, wenn Z schon / noch fahren muss
-        	if ((t <= (int) ((taZ * factor) + (tvZ * factor))) && (t > (taZ * factor)))
+        	if ((t <= (int) (taZ + tvZ)) && (t > taZ))
         	{
-        		current_sZ = saZ + (vZ * (t - (taZ * factor)));
+        		current_sZ = saZ + (vZ * (t - taZ));
         		//System.out.println("Z faehrt bei i: " + t);
         	}
         	// ++++++
         	
         	
-        	
         	// Bremsen
         	// -------
         	// Nur ändern, wenn Y noch gebremst wird
-        	if ((t <= (int) ((taY * factor) + (tvY * factor) + (tdY * factor))) && (t > (int) ((taY * factor) + (tvY * factor))))
+        	if ((t <= (int) (taY + tvY + tdY)) && (t > (int) (taY + tvY)))
         	{
-        		//t = (t - (taY * factor) - (tvY * factor));
-        		current_sY = saY + svY + ((vY * (t - (taY * factor) - (tvY * factor))) + (0.5 * dY * Math.pow((t - (taY * factor) - (tvY * factor)), 2)));
-        		//current_sY = saY + svY + ((vY * (t - (taY * factor) - (tvY * factor))) + (0.5 * cY * Math.pow((t - (taY * factor) - (tvY * factor)), 2)));
-        		//System.out.println("Bremsen Y: " + current_sY + "  bei t: " + t);
-        		//System.out.println("Y bremst bei i: " + t);
+        		current_sY = saY + svY + ((vY * (t - taY - tvY)) + (0.5 * dY * Math.pow((t - taY - tvY), 2)));
         	}
         	
         	// Nur ändern, wenn Z noch gebremst wird
-        	if ((t <= (int) ((taZ * factor) + (tvZ * factor) + (tdZ * factor))) && (t > (int) ((taZ * factor) + (tvZ * factor))))
+        	if ((t <= (int) (taZ + tvZ + tdZ)) && (t > (int) (taZ + tvZ)))
         	{
-        		current_sZ = saZ + svZ + ((vZ * (t - (taZ * factor) - (tvZ * factor))) + (0.5 * dZ * Math.pow((t - (taZ * factor) - (tvZ * factor)), 2)));
-        		//current_sZ = saZ + svZ + ((vY * t) + (0.5 * cZ * Math.pow(t - (taZ * factor) - (tvZ * factor), 2)));
-        		//System.out.println("Bremsen Z: " + current_sZ + "  bei t: " + t + "   Werte saZ/svZ/Rest: " + saZ + "/" + svZ + "/" + ((vZ * (t - (taZ * factor) - (tvZ * factor))) + (0.5 * cZ * Math.pow((t - (taZ * factor) - (tvZ * factor)), 2))));
-        		//System.out.println("Z bremst bei i: " + t);
+        		current_sZ = saZ + svZ + ((vZ * (t - taZ - tvZ)) + (0.5 * dZ * Math.pow((t - taZ - tvZ), 2)));
         	}
         	// +++++++
         	
         	
-        	
         	my = (int) (zeroPointY + current_sY);
         	mz = (int) (zeroPointZ - current_sZ);
-        	
-        	//System.out.println("Zeit t: " + t + "    Y/Z: " + my + "/" + mz + "    Berechnet: " + current_sY + "/" + current_sZ);
         	
         	g2d.setColor(Color.BLUE);
             circle = new Ellipse2D.Double(my-r, mz-r, 2*r, 2*r);
@@ -240,8 +225,7 @@ class PhysicsGUI extends JPanel
             */
         }
         
-        
-        
+
         g2d.setColor(Color.BLACK);
         Line2D.Double line;
 
@@ -251,19 +235,6 @@ class PhysicsGUI extends JPanel
         line = new Line2D.Double(zeroPointY, zeroPointZ, 1450, zeroPointZ);
         g2d.draw(line);
         
-        /*
-        for (int i = 1; i <= 15; i++)
-        {
-        	if (i <= 10)
-        	{
-        		line = new Line2D.Double(0, i * 100, 20, i * 100);
-                g2d.draw(line);
-        	}
-            
-            line = new Line2D.Double(i * 100, 940, i * 100, 960);
-            g2d.draw(line);
-        }
-        */
         for (int i = 1; i <= 14; i++)
         {
         	if (i <= 9)

@@ -561,10 +561,13 @@ public class CreateLocation
 		distance = new Distance(rackFeeder.getCoordinate(), bin.getCoordinate());
 		movement = new Movement(distance, rackFeeder);
 		direction = "0110";
-		System.out.println("Distanz (mm): " + distance.getDistanceLength(direction));
+		System.out.println("Distanz linear (mm): " + distance.getDistanceLength(direction));
 		System.out.println("Zeit linear (ms): " + movement.getLinearTime(direction));
+		System.out.println("Geschwindigkeiten linear (mm/ms) in X/Y/Z/U: " + rackFeeder.getXSpeed() + "/" + rackFeeder.getYSpeed() + "/" + rackFeeder.getZSpeed() + "/" + rackFeeder.getUSpeed());
+		// Alles zuruecksetzen auf Maximum
+		rackFeeder.setMax();
 		System.out.println("Zeit in echt (ms): " + movement.prepareForMove(direction));
-		System.out.println("Geschwindigkeiten (mm/ms) in X/Y/Z/U: " + rackFeeder.getXSpeed() + "/" + rackFeeder.getYSpeed() + "/" + rackFeeder.getZSpeed() + "/" + rackFeeder.getUSpeed());
+		System.out.println("Geschwindigkeiten in echt (mm/ms) in X/Y/Z/U: " + rackFeeder.getXSpeed() + "/" + rackFeeder.getYSpeed() + "/" + rackFeeder.getZSpeed() + "/" + rackFeeder.getUSpeed());
 		// Fahren
 		rackFeeder.moveYZ(bin.getY(), bin.getZ());
 		// Alles zuruecksetzen auf Maximum
@@ -576,10 +579,13 @@ public class CreateLocation
 		distance = new Distance(rackFeeder.getCoordinate(), bin.getCoordinate());
 		movement = new Movement(distance, rackFeeder);
 		direction = "0001";
-		System.out.println("Distanz (mm): " + distance.getDistanceLength(direction));
+		System.out.println("Distanz linear (mm): " + distance.getDistanceLength(direction));
 		System.out.println("Zeit linear (ms): " + movement.getLinearTime(direction));
+		System.out.println("Geschwindigkeiten linear (mm/ms) in X/Y/Z/U: " + rackFeeder.getXSpeed() + "/" + rackFeeder.getYSpeed() + "/" + rackFeeder.getZSpeed() + "/" + rackFeeder.getUSpeed());
+		// Alles zuruecksetzen auf Maximum
+		rackFeeder.setMax();
 		System.out.println("Zeit in echt (ms): " + movement.prepareForMove(direction));
-		System.out.println("Geschwindigkeiten (mm/ms) in X/Y/Z/U: " + rackFeeder.getXSpeed() + "/" + rackFeeder.getYSpeed() + "/" + rackFeeder.getZSpeed() + "/" + rackFeeder.getUSpeed());
+		System.out.println("Geschwindigkeiten in echt (mm/ms) in X/Y/Z/U: " + rackFeeder.getXSpeed() + "/" + rackFeeder.getYSpeed() + "/" + rackFeeder.getZSpeed() + "/" + rackFeeder.getUSpeed());
 		// Fahren
 		rackFeeder.moveU(bin.getU());
 		// Alles zuruecksetzen auf Maximum
@@ -612,10 +618,13 @@ public class CreateLocation
 		distance = new Distance(rackFeeder.getCoordinate(), coordinate);
 		movement = new Movement(distance, rackFeeder);
 		direction = "0001";
-		System.out.println("Distanz (mm): " + distance.getDistanceLength(direction));
+		System.out.println("Distanz linear (mm): " + distance.getDistanceLength(direction));
 		System.out.println("Zeit linear (ms): " + movement.getLinearTime(direction));
+		System.out.println("Geschwindigkeiten linear (mm/ms) in X/Y/Z/U: " + rackFeeder.getXSpeed() + "/" + rackFeeder.getYSpeed() + "/" + rackFeeder.getZSpeed() + "/" + rackFeeder.getUSpeed());
+		// Alles zuruecksetzen auf Maximum
+		rackFeeder.setMax();
 		System.out.println("Zeit in echt (ms): " + movement.prepareForMove(direction));
-		System.out.println("Geschwindigkeiten (mm/ms) in X/Y/Z/U: " + rackFeeder.getXSpeed() + "/" + rackFeeder.getYSpeed() + "/" + rackFeeder.getZSpeed() + "/" + rackFeeder.getUSpeed());
+		System.out.println("Geschwindigkeiten in echt (mm/ms) in X/Y/Z/U: " + rackFeeder.getXSpeed() + "/" + rackFeeder.getYSpeed() + "/" + rackFeeder.getZSpeed() + "/" + rackFeeder.getUSpeed());
 		// Fahren
 		rackFeeder.moveU(coordinate.getU());
 		// Alles zuruecksetzen auf Maximum
@@ -628,10 +637,13 @@ public class CreateLocation
 		distance = new Distance(rackFeeder.getCoordinate(), coordinate);
 		movement = new Movement(distance, rackFeeder);
 		direction = "0110";
-		System.out.println("Distanz (mm): " + distance.getDistanceLength(direction));
+		System.out.println("Distanz linear (mm): " + distance.getDistanceLength(direction));
 		System.out.println("Zeit linear (ms): " + movement.getLinearTime(direction));
+		System.out.println("Geschwindigkeiten linear (mm/ms) in X/Y/Z/U: " + rackFeeder.getXSpeed() + "/" + rackFeeder.getYSpeed() + "/" + rackFeeder.getZSpeed() + "/" + rackFeeder.getUSpeed());
+		// Alles zuruecksetzen auf Maximum
+		rackFeeder.setMax();
 		System.out.println("Zeit in echt (ms): " + movement.prepareForMove(direction));
-		System.out.println("Geschwindigkeiten (mm/ms) in X/Y/Z/U: " + rackFeeder.getXSpeed() + "/" + rackFeeder.getYSpeed() + "/" + rackFeeder.getZSpeed() + "/" + rackFeeder.getUSpeed());
+		System.out.println("Geschwindigkeiten in echt (mm/ms) in X/Y/Z/U: " + rackFeeder.getXSpeed() + "/" + rackFeeder.getYSpeed() + "/" + rackFeeder.getZSpeed() + "/" + rackFeeder.getUSpeed());
 		// Fahren
 		rackFeeder.moveYZ(coordinate.getY(), coordinate.getZ());
 		// Alles zuruecksetzen auf Maximum

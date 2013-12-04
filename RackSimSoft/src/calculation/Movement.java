@@ -331,7 +331,7 @@ public class Movement
 		int zDistance = distance.getZDistance();
 		int uDistance = distance.getUDistance();
 		
-		System.out.println(direction + ": " + xDistance + "  " + yDistance + "  " + zDistance + "  " + uDistance);
+		System.out.println("Richtung und Distanzen: " + direction + ": " + xDistance + "  " + yDistance + "  " + zDistance + "  " + uDistance);
 		
 		if ((direction == null) || (direction.equals("")))
 		{
@@ -353,16 +353,16 @@ public class Movement
 				direction = direction.substring(0, 3) + "0";
 		}
 		
-		if ((direction.substring(0, 1).equals("1")) && (xDistance == 0))
+		if (direction.substring(0, 1).equals("1"))
 			time += getOneAxisTime(("X"));
 		
-		if ((direction.substring(1, 2).equals("1")) && (yDistance == 0))
+		if (direction.substring(1, 2).equals("1"))
 			time += getOneAxisTime(("Y"));
 		
-		if ((direction.substring(2, 3).equals("1")) && (zDistance == 0))
+		if (direction.substring(2, 3).equals("1"))
 			time += getOneAxisTime(("Z"));
 		
-		if ((direction.substring(3, 4).equals("1")) && (uDistance == 0))
+		if (direction.substring(3, 4).equals("1"))
 			time += getOneAxisTime(("U"));
 		
 				
@@ -392,28 +392,28 @@ public class Movement
 				v = this.rackFeeder.getXSpeed();
 				a = this.rackFeeder.getXAcceleration();
 				d = this.rackFeeder.getXDeceleration();
-				s = this.distance.getXDistance();
+				s = Math.abs(this.distance.getXDistance());
 				break;
 				
 			case "Y" :
 				v = this.rackFeeder.getYSpeed();
 				a = this.rackFeeder.getYAcceleration();
 				d = this.rackFeeder.getYDeceleration();
-				s = this.distance.getYDistance();
+				s = Math.abs(this.distance.getYDistance());
 				break;
 				
 			case "Z" :
 				v = this.rackFeeder.getZSpeed();
 				a = this.rackFeeder.getZAcceleration();
 				d = this.rackFeeder.getZDeceleration();
-				s = this.distance.getZDistance();
+				s = Math.abs(this.distance.getZDistance());
 				break;
 				
 			case "U" :
 				v = this.rackFeeder.getUSpeed();
 				a = this.rackFeeder.getUAcceleration();
 				d = this.rackFeeder.getUDeceleration();
-				s = this.distance.getUDistance();
+				s = Math.abs(this.distance.getUDistance());
 				break;
 		}
 		
@@ -429,8 +429,8 @@ public class Movement
         double sv = s - (sa + sd);
         // Zeit zum fahren mit max. Geschwindigkeit
         double tv = sv / v;
-        System.out.println("TEST TEST TEST:  " + tv);
-        // Prüfen, ob Weg überschritten wird, dann neue Werte berechnen
+        
+        // Pruefen, ob Weg ueberschritten wird, dann neue Werte berechnen
         if (tv < 0)
         {
         	// v neu berechnen
@@ -473,7 +473,8 @@ public class Movement
 		}
         
         int time = (int) (ta + tv + td);
-		
+		System.out.println("Beschleunigungs- / Fahr- / Bremszeit für " + axis + ": " + ta + "/" + tv + "/" + td);
+        
         return time;
 	}
 	
