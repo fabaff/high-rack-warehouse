@@ -10,17 +10,19 @@ import javax.swing.JPanel;
 
 class PhysicsGUI extends JPanel
 {
-    public void paintComponent(Graphics g)
+	private static final long serialVersionUID = 1L;
+
+	public void paintComponent(Graphics g)
     {
     	// Physikalische Werte
     	// Y-Achse
-    	double vY = 100;
-    	double aY = 10;
-    	double dY = -9;
+    	double vY = 10;
+    	double aY = 20;
+    	double dY = -0.01;
     	// Z-Achse
     	double vZ = 10;
-    	double aZ = 1;
-    	double dZ = -1;
+    	double aZ = 0.01;
+    	double dZ = -20;
     	
     	// Weg
     	double sY = 900;
@@ -92,14 +94,13 @@ class PhysicsGUI extends JPanel
         	tdY = Math.abs(vY / dY);
         	svY = sY - (saY + sdY);
         	tvY = svY / vY;
-        	
         }
         if (tvZ < 0)
         {
         	System.out.println("Fehler in Z, Geschwindigkeit zu hoch für die gegebene Distanz und die Beschleunigungen!");
         	// v neu berechnen
         	vZ = Math.sqrt((2 * sZ * aZ * Math.abs(dZ)) / (aZ + Math.abs(dZ)));
-        	
+        	System.out.println("Neues vZ: " + vZ);
         	// Alle Werte neu berechnen
         	saZ = Math.abs(Math.pow(vZ, 2) / (2 * aZ));
         	taZ = (vZ / aZ);

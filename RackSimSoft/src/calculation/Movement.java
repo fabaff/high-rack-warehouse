@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import location.RackFeeder;
 
-//import location.*;
 
 /**
  * The operating unit is moving inside the gap in the direction of the 
@@ -33,11 +32,13 @@ public class Movement
 	
 	/**
 	 * Calculates the time, which is needed to move the rack feeder the given distance in the chosen axes.
-	 * If the given String is null or empty, the time will be calculated for all axes with any difference in distance.
+	 * If the given String is null or empty, the time will be calculated for ALL axes with any difference in distance.
+	 * 
+	 * This function calculates the time for an linear movement without acceleration and deceleration
 	 * 
 	 * @return the time
 	 */
-	public int getTime(String direction)
+	public int getLinearTime(String direction)
 	{
 		int time = -1;
 		
@@ -160,28 +161,28 @@ public class Movement
 				break;
 				
 			case 1 :
-				time = getOneAxisTime(innerMovementList, 0);
+				time = getLinearOneAxisTime(innerMovementList, 0);
 				break;
 				
 			case 2 :
-				time = getTwoAxisTime(innerMovementList, 0, 1);
+				time = getLinearTwoAxisTime(innerMovementList, 0, 1);
 				break;
 				
 			case 3 :
 				// Calc each time for 2 axis. The speed will be changed for the faster axis, if time for both axis is different.
-				time = getTwoAxisTime(innerMovementList, 0, 1);  // Time after first 2 axis
-				time = getTwoAxisTime(innerMovementList, 0, 2);  // Time after second 2 axis
-				time = getTwoAxisTime(innerMovementList, 1, 2);  // Time after third 2 axis (final)
+				time = getLinearTwoAxisTime(innerMovementList, 0, 1);  // Time after first 2 axis
+				time = getLinearTwoAxisTime(innerMovementList, 0, 2);  // Time after second 2 axis
+				time = getLinearTwoAxisTime(innerMovementList, 1, 2);  // Time after third 2 axis (final)
 				break;
 				
 			case 4 :
 				// Calc each time for 2 axis. The speed will be changed for the faster axis, if time for both axis is different.
-				time = getTwoAxisTime(innerMovementList, 0, 1);  // Time after first 2 axis
-				time = getTwoAxisTime(innerMovementList, 0, 2);  // Time after second 2 axis
-				time = getTwoAxisTime(innerMovementList, 0, 3);  // Time after third 2 axis
-				time = getTwoAxisTime(innerMovementList, 1, 2);  // Time after fourth 2 axis
-				time = getTwoAxisTime(innerMovementList, 1, 3);  // Time after fifth 2 axis
-				time = getTwoAxisTime(innerMovementList, 2, 3);  // Time after sixth 2 axis (final)
+				time = getLinearTwoAxisTime(innerMovementList, 0, 1);  // Time after first 2 axis
+				time = getLinearTwoAxisTime(innerMovementList, 0, 2);  // Time after second 2 axis
+				time = getLinearTwoAxisTime(innerMovementList, 0, 3);  // Time after third 2 axis
+				time = getLinearTwoAxisTime(innerMovementList, 1, 2);  // Time after fourth 2 axis
+				time = getLinearTwoAxisTime(innerMovementList, 1, 3);  // Time after fifth 2 axis
+				time = getLinearTwoAxisTime(innerMovementList, 2, 3);  // Time after sixth 2 axis (final)
 				break;
 		}
 		
@@ -228,12 +229,10 @@ public class Movement
 	 * 
 	 * @return the time
 	 */
-	private int getTwoAxisTime(ArrayList<InnerMovement> innerMovementList, int which1, int which2)
+	private int getLinearTwoAxisTime(ArrayList<InnerMovement> innerMovementList, int which1, int which2)
 	{
-		// TODO	Beschleunigung und Negativbeschleunigung berücksichtigen!
-		
-		double time1 = getOneAxisTime(innerMovementList, which1);
-		double time2 = getOneAxisTime(innerMovementList, which2);
+		double time1 = getLinearOneAxisTime(innerMovementList, which1);
+		double time2 = getLinearOneAxisTime(innerMovementList, which2);
 		double time = time1;
 		
 		// If times are not equal, reduce speed of faster axis to prevent the same time for moving
@@ -248,17 +247,12 @@ public class Movement
 				factor = (time1 / time2);
 				innerMovement2.setSpeed(innerMovement2.speed / factor);
 				
-				// TODO	Beschleunigung und Negativbeschleunigung neu setzen!
-				
 				time = time1;
 			}
 			else
 			{
 				factor = (time2 / time1);
-				
 				innerMovement1.setSpeed(innerMovement1.speed / factor);
-				
-				// TODO	Beschleunigung und Negativbeschleunigung neu setzen!
 				
 				time = time2;
 			}
@@ -272,10 +266,8 @@ public class Movement
 	 * 
 	 * @return the time
 	 */
-	private int getOneAxisTime(ArrayList<InnerMovement> innerMovementList, int which)
+	private int getLinearOneAxisTime(ArrayList<InnerMovement> innerMovementList, int which)
 	{
-		// TODO	Beschleunigung und Negativbeschleunigung berücksichtigen!
-		
 		InnerMovement innerMovement = innerMovementList.get(which);
 		int time = (int) Math.abs(Math.round(innerMovement.distance / innerMovement.speed));
 		
@@ -318,6 +310,199 @@ public class Movement
 		// direction: "XYZU"
 		return direction;
 	}
+	
+	/**
+	 * Calculates the time, which is needed to move the rack feeder the given distance in the chosen axes.
+	 * If the given String is null or empty, the time will be calculated for ALL axes with any difference in distance.
+	 * 
+	 * This function calculates the time for the fastest movement, including acceleration and deceleration
+	 * 
+	 * This function prepares the given rack feeder for moving and sets the physical values to the maximum allowed.
+	 * 
+	 * @return the time
+	 */
+	public int prepareForMove(String direction)
+	{
+		int time = 0;
+		
+		// Check the directions
+		int xDistance = distance.getXDistance();
+		int yDistance = distance.getYDistance();
+		int zDistance = distance.getZDistance();
+		int uDistance = distance.getUDistance();
+		
+		System.out.println(direction + ": " + xDistance + "  " + yDistance + "  " + zDistance + "  " + uDistance);
+		
+		if ((direction == null) || (direction.equals("")))
+		{
+			direction = getDirectionString(xDistance, yDistance, zDistance, uDistance);
+		}
+		else
+		{
+			// Proof, if any distance is zero
+			if ((direction.substring(0, 1).equals("1")) && (xDistance == 0))
+				direction = "0" + direction.substring(1);
+			
+			if ((direction.substring(1, 2).equals("1")) && (yDistance == 0))
+				direction = direction.substring(0, 1) + "0" + direction.substring(2);
+			
+			if ((direction.substring(2, 3).equals("1")) && (zDistance == 0))
+				direction = direction.substring(0, 2) + "0" + direction.substring(3);
+			
+			if ((direction.substring(3, 4).equals("1")) && (uDistance == 0))
+				direction = direction.substring(0, 3) + "0";
+		}
+		
+		if ((direction.substring(0, 1).equals("1")) && (xDistance == 0))
+			time += getOneAxisTime(("X"));
+		
+		if ((direction.substring(1, 2).equals("1")) && (yDistance == 0))
+			time += getOneAxisTime(("Y"));
+		
+		if ((direction.substring(2, 3).equals("1")) && (zDistance == 0))
+			time += getOneAxisTime(("Z"));
+		
+		if ((direction.substring(3, 4).equals("1")) && (uDistance == 0))
+			time += getOneAxisTime(("U"));
+		
+				
+		return time;
+	}
+	
+	/**
+	 * Calculates the time, which is needed to move the rack feeder the given distance in 1 axis.
+	 * Maybe the values speed, acceleration, deceleration must be changed. Sets the new values to the rack feeder.
+	 * 
+	 * @return the time
+	 */
+	private int getOneAxisTime(String axis)
+	{
+		// Geschwindigkeit
+		double v = 0;
+		// Beschleunigung
+    	double a = 0;
+    	// Negativbeschleunigung
+    	double d = 0;
+    	// Weg
+    	double s = 0;
+		
+		switch (axis)
+		{
+			case "X" :
+				v = this.rackFeeder.getXSpeed();
+				a = this.rackFeeder.getXAcceleration();
+				d = this.rackFeeder.getXDeceleration();
+				s = this.distance.getXDistance();
+				break;
+				
+			case "Y" :
+				v = this.rackFeeder.getYSpeed();
+				a = this.rackFeeder.getYAcceleration();
+				d = this.rackFeeder.getYDeceleration();
+				s = this.distance.getYDistance();
+				break;
+				
+			case "Z" :
+				v = this.rackFeeder.getZSpeed();
+				a = this.rackFeeder.getZAcceleration();
+				d = this.rackFeeder.getZDeceleration();
+				s = this.distance.getZDistance();
+				break;
+				
+			case "U" :
+				v = this.rackFeeder.getUSpeed();
+				a = this.rackFeeder.getUAcceleration();
+				d = this.rackFeeder.getUDeceleration();
+				s = this.distance.getUDistance();
+				break;
+		}
+		
+		// Beschleunigungsweg
+		double sa = Math.abs(Math.pow(v, 2) / (2 * a));
+		// Beschleunigungszeit
+		double ta = (v / a);
+		// Bremsweg
+		double sd = Math.abs(Math.pow(v, 2) / (2 * d));
+		// Bremszeit
+		double td = Math.abs(v / d);
+		// Restweg zum fahren mit max. Geschwindigkeit
+        double sv = s - (sa + sd);
+        // Zeit zum fahren mit max. Geschwindigkeit
+        double tv = sv / v;
+        System.out.println("TEST TEST TEST:  " + tv);
+        // Prüfen, ob Weg überschritten wird, dann neue Werte berechnen
+        if (tv < 0)
+        {
+        	// v neu berechnen
+        	v = Math.sqrt((2 * s * a * Math.abs(d)) / (a + Math.abs(d)));
+        	// Alle anderen Werte neu berechnen
+        	sa = Math.abs(Math.pow(v, 2) / (2 * a));
+        	ta = (v / a);
+        	sd = Math.abs(Math.pow(v, 2) / (2 * d));
+        	td = Math.abs(v / d);
+        	sv = s - (sa + sd);
+        	tv = sv / v;
+        }
+        
+        // Werte auf RBG neu setzen
+        switch (axis)
+		{
+			case "X" :
+				this.rackFeeder.setXSpeed(v);
+				this.rackFeeder.setXAcceleration(a);
+				this.rackFeeder.setXDeceleration(d);
+				break;
+				
+			case "Y" :
+				this.rackFeeder.setYSpeed(v);
+				this.rackFeeder.setYAcceleration(a);
+				this.rackFeeder.setYDeceleration(d);
+				break;
+				
+			case "Z" :
+				this.rackFeeder.setZSpeed(v);
+				this.rackFeeder.setZAcceleration(a);
+				this.rackFeeder.setZDeceleration(d);
+				break;
+				
+			case "U" :
+				this.rackFeeder.setUSpeed(v);
+				this.rackFeeder.setUAcceleration(a);
+				this.rackFeeder.setUDeceleration(d);
+				break;
+		}
+        
+        int time = (int) (ta + tv + td);
+		
+        return time;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	// TODO cTime ist nur als Test gedacht. Die Zeiten muessen den Events
 	// zugeordnet sein und koennen nicht den gesamten Vorgang abdecken.

@@ -175,7 +175,7 @@ public class CreateLocation
 		// Creates gaps
 		for (int i = 0; i < gapCount; i++)
 		{
-			Gap gap = new Gap("" + i, width, (i * 2 * depth) + depth + (i * width));  // id, X-coordinate
+			Gap gap = new Gap("" + i, width, (i * 2 * depth) + depth + (i * width));  // id, width, X-coordinate
 		
 			// Creates grids
 			for (int j = 0; j < 2; j++)
@@ -489,7 +489,8 @@ public class CreateLocation
 		System.out.println("Bin " + bin.getBinID());
 		System.out.println("Direction: " + direction);
 		System.out.println("Strecke: " + distance.getDistanceLength(direction));
-		System.out.println("Zeit: " + movement.getTime(direction));
+		System.out.println("Zeit (linear): " + movement.getLinearTime(direction));
+		System.out.println("Zeit (in echt): " + movement.prepareForMove(direction));
 		// Die Bechleunigungen und Geschwindigkeiten wieder reseten, da diese in der Funktion geaendert wurden
 		rackFeeder.setMax();
 		System.out.println();
@@ -499,7 +500,8 @@ public class CreateLocation
 		System.out.println("Bin " + bin.getBinID());
 		System.out.println("Direction: " + direction);
 		System.out.println("Strecke: " + distance.getDistanceLength(direction));
-		System.out.println("Zeit: " + movement.getTime(direction));
+		System.out.println("Zeit (linear): " + movement.getLinearTime(direction));
+		System.out.println("Zeit (in echt): " + movement.prepareForMove(direction));
 		// Die Bechleunigungen und Geschwindigkeiten wieder reseten, da diese in der Funktion geaendert wurden
 		rackFeeder.setMax();
 		System.out.println();
@@ -509,7 +511,8 @@ public class CreateLocation
 		System.out.println("Bin " + bin.getBinID());
 		System.out.println("Direction: " + direction);
 		System.out.println("Strecke: " + distance.getDistanceLength(direction));
-		System.out.println("Zeit: " + movement.getTime(direction));
+		System.out.println("Zeit (linear): " + movement.getLinearTime(direction));
+		System.out.println("Zeit (in echt): " + movement.prepareForMove(direction));
 		// Die Bechleunigungen und Geschwindigkeiten wieder reseten, da diese in der Funktion geaendert wurden
 		rackFeeder.setMax();
 		System.out.println();
@@ -519,7 +522,8 @@ public class CreateLocation
 		System.out.println("Bin " + bin.getBinID());
 		System.out.println("Direction: " + direction);
 		System.out.println("Strecke: " + distance.getDistanceLength(direction));
-		System.out.println("Zeit: " + movement.getTime(direction));
+		System.out.println("Zeit (linear): " + movement.getLinearTime(direction));
+		System.out.println("Zeit (in echt): " + movement.prepareForMove(direction));
 		// Die Bechleunigungen und Geschwindigkeiten wieder reseten, da diese in der Funktion geaendert wurden
 		rackFeeder.setMax();
 		System.out.println();
@@ -558,7 +562,8 @@ public class CreateLocation
 		movement = new Movement(distance, rackFeeder);
 		direction = "0110";
 		System.out.println("Distanz (mm): " + distance.getDistanceLength(direction));
-		System.out.println("Zeit (ms): " + movement.getTime(direction));
+		System.out.println("Zeit linear (ms): " + movement.getLinearTime(direction));
+		System.out.println("Zeit in echt (ms): " + movement.prepareForMove(direction));
 		System.out.println("Geschwindigkeiten (mm/ms) in X/Y/Z/U: " + rackFeeder.getXSpeed() + "/" + rackFeeder.getYSpeed() + "/" + rackFeeder.getZSpeed() + "/" + rackFeeder.getUSpeed());
 		// Fahren
 		rackFeeder.moveYZ(bin.getY(), bin.getZ());
@@ -572,7 +577,8 @@ public class CreateLocation
 		movement = new Movement(distance, rackFeeder);
 		direction = "0001";
 		System.out.println("Distanz (mm): " + distance.getDistanceLength(direction));
-		System.out.println("Zeit (ms): " + movement.getTime(direction));
+		System.out.println("Zeit linear (ms): " + movement.getLinearTime(direction));
+		System.out.println("Zeit in echt (ms): " + movement.prepareForMove(direction));
 		System.out.println("Geschwindigkeiten (mm/ms) in X/Y/Z/U: " + rackFeeder.getXSpeed() + "/" + rackFeeder.getYSpeed() + "/" + rackFeeder.getZSpeed() + "/" + rackFeeder.getUSpeed());
 		// Fahren
 		rackFeeder.moveU(bin.getU());
@@ -607,7 +613,8 @@ public class CreateLocation
 		movement = new Movement(distance, rackFeeder);
 		direction = "0001";
 		System.out.println("Distanz (mm): " + distance.getDistanceLength(direction));
-		System.out.println("Zeit (ms): " + movement.getTime(direction));
+		System.out.println("Zeit linear (ms): " + movement.getLinearTime(direction));
+		System.out.println("Zeit in echt (ms): " + movement.prepareForMove(direction));
 		System.out.println("Geschwindigkeiten (mm/ms) in X/Y/Z/U: " + rackFeeder.getXSpeed() + "/" + rackFeeder.getYSpeed() + "/" + rackFeeder.getZSpeed() + "/" + rackFeeder.getUSpeed());
 		// Fahren
 		rackFeeder.moveU(coordinate.getU());
@@ -622,7 +629,8 @@ public class CreateLocation
 		movement = new Movement(distance, rackFeeder);
 		direction = "0110";
 		System.out.println("Distanz (mm): " + distance.getDistanceLength(direction));
-		System.out.println("Zeit (ms): " + movement.getTime(direction));
+		System.out.println("Zeit linear (ms): " + movement.getLinearTime(direction));
+		System.out.println("Zeit in echt (ms): " + movement.prepareForMove(direction));
 		System.out.println("Geschwindigkeiten (mm/ms) in X/Y/Z/U: " + rackFeeder.getXSpeed() + "/" + rackFeeder.getYSpeed() + "/" + rackFeeder.getZSpeed() + "/" + rackFeeder.getUSpeed());
 		// Fahren
 		rackFeeder.moveYZ(coordinate.getY(), coordinate.getZ());
