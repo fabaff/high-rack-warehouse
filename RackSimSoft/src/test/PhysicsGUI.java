@@ -55,7 +55,7 @@ class PhysicsGUI extends JPanel
         int mz = 0;
         int r = 2;
         
-        // Werte berechnen für jede Achse
+        // Werte berechnen fuer jede Achse
         // Beschleunigungsweg
         double saY = Math.abs(Math.pow(vY, 2) / (2 * aY));
         double saZ = Math.abs(Math.pow(vZ, 2) / (2 * aZ));
@@ -80,10 +80,10 @@ class PhysicsGUI extends JPanel
         double tvY = svY / vY;
         double tvZ = svZ / vZ;
         
-        // Prüfen, ob Weg überschritten wird
+        // Pruefen, ob Weg ueberschritten wird
         if (tvY < 0)
         {
-        	System.out.println("Fehler in Y, Geschwindigkeit zu hoch für die gegebene Distanz und die Beschleunigungen!");
+        	System.out.println("Fehler in Y, Geschwindigkeit zu hoch fuer die gegebene Distanz und die Beschleunigungen!");
         	// v neu berechnen
         	vY = Math.sqrt((2 * sY * aY * Math.abs(dY)) / (aY + Math.abs(dY)));
         	System.out.println("Neues vY: " + vY);
@@ -97,7 +97,7 @@ class PhysicsGUI extends JPanel
         }
         if (tvZ < 0)
         {
-        	System.out.println("Fehler in Z, Geschwindigkeit zu hoch für die gegebene Distanz und die Beschleunigungen!");
+        	System.out.println("Fehler in Z, Geschwindigkeit zu hoch fuer die gegebene Distanz und die Beschleunigungen!");
         	// v neu berechnen
         	vZ = Math.sqrt((2 * sZ * aZ * Math.abs(dZ)) / (aZ + Math.abs(dZ)));
         	System.out.println("Neues vZ: " + vZ);

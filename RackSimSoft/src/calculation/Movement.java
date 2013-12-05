@@ -518,7 +518,7 @@ public class Movement
         	tv = sv / v;
         }
         
-        // Werte auf RBG neu setzen und hier speichern, damit Koordinate nach Zeit berechnet werden kann (z.B. für Grafik)
+        // Werte auf RBG neu setzen und hier speichern, damit Koordinate nach Zeit berechnet werden kann (z.B. fuer Grafik)
         switch (axis)
 		{
 			case "X" :
@@ -587,7 +587,7 @@ public class Movement
 		}
         
         int time = (int) (ta + tv + td);
-		System.out.println("Beschleunigungs- / Fahr- / Bremszeit für " + axis + ": " + ta + "/" + tv + "/" + td);
+		System.out.println("Beschleunigungs- / Fahr- / Bremszeit fuer " + axis + ": " + ta + "/" + tv + "/" + td);
         
         return time;
 	}
