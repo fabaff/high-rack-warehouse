@@ -17,12 +17,12 @@ class PhysicsGUI extends JPanel
     	// Physikalische Werte
     	// Y-Achse
     	double vY = 10;
-    	double aY = 20;
-    	double dY = -0.01;
+    	double aY = 200;
+    	double dY = -0.1;
     	// Z-Achse
     	double vZ = 10;
-    	double aZ = 0.01;
-    	double dZ = -20;
+    	double aZ = 0.1;
+    	double dZ = -200;
     	
     	// Weg
     	double sY = 900;
@@ -148,14 +148,14 @@ class PhysicsGUI extends JPanel
         {
         	// Beschleunigen
         	// -------------
-        	// Nur ändern, wenn Y noch beschleunigt wird
+        	// Nur aendern, wenn Y noch beschleunigt wird
         	if (t <= taY)
         	{
         		current_sY = Math.round(Math.abs(0.5 * aY * Math.pow(t, 2)));
         		//System.out.println("Y beschleunigt bei i: " + t);
         	}
         	
-        	// Nur ändern, wenn Z noch beschleunigt wird
+        	// Nur aendern, wenn Z noch beschleunigt wird
         	if (t <= taZ)
         	{
         		current_sZ = Math.round(Math.abs(0.5 * aZ * Math.pow(t, 2)));
@@ -166,14 +166,14 @@ class PhysicsGUI extends JPanel
         	
         	// Fahren
         	// ------
-        	// Nur ändern, wenn Y schon / noch fahren muss
+        	// Nur aendern, wenn Y schon / noch fahren muss
         	if ((t <= (int) (taY + tvY)) && (t > taY))
         	{
         		current_sY = saY + (vY * (t - taY));
         		//System.out.println("Y faehrt bei i: " + t);
         	}
         	
-        	// Nur ändern, wenn Z schon / noch fahren muss
+        	// Nur aendern, wenn Z schon / noch fahren muss
         	if ((t <= (int) (taZ + tvZ)) && (t > taZ))
         	{
         		current_sZ = saZ + (vZ * (t - taZ));
@@ -184,13 +184,13 @@ class PhysicsGUI extends JPanel
         	
         	// Bremsen
         	// -------
-        	// Nur ändern, wenn Y noch gebremst wird
+        	// Nur aendern, wenn Y noch gebremst wird
         	if ((t <= (int) (taY + tvY + tdY)) && (t > (int) (taY + tvY)))
         	{
         		current_sY = saY + svY + ((vY * (t - taY - tvY)) + (0.5 * dY * Math.pow((t - taY - tvY), 2)));
         	}
         	
-        	// Nur ändern, wenn Z noch gebremst wird
+        	// Nur aendern, wenn Z noch gebremst wird
         	if ((t <= (int) (taZ + tvZ + tdZ)) && (t > (int) (taZ + tvZ)))
         	{
         		current_sZ = saZ + svZ + ((vZ * (t - taZ - tvZ)) + (0.5 * dZ * Math.pow((t - taZ - tvZ), 2)));

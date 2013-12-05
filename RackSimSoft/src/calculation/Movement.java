@@ -6,7 +6,7 @@ import location.RackFeeder;
 
 
 /**
- * The operating unit is moving inside the gap in the direction of the 
+ * The rack feeder is moving inside the gap in the direction of the 
  * y axis and its beam is only able to move in the direction of the z axis.
  * The super position of both moving vectors let the operating unit move
  * inclined in side the yz area of the grid.
@@ -16,6 +16,36 @@ public class Movement
 {
 	private Distance distance;
 	private RackFeeder rackFeeder;
+	
+	// Beschleunigung
+	private double xAccelerationTime = 0;
+	private double yAccelerationTime = 0;
+	private double zAccelerationTime = 0;
+	private double uAccelerationTime = 0;
+	private double xAccelerationDistance = 0;
+	private double yAccelerationDistance = 0;
+	private double zAccelerationDistance = 0;
+	private double uAccelerationDistance = 0;
+	
+	// Fahren mit vMax
+	private double xMovingTime = 0;
+	private double yMovingTime = 0;
+	private double zMovingTime = 0;
+	private double uMovingTime = 0;
+	private double xMovingDistance = 0;
+	private double yMovingDistance = 0;
+	private double zMovingDistance = 0;
+	private double uMovingDistance = 0;
+	
+	// Bremsen
+	private double xDecelerationTime = 0;
+	private double yDecelerationTime = 0;
+	private double zDecelerationTime = 0;
+	private double uDecelerationTime = 0;
+	private double xDecelerationDistance = 0;
+	private double yDecelerationDistance = 0;
+	private double zDecelerationDistance = 0;
+	private double uDecelerationDistance = 0;
 	
 	/**
 	 * Creates a Movement.
@@ -312,18 +342,45 @@ public class Movement
 	}
 	
 	/**
-	 * Calculates the time, which is needed to move the rack feeder the given distance in the chosen axes.
-	 * If the given String is null or empty, the time will be calculated for ALL axes with any difference in distance.
-	 * 
-	 * This function calculates the time for the fastest movement, including acceleration and deceleration
-	 * 
-	 * This function prepares the given rack feeder for moving and sets the physical values to the maximum allowed.
+	 * Prepares the rack feeder to move the given distance in the chosen axes.
+	 * Calculates the maximum values for acceleration, speed and deceleration.
+	 * If the given String is null or empty, the values will be calculated for ALL axes with any difference in distance.
+	 * Returns the total time needed to move over all axes.
 	 * 
 	 * @return the time
 	 */
 	public int prepareForMove(String direction)
 	{
-		int time = 0;
+		// Werte zuruecksetzen
+		this.xAccelerationTime = 0;
+		this.yAccelerationTime = 0;
+		this.zAccelerationTime = 0;
+		this.uAccelerationTime = 0;
+		this.xAccelerationDistance = 0;
+		this.yAccelerationDistance = 0;
+		this.zAccelerationDistance = 0;
+		this.uAccelerationDistance = 0;
+		
+        this.xMovingTime = 0;
+        this.yMovingTime = 0;
+        this.zMovingTime = 0;
+        this.uMovingTime = 0;
+        this.xMovingDistance = 0;
+        this.yMovingDistance = 0;
+        this.zMovingDistance = 0;
+        this.uMovingDistance = 0;
+        
+        this.xDecelerationTime = 0;
+        this.yDecelerationTime = 0;
+        this.zDecelerationTime = 0;
+        this.uDecelerationTime = 0;
+        this.xDecelerationDistance = 0;
+		this.yDecelerationDistance = 0;
+		this.zDecelerationDistance = 0;
+		this.uDecelerationDistance = 0;
+        
+		int totalTime = 0;
+		int axisTime = 0;
 		
 		// Check the directions
 		int xDistance = distance.getXDistance();
@@ -353,20 +410,37 @@ public class Movement
 				direction = direction.substring(0, 3) + "0";
 		}
 		
+		// Calculate time for move and set the physical values to the maximum allowed
 		if (direction.substring(0, 1).equals("1"))
-			time += getOneAxisTime(("X"));
+		{
+			axisTime = getOneAxisTime("X");
+			if (totalTime < axisTime)
+				totalTime = axisTime;
+		}
+			
 		
 		if (direction.substring(1, 2).equals("1"))
-			time += getOneAxisTime(("Y"));
+		{
+			axisTime = getOneAxisTime("Y");
+			if (totalTime < axisTime)
+				totalTime = axisTime;
+		}
 		
 		if (direction.substring(2, 3).equals("1"))
-			time += getOneAxisTime(("Z"));
+		{
+			axisTime = getOneAxisTime("Z");
+			if (totalTime < axisTime)
+				totalTime = axisTime;
+		}
 		
 		if (direction.substring(3, 4).equals("1"))
-			time += getOneAxisTime(("U"));
+		{
+			axisTime = getOneAxisTime("U");
+			if (totalTime < axisTime)
+				totalTime = axisTime;
+		}
 		
-				
-		return time;
+		return totalTime;
 	}
 	
 	/**
@@ -444,31 +518,71 @@ public class Movement
         	tv = sv / v;
         }
         
-        // Werte auf RBG neu setzen
+        // Werte auf RBG neu setzen und hier speichern, damit Koordinate nach Zeit berechnet werden kann (z.B. für Grafik)
         switch (axis)
 		{
 			case "X" :
+				// RackFeeder
 				this.rackFeeder.setXSpeed(v);
 				this.rackFeeder.setXAcceleration(a);
 				this.rackFeeder.setXDeceleration(d);
+				
+				// Movement
+				this.xAccelerationTime = ta;
+				this.xAccelerationDistance = sa;
+				this.xMovingTime = tv;
+				this.xMovingDistance = sv;
+				this.xDecelerationTime = td;
+				this.xDecelerationDistance = sd;
+				
 				break;
 				
 			case "Y" :
+				// RackFeeder
 				this.rackFeeder.setYSpeed(v);
 				this.rackFeeder.setYAcceleration(a);
 				this.rackFeeder.setYDeceleration(d);
+				
+				// Movement
+				this.yAccelerationTime = ta;
+				this.yAccelerationDistance = sa;
+				this.yMovingTime = tv;
+				this.yMovingDistance = sv;
+				this.yDecelerationTime = td;
+				this.yDecelerationDistance = sd;
+				
 				break;
 				
 			case "Z" :
+				// RackFeeder
 				this.rackFeeder.setZSpeed(v);
 				this.rackFeeder.setZAcceleration(a);
 				this.rackFeeder.setZDeceleration(d);
+				
+				// Movement
+				this.zAccelerationTime = ta;
+				this.zAccelerationDistance = sa;
+				this.zMovingTime = tv;
+				this.zMovingDistance = sv;
+				this.zDecelerationTime = td;
+				this.zDecelerationDistance = sd;
+				
 				break;
 				
 			case "U" :
+				// RackFeeder
 				this.rackFeeder.setUSpeed(v);
 				this.rackFeeder.setUAcceleration(a);
 				this.rackFeeder.setUDeceleration(d);
+				
+				// Movement
+				this.uAccelerationTime = ta;
+				this.uAccelerationDistance = sa;
+				this.uMovingTime = tv;
+				this.uMovingDistance = sv;
+				this.uDecelerationTime = td;
+				this.uDecelerationDistance = sd;
+				
 				break;
 		}
         
@@ -479,142 +593,102 @@ public class Movement
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	// TODO cTime ist nur als Test gedacht. Die Zeiten muessen den Events
-	// zugeordnet sein und koennen nicht den gesamten Vorgang abdecken.
 	/**
-	 * Time for a complete loading cycle (from the loading zone to the bin)
-	 * and back to standby location.
 	 * 
-	 * @return the time consumption for a complete loading cycle
+	 * 
+	 * @return the coordinate
 	 */
-	/*
-	public double cTime(Location location, String binID1, String binID2)
+	public Coordinate getCurrentCoordinate(int time)
 	{
-		Distance distance = new Distance();
+		double currentX = this.rackFeeder.getX();
+		double currentY = this.rackFeeder.getY();
+    	double currentZ = this.rackFeeder.getZ();
+    	double currentU = this.rackFeeder.getU();
+    	
+		// Beschleunigen
+    	// -------------
+    	// Nur aendern, wenn X noch beschleunigt wird
+    	if (time <= this.xAccelerationTime)
+    	{
+    		currentX = Math.round(Math.abs(0.5 * this.rackFeeder.getXAcceleration() * Math.pow(time, 2)));
+    	}
+    	
+    	// Nur aendern, wenn Y noch beschleunigt wird
+    	if (time <= this.yAccelerationTime)
+    	{
+    		currentY = Math.round(Math.abs(0.5 * this.rackFeeder.getYAcceleration() * Math.pow(time, 2)));
+    	}
+    	
+    	// Nur aendern, wenn Z noch beschleunigt wird
+    	if (time <= this.zAccelerationTime)
+    	{
+    		currentZ = Math.round(Math.abs(0.5 * this.rackFeeder.getZAcceleration() * Math.pow(time, 2)));
+    	}
+    	
+    	// Nur aendern, wenn U noch beschleunigt wird
+    	if (time <= this.uAccelerationTime)
+    	{
+    		currentU = Math.round(Math.abs(0.5 * this.rackFeeder.getUAcceleration() * Math.pow(time, 2)));
+    	}
+    	// +++++++++++++
+    	
+    	
+    	// Fahren
+    	// ------
+    	// Nur aendern, wenn X schon / noch fahren muss
+    	if ((time <= (int) (this.xAccelerationTime + this.xMovingTime)) && (time > this.xAccelerationTime))
+    	{
+    		currentX = this.xAccelerationDistance + (this.rackFeeder.getXSpeed() * (time - this.xAccelerationTime));
+    	}
+    	
+    	// Nur aendern, wenn Y schon / noch fahren muss
+    	if ((time <= (int) (this.yAccelerationTime + this.yMovingTime)) && (time > this.yAccelerationTime))
+    	{
+    		currentY = this.yAccelerationDistance + (this.rackFeeder.getYSpeed() * (time - this.yAccelerationTime));
+    	}
+    	
+    	// Nur aendern, wenn Z schon / noch fahren muss
+    	if ((time <= (int) (this.zAccelerationTime + this.zMovingTime)) && (time > this.zAccelerationTime))
+    	{
+    		currentZ = this.zAccelerationDistance + (this.rackFeeder.getZSpeed() * (time - this.zAccelerationTime));
+    	}
+    	
+    	// Nur aendern, wenn U schon / noch fahren muss
+    	if ((time <= (int) (this.uAccelerationTime + this.uMovingTime)) && (time > this.uAccelerationTime))
+    	{
+    		currentU = this.uAccelerationDistance + (this.rackFeeder.getUSpeed() * (time - this.uAccelerationTime));
+    	}
+    	// ++++++
+    	
+    	
+    	// Bremsen
+    	// -------
+    	// Nur aendern, wenn X noch gebremst wird
+    	if ((time <= (int) (this.xAccelerationTime + this.xMovingTime + this.xDecelerationTime)) && (time > (int) (this.xAccelerationTime + this.xMovingTime)))
+    	{
+    		currentX = this.xAccelerationDistance + this.xMovingDistance + ((this.rackFeeder.getXSpeed() * (time - this.xAccelerationTime - this.xMovingTime)) + (0.5 * this.rackFeeder.getXDeceleration() * Math.pow((time - this.xAccelerationTime - this.xMovingTime), 2)));
+    	}
+    	
+    	// Nur aendern, wenn Y noch gebremst wird
+    	if ((time <= (int) (this.yAccelerationTime + this.yMovingTime + this.yDecelerationTime)) && (time > (int) (this.yAccelerationTime + this.yMovingTime)))
+    	{
+    		currentY = this.yAccelerationDistance + this.yMovingDistance + ((this.rackFeeder.getYSpeed() * (time - this.yAccelerationTime - this.yMovingTime)) + (0.5 * this.rackFeeder.getYDeceleration() * Math.pow((time - this.yAccelerationTime - this.yMovingTime), 2)));
+    	}
+    	
+    	// Nur aendern, wenn Z noch gebremst wird
+    	if ((time <= (int) (this.zAccelerationTime + this.zMovingTime + this.zDecelerationTime)) && (time > (int) (this.zAccelerationTime + this.zMovingTime)))
+    	{
+    		currentZ = this.zAccelerationDistance + this.zMovingDistance + ((this.rackFeeder.getZSpeed() * (time - this.zAccelerationTime - this.zMovingTime)) + (0.5 * this.rackFeeder.getZDeceleration() * Math.pow((time - this.zAccelerationTime - this.zMovingTime), 2)));
+    	}
 		
-		double xDistance = distance.getxDistance();
-		double lDistance = distance.getlDistance();
-		
-		// Loading time
-		double ptime = pTime(lSpeed, lDistance);
-		// Traveling time
-		double mtime = mTime(location, binID1, binID2);
-		// Placing time
-		double xtime = xTime(xSpeed, xDistance);
-		
-		double cTime = ptime + mtime + xtime + mtime;
-		return cTime;	
+    	// Nur aendern, wenn U noch gebremst wird
+    	if ((time <= (int) (this.uAccelerationTime + this.uMovingTime + this.uDecelerationTime)) && (time > (int) (this.uAccelerationTime + this.uMovingTime)))
+    	{
+    		currentU = this.uAccelerationDistance + this.uMovingDistance + ((this.rackFeeder.getUSpeed() * (time - this.uAccelerationTime - this.uMovingTime)) + (0.5 * this.rackFeeder.getUDeceleration() * Math.pow((time - this.uAccelerationTime - this.uMovingTime), 2)));
+    	}
+    	
+		return new Coordinate((int) currentX, (int) currentY, (int) currentZ, (int) currentU);
 	}
-	*/
-	
-	/**
-	 * Calculates the moving time between two given positions inside the grid.
-	 * 
-	 * @param ySpeed 		
-	 * @param zSpeed 		
-	 * @param acceleration 	
-	 * @param deceleration	
-	 */
-	/*
-	public double mTime(Location location, String binID1, String binID2)
-	{
-		Distance distance = new Distance();
-
-		double track = distance.getMDistance(location, binID1, binID2);
-		
-		double aTime = aTime(ySpeed, acceleration);
-		double dTime = dTime(ySpeed, deceleration);
-		double lTime = lTime(ySpeed, zSpeed, track/1000);
-		double tTime = aTime + lTime + dTime;	
-		return tTime;
-	}
-	*/
-	
-	/**
-	 * Calculates the time which is needed for the acceleration.
-	 * 
-	 * @param ySpeed2 		
-	 * @param acceleration	
-	 */
-	/*
-	private double aTime(double ySpeed, double acceleration)
-	{
-		double aTime = ySpeed / acceleration;
-		return aTime;	
-	}
-	*/
-	
-	/**
-	 * Calculates the time which is needed for the deceleration.
-	 * 
-	 * @param ySpeed 		
-	 * @param deceleration	
-	 */
-	/*
-	private double dTime(double ySpeed, double deceleration)
-	{
-		double dTime = ySpeed / deceleration;
-		return dTime;	
-	}
-	*/
-	
-	/**
-	 * Calculates the time for loading the good on the operating unit beam.
-	 * 
-	 * @param xSpeed   the traveling speed for the loading process	
-	 * @param distance the distance from the bin to the beam (middle of the gap)
-	 * 
-	 * @return the time for picking or unloading goods in bins
-	 */
-	/*
-	public double xTime(double xSpeed, double distance)
-	{
-		double xTime = distance / xSpeed;
-		return xTime;
-	}
-	*/
-	
-	/**
-	 * Operating time in the interface area to the loading zone.
-	 * 
-	 * @param Speed   the traveling speed for the loading process	
-	 * @param distance the y distance from the beam to the interface area
-	 * 
-	 * @return the needed time for operating in the loading zone
-	 */
-	/*
-	public double pTime(double lSpeed, double distance)
-	{
-		double pTime = distance / lSpeed;
-		return pTime;
-	}
-	*/
 	
 	/**
 	 * @author mschaerer
