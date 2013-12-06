@@ -1,6 +1,7 @@
 package helper;
 
 import item.Item;
+import item.ItemAllocation;
 
 import java.io.IOException;
 import java.nio.charset.Charset;

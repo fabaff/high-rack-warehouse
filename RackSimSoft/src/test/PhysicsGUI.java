@@ -16,16 +16,16 @@ class PhysicsGUI extends JPanel
     {
     	// Physikalische Werte
     	// Y-Achse
-    	double vY = 10;
-    	double aY = 200;
-    	double dY = -0.1;
+    	double vY = 50;
+    	double aY = 1;
+    	double dY = -0.5;
     	// Z-Achse
-    	double vZ = 10;
-    	double aZ = 0.1;
-    	double dZ = -200;
+    	double vZ = 50;
+    	double aZ = 5;
+    	double dZ = -0.3;
     	
     	// Weg
-    	double sY = 900;
+    	double sY = 1400;
     	double sZ = 900;
     	
     	// FAKTOR
