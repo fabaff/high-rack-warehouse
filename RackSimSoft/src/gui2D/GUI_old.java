@@ -19,7 +19,7 @@ import location.Gap;
 import location.Grid;
 import location.Location;
 
-public class GUI {
+public class GUI_old {
 	
 	
 	/**

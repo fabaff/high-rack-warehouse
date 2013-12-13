@@ -20,12 +20,13 @@ public class GUI {
 	{
 		double guiCoordinateFactor = 0.08;
 		
-		MainFrame panel;
 		
+		
+		MainFrame panel;
 		
 	        panel = new MainFrame();
 	      
-
+	       
 	    
 		
 	}
