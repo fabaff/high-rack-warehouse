@@ -2,7 +2,7 @@ Zustände
 ========
 
 Im Verhalten "Einlagern"
--------
+------------------------
 1.1 RBG auf 0/0 leer
 2 RBG auf 0/0 beladen
 3 RBG auf Y/Z beladen
@@ -12,7 +12,7 @@ Im Verhalten "Einlagern"
 1.2 RBG auf 0/0 leer
 
 Im Verhalten "Auslagern"
---------
+------------------------
 1.1 RBG auf 0/0 leer
 6 RBG auf Y/Z leer
 5 RBG auf X leer
@@ -27,7 +27,7 @@ Nachfolgendens Entladen
 -> dann in normalen Entlade-Zuklus
 
 Im Verhalten "Umlagern"
---------
+-----------------------
 6 RBG auf Y/Z leer
 5 RBG auf X leer
 4 RBG auf X beladen
