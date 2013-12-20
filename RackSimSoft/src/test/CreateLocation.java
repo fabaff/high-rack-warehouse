@@ -90,8 +90,10 @@ public class CreateLocation
 		System.out.println();
 		printCycle(myLocation, "0", "0-1-1-1-1");  // Location, GapID, BinID
 		
+		
 		// Creates GUI
 		GUI.createAndShowGui(myLocation);
+
 	}
 	
 	/**
@@ -198,6 +200,7 @@ public class CreateLocation
 				Grid grid = new Grid("" + gridID, gap, j % 2, columnArray, rowArray, depth);
 				gap.addGrid(grid);
 				gridID ++;
+			
 			}
 			
 			// Assign gap (with assigned grids) to the location

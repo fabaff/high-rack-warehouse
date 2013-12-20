@@ -31,35 +31,24 @@ public class MainFrame
 {
 	final int HEIGHT = 780;
 	final int WIDTH = 1020;
-	final String TITLE = "RackSimSoft";
+	
 	
 	
 	/**
 	 * Creates a Window in which the Location can be shown.
 	 * 
 	 */
-	public MainFrame(Location myLocation)
+	public MainFrame()
 	{
 		
-	    JFrame guiFrame = new JFrame();
 	    
-	    JPanel panel = new JPanel();
-	    
-	    DrawMain mainwindow = new DrawMain(null);
-	    
-		guiFrame.setPreferredSize(new Dimension(WIDTH,HEIGHT));
-		guiFrame.setMinimumSize(new Dimension(WIDTH,HEIGHT));
-	    guiFrame.setSize(WIDTH, HEIGHT);
-	    guiFrame.setTitle(TITLE);
-	    guiFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
-        guiFrame.setLocationRelativeTo(null);
         
         
 		panel.setPreferredSize(new Dimension(WIDTH-10,HEIGHT-10));
 		panel.setMinimumSize(new Dimension(WIDTH-10,HEIGHT-10));
 	    panel.setSize(WIDTH-10, HEIGHT-10);
         panel.setVisible(true);
-        panel.add(mainwindow);
+
                 
         //guiFrame.getContentPane().add(panel);
         guiFrame.setVisible(true);
