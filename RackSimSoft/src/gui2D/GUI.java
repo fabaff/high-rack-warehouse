@@ -24,7 +24,7 @@ public class GUI {
 		
 		MainFrame panel;
 		
-	        panel = new MainFrame();
+	        panel = new MainFrame(myLocation);
 	      
 	       
 	    

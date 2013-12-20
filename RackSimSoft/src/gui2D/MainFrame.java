@@ -9,6 +9,7 @@ import location.Location;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -37,41 +38,47 @@ public class MainFrame
 	 * Creates a Window in which the Location can be shown.
 	 * 
 	 */
-	public MainFrame()
+	public MainFrame(Location myLocation)
 	{
 		
-	    JFrame frame = new JFrame();
+	    JFrame guiFrame = new JFrame();
 	    
-//	    JPanel panel = new JPanel();
+	    JPanel panel = new JPanel();
 	    
-		frame.setPreferredSize(new Dimension(WIDTH,HEIGHT));
-		frame.setMinimumSize(new Dimension(WIDTH,HEIGHT));
-	    frame.setSize(WIDTH, HEIGHT);
-	    frame.setTitle(TITLE);
-	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
+	    DrawMain mainwindow = new DrawMain(null);
+	    
+		guiFrame.setPreferredSize(new Dimension(WIDTH,HEIGHT));
+		guiFrame.setMinimumSize(new Dimension(WIDTH,HEIGHT));
+	    guiFrame.setSize(WIDTH, HEIGHT);
+	    guiFrame.setTitle(TITLE);
+	    guiFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+        guiFrame.setLocationRelativeTo(null);
         
         
-		
+		panel.setPreferredSize(new Dimension(WIDTH-10,HEIGHT-10));
+		panel.setMinimumSize(new Dimension(WIDTH-10,HEIGHT-10));
+	    panel.setSize(WIDTH-10, HEIGHT-10);
+        panel.setVisible(true);
+        panel.add(mainwindow);
+                
+        //guiFrame.getContentPane().add(panel);
+        guiFrame.setVisible(true);
+        guiFrame.add(panel);
         
-//		panel.setPreferredSize(new Dimension(WIDTH,HEIGHT));
-//		panel.setMinimumSize(new Dimension(WIDTH,HEIGHT));
-//	    panel.setSize(WIDTH, HEIGHT);
-//	    panel.setTitle(TITLE);
-//	    panel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        panel.setVisible(true);
-        
-        
-        frame.getContentPane().add(new DrawMain());
         
 	}
 }
 
 class DrawMain extends JComponent
 {
-	public void drawMain(Graphics g)
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	protected DrawMain(Graphics g)
 	{
-		
+		super.paintComponent(g);
 	//	int lowerLeftStart = 375;
 		g.drawRect(10, 10, 440, 380);
 		
