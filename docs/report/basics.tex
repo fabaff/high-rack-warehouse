@@ -1,5 +1,5 @@
 \section{Grundlagen}
-Im Sinne eines Hochregallager besteht eine Gasse aus einer rechten und einer linken Regalwand während sich in der Mitte der beiden Wände ein Korridor für das Regalbediengerät befindet. Die Regalwände sind in Lagerplätze unterteilt, die von Regalbediengerät be- und entladen werden. Hochregallager können aus einer beliebigen Anzahl Gassen bestehen. Im Normalfall befindet sich an einer Stirnseite der Gassen die sogenannte Vorzone, welche die Aufgabe hat, die Lagergüter auf die zugeweisen Gassen zu verteilen. 
+Im Sinne eines Hochregallager besteht eine Gasse aus einer rechten und einer linken Regalwand während sich in der Mitte der beiden Wände ein Korridor für das Regalbediengerät (RBG) befindet. Die Regalwände sind in Lagerplätze unterteilt, die von Regalbediengerät be- und entladen werden. Hochregallager können aus einer beliebigen Anzahl Gassen bestehen. Im Normalfall befindet sich an einer Stirnseite der Gassen die sogenannte Vorzone, welche die Aufgabe hat, die Lagergüter auf die zugeweisen Gassen zu verteilen. 
 %
 \begin{figure}[H]
   \begin{center}
@@ -12,7 +12,7 @@ Im Sinne eines Hochregallager besteht eine Gasse aus einer rechten und einer lin
 
 %
 \subsection{Allgemeine Grundlagen}
-
+Dieser Abschnitt enthält Details allgemeiner Natur, damit im weiteren Verlauf des Dokuments Unklarheiten vermieden werden können. Die Sprache innerhalb des Source Code ist Englisch, während die Dokumentationssprache Deutsch ist. 
 %
 \begin{table}[H]
   \caption{Benennungen}
@@ -82,7 +82,7 @@ v = \frac{s}{t}
 %
 Die Fahrt des Regalbediengerät besteht aus einer Phase für die Beschleunigung, einer Phase der gleichförmigen Bewegung mit möglichst maximaler Geschwindigkeit und einem Bremsabschnitt, resp. einer Verzögerungsphase, am Ende. 
 %
-Die kürzeste Fahrzeit ergibt sich auch mehreren Faktoren. Die Synchronisationsgerade ist ein in diesem Zusammenhang oft verwendeter Begriff, welcher die optimale Fahrbahn des Regalbediengerät beschreibt. Dieser Fahrbahn führt jedoch nicht zur optimalen Fahrzeit, da unter Umständen beide Achsen gebremst werden müssten. Wir haben aber den Ansatz gewählt, dass, wenn möglich, nur auf der schnelleren Achse die Geschwindigkeit reduziert wird, was dazuführt, dass sich die zweite Achse entsprechend ihrem Maximum fortbewegen kann.
+Die kürzeste Fahrzeit ergibt sich auch mehreren Faktoren. Die Synchronisationsgerade ist ein in diesem Zusammenhang oft verwendeter Begriff, welcher die optimale Fahrbahn des Regalbediengerät beschreibt. Dieser Fahrbahn führt jedoch nicht zur optimalen Fahrzeit, da unter Umständen auf beide Achsen gebremst werden müssten. Wir haben den Ansatz gewählt, dass, wenn möglich, nur auf der schnelleren Achse die Geschwindigkeit reduziert wird, was dazuführt, dass sich die zweite Achse entsprechend ihrem Maximum fortbewegen kann.
 %
 Ein Grenzfall tritt auf, wenn die zu bewältigende Strecke kleiner wird als die Summe der Wege von der Beschleunigung und Verzögerung bei konstanten Beschleunigungen/Verzögerungen und Geschwindigkeiten. 
 %
@@ -91,7 +91,7 @@ v = \sqrt{\frac{2 \cdot s \cdot a \cdot d}{(a+d)}}
 \end{equation}
 %
 \subsection{Simulationstechnische Grundlagen}
-
+%
 
 
 
