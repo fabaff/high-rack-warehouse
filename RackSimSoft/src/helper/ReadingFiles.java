@@ -65,29 +65,16 @@ public class ReadingFiles {
 	 */
 	public void readLocation(String FileName) throws IOException 
 	{
-		/* Format of the file
-		 * Location [1];<ID>;<GapCount>;<MeasurementUnit>
-		 * Gap [1..*];<ID>;<X-Size>;<LeftGridID>;<RigthGridID>;<ColumnCount>;<RowCount>
-		 * Grid [2];<ID>;<U-Size>
-		 * Column [1..*];<ID>;<Y-Size>
-		 * Row [1..*];<ID>;<Z-Size>
+		/* Format of the file: flat text file
 		 * 
 		 * Sample data:
-		 * 	Location;my location;3;MM
-		 *  Gap;Gasse1;1000;Grid1;Grid2;7;4
-		 *  Grid;Grid1;1000
-		 *  Grid;Grid2;1000
-		 *  Column;A;1200
-		 *  Column;B;800
-		 *  Column;C;800
-		 *  Column;D;1200
-		 *  Column;E;1000
-		 *  Column;F;1000
-		 *  Column;G;1200
-		 *  Row;1;600
-		 *  Row;2;800
-		 *  Row;3;500
-		 *  Row;4;600
+		 * Location: mylocation, MM
+		 * ---
+		 * Gap: Gasse1;1000
+		 * Grid: Grid1;1000, Grid2;1000
+		 * Column: A;1200, B;800, C;800, D;1200, E;1000, F;1000, G;1200
+		 * Row: 1;600, 2;800, 3;500, 4;600
+		 * ...
 		 */
 		Path path = Paths.get(FileName);
 		Location myLocation;
