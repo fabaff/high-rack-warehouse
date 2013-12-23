@@ -1,6 +1,6 @@
 \section{Modellierung}
-
-
+Der Aufbau des Hochregallagers wurde in diverse Bereiche unterteilt. Die wichtigsten sind das Hochregal selber, auch auch das Regalbediengerät und und die entsprechenden Zustände/Ereignisse, die innerhalb des Hochregallagers auftreten können. 
+%
 \subsection{Einheiten}
 Die Basiseinheit ist Milimeter. Es ist jedoch möglich mit anderen SI-Einheiten (m, dm oder cm) zu arbeiten.
 %
@@ -14,44 +14,44 @@ Innerhalb der Gasse bewegt sich nur das Regalbediengerät. Die Klasse RackFeeder
 \subsection{Ereignisse}
 Innerhalb des Systems wurden die Ereignisse (Events) in die Operationen Einlagern, Umlagern und Auslagern zerlegt. Die Verzweigungen sind in den nachfolgenden Abbildungen in gelb dargestellt. Der Startpunkt ist blau. 
 %
-Im Verhalten Einlagern
-
-1.1 RBG auf 0/0 leer
-2 RBG auf 0/0 beladen
-3 RBG auf Y/Z beladen
-4 RBG auf X beladen
-5 RBG auf X leer
-6 RBG auf Y/Z leer
-1.2 RBG auf 0/0 leer
-
-Im Verhalten Auslagern
-
-1.1 RBG auf 0/0 leer
-6 RBG auf Y/Z leer
-5 RBG auf X leer
-4 RBG auf X beladen
-3 RBG auf Y/Z beladen
-2 RBG auf 0/0 beladen
-1.2 RBG auf 0/0 leer
-
-Nachfolgendens Entladen
-
-7 RBG auf Y1/Z1 leer -> dann in normalen Entlade-Zuklus
-
-Im Verhalten Umlagern
-
-6 RBG auf Y/Z leer
-5 RBG auf X leer
-4 RBG auf X beladen
-3 RBG auf Y/Z beladen
-8 RBG neues Lagerfach !!
-3 RBG auf Y/Z beladen
-4 RBG auf X beladen
-5 RBG auf X leer
-6 RBG auf Y/Z leer -> 7 oder 1
-
-Änderungen
-7 und 8
+% Im Verhalten Einlagern
+% 
+% 1.1 RBG auf 0/0 leer
+% 2 RBG auf 0/0 beladen
+% 3 RBG auf Y/Z beladen
+% 4 RBG auf X beladen
+% 5 RBG auf X leer
+% 6 RBG auf Y/Z leer
+% 1.2 RBG auf 0/0 leer
+% 
+% Im Verhalten Auslagern
+% 
+% 1.1 RBG auf 0/0 leer
+% 6 RBG auf Y/Z leer
+% 5 RBG auf X leer
+% 4 RBG auf X beladen
+% 3 RBG auf Y/Z beladen
+% 2 RBG auf 0/0 beladen
+% 1.2 RBG auf 0/0 leer
+% 
+% Nachfolgendens Entladen
+% 
+% 7 RBG auf Y1/Z1 leer -> dann in normalen Entlade-Zuklus
+% 
+% Im Verhalten Umlagern
+% 
+% 6 RBG auf Y/Z leer
+% 5 RBG auf X leer
+% 4 RBG auf X beladen
+% 3 RBG auf Y/Z beladen
+% 8 RBG neues Lagerfach !!
+% 3 RBG auf Y/Z beladen
+% 4 RBG auf X beladen
+% 5 RBG auf X leer
+% 6 RBG auf Y/Z leer -> 7 oder 1
+% 
+% Änderungen
+% 7 und 8
 %
 \begin{figure}[H]
   \begin{center}
@@ -144,7 +144,7 @@ Im Verhalten Umlagern
 %
 \subsection{Steuer-Daten}
 
-
+%
 \subsection{Architektur}
 Die Unterteilung der Anwendung erfolgte in einen Teil für die Modellierung, Simulation und die Visualisierung.  
 
