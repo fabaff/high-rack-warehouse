@@ -5,12 +5,12 @@ Grid: Grid1;1000, Grid2;1000
 Column: A;1200, B;800, C;800, D;1200, E;1000, F;1000, G;1200
 Row: 1;600, 2;800, 3;500, 4;600
 ---
-Gap: Gasse2;1000;Grid3;Grid4;5;3
+Gap: Gasse2;1000
 Grid: Grid3;1000, Grid4;1000
 Column: A;1000, B;1000, C;1200, D;600, E;1000
 Row: 1;500, 2;500, 3;600
 ---
-Gap;Gasse3;600;Grid5;Grid6;4;4
+Gap: Gasse3;600
 Grid: Grid5;600, Grid6;600
 Column: A;1000, B;1000, C;1200, D;600
 Row: 1;500, 2;500, 3;600, 4;600
