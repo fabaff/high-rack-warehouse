@@ -14,7 +14,7 @@ public class Reader {
 	    readerArticles.readArticles(article_file);
 	    
 	    // Location
-		String location_file = "location1.txt";
+		String location_file = "location_list.txt";
 		System.out.println("Reading file '" + location_file + "'");
 
 		ReadingFiles readerLocation = new ReadingFiles();
