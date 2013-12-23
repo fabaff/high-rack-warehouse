@@ -92,18 +92,9 @@ public class ReadingFiles {
 				//System.out.println(string);
 				if (string.contains(":"))
 				{
-					parts = string.split(":");
 					line++;
-					System.out.println(parts[0]);
-				} else {
-					errors.add("Error on line " + line);
-				}
-			}
-			if (errors.size() != 0)
-			{
-				for (String s : errors)
-				{
-					System.out.println(s);
+					elements.add(string);
+					//parts = string.split(":");
 				}
 			}
 			System.out.println("Total processed lines: " + line + "\n");
