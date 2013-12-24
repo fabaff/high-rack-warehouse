@@ -123,7 +123,7 @@ public class ReadingFiles {
 				measurementUnit = Location.MeasurementUnit.MM;
 		}
 		myLocation = Location.getInstance(parts[0], measurementUnit);
-		
+		// TODO Get rid of the hardcoded values
 		for (int i = 0; i + 5 < elements.size(); i= i + 5) {
 			// Gap
 			String[] partsA = ((String) elements.toArray()[5 + i]).split(";");
