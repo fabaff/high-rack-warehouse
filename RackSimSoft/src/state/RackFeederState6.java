@@ -1,31 +1,23 @@
 
 package state;
 
+import item.Item;
 import location.RackFeeder;
 
 /**
  * @author mschaerer
- *
- * State7 stands for an empty RackFeeder in zero-position of the current Gap.
+ * 
+ * State6 stands for an loaded RackFeeder in zero-position of the current Gap.
  *
  */
-public class RackFeederState7 extends RackFeederState
+public class RackFeederState6 extends RackFeederState
 {
-
 	/* (non-Javadoc)
 	 * @see state.RackFeederState()
 	 */
-	private RackFeederState7(Behavior behavior)
+	public RackFeederState6(Behavior behavior)
 	{
 		super(behavior);
-	}
-	
-	/* (non-Javadoc)
-	 * @see state.RackFeederState()
-	 */
-	public RackFeederState7()
-	{
-		super(Behavior.WAIT);
 	}
 
 	/* (non-Javadoc)
@@ -37,7 +29,7 @@ public class RackFeederState7 extends RackFeederState
 		switch (this.behavior)
 		{
 			case OUT :
-				
+				unloadItem(rackFeeder);
 				break;
 				
 			/*
@@ -60,12 +52,30 @@ public class RackFeederState7 extends RackFeederState
 		
 		switch (this.behavior)
 		{
-			// TODO hier das Verhalten übergeben zum wissen, in welchen Status mit welchem Verhalten gewechselt werden muss / kann
+			case OUT :
+				rackFeederState = new RackFeederState7();
+				break;
+				
+			case IN :
+				rackFeederState = new RackFeederState7();
+				break;
 			
 			default : break;
 		}
 		
 		return rackFeederState;
 	}
-
+	
+	/**
+	 * Returns the item loaded to the rack feeder.
+	 * The rack feeder is empty after.
+	 * 
+	 * @return item the item which was unloaded
+	 */
+	public Item unloadItem()
+	{
+		// TODO Artikel entladen
+		
+		return null;
+	}
 }

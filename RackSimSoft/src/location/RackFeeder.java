@@ -235,7 +235,7 @@ public class RackFeeder
 	 * Returns the item loaded to the rack feeder.
 	 * The rack feeder is empty after.
 	 * 
-	 * @param item the item to set
+	 * @return item the item which was unloaded
 	 */
 	public Item unloadItem()
 	{

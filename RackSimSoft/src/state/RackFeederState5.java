@@ -5,27 +5,18 @@ import location.RackFeeder;
 
 /**
  * @author mschaerer
- *
- * State7 stands for an empty RackFeeder in zero-position of the current Gap.
+ * 
+ * State5 stands for an loaded RackFeeder in bin-position of the current Gap.
  *
  */
-public class RackFeederState7 extends RackFeederState
+public class RackFeederState5 extends RackFeederState
 {
-
 	/* (non-Javadoc)
 	 * @see state.RackFeederState()
 	 */
-	private RackFeederState7(Behavior behavior)
+	public RackFeederState5(Behavior behavior)
 	{
 		super(behavior);
-	}
-	
-	/* (non-Javadoc)
-	 * @see state.RackFeederState()
-	 */
-	public RackFeederState7()
-	{
-		super(Behavior.WAIT);
 	}
 
 	/* (non-Javadoc)
@@ -37,7 +28,7 @@ public class RackFeederState7 extends RackFeederState
 		switch (this.behavior)
 		{
 			case OUT :
-				
+				moveYZ(rackFeeder);
 				break;
 				
 			/*
@@ -60,12 +51,27 @@ public class RackFeederState7 extends RackFeederState
 		
 		switch (this.behavior)
 		{
-			// TODO hier das Verhalten übergeben zum wissen, in welchen Status mit welchem Verhalten gewechselt werden muss / kann
+			case OUT :
+				rackFeederState = new RackFeederState6(this.behavior);
+				break;
+				
+			case IN :
+				rackFeederState = new RackFeederState7();
+				break;
 			
 			default : break;
 		}
 		
 		return rackFeederState;
 	}
-
+	
+	/**
+	 * Moves the rack feeder to the new position.
+	 * 
+	 */
+	protected void moveYZ(RackFeeder rackFeeder)
+	{
+		// TODO hier den Rackfeeder bewegen auf die neue Koordinate
+		
+	}
 }
