@@ -1,6 +1,7 @@
 
 package location;
 
+import state.RackFeederState;
 import calculation.Coordinate;
 import item.Item;
 
@@ -11,6 +12,7 @@ import item.Item;
  */
 public class RackFeeder
 {
+	private RackFeederState state;
 	private Gap gap;
 	private int xCoordinate = 0;
 	private int yCoordinate = 0;
@@ -58,6 +60,10 @@ public class RackFeeder
 	public RackFeeder(Gap gap)
 	{
 		this.gap = gap;
+		
+		this.state = RackFeederState.getDefaultState();
+		//this.state.doNextStep(this);
+		//this.state = this.state.getNextState(this, );
 		
 		this.xCoordinate = gap.getXCoordinate();
 		
