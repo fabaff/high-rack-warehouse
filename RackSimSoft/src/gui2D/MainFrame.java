@@ -9,7 +9,6 @@ import location.Location;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -31,7 +30,7 @@ public class MainFrame
 {
 	final int HEIGHT = 780;
 	final int WIDTH = 1020;
-	
+	final String TITLE = "RackSimSoft";
 	
 	
 	/**
@@ -41,33 +40,38 @@ public class MainFrame
 	public MainFrame()
 	{
 		
+	    JFrame frame = new JFrame();
 	    
+//	    JPanel panel = new JPanel();
+	    
+		frame.setPreferredSize(new Dimension(WIDTH,HEIGHT));
+		frame.setMinimumSize(new Dimension(WIDTH,HEIGHT));
+	    frame.setSize(WIDTH, HEIGHT);
+	    frame.setTitle(TITLE);
+	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
         
         
-		panel.setPreferredSize(new Dimension(WIDTH-10,HEIGHT-10));
-		panel.setMinimumSize(new Dimension(WIDTH-10,HEIGHT-10));
-	    panel.setSize(WIDTH-10, HEIGHT-10);
-        panel.setVisible(true);
-
-                
-        //guiFrame.getContentPane().add(panel);
-        guiFrame.setVisible(true);
-        guiFrame.add(panel);
+		
         
+//		panel.setPreferredSize(new Dimension(WIDTH,HEIGHT));
+//		panel.setMinimumSize(new Dimension(WIDTH,HEIGHT));
+//	    panel.setSize(WIDTH, HEIGHT);
+//	    panel.setTitle(TITLE);
+//	    panel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        panel.setVisible(true);
+        
+        
+        frame.getContentPane().add(new DrawMain());
         
 	}
 }
 
 class DrawMain extends JComponent
 {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
-	protected DrawMain(Graphics g)
+	public void drawMain(Graphics g)
 	{
-		super.paintComponent(g);
+		
 	//	int lowerLeftStart = 375;
 		g.drawRect(10, 10, 440, 380);
 		

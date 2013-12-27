@@ -1,4 +1,4 @@
-package event;
+package eventOLD;
 
 public interface StateLocation {
 	public String in();
