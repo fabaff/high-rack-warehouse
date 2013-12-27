@@ -1,10 +1,14 @@
 
 package test;
 
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import item.*;
 import location.Bin;
+
 
 public class TestSCHAM36
 {
@@ -78,5 +82,19 @@ public class TestSCHAM36
 			System.out.println("BinID: " + currentBin.getBinID());
 		}
 		System.out.println();
+		
+		//System.out.println((WallClockTime.getTime()));
+		//System.out.println((WallClockTime.getTime() / (1000 * 60 * 60 * 24 * 365)));
+		
+		String now = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss.SSS").format(new Date());
+		System.out.println(now);
+		
+		System.out.println(new SimpleDateFormat("dd.MM.yyyy").format(new Date()));
+		System.out.println(new SimpleDateFormat("HH:mm:ss").format(new Date()));
+		System.out.println(new SimpleDateFormat("HH").format(new Date()));
+		System.out.println(new SimpleDateFormat("mm").format(new Date()));
+		System.out.println(new SimpleDateFormat("SSS").format(new Date()));
+		int m = Integer.parseInt(new SimpleDateFormat("mm").format(new Date()));
+		System.out.println(m);
 	}
 }
