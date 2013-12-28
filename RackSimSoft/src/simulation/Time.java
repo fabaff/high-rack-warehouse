@@ -24,6 +24,8 @@ class Time
 	private long startWallClockMillis;
 	private long startSimulationMillis;
 	
+	private long correction = 0;
+	
 	/**
 	 * Returns an instance (object) of the class Location.
 	 * 
@@ -45,7 +47,7 @@ class Time
 	 */
 	private Time()
 	{
-		// Simulations-Startdatum und -Zeit auf gewünschten Wert setzen, Millisekunden auf 000 setzen
+		// Simulations-Startdatum und -Zeit auf gewuenschten Wert setzen, Millisekunden auf 000 setzen
 		this.startSimulationCalendar = Calendar.getInstance();
 		this.startSimulationCalendar.set(Time.year, Time.month - 1, Time.day, Time.hour, Time.minute, Time.second);  // Format YYYY, MM, DD, HH, MM, SS -> ACHTUNG: Monat Januar = 0, Monat Dezember = 11 !!!
 		this.startSimulationMillis = this.startSimulationCalendar.getTimeInMillis();
@@ -85,6 +87,8 @@ class Time
 	}
 	
 	/**
+	 * Returns the real start time in milliseconds.
+	 * 
 	 * @return the startWallClockMillis
 	 */
 	private long getStartWallClockMillis()
@@ -93,6 +97,8 @@ class Time
 	}
 
 	/**
+	 * Returns the simulation start time in milliseconds.
+	 * 
 	 * @return the startSimulationMillis
 	 */
 	private long getStartSimulationMillis()
@@ -101,6 +107,16 @@ class Time
 	}
 
 	/**
+	 * Sets the correction in milliseconds, for which the simulation time proceeds forward against the real time.
+	 * 
+	 * @param correction the correction to set
+	 */
+	void proceed(long correction)
+	{
+		this.correction = correction;
+	}
+	
+	/**
 	 * Returns the current simulation time.
 	 * 
 	 * @return the simulation time
@@ -108,7 +124,7 @@ class Time
 	Calendar getSimulationTime()
 	{
 		Calendar currentSimulationCalendar = Calendar.getInstance();
-		currentSimulationCalendar.setTimeInMillis(this.getStartSimulationMillis() + Math.round(Time.factor * (System.currentTimeMillis() - this.getStartWallClockMillis())));
+		currentSimulationCalendar.setTimeInMillis(this.getStartSimulationMillis() + Math.round(Time.factor * (System.currentTimeMillis() - this.getStartWallClockMillis())) + this.correction);
 		
 		return currentSimulationCalendar;
 	}

@@ -87,7 +87,14 @@ public class Simulation
 	 */
 	public Calendar getSimulationTime()
 	{
-		return this.time.getSimulationTime();
+		Calendar cal = null;
+		
+		if (this.time != null)
+		{
+			cal = this.time.getSimulationTime();
+		}
+		
+		return cal;
 	}
 	
 	/**
@@ -97,11 +104,27 @@ public class Simulation
 	 */
 	public String getSimulationTimeFormatted()
 	{
-		String simulationTime;
+		String simulationTime = "";
 		
-		SimpleDateFormat format = new SimpleDateFormat("yyyy:MM:dd HH:mm:ss.SSS");
-		simulationTime = format.format(new Date(this.time.getSimulationTime().getTimeInMillis()));
+		if (this.time != null)
+		{
+			SimpleDateFormat format = new SimpleDateFormat("yyyy:MM:dd HH:mm:ss.SSS");
+			simulationTime = format.format(new Date(this.time.getSimulationTime().getTimeInMillis()));
+		}
 		
 		return simulationTime;
+	}
+	
+	/**
+	 * Sets the correction in milliseconds, for which the simulation time proceeds forward against the real time.
+	 * 
+	 * @param correction the correction to set
+	 */
+	public void proceed(long correction)
+	{
+		if (this.time != null)
+		{
+			this.time.proceed(correction);
+		}
 	}
 }

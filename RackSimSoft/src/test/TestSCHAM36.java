@@ -1,100 +1,41 @@
 
 package test;
 
-
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-
-import item.*;
-import location.Bin;
+import simulation.Simulation;
 
 
 public class TestSCHAM36
 {
-
-	public static void main(String[] args)
+	public static void main(String[] args) throws InterruptedException
 	{
-		ItemAllocation iA = ItemAllocation.getInstance();
-		Item item;
-		Bin bin;
+		Simulation.setFactor(2);
+		Simulation.setStartSimulationTime("2013.12.25 12:00:00");
+		Simulation sim = Simulation.getInstance();
+	
+		System.out.println("Time: " + sim.getSimulationTimeFormatted());
 		
-		// 1
-		item = Item.getInstance("Item1");  // Artikel wird neu erzeugt
-		bin = new Bin("Bin1");
-		iA.addItem(item, bin);
+		Thread.sleep(5000);
 		
-		// 2
-		item = Item.getInstance("Item2");  // Artikel wird neu erzeugt
-		bin = new Bin("Bin2");
-		iA.addItem(item, bin);
+		System.out.println("Time: " + sim.getSimulationTimeFormatted());
 		
-		// 3
-		item = Item.getInstance("Item3");  // Artikel wird neu erzeugt
-		bin = new Bin("Bin3");
-		iA.addItem(item, bin);
+		sim.start();
 		
-		// 4
-		item = Item.getInstance("Item3");  // Derselbe Artikel wird zurückgegeben
-		bin = new Bin("Bin4");
-		iA.addItem(item, bin);
+		System.out.println("Time: " + sim.getSimulationTimeFormatted());
 		
-		// 5
-		item = Item.getInstance("Item3");  // Derselbe Artikel wird zurückgegeben
-		bin = new Bin("Bin5");
-		iA.addItem(item, bin);
+		Thread.sleep(2000);
 		
-		// 6
-		item = Item.getInstance("Item2");  // Derselbe Artikel wird zurückgegeben
-		bin = new Bin("Bin6");
-		iA.addItem(item, bin);
+		System.out.println("Time: " + sim.getSimulationTimeFormatted());
 		
-		// wieder entfernen
-		iA.removeItem(bin);
+		Thread.sleep(5432);
 		
-		// Kontrolle
-		String itemString;
-		ArrayList<Bin> binList;
+		System.out.println("Time: " + sim.getSimulationTimeFormatted());
 		
-		itemString = "Item1";
-		binList = iA.getBinListCopy(itemString);
-		System.out.println(itemString + " ist in " + binList.size() + " Bin(s) gespeichert:");
-		for(Bin currentBin : binList)
-		{
-			System.out.println("BinID: " + currentBin.getBinID());
-		}
-		System.out.println();
+		Thread.sleep(1234);
 		
-		itemString = "Item2";
-		binList = iA.getBinListCopy(itemString);
-		System.out.println(itemString + " ist in " + binList.size() + " Bin(s) gespeichert:");
-		for(Bin currentBin : binList)
-		{
-			System.out.println("BinID: " + currentBin.getBinID());
-		}
-		System.out.println();
+		System.out.println("Time: " + sim.getSimulationTimeFormatted());
 		
-		itemString = "Item3";
-		binList = iA.getBinListCopy(itemString);
-		System.out.println(itemString + " ist in " + binList.size() + " Bin(s) gespeichert:");
-		for(Bin currentBin : binList)
-		{
-			System.out.println("BinID: " + currentBin.getBinID());
-		}
-		System.out.println();
+		sim.proceed(1000);
 		
-		//System.out.println((WallClockTime.getTime()));
-		//System.out.println((WallClockTime.getTime() / (1000 * 60 * 60 * 24 * 365)));
-		
-		String now = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss.SSS").format(new Date());
-		System.out.println(now);
-		
-		System.out.println(new SimpleDateFormat("dd.MM.yyyy").format(new Date()));
-		System.out.println(new SimpleDateFormat("HH:mm:ss").format(new Date()));
-		System.out.println(new SimpleDateFormat("HH").format(new Date()));
-		System.out.println(new SimpleDateFormat("mm").format(new Date()));
-		System.out.println(new SimpleDateFormat("SSS").format(new Date()));
-		int m = Integer.parseInt(new SimpleDateFormat("mm").format(new Date()));
-		System.out.println(m);
+		System.out.println("Time: " + sim.getSimulationTimeFormatted());
 	}
 }
