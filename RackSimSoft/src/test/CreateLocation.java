@@ -7,11 +7,13 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import simulation.Simulation;
-import gui2D.GUI;
+import state.RackFeederState.Behavior;
 import item.Item;
 import item.ItemAllocation;
 import location.*;
 import calculation.*;
+import event.Event;
+import event.EventList;
 
 //import java.util.Hashtable;
 //import java.util.Map.Entry;
@@ -302,7 +304,7 @@ public class CreateLocation
 			System.out.println("\tBreite = " + gap.getXSize());
 			System.out.println();
 			System.out.println("\tZugehoeriges RBG:");
-			System.out.println("\tID = " + rackFeeder.getrackFeederID());
+			System.out.println("\tID = " + rackFeeder.getRackFeederID());
 			System.out.println("\tX-Koordinate = " + rackFeeder.getX());
 			System.out.println("\tY-Koordinate = " + rackFeeder.getY());
 			System.out.println("\tZ-Koordinate = " + rackFeeder.getZ());
@@ -483,7 +485,7 @@ public class CreateLocation
 		String direction;
 		
 		direction = "0110";  // nur YZ von "XYZU"
-		System.out.println("Rack Feeder " + rackFeeder.getrackFeederID());
+		System.out.println("Rack Feeder " + rackFeeder.getRackFeederID());
 		System.out.println("Bin " + bin.getBinID());
 		System.out.println("Direction: " + direction);
 		System.out.println("Strecke: " + distance.getDistanceLength(direction));
@@ -494,7 +496,7 @@ public class CreateLocation
 		System.out.println();
 		
 		direction = "0010";  // nur Z von "XYZU"
-		System.out.println("Rack Feeder " + rackFeeder.getrackFeederID());
+		System.out.println("Rack Feeder " + rackFeeder.getRackFeederID());
 		System.out.println("Bin " + bin.getBinID());
 		System.out.println("Direction: " + direction);
 		System.out.println("Strecke: " + distance.getDistanceLength(direction));
@@ -505,7 +507,7 @@ public class CreateLocation
 		System.out.println();
 				
 		direction = "1000";  // nur X von "XYZU"
-		System.out.println("Rack Feeder " + rackFeeder.getrackFeederID());
+		System.out.println("Rack Feeder " + rackFeeder.getRackFeederID());
 		System.out.println("Bin " + bin.getBinID());
 		System.out.println("Direction: " + direction);
 		System.out.println("Strecke: " + distance.getDistanceLength(direction));
@@ -516,7 +518,7 @@ public class CreateLocation
 		System.out.println();
 				
 		direction = "0001";  // nur U von "XYZU"
-		System.out.println("Rack Feeder " + rackFeeder.getrackFeederID());
+		System.out.println("Rack Feeder " + rackFeeder.getRackFeederID());
 		System.out.println("Bin " + bin.getBinID());
 		System.out.println("Direction: " + direction);
 		System.out.println("Strecke: " + distance.getDistanceLength(direction));
@@ -652,16 +654,17 @@ public class CreateLocation
 	
 	private static void simulateCycle() throws InterruptedException
 	{
+		EventList eventList = EventList.getInstance();
+		Event event = new Event(Simulation.string2Calendar("2013.12.25 12:01:00.000") , "1", "1-1-3-2-0", Behavior.OUT);
+		
+		eventList.add(event);
+		
 		Simulation.setFactor(1);
 		Simulation.setStartSimulationTime("2013.12.25 12:00:00.000");
 		Simulation sim = Simulation.getInstance();
 		
-		System.out.println("Time: " + sim.getSimulationTimeFormatted());
-		
-		Thread.sleep(5000);
-		
-		System.out.println("Time: " + sim.getSimulationTimeFormatted());
-		
 		sim.start();
+		
+		System.out.println("Fertig");
 	}
 }

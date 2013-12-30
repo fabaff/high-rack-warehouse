@@ -25,23 +25,14 @@ public class RackFeederState7 extends RackFeederState
 	{
 		RackFeederState rackFeederState = null;
 		
-		return rackFeederState;
-	}
-
-	/**
-	 * Returns the next RackFeederState belonging to the given Behavior.
-	 * 
-	 * @param behavior the Behavior to switch to
-	 * @return the next RackFeederState
-	 */
-	public RackFeederState getNextState(Behavior behavior)
-	{
-		RackFeederState rackFeederState = null;
-		
 		switch (this.behavior)
 		{
 			case OUT :
 				rackFeederState = new RackFeederState1(this.behavior);
+				break;
+			
+			case IN :
+				rackFeederState = new RackFeederState6(this.behavior);
 				break;
 			
 			default : break;

@@ -3,6 +3,7 @@ package event;
 
 import java.util.Calendar;
 
+import state.RackFeederState;
 import state.RackFeederState.Behavior;
 import location.Bin;
 import location.Location;
@@ -48,35 +49,20 @@ public class Event implements Comparable<Event>
 	}
 
 	/**
-	 * Returns the current RackFeeder.
+	 * Executes the current Event.
 	 * 
-	 * @return the rackFeeder
 	 */
-	public RackFeeder getRackFeeder()
+	public void executeEvent()
 	{
-		return rackFeeder;
+		RackFeederState state = this.rackFeeder.getState();
+		state.switchBehavior(this.behavior);
+		state.doNextStep(this.rackFeeder);
+		state = state.getNextState();
+		this.rackFeeder.setState(state);
+		
+		// Nächster Event erstellen?
 	}
-
-	/**
-	 * Returns the current Bin.
-	 * 
-	 * @return the bin
-	 */
-	public Bin getBin()
-	{
-		return bin;
-	}
-
-	/**
-	 * Returns the current Behavior.
-	 * 
-	 * @return the behavior
-	 */
-	public Behavior getBehavior()
-	{
-		return behavior;
-	}
-
+	
 	@Override
 	public int compareTo(Event event)
 	{

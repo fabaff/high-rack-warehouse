@@ -62,8 +62,6 @@ public class RackFeeder
 		this.gap = gap;
 		
 		this.state = RackFeederState.getDefaultState();
-		//this.state.doNextStep(this);
-		//this.state = this.state.getNextState(this, );
 		
 		this.xCoordinate = gap.getXCoordinate();
 		
@@ -86,9 +84,29 @@ public class RackFeeder
 	 * 
 	 * @return the rackFeederID
 	 */
-	public String getrackFeederID()
+	public String getRackFeederID()
 	{
 		return gap.getGapID();
+	}
+	
+	/**
+	 * Returns the State of the current rack feeder.
+	 * 
+	 * @return the state
+	 */
+	public RackFeederState getState()
+	{
+		return this.state;
+	}
+	
+	/**
+	 * Sets the new RackFeederState for the current rack feeder.
+	 * 
+	 * @param state the new state to set
+	 */
+	public void setState(RackFeederState state)
+	{
+		this.state = state;
 	}
 	
 	/**

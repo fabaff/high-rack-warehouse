@@ -1,6 +1,7 @@
 
 package state;
 
+import state.RackFeederState.Behavior;
 import location.RackFeeder;
 
 /**
