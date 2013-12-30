@@ -1,30 +1,17 @@
 
 package test;
 
-import gui2D.BinComponent;
+
+
+import java.util.ArrayList;
+import java.util.Random;
+
+import simulation.Simulation;
 import gui2D.GUI;
-import gui2D.GridComponent;
-import gui2D.MainFrame;
 import item.Item;
 import item.ItemAllocation;
 import location.*;
 import calculation.*;
-
-import java.util.ArrayList;
-import java.util.Random;
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
-
-import javax.swing.BorderFactory;
-import javax.swing.JLayeredPane;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.KeyStroke;
 
 //import java.util.Hashtable;
 //import java.util.Map.Entry;
@@ -90,8 +77,19 @@ public class CreateLocation
 		System.out.println();
 		printCycle(myLocation, "0", "0-1-1-1-1");  // Location, GapID, BinID
 		
+		// Simulates a complete cycle
+		try
+		{
+			simulateCycle();
+		}
+		catch (InterruptedException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		// Creates GUI
-		GUI.createAndShowGui(myLocation);
+		//GUI.createAndShowGui(myLocation);
 	}
 	
 	/**
@@ -652,4 +650,18 @@ public class CreateLocation
 		System.out.println();
 	}
 	
+	private static void simulateCycle() throws InterruptedException
+	{
+		Simulation.setFactor(1);
+		Simulation.setStartSimulationTime("2013.12.25 12:00:00.000");
+		Simulation sim = Simulation.getInstance();
+		
+		System.out.println("Time: " + sim.getSimulationTimeFormatted());
+		
+		Thread.sleep(5000);
+		
+		System.out.println("Time: " + sim.getSimulationTimeFormatted());
+		
+		sim.start();
+	}
 }

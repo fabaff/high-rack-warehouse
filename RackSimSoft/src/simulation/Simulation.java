@@ -13,10 +13,10 @@ public class Simulation
 {
 	private static Simulation instance;
 	private static double factor;
-	private static String startSimulationTime;
+	private static Calendar startSimulationTime;
 	
 	private double myFactor;
-	private String myStartSimulationTime;
+	private Calendar myStartSimulationTime;
 	
 	private Time time;
 	
@@ -60,13 +60,13 @@ public class Simulation
 	/**
 	 * Sets the simulation date and time to start with
 	 * The format of the String must be as following:
-	 * YYYY.MM.DD HH:MM:SS
+	 * YYYY.MM.DD HH:MM:SS.sss
 	 * 
 	 * @param startSimulationTime the date and time to set
 	 */
 	public static void setStartSimulationTime(String startSimulationTime)
 	{
-		Simulation.startSimulationTime = startSimulationTime;
+		Simulation.startSimulationTime = Time.string2Calendar(startSimulationTime);
 	}
 	
 	/**
@@ -75,9 +75,7 @@ public class Simulation
 	 */
 	public void start()
 	{
-		Time.setFactor(this.myFactor);
-		Time.setStartSimulationTime(this.myStartSimulationTime);
-		this.time = Time.getInstance();
+		this.time = Time.getInstance(this.myFactor, this.myStartSimulationTime);
 	}
 	
 	/**
