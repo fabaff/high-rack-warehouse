@@ -46,6 +46,16 @@ public class Location
 	}
 	
 	/**
+	 * Returns an instance (object) of the class Location.
+	 * 
+	 * @return the instance of this class
+	 */
+	public static Location getInstance()
+	{
+		return instance;
+	}
+	
+	/**
 	 * Creates a Location. The ID of the location and the measurement unit must be given.
 	 * 
 	 * @param id	ID of the location

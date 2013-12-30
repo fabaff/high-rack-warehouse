@@ -128,4 +128,35 @@ class Time
 		
 		return currentSimulationCalendar;
 	}
+	
+	/**
+	 * Converts a time String into a Calendar object.
+	 * The format of the String must be as following:
+	 * YYYY.MM.DD HH:MM:SS.sss
+	 * 
+	 * @param calendarString the date and time to return as Calendar
+	 * @return the Calendar object
+	 */
+	static Calendar string2Calendar(String calendarString)
+	{
+		int year = Integer.parseInt(calendarString.substring(0, 4));
+		int month = Integer.parseInt(calendarString.substring(5, 7));
+		int day = Integer.parseInt(calendarString.substring(8, 10));
+		int hour = Integer.parseInt(calendarString.substring(11, 13));
+		int minute = Integer.parseInt(calendarString.substring(14, 16));
+		int second = Integer.parseInt(calendarString.substring(17, 19));
+		int milliSecond = Integer.parseInt(calendarString.substring(20, 23));
+		long millis;
+		
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(year, month - 1, day, hour, minute, second);  // Format YYYY, MM, DD, HH, MM, SS -> ACHTUNG: Monat Januar = 0, Monat Dezember = 11 !!!
+		millis = calendar.getTimeInMillis();
+		millis /= 1000;
+		millis *= 1000;
+		millis += milliSecond;
+		
+		calendar.setTimeInMillis(millis);
+		
+		return calendar;
+	}
 }

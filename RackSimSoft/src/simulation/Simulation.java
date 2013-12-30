@@ -127,4 +127,17 @@ public class Simulation
 			this.time.proceed(correction);
 		}
 	}
+	
+	/**
+	 * Converts a time String into a Calendar object.
+	 * The format of the String must be as following:
+	 * YYYY.MM.DD HH:MM:SS.sss
+	 * 
+	 * @param calendarString the date and time to return as Calendar
+	 * @return the Calendar object
+	 */
+	public static Calendar string2Calendar(String calendarString)
+	{
+		return Time.string2Calendar(calendarString);
+	}
 }
