@@ -1,13 +1,13 @@
 
 package state;
 
-import state.RackFeederState.Behavior;
 import location.RackFeeder;
 
 /**
  * @author mschaerer
  * 
- * State1 stands for an empty RackFeeder in zero-position of the current Gap.
+ * RackFeederState1 stands for an empty RackFeeder in zero-position of the current Gap.
+ * This state has a Behavior of IN or OUT.
  *
  */
 public class RackFeederState1 extends RackFeederState
@@ -29,14 +29,12 @@ public class RackFeederState1 extends RackFeederState
 		switch (this.behavior)
 		{
 			case OUT :
-				moveYZ(rackFeeder);
+				// Do nothing
 				break;
 				
-			/*
 			case IN :
-				moveYZ(rackFeeder);
+				loadItem(rackFeeder);
 				break;
-			*/
 			
 			default : break;
 		}
@@ -53,11 +51,11 @@ public class RackFeederState1 extends RackFeederState
 		switch (this.behavior)
 		{
 			case OUT :
-				rackFeederState = new RackFeederState2(this.behavior);
+				rackFeederState = new RackFeederState0();
 				break;
 				
 			case IN :
-				rackFeederState = new RackFeederState7();
+				rackFeederState = new RackFeederState2(this.behavior);
 				break;
 			
 			default : break;

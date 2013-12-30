@@ -29,7 +29,7 @@ public abstract class RackFeederState
 	 */
 	public final static RackFeederState getDefaultState()
 	{
-		return new RackFeederState7();
+		return new RackFeederState0();
 	}
 	
 	/**
@@ -54,8 +54,8 @@ public abstract class RackFeederState
 	 */
 	public final void switchBehavior(Behavior behavior)
 	{
-		// Nur erlaubt aus Klasse RackFeederState7
-		if (this instanceof RackFeederState7)
+		// Nur erlaubt aus Klasse RackFeederState0
+		if (this instanceof RackFeederState0)
 		{
 			this.behavior = behavior;
 		}
