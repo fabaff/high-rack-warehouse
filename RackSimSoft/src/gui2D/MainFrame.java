@@ -61,7 +61,7 @@ public class MainFrame
 //	    panel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //        panel.setVisible(true);
         
-        
+       
         frame.getContentPane().add(new DrawMain());
         
 	}
