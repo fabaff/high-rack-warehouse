@@ -1,7 +1,7 @@
 
 package state;
 
-import location.RackFeeder;
+import job.Job;
 
 
 public abstract class RackFeederState
@@ -35,22 +35,23 @@ public abstract class RackFeederState
 	/**
 	 * Returns a new RackFeederState depending on the current state and the behavior.
 	 * 
+	 * @return	the next RackFeederState
 	 */
 	public abstract RackFeederState getNextState();
 	
 	/**
 	 * Moves the RackFeeder to the next position, loads / unloads item, dependent of the current state.
 	 * 
-	 * @param rackFeeder the rackFeeder to work with
+	 * @param job the Job to execute
 	 */
-	public void doNextStep(RackFeeder rackFeeder)
+	public void doNextStep(Job job)
 	{
 	}
 	
 	/**
 	 * Switches the Behavior to a new Behavior.
 	 * 
-	 * @param rackFeeder the rackFeeder to work with
+	 * @param behavior the Behavior to set
 	 */
 	public final void switchBehavior(Behavior behavior)
 	{
@@ -64,46 +65,46 @@ public abstract class RackFeederState
 	/**
 	 * Sets the item loaded to the rack feeder.
 	 * 
-	 * @param rackFeeder the rackFeeder to work with
+	 * @param job the Job to execute
 	 */
-	protected void loadItem(RackFeeder rackFeeder)
+	protected void loadItem(Job job)
 	{
 	}
 	
 	/**
-	 * Returns the item loaded to the rack feeder.
+	 * Removes the item loaded to the rack feeder.
 	 * The rack feeder is empty after.
 	 * 
-	 * @param rackFeeder the rackFeeder to work with
+	 * @param job the Job to execute
 	 */
-	protected void unloadItem(RackFeeder rackFeeder)
+	protected void unloadItem(Job job)
 	{
 	}
 	
 	/**
 	 * Moves the rack feeder to the new position.
 	 * 
-	 * @param rackFeeder the rackFeeder to work with
+	 * @param job the Job to execute
 	 */
-	protected void moveX(RackFeeder rackFeeder)
+	protected void moveX(Job job)
 	{
 	}
 	
 	/**
 	 * Moves the rack feeder to the new position.
 	 * 
-	 * @param rackFeeder the rackFeeder to work with
+	 * @param job the Job to execute
 	 */
-	protected void moveYZ(RackFeeder rackFeeder)
+	protected void moveYZ(Job job)
 	{
 	}
 	
 	/**
 	 * Moves the rack feeder to the new position.
 	 * 
-	 * @param rackFeeder the rackFeeder to work with
+	 * @param job the Job to execute
 	 */
-	protected void moveU(RackFeeder rackFeeder)
+	protected void moveU(Job job)
 	{
 	}
 }

@@ -1,6 +1,10 @@
 
 package state;
 
+import item.Item;
+import item.ItemAllocation;
+import job.Job;
+import location.Bin;
 import location.RackFeeder;
 
 /**
@@ -24,16 +28,16 @@ public class RackFeederState5 extends RackFeederState
 	 * @see state.RackFeederState#doNextStep()
 	 */
 	@Override
-	public void doNextStep(RackFeeder rackFeeder)
+	public void doNextStep(Job job)
 	{
 		switch (this.behavior)
 		{
 			case OUT :
-				loadItem(rackFeeder);
+				loadItem(job);
 				break;
 				
 			case IN :
-				moveU(rackFeeder);
+				moveU(job);
 				break;
 			
 			default : break;
@@ -67,10 +71,32 @@ public class RackFeederState5 extends RackFeederState
 	/**
 	 * Moves the rack feeder to the new position.
 	 * 
+	 * @param job the Job to execute
 	 */
-	protected void moveYZ(RackFeeder rackFeeder)
+	protected void moveU(Job job)
 	{
-		// TODO hier den Rackfeeder bewegen auf die neue Koordinate
+		RackFeeder rackFeeder = job.getRackFeeder();
+		Bin bin = job.getBin();
 		
+		// Das RBG aus dem Bin heraus fahren
+		rackFeeder.moveU(bin.getU());
+	}
+	
+	/**
+	 * Sets the item loaded to the rack feeder.
+	 * 
+	 * @param job the Job to execute
+	 */
+	protected void loadItem(Job job)
+	{
+		RackFeeder rackFeeder = job.getRackFeeder();
+		Bin bin = job.getBin();
+		ItemAllocation itemAllocation = ItemAllocation.getInstance();
+		
+		// Den Artikel aus dem Bin entfernen
+		Item item = itemAllocation.removeItem(bin);
+		
+		// Den Artikel auf das RBG laden
+		rackFeeder.loadItem(item);
 	}
 }

@@ -1,7 +1,9 @@
 
 package state;
 
-import item.Item;
+import calculation.Coordinate;
+import job.Job;
+import location.Bin;
 import location.RackFeeder;
 
 /**
@@ -25,16 +27,16 @@ public class RackFeederState6 extends RackFeederState
 	 * @see state.RackFeederState#doNextStep()
 	 */
 	@Override
-	public void doNextStep(RackFeeder rackFeeder)
+	public void doNextStep(Job job)
 	{
 		switch (this.behavior)
 		{
 			case OUT :
-				moveU(rackFeeder);
+				moveU(job);
 				break;
 				
 			case IN :
-				moveYZ(rackFeeder);
+				moveYZ(job);
 				break;
 			
 			default : break;
@@ -66,15 +68,30 @@ public class RackFeederState6 extends RackFeederState
 	}
 	
 	/**
-	 * Returns the item loaded to the rack feeder.
-	 * The rack feeder is empty after.
+	 * Moves the rack feeder to the new position.
 	 * 
-	 * @return item the item which was unloaded
+	 * @param job the Job to execute
 	 */
-	public Item unloadItem()
+	protected void moveYZ(Job job)
 	{
-		// TODO Artikel entladen
+		RackFeeder rackFeeder = job.getRackFeeder();
 		
-		return null;
+		// Das RBG auf Nullposition fahren
+		Coordinate coordinate = rackFeeder.getLoadingCoordinate();
+		rackFeeder.moveYZ(coordinate.getY(), coordinate.getZ());
+	}
+	
+	/**
+	 * Moves the rack feeder to the new position.
+	 * 
+	 * @param job the Job to execute
+	 */
+	protected void moveU(Job job)
+	{
+		RackFeeder rackFeeder = job.getRackFeeder();
+		Bin bin = job.getBin();
+		
+		// Das RBG in das Bin fahren
+		rackFeeder.moveU(bin.getU());
 	}
 }

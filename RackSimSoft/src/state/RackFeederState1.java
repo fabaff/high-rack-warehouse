@@ -1,6 +1,8 @@
 
 package state;
 
+import item.Item;
+import job.Job;
 import location.RackFeeder;
 
 /**
@@ -24,7 +26,7 @@ public class RackFeederState1 extends RackFeederState
 	 * @see state.RackFeederState#doNextStep()
 	 */
 	@Override
-	public void doNextStep(RackFeeder rackFeeder)
+	public void doNextStep(Job job)
 	{
 		switch (this.behavior)
 		{
@@ -33,7 +35,7 @@ public class RackFeederState1 extends RackFeederState
 				break;
 				
 			case IN :
-				loadItem(rackFeeder);
+				loadItem(job);
 				break;
 			
 			default : break;
@@ -63,14 +65,18 @@ public class RackFeederState1 extends RackFeederState
 		
 		return rackFeederState;
 	}
-	
+			
 	/**
-	 * Moves the rack feeder to the new position.
+	 * Sets the item loaded to the rack feeder.
 	 * 
+	 * @param job the Job to execute
 	 */
-	protected void moveYZ(RackFeeder rackFeeder)
+	protected void loadItem(Job job)
 	{
-		// TODO hier den Rackfeeder bewegen auf die neue Koordinate
+		RackFeeder rackFeeder = job.getRackFeeder();
+		Item item = job.getItem();
 		
+		// Den Artikel auf das RBG laden
+		rackFeeder.loadItem(item);
 	}
 }
