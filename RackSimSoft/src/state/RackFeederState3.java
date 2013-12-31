@@ -1,6 +1,9 @@
 
 package state;
 
+import calculation.Coordinate;
+import job.Job;
+import location.Bin;
 import location.RackFeeder;
 
 /**
@@ -24,16 +27,16 @@ public class RackFeederState3 extends RackFeederState
 	 * @see state.RackFeederState#doNextStep()
 	 */
 	@Override
-	public void doNextStep(RackFeeder rackFeeder)
+	public void doNextStep(Job job)
 	{
 		switch (this.behavior)
 		{
 			case OUT :
-				moveYZ(rackFeeder);
+				moveYZ(job);
 				break;
 				
 			case IN :
-				moveU(rackFeeder);
+				moveU(job);
 				break;
 			
 			default : break;
@@ -65,12 +68,30 @@ public class RackFeederState3 extends RackFeederState
 	}
 	
 	/**
-	 * Sets the item loaded to the rack feeder.
+	 * Moves the rack feeder to the new position.
 	 * 
+	 * @param job the Job to execute
 	 */
-	public void loadItem(RackFeeder rackFeeder)
+	protected void moveU(Job job)
 	{
-		// TODO load item to the rack feeder
+		RackFeeder rackFeeder = job.getRackFeeder();
+		Bin bin = job.getBin();
 		
+		// Das RBG in das Bin fahren
+		rackFeeder.moveU(bin.getU());
+	}
+	
+	/**
+	 * Moves the rack feeder to the new position.
+	 * 
+	 * @param job the Job to execute
+	 */
+	protected void moveYZ(Job job)
+	{
+		RackFeeder rackFeeder = job.getRackFeeder();
+		
+		// Das RBG auf Nullposition fahren
+		Coordinate coordinate = rackFeeder.getLoadingCoordinate();
+		rackFeeder.moveYZ(coordinate.getY(), coordinate.getZ());
 	}
 }

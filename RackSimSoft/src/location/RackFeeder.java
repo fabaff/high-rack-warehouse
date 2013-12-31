@@ -14,10 +14,14 @@ public class RackFeeder
 {
 	private RackFeederState state;
 	private Gap gap;
-	private int xCoordinate = 0;
-	private int yCoordinate = 0;
-	private int zCoordinate = 0;
-	private int uCoordinate = 0;
+	private int xCoordinate;
+	private int yCoordinate;
+	private int zCoordinate;
+	private int uCoordinate;
+	private int xLoadingCoordinate;
+	private int yLoadingCoordinate;
+	private int zLoadingCoordinate;
+	private int uLoadingCoordinate;
 	private Item item = null;
 	
 	// Speed is given in mm/ms which is the same as m/s
@@ -61,9 +65,15 @@ public class RackFeeder
 	{
 		this.gap = gap;
 		
-		this.state = RackFeederState.getDefaultState();
+		setLoadingCoordinate();
 		
-		this.xCoordinate = gap.getXCoordinate();
+		// RBG auf Ladeposition initialisieren
+		this.xCoordinate = this.xLoadingCoordinate;
+		this.yCoordinate = this.yLoadingCoordinate;
+		this.zCoordinate = this.zLoadingCoordinate;
+		this.uCoordinate = this.uLoadingCoordinate;
+		
+		this.state = RackFeederState.getDefaultState();
 		
 		this.setXSpeed(this.MAX_X_SPEED);
 		this.setYSpeed(this.MAX_Y_SPEED);
@@ -208,6 +218,29 @@ public class RackFeeder
 	{
 		Coordinate coordinate = new Coordinate(this.getX(), this.getY(), this.getZ(), this.getU());
 		return coordinate;
+	}
+	
+	/**
+	 * Returns the zero-coordinate of the current rack feeder.
+	 * 
+	 * @return the zero-coordinate
+	 */
+	public Coordinate getLoadingCoordinate()
+	{
+		Coordinate coordinate = new Coordinate(this.xLoadingCoordinate, this.yLoadingCoordinate, this.zLoadingCoordinate, this.uLoadingCoordinate);
+		return coordinate;
+	}
+	
+	/**
+	 * Sets the zero-coordinate of the current rack feeder.
+	 * 
+	 */
+	public void setLoadingCoordinate()
+	{
+		this.xLoadingCoordinate = gap.getXCoordinate();
+		this.yLoadingCoordinate = 0;
+		this.zLoadingCoordinate = 0;
+		this.uLoadingCoordinate = 0;
 	}
 	
 	// DO NOT use this function. It's not allowed to move on all axis at the

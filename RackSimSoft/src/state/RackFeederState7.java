@@ -1,6 +1,8 @@
 
 package state;
 
+import job.Job;
+import location.Bin;
 import location.RackFeeder;
 
 /**
@@ -24,12 +26,12 @@ public class RackFeederState7 extends RackFeederState
 	 * @see state.RackFeederState#doNextStep()
 	 */
 	@Override
-	public void doNextStep(RackFeeder rackFeeder)
+	public void doNextStep(Job job)
 	{
 		switch (this.behavior)
 		{
 			case OUT :
-				moveYZ(rackFeeder);
+				moveYZ(job);
 				break;
 			
 			case IN :
@@ -67,10 +69,14 @@ public class RackFeederState7 extends RackFeederState
 	/**
 	 * Moves the rack feeder to the new position.
 	 * 
+	 * @param job the Job to execute
 	 */
-	protected void moveYZ(RackFeeder rackFeeder)
+	protected void moveYZ(Job job)
 	{
-		// TODO hier den Rackfeeder bewegen auf die neue Koordinate
+		RackFeeder rackFeeder = job.getRackFeeder();
+		Bin bin = job.getBin();
 		
+		// Das RBG vor das Bin fahren
+		rackFeeder.moveYZ(bin.getY(), bin.getZ());
 	}
 }

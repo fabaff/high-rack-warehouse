@@ -6,6 +6,8 @@ package test;
 import java.util.ArrayList;
 import java.util.Random;
 
+import job.InStoreJob;
+import job.Job;
 import simulation.Simulation;
 import state.RackFeederState.Behavior;
 import item.Item;
@@ -654,8 +656,10 @@ public class CreateLocation
 	
 	private static void simulateCycle() throws InterruptedException
 	{
+		Job job = new InStoreJob(Item.getInstance("Item 1"), Location.getInstance().getBin("1-1-3-2-0"), Location.getInstance().getGap("1").getRackFeeder());
 		EventList eventList = EventList.getInstance();
-		Event event = new Event(Simulation.string2Calendar("2013.12.25 12:01:00.000") , "1", "1-1-3-2-0", Behavior.OUT);
+		//Event event = new Event(Simulation.string2Calendar("2013.12.25 12:01:00.000") , "1", "1-1-3-2-0", Behavior.OUT);
+		Event event = new Event(Simulation.string2Calendar("2013.12.25 12:01:00.000"), job);
 		
 		eventList.add(event);
 		
