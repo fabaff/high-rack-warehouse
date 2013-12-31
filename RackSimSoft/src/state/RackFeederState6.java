@@ -7,7 +7,8 @@ import location.RackFeeder;
 /**
  * @author mschaerer
  * 
- * State6 stands for an loaded RackFeeder in zero-position of the current Gap.
+ * RackFeederState6 stands for an empty RackFeeder in bin-position of the current Gap.
+ * This state has a Behavior of IN or OUT.
  *
  */
 public class RackFeederState6 extends RackFeederState
@@ -29,14 +30,12 @@ public class RackFeederState6 extends RackFeederState
 		switch (this.behavior)
 		{
 			case OUT :
-				unloadItem(rackFeeder);
+				moveU(rackFeeder);
 				break;
 				
-			/*
 			case IN :
 				moveYZ(rackFeeder);
 				break;
-			*/
 			
 			default : break;
 		}
@@ -53,11 +52,11 @@ public class RackFeederState6 extends RackFeederState
 		switch (this.behavior)
 		{
 			case OUT :
-				rackFeederState = new RackFeederState7();
+				rackFeederState = new RackFeederState5(this.behavior);
 				break;
 				
 			case IN :
-				rackFeederState = new RackFeederState7();
+				rackFeederState = new RackFeederState7(this.behavior);
 				break;
 			
 			default : break;

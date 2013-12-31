@@ -2,10 +2,7 @@
 package event;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
-
-import simulation.Simulation;
 
 
 /**
@@ -47,14 +44,15 @@ public class EventList
 	 * Returns an event if any event is ready to occur.
 	 * Returns null if there is no such event.
 	 * 
-	 * @return the event to occur
+	 * @return the next event to occur
 	 */
-	public Event checkNextEvent()
+	public Event getNextEvent()
 	{
-		Event e = null;
+		//Event e = null;
 		Collections.sort(list);
-		Event event = list.get(0);
+		Event event = list.remove(0);
 		
+		/*
 		Simulation sim = Simulation.getInstance();
 		Calendar simulationTime = sim.getSimulationTime();
 		
@@ -63,7 +61,8 @@ public class EventList
 		{
 			e = list.remove(0);
 		}
+		*/
 		
-		return e;
+		return event;
 	}
 }

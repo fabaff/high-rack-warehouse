@@ -20,7 +20,7 @@ public abstract class RackFeederState
 	 */
 	public RackFeederState(Behavior behavior)
 	{
-		this.behavior = Behavior.IN;
+		this.behavior = behavior;
 	}
 	
 	/**
@@ -29,7 +29,7 @@ public abstract class RackFeederState
 	 */
 	public final static RackFeederState getDefaultState()
 	{
-		return new RackFeederState7();
+		return new RackFeederState0();
 	}
 	
 	/**
@@ -45,6 +45,20 @@ public abstract class RackFeederState
 	 */
 	public void doNextStep(RackFeeder rackFeeder)
 	{
+	}
+	
+	/**
+	 * Switches the Behavior to a new Behavior.
+	 * 
+	 * @param rackFeeder the rackFeeder to work with
+	 */
+	public final void switchBehavior(Behavior behavior)
+	{
+		// Nur erlaubt aus Klasse RackFeederState0
+		if (this instanceof RackFeederState0)
+		{
+			this.behavior = behavior;
+		}
 	}
 	
 	/**

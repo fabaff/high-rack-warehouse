@@ -5,6 +5,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import event.Event;
+import event.EventList;
+
 /**
  * @author mschaerer
  *
@@ -44,7 +47,6 @@ public class Simulation
 		this.time = null;
 		this.myFactor = Simulation.factor;
 		this.myStartSimulationTime = Simulation.startSimulationTime;
-		
 	}
 	
 	/**
@@ -70,12 +72,55 @@ public class Simulation
 	}
 	
 	/**
-	 * Starts a Simulation.
+	 * Starts the Simulation.
 	 * 
 	 */
 	public void start()
 	{
 		this.time = Time.getInstance(this.myFactor, this.myStartSimulationTime);
+		EventList eventList = EventList.getInstance();
+		Event event = eventList.getNextEvent();
+		Calendar nextEventTime = null;
+		long nextEventTimeMillis = 0;
+		long waitMillis = 0;
+		
+		while (event != null)
+		{
+			System.out.println("Event gefunden");
+			nextEventTime = event.getEventTime();
+			nextEventTimeMillis = nextEventTime.getTimeInMillis();
+			waitMillis = nextEventTimeMillis - getSimulationTime().getTimeInMillis();
+			try
+			{
+				System.out.println("Warte für " + waitMillis + " Millisekunden...");
+				// Warten bis der Event ausgeführt werden muss
+				Thread.sleep(waitMillis);
+				
+				System.out.println("Fertig mit warten, Event ausführen...");
+				
+				// Event ausführen
+				event.executeEvent();
+				
+				System.out.println("Event ausgeführt, nächster Event?");
+				
+				// Nächster Event erstellen?
+				event = null;
+			}
+			catch (InterruptedException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	/**
+	 * Stops the Simulation.
+	 * 
+	 */
+	public void stop()
+	{
+		
 	}
 	
 	/**
@@ -85,14 +130,14 @@ public class Simulation
 	 */
 	public Calendar getSimulationTime()
 	{
-		Calendar cal = null;
+		Calendar calendar = null;
 		
 		if (this.time != null)
 		{
-			cal = this.time.getSimulationTime();
+			calendar = this.time.getSimulationTime();
 		}
 		
-		return cal;
+		return calendar;
 	}
 	
 	/**
