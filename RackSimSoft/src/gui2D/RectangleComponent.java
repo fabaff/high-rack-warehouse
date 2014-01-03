@@ -1,6 +1,7 @@
 package gui2D;
 
 import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -12,29 +13,27 @@ public class RectangleComponent extends JComponent
 	private static final long serialVersionUID = 1L;
 	
 	int width = 0;
-	int heigth = 0;
+	int height = 0;
 	float border = 0.0f;
 	String id = "";
 	
-	public RectangleComponent(String id, int width, int heigth, float border)
+	public RectangleComponent(String id, int width, int height, float border)
 	{
 		this.width = width;
-		this.heigth = heigth;
+		this.height = height;
 		this.border = border;
 		
 		this.id = id;
 	}
 	
-	public void paintComponent(Graphics g)
+	protected void paintComponent(Graphics g)
 	{
-		Graphics2D g2 = (Graphics2D) g;
+		super.paintComponent(g);
+		int size = 10;
+		//int border = 2;
 		
-		// Dicke des Rechtecks
-		g2.setStroke(new BasicStroke(this.border));
-				
-		Rectangle rectangle = new Rectangle(this.width, this.heigth);
-		
-		g2.draw(rectangle);
-		g2.drawString("" + this.id, (this.width / 2), (this.heigth / 2));
+		g.setColor(Color.GREEN);
+		g.drawRect(30, 30, size, size);
+	
 	}
 }
