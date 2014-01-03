@@ -29,7 +29,7 @@ public class GUI {
 		final int WIDTH = 1020;
 		final String TITLE = "RackSimSoft";
 		
-		myLocation.getGap("1").getGridLeft();
+		
 		
 		JFrame frame;
 		
@@ -42,8 +42,8 @@ public class GUI {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    frame.setVisible(true);
 	    
-	    JPanel panelLeft = new GridPanel(myLocation, "0");
-	    JPanel panelRight = new GridPanel(myLocation, "1");
+	    JPanel panelLeft = new GridPanel(myLocation, "0", 0);
+	    JPanel panelRight = new GridPanel(myLocation, "0", 1);
 	      
 	    frame.add(panelLeft);
 	    frame.add(panelRight);
