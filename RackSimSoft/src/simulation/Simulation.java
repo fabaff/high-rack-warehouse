@@ -86,10 +86,15 @@ public class Simulation
 		
 		while (event != null)
 		{
-			System.out.println("Event gefunden");
+			System.out.println("Event gefunden, Startzeit: " + calendar2String(event.getEventTime()));
 			nextEventTime = event.getEventTime();
 			currentEventTimeMillis = nextEventTime.getTimeInMillis();
 			waitMillis = currentEventTimeMillis - getSimulationTime().getTimeInMillis();
+			if (waitMillis < 0)
+			{
+				waitMillis = 0;
+			}
+			
 			try
 			{
 				System.out.println("Warte für " + waitMillis + " Millisekunden...");
@@ -101,18 +106,22 @@ public class Simulation
 				// Event ausführen
 				int nextEventMillis = event.executeEvent();
 				
-				System.out.println("Event ausgeführt, nächster Event in " + nextEventMillis + "Millisekunden");
-				
 				// Nächsten Event für diesen Job erstellen...
 				// nextEventMillis zeigt die Zeit für den nächsten Event an (0..xxx)
 				// Wenn -1, dann kein Nachfolge-Event mehr
 				if (nextEventMillis >= 0)
 				{
+					System.out.println("Event ausgeführt, Nachfolge-Event in " + nextEventMillis + " Millisekunden");
+					
 					Calendar calendar = Calendar.getInstance();
 					calendar.setTimeInMillis(currentEventTimeMillis + nextEventMillis);
 					
 					event = new Event(calendar, event.getJob());
 					eventList.add(event);
+				}
+				else
+				{
+					System.out.println("Event ausgeführt, kein Nachfolge-Event mehr.");
 				}
 				
 				// Nächsten Event holen
@@ -194,5 +203,18 @@ public class Simulation
 	public static Calendar string2Calendar(String calendarString)
 	{
 		return Time.string2Calendar(calendarString);
+	}
+	
+	/**
+	 * Converts a Calendar object into a time String.
+	 * The format of the String is as following:
+	 * YYYY.MM.DD HH:MM:SS.sss
+	 * 
+	 * @param calendar the Calendar object to return as String
+	 * @return the Calendar String
+	 */
+	public static String calendar2String(Calendar calendar)
+	{
+		return Time.calendar2String(calendar);
 	}
 }

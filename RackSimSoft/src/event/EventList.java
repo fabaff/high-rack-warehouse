@@ -48,20 +48,18 @@ public class EventList
 	 */
 	public Event getNextEvent()
 	{
-		//Event e = null;
+		Event event;
+		
 		Collections.sort(list);
-		Event event = list.remove(0);
 		
-		/*
-		Simulation sim = Simulation.getInstance();
-		Calendar simulationTime = sim.getSimulationTime();
-		
-		// Ist die Zeit für diesen Event erreicht (oder ueberschritten), dann den Event aus der Liste entfernen und verarbeiten
-		if ((simulationTime != null) && (simulationTime.after(event.getEventTime())))
+		try
 		{
-			e = list.remove(0);
+			event = list.remove(0);
 		}
-		*/
+		catch (IndexOutOfBoundsException e)
+		{
+			event = null;
+		}
 		
 		return event;
 	}

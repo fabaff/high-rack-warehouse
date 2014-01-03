@@ -133,4 +133,26 @@ class Time
 		
 		return calendar;
 	}
+	
+	/**
+	 * Converts a Calendar object into a time String.
+	 * The format of the String is as following:
+	 * YYYY.MM.DD HH:MM:SS.sss
+	 * 
+	 * @param calendar the Calendar object to return as String
+	 * @return the Calendar String in format YYYY.MM.DD HH:MM:SS.sss
+	 */
+	public static String calendar2String(Calendar calendar)
+	{
+		String calendarString = "";
+		calendarString += calendar.get(Calendar.YEAR) + ".";
+		calendarString += String.format("%02d", (calendar.get(Calendar.MONTH) + 1)) + ".";  // -> ACHTUNG: Monat Januar = 0, Monat Dezember = 11 !!!
+		calendarString += String.format("%02d", calendar.get(Calendar.DAY_OF_MONTH)) + " ";
+		calendarString += String.format("%02d", calendar.get(Calendar.HOUR_OF_DAY)) + ":";
+		calendarString += String.format("%02d", calendar.get(Calendar.MINUTE)) + ":";
+		calendarString += String.format("%02d", calendar.get(Calendar.SECOND)) + ".";
+		calendarString += String.format("%03d", calendar.get(Calendar.MILLISECOND));
+		
+		return calendarString;
+	}
 }
