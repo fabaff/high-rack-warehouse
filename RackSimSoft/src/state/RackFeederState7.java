@@ -1,6 +1,8 @@
 
 package state;
 
+import calculation.Distance;
+import calculation.Movement;
 import job.Job;
 import location.Bin;
 import location.RackFeeder;
@@ -91,6 +93,13 @@ public class RackFeederState7 extends RackFeederState
 		switch (this.behavior)
 		{
 			case OUT :
+				// RackFeeder-Werte zuruecksetzen auf Maximum
+				job.getRackFeeder().setMax();
+				
+				Distance distance = new Distance(job.getRackFeeder().getCoordinate(), job.getBin().getCoordinate());
+				Movement movement = new Movement(distance, job.getRackFeeder());
+				String direction = "0110";  // xYZu
+				time = movement.prepareForMove(direction);
 				break;
 				
 			case IN :

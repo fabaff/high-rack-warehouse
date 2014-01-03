@@ -2,7 +2,6 @@
 package job;
 
 import state.RackFeederState.Behavior;
-import item.Item;
 import location.Bin;
 import location.RackFeeder;
 
@@ -19,9 +18,9 @@ public class OutStoreJob extends Job
 	 * @param bin
 	 * @param rackFeeder
 	 */
-	public OutStoreJob(Item item, Bin bin, RackFeeder rackFeeder)
+	public OutStoreJob(Bin bin, RackFeeder rackFeeder)
 	{
-		super(item, bin, rackFeeder);
+		super(bin, rackFeeder);
 		this.behavior = Behavior.OUT;
 	}
 }

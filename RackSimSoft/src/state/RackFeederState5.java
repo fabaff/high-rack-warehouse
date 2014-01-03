@@ -81,7 +81,8 @@ public class RackFeederState5 extends RackFeederState
 		Bin bin = job.getBin();
 		
 		// Das RBG aus dem Bin heraus fahren
-		rackFeeder.moveU(bin.getU());
+		//rackFeeder.moveU(bin.getU());
+		rackFeeder.moveU(0);
 	}
 	
 	/**
@@ -113,11 +114,17 @@ public class RackFeederState5 extends RackFeederState
 		switch (this.behavior)
 		{
 			case OUT :
+				// RackFeeder-Werte zuruecksetzen auf Maximum
+				job.getRackFeeder().setMax();
 				
+				time = job.getRackFeeder().getLoadingTime();
 				break;
 				
 			case IN :
-				Distance distance = new Distance(job.getRackFeeder().getCoordinate(), job.getBin().getCoordinate());
+				// RackFeeder-Werte zuruecksetzen auf Maximum
+				job.getRackFeeder().setMax();
+				
+				Distance distance = new Distance(job.getRackFeeder().getCoordinate(), job.getBin().getCoordinate("1110"));
 				Movement movement = new Movement(distance, job.getRackFeeder());
 				String direction = "0001";  // xyzU
 				time = movement.prepareForMove(direction);

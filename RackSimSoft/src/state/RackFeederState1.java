@@ -91,10 +91,12 @@ public class RackFeederState1 extends RackFeederState
 		switch (this.behavior)
 		{
 			case OUT :
-				
 				break;
 				
 			case IN :
+				// RackFeeder-Werte zuruecksetzen auf Maximum
+				job.getRackFeeder().setMax();
+				
 				time = job.getRackFeeder().getLoadingTime();
 				break;
 			

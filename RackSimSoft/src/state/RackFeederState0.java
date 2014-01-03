@@ -55,6 +55,7 @@ public class RackFeederState0 extends RackFeederState
 		switch (this.behavior)
 		{
 			case OUT :
+				// Zu Beginn des Auslagerungsjobs
 				break;
 				
 			case IN :
@@ -62,7 +63,7 @@ public class RackFeederState0 extends RackFeederState
 				break;
 			
 			case WAIT :
-				// Am Ende des Einlagerungsjobs
+				// Am Ende des Einlagerungs-/ Auslagerungsjobs
 				time = -1;
 				break;
 			

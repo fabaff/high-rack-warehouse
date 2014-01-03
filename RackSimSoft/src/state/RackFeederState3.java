@@ -105,16 +105,29 @@ public class RackFeederState3 extends RackFeederState
 	{
 		int time = 0;
 		
+		Distance distance;
+		Movement movement;
+		String direction;
+		
 		switch (this.behavior)
 		{
 			case OUT :
+				// RackFeeder-Werte zuruecksetzen auf Maximum
+				job.getRackFeeder().setMax();
 				
+				distance = new Distance(job.getRackFeeder().getCoordinate(), job.getRackFeeder().getLoadingCoordinate());
+				movement = new Movement(distance, job.getRackFeeder());
+				direction = "0110";  // xYZu
+				time = movement.prepareForMove(direction);
 				break;
 				
 			case IN :
-				Distance distance = new Distance(job.getRackFeeder().getCoordinate(), job.getBin().getCoordinate());
-				Movement movement = new Movement(distance, job.getRackFeeder());
-				String direction = "0001";  // xyzU
+				// RackFeeder-Werte zuruecksetzen auf Maximum
+				job.getRackFeeder().setMax();
+				
+				distance = new Distance(job.getRackFeeder().getCoordinate(), job.getBin().getCoordinate());
+				movement = new Movement(distance, job.getRackFeeder());
+				direction = "0001";  // xyzU
 				time = movement.prepareForMove(direction);
 				break;
 			

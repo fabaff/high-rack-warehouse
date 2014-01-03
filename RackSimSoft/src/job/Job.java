@@ -6,6 +6,7 @@ import state.RackFeederState.Behavior;
 import location.Bin;
 import location.RackFeeder;
 import item.Item;
+import item.ItemAllocation;
 
 /**
  * @author mschaerer
@@ -28,6 +29,20 @@ public abstract class Job
 	public Job(Item item, Bin bin, RackFeeder rackFeeder)
 	{
 		this.item = item;
+		this.bin = bin;
+		this.rackFeeder = rackFeeder;
+	}
+	
+	/**
+	 * Creates a new Job.
+	 * 
+	 * @param bin the Bin to set to or get the item from
+	 * @param rackFeeder the RackFeeder to work with
+	 */
+	public Job(Bin bin, RackFeeder rackFeeder)
+	{
+		ItemAllocation itemAllocation = ItemAllocation.getInstance();
+		this.item = itemAllocation.getItem(bin.getBinID());
 		this.bin = bin;
 		this.rackFeeder = rackFeeder;
 	}

@@ -388,7 +388,7 @@ public class Movement
 		int zDistance = distance.getZDistance();
 		int uDistance = distance.getUDistance();
 		
-		System.out.println("Richtung und Distanzen: " + direction + ": " + xDistance + "  " + yDistance + "  " + zDistance + "  " + uDistance);
+		//System.out.println("Richtung und Distanzen: " + direction + ": " + xDistance + "  " + yDistance + "  " + zDistance + "  " + uDistance);
 		
 		if ((direction == null) || (direction.equals("")))
 		{
@@ -587,7 +587,7 @@ public class Movement
 		}
         
         int time = (int) (ta + tv + td);
-		System.out.println("Beschleunigungs- / Fahr- / Bremszeit fuer " + axis + ": " + ta + "/" + tv + "/" + td);
+		//System.out.println("Beschleunigungs- / Fahr- / Bremszeit fuer " + axis + ": " + ta + "/" + tv + "/" + td);
         
         return time;
 	}

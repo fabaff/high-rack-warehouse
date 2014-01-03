@@ -1,6 +1,8 @@
 
 package simulation;
 
+import item.Item;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -86,7 +88,7 @@ public class Simulation
 		
 		while (event != null)
 		{
-			System.out.println("Event gefunden, Startzeit: " + calendar2String(event.getEventTime()));
+			//System.out.println("Event gefunden, Startzeit: " + calendar2String(event.getEventTime()));
 			nextEventTime = event.getEventTime();
 			currentEventTimeMillis = nextEventTime.getTimeInMillis();
 			waitMillis = currentEventTimeMillis - getSimulationTime().getTimeInMillis();
@@ -97,14 +99,45 @@ public class Simulation
 			
 			try
 			{
-				System.out.println("Warte für " + waitMillis + " Millisekunden...");
+				//System.out.println("Warte für " + waitMillis + " Millisekunden...");
 				// Warten bis der Event ausgeführt werden muss
 				Thread.sleep(waitMillis);
 				
-				System.out.println("Fertig mit warten, Event ausführen...");
+				//System.out.println("Fertig mit warten, Event ausführen...");
+				
+				
+				// Ausgabe:
+				Item item;
+				String itemID;
+				item = event.getJob().getRackFeeder().getItem();
+				if (item != null)
+					itemID = item.getItemID();
+				else
+					itemID = "<leer>";
+				
+				System.out.println("RackFeeder vorher:");
+				System.out.println("  Status: " + event.getJob().getRackFeeder().getState().getClass().getName());
+				System.out.println("  Koordinaten: " + event.getJob().getRackFeeder().getCoordinate().toString());
+				System.out.println("  Artikel: " + itemID);
+				
 				
 				// Event ausführen
 				int nextEventMillis = event.executeEvent();
+				
+				
+				// Ausgabe:
+				item = event.getJob().getRackFeeder().getItem();
+				if (item != null)
+					itemID = item.getItemID();
+				else
+					itemID = "<leer>";
+				
+				System.out.println("RackFeeder nachher:");
+				System.out.println("  Status: " + event.getJob().getRackFeeder().getState().getClass().getName());
+				System.out.println("  Koordinaten: " + event.getJob().getRackFeeder().getCoordinate().toString());
+				System.out.println("  Artikel: " + itemID);
+				
+				
 				
 				// Nächsten Event für diesen Job erstellen...
 				// nextEventMillis zeigt die Zeit für den nächsten Event an (0..xxx)
