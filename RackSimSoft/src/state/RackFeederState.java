@@ -40,6 +40,14 @@ public abstract class RackFeederState
 	public abstract RackFeederState getNextState();
 	
 	/**
+	 * Returns the time needed to reach the next state depending on the current state and the behavior.
+	 * Sets the correct physical values to the current RackFeeder.
+	 * 
+	 * @return	the time needed to reach the next state
+	 */
+	public abstract int prepareForMove(Job job);
+	
+	/**
 	 * Moves the RackFeeder to the next position, loads / unloads item, dependent of the current state.
 	 * 
 	 * @param job the Job to execute

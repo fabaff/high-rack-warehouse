@@ -100,4 +100,28 @@ public class RackFeederState4 extends RackFeederState
 		// Das RBG aus dem Bin heraus fahren
 		rackFeeder.moveU(bin.getU());
 	}
+	
+	/* (non-Javadoc)
+	 * @see state.RackFeederState#prepareForMove()
+	 */
+	@Override
+	public int prepareForMove(Job job)
+	{
+		int time = 0;
+		
+		switch (this.behavior)
+		{
+			case OUT :
+				
+				break;
+				
+			case IN :
+				time = job.getRackFeeder().getLoadingTime();
+				break;
+			
+			default : break;
+		}
+		
+		return time;
+	}
 }

@@ -55,6 +55,8 @@ public class RackFeeder
 	private double uAcceleration;
 	private double uDeceleration;
 	
+	private final int LOADING_TIME = 1000;
+	
 	/**
 	 * Creates a Rack Feeder.
 	 * The ID of the rack feeder must be given.
@@ -260,6 +262,16 @@ public class RackFeeder
 	}
 	*/
 	
+	/**
+	 * Returns the needed time for load / unload the RackFeeder.
+	 * 
+	 * @return the LOADING_TIME
+	 */
+	public int getLoadingTime()
+	{
+		return this.LOADING_TIME;
+	}
+
 	/**
 	 * Returns the item loaded to the rack feeder.
 	 * 

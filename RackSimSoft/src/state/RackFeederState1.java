@@ -79,4 +79,28 @@ public class RackFeederState1 extends RackFeederState
 		// Den Artikel auf das RBG laden
 		rackFeeder.loadItem(item);
 	}
+	
+	/* (non-Javadoc)
+	 * @see state.RackFeederState#prepareForMove()
+	 */
+	@Override
+	public int prepareForMove(Job job)
+	{
+		int time = 0;
+		
+		switch (this.behavior)
+		{
+			case OUT :
+				
+				break;
+				
+			case IN :
+				time = job.getRackFeeder().getLoadingTime();
+				break;
+			
+			default : break;
+		}
+		
+		return time;
+	}
 }

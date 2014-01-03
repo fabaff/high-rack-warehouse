@@ -81,15 +81,15 @@ public class Simulation
 		EventList eventList = EventList.getInstance();
 		Event event = eventList.getNextEvent();
 		Calendar nextEventTime = null;
-		long nextEventTimeMillis = 0;
+		long currentEventTimeMillis = 0;
 		long waitMillis = 0;
 		
 		while (event != null)
 		{
 			System.out.println("Event gefunden");
 			nextEventTime = event.getEventTime();
-			nextEventTimeMillis = nextEventTime.getTimeInMillis();
-			waitMillis = nextEventTimeMillis - getSimulationTime().getTimeInMillis();
+			currentEventTimeMillis = nextEventTime.getTimeInMillis();
+			waitMillis = currentEventTimeMillis - getSimulationTime().getTimeInMillis();
 			try
 			{
 				System.out.println("Warte für " + waitMillis + " Millisekunden...");
@@ -99,12 +99,24 @@ public class Simulation
 				System.out.println("Fertig mit warten, Event ausführen...");
 				
 				// Event ausführen
-				event.executeEvent();
+				int nextEventMillis = event.executeEvent();
 				
-				System.out.println("Event ausgeführt, nächster Event?");
+				System.out.println("Event ausgeführt, nächster Event in " + nextEventMillis + "Millisekunden");
 				
-				// Nächster Event erstellen?
-				event = null;
+				// Nächsten Event für diesen Job erstellen...
+				// nextEventMillis zeigt die Zeit für den nächsten Event an (0..xxx)
+				// Wenn -1, dann kein Nachfolge-Event mehr
+				if (nextEventMillis >= 0)
+				{
+					Calendar calendar = Calendar.getInstance();
+					calendar.setTimeInMillis(currentEventTimeMillis + nextEventMillis);
+					
+					event = new Event(calendar, event.getJob());
+					eventList.add(event);
+				}
+				
+				// Nächsten Event holen
+				event = eventList.getNextEvent();
 			}
 			catch (InterruptedException e)
 			{

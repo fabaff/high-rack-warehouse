@@ -74,14 +74,19 @@ public abstract class Job
 	
 	/**
 	 * Executes the next Step for the current Job.
+	 * Returns the time in ms to the next state change.
 	 * 
+	 * @return the time in ms to the next state change
 	 */
-	public final void executeJob()
+	public final int executeJob()
 	{
 		RackFeederState state = this.getRackFeeder().getState();
 		state.switchBehavior(this.getBehavior());
 		state.doNextStep(this);
 		state = state.getNextState();
 		this.getRackFeeder().setState(state);
+		
+		// Zeit in ms bis zum nächsten Statuswechsel zurückgeben
+		return state.prepareForMove(this);
 	}
 }

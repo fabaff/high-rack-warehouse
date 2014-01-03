@@ -1,6 +1,8 @@
 
 package state;
 
+import job.Job;
+
 /**
  * @author mschaerer
  *
@@ -40,5 +42,33 @@ public class RackFeederState0 extends RackFeederState
 		}
 		
 		return rackFeederState;
+	}
+	
+	/* (non-Javadoc)
+	 * @see state.RackFeederState#prepareForMove()
+	 */
+	@Override
+	public int prepareForMove(Job job)
+	{
+		int time = 0;
+		
+		switch (this.behavior)
+		{
+			case OUT :
+				break;
+				
+			case IN :
+				// Zu Beginn des Einlagerungsjobs
+				break;
+			
+			case WAIT :
+				// Am Ende des Einlagerungsjobs
+				time = -1;
+				break;
+			
+			default : break;
+		}
+		
+		return time;
 	}
 }

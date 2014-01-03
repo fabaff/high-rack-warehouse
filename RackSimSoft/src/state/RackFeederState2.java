@@ -1,6 +1,8 @@
 
 package state;
 
+import calculation.Distance;
+import calculation.Movement;
 import job.Job;
 import location.Bin;
 import location.RackFeeder;
@@ -92,5 +94,32 @@ public class RackFeederState2 extends RackFeederState
 		
 		// Den Artikel vom RBG entfernen
 		rackFeeder.unloadItem();
+	}
+	
+	/* (non-Javadoc)
+	 * @see state.RackFeederState#prepareForMove()
+	 */
+	@Override
+	public int prepareForMove(Job job)
+	{
+		int time = 0;
+		
+		switch (this.behavior)
+		{
+			case OUT :
+				
+				break;
+				
+			case IN :
+				Distance distance = new Distance(job.getRackFeeder().getCoordinate(), job.getBin().getCoordinate());
+				Movement movement = new Movement(distance, job.getRackFeeder());
+				String direction = "0110";  // xYZu
+				time = movement.prepareForMove(direction);
+				break;
+			
+			default : break;
+		}
+		
+		return time;
 	}
 }

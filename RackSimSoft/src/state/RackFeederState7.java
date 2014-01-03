@@ -79,4 +79,26 @@ public class RackFeederState7 extends RackFeederState
 		// Das RBG vor das Bin fahren
 		rackFeeder.moveYZ(bin.getY(), bin.getZ());
 	}
+	
+	/* (non-Javadoc)
+	 * @see state.RackFeederState#prepareForMove()
+	 */
+	@Override
+	public int prepareForMove(Job job)
+	{
+		int time = 0;
+		
+		switch (this.behavior)
+		{
+			case OUT :
+				break;
+				
+			case IN :
+				break;
+			
+			default : break;
+		}
+		
+		return time;
+	}
 }

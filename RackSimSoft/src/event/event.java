@@ -45,18 +45,28 @@ public class Event implements Comparable<Event>
 	 */
 	public Calendar getEventTime()
 	{
-		return eventTime;
+		return this.eventTime;
+	}
+	
+	/**
+	 * Returns the current job.
+	 * 
+	 * @return the job
+	 */
+	public Job getJob()
+	{
+		return this.job;
 	}
 
 	/**
 	 * Executes the current Event.
+	 * Returns the time in ms to the next event.
 	 * 
+	 * @return the time in ms to the next event
 	 */
-	public void executeEvent()
+	public int executeEvent()
 	{
-		this.job.executeJob();
-		
-		// Nächster Event erstellen?
+		return this.job.executeJob();
 	}
 	
 	@Override
