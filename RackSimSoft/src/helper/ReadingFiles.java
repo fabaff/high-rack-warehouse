@@ -1,7 +1,6 @@
 package helper;
 
 import item.Item;
-import item.ItemAllocation;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -11,6 +10,11 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import job.InStoreJob;
+import job.Job;
+import job.JobList;
+import job.OutStoreJob;
+import simulation.Simulation;
 import location.*;
 
 /**
@@ -172,7 +176,7 @@ public class ReadingFiles {
 	public void readJobs(String FileName) throws IOException 
 	{
 		/* Format of the file
-		 * <Timestamp>;<Operation>;<Article>;[optional values]
+		 * <Timestamp>;<Operation>;<BinID>;<ItemID>(optional)
 		 */
 		Path path = Paths.get(FileName);
 		int line = 0;
@@ -186,9 +190,28 @@ public class ReadingFiles {
 				{
 					parts = string.split(";");
 					line++;
-					//Code goes here...
-					// TODO Create an object that can hold the data.
-					//System.out.println(parts[0] + " : " + parts[1] + " : " + parts[2]);
+					
+					Job job;
+					JobList jobList = JobList.getInstance();
+					Location location = Location.getInstance();
+					Bin bin = location.getBin(parts[2]);
+					Gap gap = location.getGap(bin.getgapID());
+					
+					switch (parts[1])
+					{
+						case "O" :
+							job = new OutStoreJob(Simulation.string2Calendar(parts[0]), bin, gap.getRackFeeder());
+							jobList.add(job);
+							break;
+							
+						case "I" :
+							job = new InStoreJob(Simulation.string2Calendar(parts[0]), Item.getInstance(parts[3]), bin, gap.getRackFeeder());
+							jobList.add(job);
+							break;
+						
+						default : break;
+					}
+					
 				} else {
 					errors.add("Error on line " + line);
 				}

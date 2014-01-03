@@ -1,6 +1,8 @@
 
 package job;
 
+import java.util.Calendar;
+
 import state.RackFeederState.Behavior;
 import item.Item;
 import location.Bin;
@@ -19,9 +21,9 @@ public class InStoreJob extends Job
 	 * @param bin
 	 * @param rackFeeder
 	 */
-	public InStoreJob(Item item, Bin bin, RackFeeder rackFeeder)
+	public InStoreJob(Calendar startTime, Item item, Bin bin, RackFeeder rackFeeder)
 	{
-		super(item, bin, rackFeeder);
+		super(startTime, item, bin, rackFeeder);
 		this.behavior = Behavior.IN;
 	}
 }

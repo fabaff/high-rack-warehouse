@@ -1,6 +1,8 @@
 
 package job;
 
+import java.util.Calendar;
+
 import state.RackFeederState;
 import state.RackFeederState.Behavior;
 import location.Bin;
@@ -14,6 +16,7 @@ import item.ItemAllocation;
  */
 public abstract class Job
 {
+	private Calendar startTime;
 	private Item item;
 	private Bin bin;
 	private RackFeeder rackFeeder;
@@ -26,8 +29,9 @@ public abstract class Job
 	 * @param bin the Bin to set to or get the item from
 	 * @param rackFeeder the RackFeeder to work with
 	 */
-	public Job(Item item, Bin bin, RackFeeder rackFeeder)
+	public Job(Calendar startTime, Item item, Bin bin, RackFeeder rackFeeder)
 	{
+		this.startTime = startTime;
 		this.item = item;
 		this.bin = bin;
 		this.rackFeeder = rackFeeder;
@@ -39,12 +43,23 @@ public abstract class Job
 	 * @param bin the Bin to set to or get the item from
 	 * @param rackFeeder the RackFeeder to work with
 	 */
-	public Job(Bin bin, RackFeeder rackFeeder)
+	public Job(Calendar startTime, Bin bin, RackFeeder rackFeeder)
 	{
+		this.startTime = startTime;
 		ItemAllocation itemAllocation = ItemAllocation.getInstance();
 		this.item = itemAllocation.getItem(bin.getBinID());
 		this.bin = bin;
 		this.rackFeeder = rackFeeder;
+	}
+	
+	/**
+	 * Returns the current start time.
+	 * 
+	 * @return the startTime
+	 */
+	public final Calendar getStartTime()
+	{
+		return this.startTime;
 	}
 	
 	/**

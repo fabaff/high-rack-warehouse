@@ -659,18 +659,21 @@ public class CreateLocation
 	{
 		Job job;
 		Event event;
+		String startTime;
 		
 		System.out.println();
 		System.out.println();
 		System.out.println("Simulation wird gestartet:");
 		EventList eventList = EventList.getInstance();
 		
-		job = new InStoreJob(Item.getInstance("Item 1"), Location.getInstance().getBin("1-1-3-2-0"), Location.getInstance().getGap("1").getRackFeeder());
-		event = new Event(Simulation.string2Calendar("2013.12.25 00:00:00.000"), job);
+		startTime = "2013.12.25 00:00:00.000";
+		job = new InStoreJob(Simulation.string2Calendar(startTime), Item.getInstance("Item 1"), Location.getInstance().getBin("1-1-3-2-0"), Location.getInstance().getGap("1").getRackFeeder());
+		event = new Event(Simulation.string2Calendar(startTime), job);
 		eventList.add(event);
 		
-		job = new OutStoreJob(Location.getInstance().getBin("0-1-1-2-1"), Location.getInstance().getGap("0").getRackFeeder());
-		event = new Event(Simulation.string2Calendar("2013.12.25 00:00:00.050"), job);
+		startTime = "2013.12.25 00:00:00.050";
+		job = new OutStoreJob(Simulation.string2Calendar(startTime), Location.getInstance().getBin("0-1-1-2-1"), Location.getInstance().getGap("0").getRackFeeder());
+		event = new Event(Simulation.string2Calendar(startTime), job);
 		eventList.add(event);
 		
 		Simulation.setFactor(1);

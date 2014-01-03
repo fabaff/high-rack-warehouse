@@ -13,18 +13,22 @@ public class Reader {
 		ReadingFiles readerArticles = new ReadingFiles();
 	    readerArticles.readArticles(article_file);
 	    
+
 	    // Location
 		String location_file = "location_list.txt";
 		System.out.println("Reading file '" + location_file + "'");
 
 		ReadingFiles readerLocation = new ReadingFiles();
 	    readerLocation.readLocation(location_file);
+
 	    
+	    /*
 	    // Jobs
 		String jobs_file = "job_list.txt";
 		System.out.println("Reading file '" + jobs_file + "'");
 
 		ReadingFiles readerJobs = new ReadingFiles();
 	    readerJobs.readJobs(jobs_file);
+	    */
 	}
 }
