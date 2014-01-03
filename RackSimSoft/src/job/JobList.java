@@ -3,7 +3,6 @@ package job;
 
 import java.util.ArrayList;
 
-
 /**
  * @author mschaerer
  *
@@ -37,5 +36,15 @@ public class JobList
 	public void add(Job job)
 	{
 		this.list.add(job);
+	}
+	
+	/**
+	 * Returns the list of Jobs.
+	 * 
+	 * @return the list of jobs
+	 */
+	public ArrayList<Job> getJobList()
+	{
+		return this.list;
 	}
 }

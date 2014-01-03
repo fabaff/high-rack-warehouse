@@ -2,6 +2,7 @@ package test;
 
 import java.io.IOException;
 
+import location.Bin;
 import location.Gap;
 import location.Grid;
 import location.Location;
@@ -11,7 +12,7 @@ public class Reader {
 
 	public static void main(String[] args) throws IOException {
 		// Articles
-		String article_file = "article_list.txt";
+		String article_file = "item_list1.txt";
 		System.out.println("Reading file '" + article_file + "'");
 
 		ReadingFiles readerArticles = new ReadingFiles();
@@ -20,7 +21,7 @@ public class Reader {
 
 	    // Location
 		//String location_file = "location_list.txt";
-	    String location_file = "Location2.txt";
+	    String location_file = "location1.txt";
 		System.out.println("Reading file '" + location_file + "'");
 
 		ReadingFiles readerLocation = new ReadingFiles();
@@ -44,15 +45,20 @@ public class Reader {
 	    }
 	    
 	    System.out.println("  Anzahl Bin: " + myLoc.getBinList().size());
+	    int i = 0;
 	    
+	    for (Bin bin : myLoc.getBinList())
+	    {
+	    	i ++;
+	    	System.out.println("    " + i + " - ID: " + bin.getBinID() + ", Koordinaten: " + bin.getCoordinate().toString());
+	    }
+	    // Test Ende
 	    
-	    /*
 	    // Jobs
-		String jobs_file = "job_list.txt";
+		String jobs_file = "job_list1.txt";
 		System.out.println("Reading file '" + jobs_file + "'");
 
 		ReadingFiles readerJobs = new ReadingFiles();
 	    readerJobs.readJobs(jobs_file);
-	    */
 	}
 }

@@ -106,6 +106,7 @@ public class Simulation
 				//System.out.println("Fertig mit warten, Event ausführen...");
 				
 				
+				/*
 				// Ausgabe:
 				Item item;
 				String itemID;
@@ -119,12 +120,12 @@ public class Simulation
 				System.out.println("  Status: " + event.getJob().getRackFeeder().getState().getClass().getName());
 				System.out.println("  Koordinaten: " + event.getJob().getRackFeeder().getCoordinate().toString());
 				System.out.println("  Artikel: " + itemID);
-				
+				*/
 				
 				// Event ausführen
 				int nextEventMillis = event.executeEvent();
 				
-				
+				/*
 				// Ausgabe:
 				item = event.getJob().getRackFeeder().getItem();
 				if (item != null)
@@ -136,7 +137,7 @@ public class Simulation
 				System.out.println("  Status: " + event.getJob().getRackFeeder().getState().getClass().getName());
 				System.out.println("  Koordinaten: " + event.getJob().getRackFeeder().getCoordinate().toString());
 				System.out.println("  Artikel: " + itemID);
-				
+				*/
 				
 				
 				// Nächsten Event für diesen Job erstellen...
@@ -155,7 +156,13 @@ public class Simulation
 				else
 				{
 					System.out.println("Event ausgeführt, kein Nachfolge-Event mehr.");
+					
+					// Aus Jobliste neuen Event erstellen für diesen RackFeeder, da dieser wieder frei ist?
+					// TODO Events erstellen aus Jobliste
 				}
+				
+				// Aus Jobliste neuen Event erstellen, weil der Job nun fällig ist?
+				// TODO Events erstellen aus Jobliste
 				
 				// Nächsten Event holen
 				event = eventList.getNextEvent();

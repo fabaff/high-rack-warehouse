@@ -59,10 +59,15 @@ public class ReadingFiles {
 					System.out.println(s);
 				}
 			}
-			System.out.println("Total processed lines: " + line + "\n");
+			//System.out.println("Total processed lines: " + line + "\n");
 	    }
 	}
 
+	/**
+	 * Reading the location data from a file.
+	 * 
+	 * @param FileName Path and file name of the file.
+	 */
 	public void readLocationNEW(String FileName) throws IOException 
 	{
 		/* Format of the file
@@ -234,7 +239,7 @@ public class ReadingFiles {
 					System.out.println(s);
 				}
 			}
-			System.out.println("Total processed lines: " + line + "\n");
+			//System.out.println("Total processed lines: " + line + "\n");
 	    }
 	}
 	
@@ -274,7 +279,7 @@ public class ReadingFiles {
 				//	elements.add(string);
 				//}
 			}
-			System.out.println("Total processed lines: " + line + "\n");
+			//System.out.println("Total processed lines: " + line + "\n");
 	    }
 		//System.out.println(elements);
 		//for (int i = 0; i < elements.size(); i++) {
@@ -341,7 +346,7 @@ public class ReadingFiles {
 			// Assign gap (with assigned grids) to the location
 			myLocation.addGap(gap);
 		}
-		System.out.println("--> Location created" + "\n");
+		//System.out.println("--> Location created" + "\n");
 	}
 
 	/**
@@ -399,7 +404,7 @@ public class ReadingFiles {
 					System.out.println(s);
 				}
 			}
-			System.out.println("Total processed lines: " + line + "\n");
+			//System.out.println("Total processed lines: " + line + "\n");
 	    }
 	}
 	
