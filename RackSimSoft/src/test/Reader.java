@@ -1,6 +1,9 @@
 package test;
 
 import java.io.IOException;
+
+import location.Gap;
+import location.Location;
 import helper.*;
 
 public class Reader {
@@ -15,12 +18,25 @@ public class Reader {
 	    
 
 	    // Location
-		String location_file = "location_list.txt";
+		//String location_file = "location_list.txt";
+	    String location_file = "Location1.txt";
 		System.out.println("Reading file '" + location_file + "'");
 
 		ReadingFiles readerLocation = new ReadingFiles();
 	    readerLocation.readLocation(location_file);
 
+	    // Test
+	    Location myLoc = Location.getInstance();
+	    System.out.println("Lagerort:");
+	    System.out.println("  Name = " + myLoc.getLocationID());
+	    System.out.println("  Anzahl Gassen: " + myLoc.countGaps());
+	    for (Gap gap : myLoc.getGapListCopy())
+	    {
+	    	System.out.println(gap.getGapID());
+	    }
+	    
+	    
+	    
 	    
 	    /*
 	    // Jobs
