@@ -99,6 +99,7 @@ public class ReadingFiles {
 			{
 				String parts[];
 				String string = scanner.nextLine();
+				
 				if (string.contains(";"))
 				{
 					parts = string.split(";");
@@ -163,7 +164,7 @@ public class ReadingFiles {
 								
 								// Rechtes Grid holen, aktuelle X-Position mit Breite des Gap und Tiefe des rechten Grid addieren
 								gridParts = gridTable.get(gapParts[4]).split(";");
-								lastX += Integer.parseInt(gapParts[2]) + Integer.parseInt(gridParts[2]);
+								lastX += Integer.parseInt(gapParts[2]) + gap.getXSize() + Integer.parseInt(gridParts[2]);
 								
 								// Initialisieren zum einlesen der Columns und Rows
 								columnList = new ArrayList<String>();
@@ -206,6 +207,11 @@ public class ReadingFiles {
 								// Linkes Grid holen
 								gridParts = gridTable.get(gapParts[3]).split(";");
 								grid = new Grid(gridParts[1], gap, 0, columnArray, rowArray, Integer.parseInt(gridParts[2]));
+								gap.addGrid(grid);
+								
+								// Rechtes Grid holen
+								gridParts = gridTable.get(gapParts[4]).split(";");
+								grid = new Grid(gridParts[1], gap, 1, columnArray, rowArray, Integer.parseInt(gridParts[2]));
 								gap.addGrid(grid);
 							}
 							
