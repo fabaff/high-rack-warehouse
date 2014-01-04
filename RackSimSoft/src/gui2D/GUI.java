@@ -52,11 +52,13 @@ public class GUI {
 	    JPanel panelGap = new GapPanel(myLocation, "Gasse1");
 	    
 	    //Create Panel for Location
+	    JPanel panelLocation = new LocationPanel(myLocation);
 	    //JPanel panelLocation = new LocationPanel(myLocation, "Gasse1");
 	      
 	    frame.add(panelLeft);
 	    frame.add(panelRight);
 	    frame.add(panelGap);
+	    frame.add(panelLocation);
 	     
 		
 	}
