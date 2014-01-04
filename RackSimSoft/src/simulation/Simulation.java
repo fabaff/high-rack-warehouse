@@ -156,6 +156,7 @@ public class Simulation
 					calendar.setTimeInMillis(currentEventTimeMillis + nextEventMillis);
 					
 					event = new Event(calendar, event.getJob());
+										
 					eventList.add(event);
 				}
 				else
@@ -231,6 +232,12 @@ public class Simulation
 		{
 			rackFeeder = gap.getRackFeeder();
 			rackFeederTable.put(rackFeeder.getRackFeederID(), rackFeeder);
+		}
+		
+		// Alle RackFeeder, welche in Events vorhanden sind, wieder entfernen
+		for (Event e : eventList.getEventListCopy())
+		{
+			rackFeederTable.remove(e.getJob().getRackFeeder().getRackFeederID());
 		}
 		
 		// JobListe ist aufsteigend sortiert nach Startzeit

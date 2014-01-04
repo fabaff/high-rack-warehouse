@@ -6,6 +6,7 @@ import item.ItemAllocation;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.Random;
 
 import simulation.Simulation;
@@ -124,36 +125,44 @@ public class Start
 		Item item;
 		ItemAllocation itemAllocation = myLocation.getItemAllocation();
 		Bin bin;
+		Hashtable<String, Bin> binTable = new Hashtable<String, Bin>();
 		
 		JobList jobList = JobList.getInstance();
 		ArrayList<Job> jobs = jobList.getJobList();
 		
 		for (Job job : jobs)
 		{
-			switch (job.getBehavior())
+			bin = job.getBin();
+			
+			// Ev. kommt derselbe Lagerplatz mehrfach vor, es kann nur auf den ersten Job getestet werden
+			if (binTable.get(bin.getBinID()) == null)
 			{
-				case IN :
-					bin = job.getBin();
-					if (itemAllocation.getItem(bin.getBinID()) != null)
-					{
-						itemAllocation.removeItem(bin);
-					}
-					
-					break;
+				binTable.put(bin.getBinID(), bin);
 				
-				case OUT :
-					bin = job.getBin();
-					if (itemAllocation.getItem(bin.getBinID()) == null)
-					{
-						item = Item.getInstance("01976");
-						itemAllocation.addItem(item, bin);
-					}
+				switch (job.getBehavior())
+				{
+					case IN :
+						if (itemAllocation.getItem(bin.getBinID()) != null)
+						{
+							
+							itemAllocation.removeItem(bin);
+						}
+						
+						break;
 					
-					break;
-					
-				default :
-					break;
-			}
+					case OUT :
+						if (itemAllocation.getItem(bin.getBinID()) == null)
+						{
+							item = Item.getInstance("01976");
+							itemAllocation.addItem(item, bin);
+						}
+						
+						break;
+						
+					default :
+						break;
+				}
+			}	
 		}
 	}
 }

@@ -13,29 +13,17 @@ public class Event implements Comparable<Event>
 {
 	private Calendar eventTime;
 	private Job job;
-	//private RackFeeder rackFeeder;
-	//private Bin bin;
-	//private Behavior behavior;
 	
-
 	/**
 	 * Creates a new event.
 	 * 
 	 * @param eventTime the time the event occurs
-	 * @param rackFeederID the ID for the RackFeeder to which the event belongs to
-	 * @param binID the ID for the Bin to which the event belongs to
-	 * @param behavior the current behavior to be set
+	 * @param job the job for which the event occurs
 	 */
-	//public Event(Calendar eventTime, String rackFeederID, String binID, Behavior behavior)
 	public Event(Calendar eventTime, Job job)
 	{
-		//Location location = Location.getInstance();
 		this.eventTime = eventTime;
-		
 		this.job = job;
-		//this.rackFeeder = location.getGap(rackFeederID).getRackFeeder();
-		//this.bin = location.getBin(binID);
-		//this.behavior = behavior;
 	}
 
 	/**
@@ -43,7 +31,7 @@ public class Event implements Comparable<Event>
 	 * 
 	 * @return the eventTime
 	 */
-	public Calendar getEventTime()
+	public final Calendar getEventTime()
 	{
 		return this.eventTime;
 	}
@@ -57,7 +45,7 @@ public class Event implements Comparable<Event>
 	{
 		return this.job;
 	}
-
+	
 	/**
 	 * Executes the current Event.
 	 * Returns the time in ms to the next event.
@@ -66,7 +54,16 @@ public class Event implements Comparable<Event>
 	 */
 	public int executeEvent()
 	{
-		return this.job.executeJob();
+		if (this.job != null)
+		{
+			return this.job.executeJob();
+		}
+		else
+		{
+			// TODO fertig implementieren...
+			
+			return -1;
+		}
 	}
 	
 	@Override

@@ -63,4 +63,23 @@ public class EventList
 		
 		return event;
 	}
+	
+	/**
+	 * Returns a copy of the event list.
+	 * 
+	 * @return a copy of the list of events
+	 */
+	public ArrayList<Event> getEventListCopy()
+	{
+		Collections.sort(list);
+		
+		ArrayList<Event> listCopy = new ArrayList<Event>();
+		
+		for (Event event : list)
+		{
+			listCopy.add(event);
+		}
+		
+		return listCopy;
+	}
 }
