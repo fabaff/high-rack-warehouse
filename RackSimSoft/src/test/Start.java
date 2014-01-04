@@ -10,10 +10,12 @@ import java.util.Hashtable;
 import java.util.Random;
 
 import simulation.Simulation;
+import simulation.Simulation.SimulationType;
 import job.Job;
 import job.JobList;
 import location.Bin;
 import location.Location;
+import gui2D.GUI;
 import helper.ReadingFiles;
 
 /**
@@ -29,6 +31,15 @@ public class Start
 	 */
 	public static void main(String[] args)
 	{
+		// Simulation initialisieren
+		Simulation.setFactor(1);
+		
+		//Simulation.setSimulationType(SimulationType.FACTOR);
+		Simulation.setSimulationType(SimulationType.AS_FAST_AS_POSSIBLE);
+		
+		Simulation.setStartSimulationTime("2013.12.24 23:59:59.000");
+		Simulation simulation = Simulation.getInstance();
+				
 		// Dateien einlesen
 		// ----------------
 		String fileName;
@@ -74,11 +85,6 @@ public class Start
 		}
 		// ++++++++++++++++
 		
-		// Simulation initialisieren
-		Simulation.setFactor(1);
-		Simulation.setStartSimulationTime("2013.12.24 23:59:59.000");
-		Simulation simulation = Simulation.getInstance();
-		
 		// Artikel per Zufall auf die Bins verteilen
 		addItems();
 		
@@ -112,6 +118,9 @@ public class Start
 			str = "<leer>";
 		System.out.println("Artikel in Bin Gasse3-1-Grid6-C-2 : " + str);
 		*/
+		
+		// GUI starten
+		GUI.createAndShowGui();
 		
 		// Simulation starten
 		simulation.start();

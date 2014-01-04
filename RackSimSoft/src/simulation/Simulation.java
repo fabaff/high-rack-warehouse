@@ -21,11 +21,18 @@ import event.EventList;
  */
 public class Simulation
 {
+	public static enum SimulationType
+	{
+		FACTOR, AS_FAST_AS_POSSIBLE
+	}
+	
 	private static Simulation instance;
 	private static double factor;
+	private static SimulationType simulationType;
 	private static Calendar startSimulationTime;
 	
 	private double myFactor;
+	private SimulationType mySimulationType;
 	private Calendar myStartSimulationTime;
 	
 	private Time time;
@@ -53,6 +60,11 @@ public class Simulation
 	{
 		this.time = null;
 		this.myFactor = Simulation.factor;
+		this.mySimulationType = Simulation.simulationType;
+		if (this.mySimulationType == SimulationType.AS_FAST_AS_POSSIBLE)
+		{
+			this.myFactor = 1;
+		}
 		this.myStartSimulationTime = Simulation.startSimulationTime;
 	}
 	
@@ -64,6 +76,16 @@ public class Simulation
 	public static void setFactor(double factor)
 	{
 		Simulation.factor = factor;
+	}
+	
+	/**
+	 * Sets the simulation type, for which the simulation time proceeds faster or slower than the real time or as fast as possible.
+	 * 
+	 * @param simulationType the simulationType to set
+	 */
+	public static void setSimulationType(SimulationType simulationType)
+	{
+		Simulation.simulationType = simulationType;
 	}
 
 	/**
@@ -113,8 +135,17 @@ public class Simulation
 			
 			try
 			{
-				// Warten bis der Event ausgeführt werden muss
-				Thread.sleep(waitMillis);
+				// Abhaengig vom Typ der Simulation warten oder Zeit manipulieren
+				if (this.mySimulationType == SimulationType.AS_FAST_AS_POSSIBLE)
+				{
+					// Sofort voranschreiten
+					this.time.proceed(waitMillis);
+				}
+				else
+				{
+					// Warten bis der Event ausgeführt werden muss
+					Thread.sleep(waitMillis);
+				}
 				
 				// Event ausführen
 				int nextEventMillis = event.executeEvent();
