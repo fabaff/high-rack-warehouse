@@ -103,7 +103,7 @@ public class RackFeederState1 extends RackFeederState
 			default : break;
 		}
 		
-		// Zeit setzen, bis der RackFeeder den nächsten Status erreicht
+		// Zeit setzen, bis der RackFeeder den naechsten Status erreicht
 		this.setBusyTime(time);
 		
 		return time;

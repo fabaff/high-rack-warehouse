@@ -143,20 +143,20 @@ public class Simulation
 				}
 				else
 				{
-					// Warten bis der Event ausgeführt werden muss
+					// Warten bis der Event ausgefuehrt werden muss
 					Thread.sleep(waitMillis);
 				}
 				
-				// Event ausführen
+				// Event ausfuehren
 				int nextEventMillis = event.executeEvent();
 				
-				// Nächsten Event für diesen Job erstellen...
-				// nextEventMillis zeigt die Zeit für den nächsten Event an (0..xxx)
+				// Naechsten Event fuer diesen Job erstellen...
+				// nextEventMillis zeigt die Zeit fuer den naechsten Event an (0..xxx)
 				// Wenn -1, dann kein Nachfolge-Event mehr
 				if (nextEventMillis >= 0)
 				{
 					//System.out.println("SimZeit: " + Simulation.getInstance().getSimulationTimeFormatted());
-					//System.out.println("Event " + Simulation.calendar2String(event.getEventTime()) + " ausgeführt, Nachfolge-Event in " + nextEventMillis + " Millisekunden");
+					//System.out.println("Event " + Simulation.calendar2String(event.getEventTime()) + " ausgefuehrt, Nachfolge-Event in " + nextEventMillis + " Millisekunden");
 					
 					Calendar calendar = Calendar.getInstance();
 					calendar.setTimeInMillis(currentEventTimeMillis + nextEventMillis);
@@ -168,13 +168,13 @@ public class Simulation
 				else
 				{
 					//System.out.println("SimZeit: " + Simulation.getInstance().getSimulationTimeFormatted());
-					//System.out.println("Event " + Simulation.calendar2String(event.getEventTime()) + " ausgeführt, kein Nachfolge-Event mehr");
+					//System.out.println("Event " + Simulation.calendar2String(event.getEventTime()) + " ausgefuehrt, kein Nachfolge-Event mehr");
 				}
 				
-				// Aus Jobliste neuen Event erstellen, weil der Job nun fällig ist?
+				// Aus Jobliste neuen Event erstellen, weil der Job nun faellig ist?
 				createEvents();
 				
-				// Nächsten Event holen
+				// Naechsten Event holen
 				event = eventList.getNextEvent();
 			}
 			catch (InterruptedException e)
@@ -208,7 +208,7 @@ public class Simulation
 		Event event;
 		EventList eventList = EventList.getInstance();
 		
-		// Alle RackFeeder in HashTable abfüllen
+		// Alle RackFeeder in HashTable abfuellen
 		for (Gap gap : gapList)
 		{
 			rackFeeder = gap.getRackFeeder();

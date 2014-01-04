@@ -68,7 +68,7 @@ public class ReadingFiles {
 	 * 
 	 * @param FileName Path and file name of the file.
 	 */
-	public void readLocationNEW(String FileName) throws IOException 
+	public void readLocation(String FileName) throws IOException 
 	{
 		/* Format of the file
 		 * see LocationDefinition.txt
@@ -82,7 +82,6 @@ public class ReadingFiles {
 			Location.MeasurementUnit measurementUnit;	// Possible values = "MM", "CM", "DM", "M"
 			int gapCounter = 0;
 			int gridCounter = 0;
-			int columnCounter = 0;
 			int rowCounter = 0;
 			String[] gaps = null;
 			String[] gapParts = null;
@@ -92,8 +91,6 @@ public class ReadingFiles {
 			Hashtable<String, String> gridTable = null;
 			Gap gap = null;
 			Grid grid;
-			Column column;
-			Row row;
 			ArrayList<String> columnList = null;
 			ArrayList<String> rowList = null;
 			int lastX = 0;
@@ -144,7 +141,6 @@ public class ReadingFiles {
 							
 						case "Gap" :
 							gapCounter -= 1;
-							columnCounter = Integer.parseInt(parts[5]);
 							rowCounter = Integer.parseInt(parts[6]);
 							gaps[gapCounter] = string;
 							gridTable = new Hashtable<String, String>();
@@ -241,112 +237,6 @@ public class ReadingFiles {
 			}
 			//System.out.println("Total processed lines: " + line + "\n");
 	    }
-	}
-	
-	/**
-	 * Reading the location data from a file.
-	 * 
-	 * @param FileName Path and file name of the file.
-	 */
-	public void readLocation(String FileName) throws IOException 
-	{
-		/* Format of the file: flat text file
-		 * 
-		 * Sample data:
-		 * Location: mylocation, MM
-		 * ---
-		 * Gap: Gasse1;1000
-		 * Grid: Grid1;1000, Grid2;1000
-		 * Column: A;1200, B;800, C;800, D;1200, E;1000, F;1000, G;1200
-		 * Row: 1;600, 2;800, 3;500, 4;600
-		 * ...
-		 */
-		Path path = Paths.get(FileName);
-		Location myLocation;
-		int line = 0;
-		ArrayList<String> elements = new ArrayList<String>();
-		//ArrayList<String> errors = new ArrayList<String>();
-		try (Scanner scanner =  new Scanner(path, ENCODING.name()))
-		{
-			while (scanner.hasNextLine())
-			{
-				String string = scanner.nextLine();
-				line++;
-				elements.add(string);
-				//if (string.contains(":"))
-				//{
-				//	line++;
-				//	elements.add(string);
-				//}
-			}
-			//System.out.println("Total processed lines: " + line + "\n");
-	    }
-		//System.out.println(elements);
-		//for (int i = 0; i < elements.size(); i++) {
-		//	System.out.println(elements.toArray()[i]);
-		//}
-		
-		String[] parts = ((String) elements.toArray()[0]).split(";");
-		// Location: myLocation;MM
-		Location.MeasurementUnit measurementUnit;
-	
-		switch (parts[1])
-		{
-			case "MM":
-				measurementUnit = Location.MeasurementUnit.MM;
-				break;
-			case "CM":
-				measurementUnit = Location.MeasurementUnit.CM;
-				break;
-			case "DM":
-				measurementUnit = Location.MeasurementUnit.DM;
-				break;
-			case "M":
-				measurementUnit = Location.MeasurementUnit.M;
-				break;
-			default:
-				measurementUnit = Location.MeasurementUnit.MM;
-		}
-		myLocation = Location.getInstance(parts[0], measurementUnit);
-		// TODO Get rid of the hardcoded values
-		for (int i = 0; i + 5 < elements.size(); i= i + 5) {
-			// Gap
-			String[] partsA = ((String) elements.toArray()[5 + i]).split(";");
-			int p = 300;
-			Gap gap = new Gap(partsA[0], p, (p * 2 * 300) + 300 + (p * 300));  // id, width, x coordinate
-			
-			// Columns
-			String[] partsC = ((String) elements.toArray()[2 + i]).split(";");
-			int columnCounter = partsC.length;
-			Column columnArray[] = new Column[columnCounter];
-			
-			int c_coordinate = 0;
-			for (int c = 0; c < partsC.length; c++) {
-				c_coordinate = c_coordinate + c;//partsC[1]
-				columnArray[c] = new Column(partsC[0], 300, c_coordinate);
-			}
-			
-			// Rows
-			String[] partsR = ((String) elements.toArray()[3 + i]).split(";");
-			int rowCounter = partsR.length;
-			Row rowArray[] = new Row[rowCounter];
-
-			int r_coordinate = 0;
-			for (int r = 0; r < partsR.length; r++) {
-				c_coordinate = c_coordinate + r;
-				rowArray[r] = new Row(partsR[0], 300, r_coordinate);
-			}
-
-			// Grid
-			String[] partsG = ((String) elements.toArray()[4 + i]).split(";");
-			for (int g = 0; g < partsG.length; g++) {
-				Grid grid = new Grid(partsG[0], gap, g % 2, columnArray, rowArray, 300);
-				gap.addGrid(grid);
-			}			
-			// Assign gap (with assigned grids) to the location
-			myLocation.addGap(gap);
-		}
-		//System.out.println("--> Location created" + "\n");
 	}
 
 	/**

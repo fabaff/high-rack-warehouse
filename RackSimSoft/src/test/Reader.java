@@ -26,7 +26,7 @@ public class Reader {
 
 		ReadingFiles readerLocation = new ReadingFiles();
 	    //readerLocation.readLocation(location_file);
-		readerLocation.readLocationNEW(location_file);
+		readerLocation.readLocation(location_file);
 
 	    // Test
 	    Location myLoc = Location.getInstance();

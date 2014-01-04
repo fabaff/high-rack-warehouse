@@ -56,12 +56,12 @@ public class Event implements Comparable<Event>
 	{
 		if (this.job != null)
 		{
+			// "Richtiger" Event
 			return this.job.executeJob();
 		}
 		else
 		{
-			// TODO fertig implementieren...
-			
+			// "Erinnerungs-Event"
 			return -1;
 		}
 	}

@@ -116,7 +116,7 @@ public abstract class Job implements Comparable<Job>
 		state = state.getNextState();
 		this.getRackFeeder().setState(state);
 		
-		// Zeit in ms bis zum nächsten Statuswechsel zurückgeben
+		// Zeit in ms bis zum naechsten Statuswechsel zurueckgeben
 		return state.prepareForMove(this);
 	}
 	

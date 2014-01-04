@@ -50,7 +50,7 @@ public class Start
 		readingFiles = new ReadingFiles();
 		try
 		{
-			readingFiles.readLocationNEW(fileName);
+			readingFiles.readLocation(fileName);
 		}
 		catch (IOException e)
 		{
