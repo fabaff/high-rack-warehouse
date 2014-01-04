@@ -9,30 +9,16 @@ public class BinComponent extends RectangleComponent
 	private int yOffset;
 	private int zOffset;
 	
-	public BinComponent(Bin bin, double guiCoordinateFactor)
+	public BinComponent(Bin bin, int rectangleSide)
 	{
-		super(bin.getBinID(), (int) (guiCoordinateFactor * bin.getYSize()), (int) (guiCoordinateFactor * bin.getZSize()), binBorder);
-		yOffset = (int) (guiCoordinateFactor * bin.getY());
-		zOffset = (int) (guiCoordinateFactor * bin.getZ());
+		super(bin.getBinID(), (int) (rectangleSide), (int) (rectangleSide), binBorder);
+		yOffset = (int) (rectangleSide);
+		zOffset = (int) (rectangleSide);
 	}
 	
-	public int getWidth()
+	public int getSide()
 	{
 		return this.width;
 	}
 	
-	public int getHeight()
-	{
-		return this.heigth;
-	}
-	
-	public int getYOffset()
-	{
-		return this.yOffset;
-	}
-	
-	public int getZOffset()
-	{
-		return this.zOffset;
-	}
 }

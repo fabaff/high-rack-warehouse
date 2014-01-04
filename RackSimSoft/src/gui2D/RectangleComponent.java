@@ -12,28 +12,27 @@ public class RectangleComponent extends JComponent
 {
 	private static final long serialVersionUID = 1L;
 	
-	int width = 0;
-	int height = 0;
+	int side = 0;
 	float border = 0.0f;
 	String id = "";
 	
-	public RectangleComponent(String id, int width, int height, float border)
+	public RectangleComponent(String id, int x, int y, int side)
 	{
-		this.width = width;
-		this.height = height;
-		this.border = border;
-		
+		this.side = side;
+		float border = 0.2f;
 		this.id = id;
+		
+		
 	}
 	
 	protected void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
-		int size = 10;
+		//int side = side;
 		//int border = 2;
 		
 		g.setColor(Color.GREEN);
-		g.drawRect(30, 30, size, size);
+		g.drawRect(50, 50, side, side);
 	
 	}
 }

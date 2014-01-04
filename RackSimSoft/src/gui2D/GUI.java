@@ -30,10 +30,8 @@ public class GUI {
 		final String TITLE = "RackSimSoft";
 		
 		
-		
-		JFrame frame;
-		
-	    frame = new JFrame();
+		// Create main JFrame
+		JFrame frame = new JFrame();
 	    frame.setLayout(null);
 		frame.setPreferredSize(new Dimension(WIDTH,HEIGHT));
 		frame.setMinimumSize(new Dimension(WIDTH,HEIGHT));
@@ -42,6 +40,8 @@ public class GUI {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    frame.setVisible(true);
 	    
+	    
+	    //Create Panels for Left and Right Grid
 	    JPanel panelLeft = new GridPanel(myLocation, "0", 0);
 	    JPanel panelRight = new GridPanel(myLocation, "0", 1);
 	      
