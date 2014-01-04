@@ -31,7 +31,7 @@ public class Event implements Comparable<Event>
 	 * 
 	 * @return the eventTime
 	 */
-	public final Calendar getEventTime()
+	public Calendar getEventTime()
 	{
 		return this.eventTime;
 	}

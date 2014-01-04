@@ -74,6 +74,11 @@ public class Start
 		}
 		// ++++++++++++++++
 		
+		// Simulation initialisieren
+		Simulation.setFactor(1);
+		Simulation.setStartSimulationTime("2013.12.24 23:59:59.000");
+		Simulation simulation = Simulation.getInstance();
+		
 		// Artikel per Zufall auf die Bins verteilen
 		addItems();
 		
@@ -82,12 +87,8 @@ public class Start
 		
 		// Events erstellen anhand der JobListe
 		Simulation.createEvents();
-		
+
 		// Simulation starten
-		Simulation.setFactor(1);
-		Simulation.setStartSimulationTime("2013.12.24 23:59:45.000");
-		Simulation simulation = Simulation.getInstance();
-		
 		simulation.start();
 		
 		System.out.println("Simulation ist beendet");

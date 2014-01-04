@@ -4,6 +4,8 @@ package event;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import simulation.Simulation;
+
 
 /**
  * @author mschaerer

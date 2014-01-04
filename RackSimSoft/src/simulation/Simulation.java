@@ -163,6 +163,7 @@ public class Simulation
 				{
 					System.out.println("Event ausgeführt, kein Nachfolge-Event mehr.");
 					
+					/*
 					// Aus Jobliste neuen Event erstellen für diesen RackFeeder, da dieser wieder frei ist?
 					JobList jobList = JobList.getInstance();
 					// JobListe ist aufsteigend sortiert nach Startzeit
@@ -188,6 +189,7 @@ public class Simulation
 							break;
 						}
 					}
+					*/
 				}
 				
 				// Aus Jobliste neuen Event erstellen, weil der Job nun fällig ist?
@@ -237,7 +239,10 @@ public class Simulation
 		// Alle RackFeeder, welche in Events vorhanden sind, wieder entfernen
 		for (Event e : eventList.getEventListCopy())
 		{
-			rackFeederTable.remove(e.getJob().getRackFeeder().getRackFeederID());
+			if (e.getJob() != null)
+			{
+				rackFeederTable.remove(e.getJob().getRackFeeder().getRackFeederID());
+			}
 		}
 		
 		// JobListe ist aufsteigend sortiert nach Startzeit
@@ -247,11 +252,23 @@ public class Simulation
 			if (rackFeederTable.get(job.getRackFeeder().getRackFeederID()) != null)
 			{
 				// Event generieren
-				event = new Event(job.getStartTime(), job);
-				eventList.add(event);
+				// Unterscheiden, ob der Job bereits faellig ist oder nur ein Event als Erinnerung zum generieren eines Events generiert werden soll
+				// Ist der Job faellig, wird der Job entfernt und daraus eine Event generiert
+				// Ist der Job noch nicht faellig, wird per Faelligkeit ein "Erinnerungs-Event" generiert und erst beim ausfuehren dieses Events ein Job-Event generiert
+				if (job.getStartTime().before(getInstance().getSimulationTime()))
+				{
+					event = new Event(job.getStartTime(), job);
+					
+					// Job vormerken zum aus Liste entfernen
+					jobRemoveList.add(job);
+				}
+				else
+				{
+					// Erinnerungsevent per Faelligkeit generieren
+					event = new Event(job.getStartTime(), null);
+				}
 				
-				// Job vormerken zum aus Liste entfernen
-				jobRemoveList.add(job);
+				eventList.add(event);
 				
 				// RackFeeder aus Tabelle entfernen
 				rackFeederTable.remove(job.getRackFeeder().getRackFeederID());

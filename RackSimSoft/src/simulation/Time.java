@@ -142,7 +142,7 @@ class Time
 	 * @param calendar the Calendar object to return as String
 	 * @return the Calendar String in format YYYY.MM.DD HH:MM:SS.sss
 	 */
-	public static String calendar2String(Calendar calendar)
+	static String calendar2String(Calendar calendar)
 	{
 		String calendarString = "";
 		calendarString += calendar.get(Calendar.YEAR) + ".";
