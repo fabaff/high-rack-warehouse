@@ -2,6 +2,7 @@
 package job;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * @author mschaerer
@@ -39,12 +40,23 @@ public class JobList
 	}
 	
 	/**
+	 * Removes a job from the JobList.
+	 * 
+	 * @param job the job to remove
+	 */
+	public void remove(Job job)
+	{
+		this.list.remove(job);
+	}
+	
+	/**
 	 * Returns the list of Jobs.
 	 * 
 	 * @return the list of jobs
 	 */
 	public ArrayList<Job> getJobList()
 	{
+		Collections.sort(this.list);
 		return this.list;
 	}
 }

@@ -9,12 +9,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import simulation.Simulation;
-import event.Event;
-import event.EventList;
-import job.InStoreJob;
 import job.Job;
 import job.JobList;
-import job.OutStoreJob;
 import location.Bin;
 import location.Location;
 import helper.ReadingFiles;
@@ -81,13 +77,19 @@ public class Start
 		addItems();
 		
 		// Anhand der Jobs sicherstellen, dass Artikel in Bins sind, bzw. diese Bins leer sind
-		cleanItems();
+		checkItems();
 		
 		// Events erstellen anhand der JobListe
-		
+		Simulation.createEvents();
 		
 		// Simulation starten
+		Simulation.setFactor(1);
+		Simulation.setStartSimulationTime("2013.12.24 23:59:45.000");
+		Simulation simulation = Simulation.getInstance();
 		
+		simulation.start();
+		
+		System.out.println("Simulation ist beendet");
 	}
 
 	/**
@@ -116,7 +118,7 @@ public class Start
 	/**
 	 * Adds / Removes items to some of the bins, depending on the job list.
 	 */
-	private static void cleanItems()
+	private static void checkItems()
 	{
 		Location myLocation = Location.getInstance();
 		Item item;
@@ -153,38 +155,5 @@ public class Start
 					break;
 			}
 		}
-	}
-	
-	/**
-	 * Starts the simulation.
-	 */
-	private static void simulate() throws InterruptedException
-	{
-		Job job;
-		Event event;
-		String startTime;
-		
-		System.out.println();
-		System.out.println();
-		System.out.println("Simulation wird gestartet:");
-		EventList eventList = EventList.getInstance();
-		
-		startTime = "2013.12.25 00:00:00.000";
-		job = new InStoreJob(Simulation.string2Calendar(startTime), Item.getInstance("Item 1"), Location.getInstance().getBin("1-1-3-2-0"), Location.getInstance().getGap("1").getRackFeeder());
-		event = new Event(Simulation.string2Calendar(startTime), job);
-		eventList.add(event);
-		
-		startTime = "2013.12.25 00:00:00.050";
-		job = new OutStoreJob(Simulation.string2Calendar(startTime), Location.getInstance().getBin("0-1-1-2-1"), Location.getInstance().getGap("0").getRackFeeder());
-		event = new Event(Simulation.string2Calendar(startTime), job);
-		eventList.add(event);
-		
-		Simulation.setFactor(1);
-		Simulation.setStartSimulationTime("2013.12.24 23:59:45.000");
-		Simulation sim = Simulation.getInstance();
-		
-		sim.start();
-		
-		System.out.println("Simulation ist beendet");
 	}
 }

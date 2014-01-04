@@ -14,7 +14,7 @@ import item.ItemAllocation;
  * @author mschaerer
  *
  */
-public abstract class Job
+public abstract class Job implements Comparable<Job>
 {
 	private Calendar startTime;
 	private Item item;
@@ -118,5 +118,11 @@ public abstract class Job
 		
 		// Zeit in ms bis zum nächsten Statuswechsel zurückgeben
 		return state.prepareForMove(this);
+	}
+	
+	@Override
+	public int compareTo(Job job)
+	{
+		return this.startTime.compareTo(job.getStartTime());
 	}
 }

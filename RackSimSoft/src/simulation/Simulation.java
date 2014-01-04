@@ -1,12 +1,17 @@
 
 package simulation;
 
-import item.Item;
-
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Hashtable;
 
+import job.Job;
+import job.JobList;
+import location.Gap;
+import location.Location;
+import location.RackFeeder;
 import event.Event;
 import event.EventList;
 
@@ -158,11 +163,34 @@ public class Simulation
 					System.out.println("Event ausgeführt, kein Nachfolge-Event mehr.");
 					
 					// Aus Jobliste neuen Event erstellen für diesen RackFeeder, da dieser wieder frei ist?
-					// TODO Events erstellen aus Jobliste
+					JobList jobList = JobList.getInstance();
+					// JobListe ist aufsteigend sortiert nach Startzeit
+					for (Job job : jobList.getJobList())
+					{
+						// Job vorhanden für diesen RackFeeder?
+						if (event.getJob().getRackFeeder().equals(job.getRackFeeder()))
+						{
+							// Event generieren, Zeit muss ev. angepasst werden da der Job hinausgezögert wurde
+							Calendar startTime = job.getStartTime();
+							if (startTime.before(this.getSimulationTime()))
+							{
+								startTime = this.getSimulationTime();
+							}
+							
+							event = new Event(startTime, job);
+							eventList.add(event);
+							
+							// Job aus Liste entfernen
+							jobList.remove(job);
+							
+							// Abbrechen
+							break;
+						}
+					}
 				}
 				
 				// Aus Jobliste neuen Event erstellen, weil der Job nun fällig ist?
-				// TODO Events erstellen aus Jobliste
+				createEvents();
 				
 				// Nächsten Event holen
 				event = eventList.getNextEvent();
@@ -182,6 +210,56 @@ public class Simulation
 	public void stop()
 	{
 		
+	}
+	
+	/**
+	 * Creates Events depending on the job list.
+	 * Just one event per gap is created, even if there are more jobs per gap.
+	 */
+	public static void createEvents()
+	{
+		JobList jobList = JobList.getInstance();
+		ArrayList<Job> jobRemoveList = new ArrayList<Job>();
+		ArrayList<Gap> gapList = Location.getInstance().getGapListCopy();
+		Hashtable<String, RackFeeder> rackFeederTable = new Hashtable<String, RackFeeder>();
+		RackFeeder rackFeeder;
+		Event event;
+		EventList eventList = EventList.getInstance();
+		
+		// Alle RackFeeder in HashTable abfüllen
+		for (Gap gap : gapList)
+		{
+			rackFeeder = gap.getRackFeeder();
+			rackFeederTable.put(rackFeeder.getRackFeederID(), rackFeeder);
+		}
+		
+		// JobListe ist aufsteigend sortiert nach Startzeit
+		for (Job job : jobList.getJobList())
+		{
+			// Falls RackFeeder noch in Tabelle, dann kann der Job als Event generiert werden und der RackFeeder aus der Tabelle entfernt werden
+			if (rackFeederTable.get(job.getRackFeeder().getRackFeederID()) != null)
+			{
+				// Event generieren
+				event = new Event(job.getStartTime(), job);
+				eventList.add(event);
+				
+				// Job vormerken zum aus Liste entfernen
+				jobRemoveList.add(job);
+				
+				// RackFeeder aus Tabelle entfernen
+				rackFeederTable.remove(job.getRackFeeder().getRackFeederID());
+				
+				// Ev. abbrechen weil keine freien RackFeeder mehr vorhanden?
+				if (rackFeederTable.size() == 0)
+					break;
+			}
+		}
+		
+		// Jobs aus Liste entfernen
+		for (Job job : jobRemoveList)
+		{
+			jobList.remove(job);
+		}
 	}
 	
 	/**
