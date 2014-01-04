@@ -38,24 +38,28 @@ public class GridPanel extends JPanel
 		int xRight = 0;
 		int columnCount = 0;
 		int rowCount = 0;
-		int rectangleHeight;
-		int rectangleWidth;
+		double rectangleHeight;
+		double rectangleWidth;
 		int rectangleSide;
+		double guiCoordinateFactor;
 		Point p = new Point(10,10);
 		Grid grid = null;
 		Bin binArray[][];
 		Gap gap1;
-		BinComponent binComponent;
+		BinComponent binComponent = null;
 		
 		//Get Size of Grid (Left and Right)
 		
 		if(side==0)
 		{
 			System.out.println("links");
+			
+			
 			columnCount = myLocation.getGap(gap).getGridLeft().getBinArray().length;
 			
 			gap1 = myLocation.getGap(gap);
 			grid = gap1.getGridLeft();
+			
 			
 			x = 10;
 			y = 10;
@@ -81,25 +85,39 @@ public class GridPanel extends JPanel
 		
 		binArray = grid.getBinArray();
 		
+		double gridXSize = grid.getYSize();
+		double gridYSize = grid.getZSize();
+		System.out.println("XSize: " + gridXSize + "YSize: " + gridYSize);
 		
 		for(Bin[] bins : binArray)
 		{
 			rowCount++;
 		}
-		
+		/*
 		rectangleHeight = (HEIGHT-20)/columnCount;
 		rectangleWidth = (WIDTH-20)/rowCount;
+		*/
 		
-		System.out.println("rectangleHeigth: " + rectangleHeight + " rectangleWidth: " + rectangleWidth);
-		System.out.println("rowCount: " + rowCount + " columntCount" + columnCount);
+		rectangleHeight = ((HEIGHT-20))/(gridYSize);
+		rectangleWidth = ((WIDTH-20))/(gridXSize);
+		
+		System.out.println(WIDTH*rectangleWidth);
+		System.out.println(HEIGHT*rectangleHeight);
 		
 		//Calculate side-length of rectangles
-		if(rectangleHeight > rectangleWidth)
+		if(rectangleHeight < rectangleWidth)
 		{
-			rectangleSide = rectangleWidth;
+			rectangleSide = (int) ((WIDTH-20)*rectangleWidth);
+			guiCoordinateFactor = rectangleWidth;
+			//rectangleSide = (int) rectangleWidth;
 		} else {
-			rectangleSide = rectangleHeight;
+			rectangleSide = (int) ((HEIGHT-20)*rectangleHeight);
+			guiCoordinateFactor = rectangleHeight;
 		}
+		
+		System.out.println(rectangleSide);
+		System.out.println("rectangleHeigth: " + rectangleHeight + " rectangleWidth: " + rectangleWidth);
+		System.out.println("rowCount: " + rowCount + " columntCount" + columnCount);
 		
 		if(side==0)
 		{
@@ -117,7 +135,7 @@ public class GridPanel extends JPanel
 		
 		this.setLayout(null);
 		this.setVisible(true);
-		this.setLocation(p);
+		//this.setLocation(p);
 		this.setBackground(Color.lightGray);
 		this.setBounds(x, y, WIDTH, HEIGHT);
 		this.setPreferredSize(new Dimension (WIDTH, HEIGHT));
@@ -174,6 +192,7 @@ public class GridPanel extends JPanel
 			}
 			yOffset = yOffset - rectangleSide;
 		}
+		
 		
 	}
 	
