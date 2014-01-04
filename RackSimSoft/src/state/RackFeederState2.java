@@ -121,10 +121,17 @@ public class RackFeederState2 extends RackFeederState
 				Movement movement = new Movement(distance, job.getRackFeeder());
 				String direction = "0110";  // xYZu
 				time = movement.prepareForMove(direction);
+				
+				// Movement setzen zum berechnen der aktuellen RackFeeder-Position nach Zeit
+				this.setMovement(movement);
+				
 				break;
 			
 			default : break;
 		}
+		
+		// Zeit setzen, bis der RackFeeder den nächsten Status erreicht
+		this.setBusyTime(time);
 		
 		return time;
 	}

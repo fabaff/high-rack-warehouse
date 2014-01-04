@@ -1,12 +1,20 @@
 
 package state;
 
+import java.util.Calendar;
+
+import calculation.Coordinate;
+import calculation.Movement;
+import simulation.Simulation;
 import job.Job;
 
 
 public abstract class RackFeederState
 {
 	protected Behavior behavior;
+	protected Calendar stateStartTime;
+	protected int busyTime;
+	protected Movement movement;
 	
 	public static enum Behavior
 	{
@@ -21,6 +29,8 @@ public abstract class RackFeederState
 	public RackFeederState(Behavior behavior)
 	{
 		this.behavior = behavior;
+		this.stateStartTime = Simulation.getInstance().getSimulationTime();
+		this.movement = null;
 	}
 	
 	/**
@@ -68,6 +78,44 @@ public abstract class RackFeederState
 		{
 			this.behavior = behavior;
 		}
+	}
+	
+	/**
+	 * Sets the current Movement depending on the current state and behavior of the RackFeeder.
+	 * 
+	 * @param movement the current movement to set
+	 */
+	protected void setMovement(Movement movement)
+	{
+		this.movement = movement;
+	}
+	
+	/**
+	 * Sets the time which the rack feeder needs to reach the next state.
+	 * 
+	 * @param busyTime the time the rack feeder needs to reach the next state
+	 */
+	protected void setBusyTime(int busyTime)
+	{
+		this.busyTime = busyTime;
+	}
+	
+	/**
+	 * Returns the current Coordinate depending on the simulation time gone since the last state has reached.
+	 * 
+	 * @return the coordinate
+	 */
+	public Coordinate getCurrentCoordinate()
+	{
+		Coordinate coordinate = null;
+		
+		if (this.movement != null)
+		{
+			double factor = Simulation.getInstance().getFactor();
+			coordinate = this.movement.getCurrentCoordinate((int) Math.round(this.busyTime * factor));
+		}
+		
+		return coordinate;
 	}
 	
 	/**

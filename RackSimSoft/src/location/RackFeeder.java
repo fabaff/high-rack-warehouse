@@ -212,6 +212,22 @@ public class RackFeeder
 	}
 
 	/**
+	 * Returns the current Coordinate depending on the simulation time gone since the last state has reached.
+	 * 
+	 * @return the coordinate
+	 */
+	public Coordinate getCurrentCoordinate()
+	{
+		Coordinate coordinate = this.state.getCurrentCoordinate();
+		if (coordinate == null)
+		{
+			coordinate = getCoordinate();
+		}
+		
+		return coordinate;
+	}
+	
+	/**
 	 * Returns the coordinate of the current rack feeder.
 	 * 
 	 * @return the coordinate

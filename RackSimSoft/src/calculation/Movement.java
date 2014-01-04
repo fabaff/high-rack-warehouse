@@ -594,7 +594,7 @@ public class Movement
 	
 	
 	/**
-	 * 
+	 * Returns the current Coordinate depending on the simulation time gone since the last state has reached.
 	 * 
 	 * @return the coordinate
 	 */

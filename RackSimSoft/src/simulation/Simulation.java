@@ -67,6 +67,16 @@ public class Simulation
 	}
 
 	/**
+	 * Returns the current factor for calculating the simulation time.
+	 * 
+	 * @return the factor
+	 */
+	public double getFactor()
+	{
+		return this.myFactor;
+	}
+	
+	/**
 	 * Sets the simulation date and time to start with
 	 * The format of the String must be as following:
 	 * YYYY.MM.DD HH:MM:SS.sss
