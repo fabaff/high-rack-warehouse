@@ -11,8 +11,13 @@ import helper.*;
 public class Reader {
 
 	public static void main(String[] args) throws IOException {
+		
+		String article_file  = "item_list2.txt";
+		String location_file =  "location2.txt";
+		String jobs_file     =  "job_list2.txt";
+		
+		
 		// Articles
-		String article_file = "item_list1.txt";
 		System.out.println("Reading file '" + article_file + "'");
 
 		ReadingFiles readerArticles = new ReadingFiles();
@@ -20,8 +25,6 @@ public class Reader {
 	    
 
 	    // Location
-		//String location_file = "location_list.txt";
-	    String location_file = "location1.txt";
 		System.out.println("Reading file '" + location_file + "'");
 
 		ReadingFiles readerLocation = new ReadingFiles();
@@ -55,7 +58,6 @@ public class Reader {
 	    // Test Ende
 	    
 	    // Jobs
-		String jobs_file = "job_list1.txt";
 		System.out.println("Reading file '" + jobs_file + "'");
 
 		ReadingFiles readerJobs = new ReadingFiles();

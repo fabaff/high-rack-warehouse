@@ -10,6 +10,7 @@ import job.InStoreJob;
 import job.Job;
 import job.OutStoreJob;
 import simulation.Simulation;
+import simulation.Simulation.SimulationType;
 import state.RackFeederState.Behavior;
 import item.Item;
 import item.ItemAllocation;
@@ -657,6 +658,12 @@ public class CreateLocation
 	
 	private static void simulateCycle() throws InterruptedException
 	{
+		Simulation.setFactor(1);
+		//Simulation.setSimulationType(SimulationType.FACTOR);
+		Simulation.setSimulationType(SimulationType.AS_FAST_AS_POSSIBLE);
+		Simulation.setStartSimulationTime("2013.12.24 23:59:45.000");
+		Simulation sim = Simulation.getInstance();
+		
 		Job job;
 		Event event;
 		String startTime;
@@ -676,9 +683,7 @@ public class CreateLocation
 		event = new Event(Simulation.string2Calendar(startTime), job);
 		eventList.add(event);
 		
-		Simulation.setFactor(1);
-		Simulation.setStartSimulationTime("2013.12.24 23:59:45.000");
-		Simulation sim = Simulation.getInstance();
+		
 		
 		sim.start();
 		

@@ -120,7 +120,7 @@ public class Start
 		*/
 		
 		// GUI starten
-		GUI.createAndShowGui();
+		//GUI.createAndShowGui();
 		
 		// Simulation starten
 		simulation.start();
