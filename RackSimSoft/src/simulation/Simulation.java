@@ -93,7 +93,6 @@ public class Simulation
 		
 		while (event != null)
 		{
-			//System.out.println("Event gefunden, Startzeit: " + calendar2String(event.getEventTime()));
 			nextEventTime = event.getEventTime();
 			currentEventTimeMillis = nextEventTime.getTimeInMillis();
 			waitMillis = currentEventTimeMillis - getSimulationTime().getTimeInMillis();
@@ -104,53 +103,19 @@ public class Simulation
 			
 			try
 			{
-				//System.out.println("Warte für " + waitMillis + " Millisekunden...");
 				// Warten bis der Event ausgeführt werden muss
 				Thread.sleep(waitMillis);
 				
-				//System.out.println("Fertig mit warten, Event ausführen...");
-				
-				
-				/*
-				// Ausgabe:
-				Item item;
-				String itemID;
-				item = event.getJob().getRackFeeder().getItem();
-				if (item != null)
-					itemID = item.getItemID();
-				else
-					itemID = "<leer>";
-				
-				System.out.println("RackFeeder vorher:");
-				System.out.println("  Status: " + event.getJob().getRackFeeder().getState().getClass().getName());
-				System.out.println("  Koordinaten: " + event.getJob().getRackFeeder().getCoordinate().toString());
-				System.out.println("  Artikel: " + itemID);
-				*/
-				
 				// Event ausführen
 				int nextEventMillis = event.executeEvent();
-				
-				/*
-				// Ausgabe:
-				item = event.getJob().getRackFeeder().getItem();
-				if (item != null)
-					itemID = item.getItemID();
-				else
-					itemID = "<leer>";
-				
-				System.out.println("RackFeeder nachher:");
-				System.out.println("  Status: " + event.getJob().getRackFeeder().getState().getClass().getName());
-				System.out.println("  Koordinaten: " + event.getJob().getRackFeeder().getCoordinate().toString());
-				System.out.println("  Artikel: " + itemID);
-				*/
-				
 				
 				// Nächsten Event für diesen Job erstellen...
 				// nextEventMillis zeigt die Zeit für den nächsten Event an (0..xxx)
 				// Wenn -1, dann kein Nachfolge-Event mehr
 				if (nextEventMillis >= 0)
 				{
-					System.out.println("Event ausgeführt, Nachfolge-Event in " + nextEventMillis + " Millisekunden");
+					//System.out.println("SimZeit: " + Simulation.getInstance().getSimulationTimeFormatted());
+					//System.out.println("Event " + Simulation.calendar2String(event.getEventTime()) + " ausgeführt, Nachfolge-Event in " + nextEventMillis + " Millisekunden");
 					
 					Calendar calendar = Calendar.getInstance();
 					calendar.setTimeInMillis(currentEventTimeMillis + nextEventMillis);
@@ -161,35 +126,8 @@ public class Simulation
 				}
 				else
 				{
-					System.out.println("Event ausgeführt, kein Nachfolge-Event mehr.");
-					
-					/*
-					// Aus Jobliste neuen Event erstellen für diesen RackFeeder, da dieser wieder frei ist?
-					JobList jobList = JobList.getInstance();
-					// JobListe ist aufsteigend sortiert nach Startzeit
-					for (Job job : jobList.getJobList())
-					{
-						// Job vorhanden für diesen RackFeeder?
-						if (event.getJob().getRackFeeder().equals(job.getRackFeeder()))
-						{
-							// Event generieren, Zeit muss ev. angepasst werden da der Job hinausgezögert wurde
-							Calendar startTime = job.getStartTime();
-							if (startTime.before(this.getSimulationTime()))
-							{
-								startTime = this.getSimulationTime();
-							}
-							
-							event = new Event(startTime, job);
-							eventList.add(event);
-							
-							// Job aus Liste entfernen
-							jobList.remove(job);
-							
-							// Abbrechen
-							break;
-						}
-					}
-					*/
+					//System.out.println("SimZeit: " + Simulation.getInstance().getSimulationTimeFormatted());
+					//System.out.println("Event " + Simulation.calendar2String(event.getEventTime()) + " ausgeführt, kein Nachfolge-Event mehr");
 				}
 				
 				// Aus Jobliste neuen Event erstellen, weil der Job nun fällig ist?

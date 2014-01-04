@@ -88,10 +88,59 @@ public class Start
 		// Events erstellen anhand der JobListe
 		Simulation.createEvents();
 
+		/*
+		// TEST
+		Location myLocation = Location.getInstance();
+		String str;
+		System.out.println("VORHER:");
+		
+		if (myLocation.getItem("Gasse3-1-Grid6-C-4") != null)
+			str = myLocation.getItem("Gasse3-1-Grid6-C-4").getItemDescription();
+		else
+			str = "<leer>";
+		System.out.println("Artikel in Bin Gasse3-1-Grid6-C-4 : " + str);
+		
+		if (myLocation.getItem("Gasse2-0-Grid3-E-2") != null)
+			str = myLocation.getItem("Gasse2-0-Grid3-E-2").getItemDescription();
+		else
+			str = "<leer>";
+		System.out.println("Artikel in Bin Gasse2-0-Grid3-E-2 : " + str);
+		
+		if (myLocation.getItem("Gasse3-1-Grid6-C-2") != null)
+			str = myLocation.getItem("Gasse3-1-Grid6-C-2").getItemDescription();
+		else
+			str = "<leer>";
+		System.out.println("Artikel in Bin Gasse3-1-Grid6-C-2 : " + str);
+		*/
+		
 		// Simulation starten
 		simulation.start();
 		
 		System.out.println("Simulation ist beendet");
+		
+		/*
+		// TEST
+		//Location myLocation = Location.getInstance();
+		System.out.println("NACHHER:");
+		
+		if (myLocation.getItem("Gasse3-1-Grid6-C-4") != null)
+			str = myLocation.getItem("Gasse3-1-Grid6-C-4").getItemDescription();
+		else
+			str = "<leer>";
+		System.out.println("Artikel in Bin Gasse3-1-Grid6-C-4 : " + str);
+		
+		if (myLocation.getItem("Gasse2-0-Grid3-E-2") != null)
+			str = myLocation.getItem("Gasse2-0-Grid3-E-2").getItemDescription();
+		else
+			str = "<leer>";
+		System.out.println("Artikel in Bin Gasse2-0-Grid3-E-2 : " + str);
+		
+		if (myLocation.getItem("Gasse3-1-Grid6-C-2") != null)
+			str = myLocation.getItem("Gasse3-1-Grid6-C-2").getItemDescription();
+		else
+			str = "<leer>";
+		System.out.println("Artikel in Bin Gasse3-1-Grid6-C-2 : " + str);
+		*/
 	}
 
 	/**
