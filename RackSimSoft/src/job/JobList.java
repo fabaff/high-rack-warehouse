@@ -12,7 +12,7 @@ public class JobList
 {
 	private static JobList instance;
 	
-	private ArrayList<Job> list = new ArrayList<Job>();
+	private ArrayList<Job> list;
 	
 	/**
 	 * Returns an instance (object) of the class JobList.
@@ -27,6 +27,15 @@ public class JobList
 		}
 		
 		return instance;
+	}
+	
+	/**
+	 * Creates an instance of the class JobList.
+	 * 
+	 */
+	private JobList()
+	{
+		this.list = new ArrayList<Job>();
 	}
 	
 	/**

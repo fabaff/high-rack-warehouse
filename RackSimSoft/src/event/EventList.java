@@ -4,6 +4,7 @@ package event;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import job.Job;
 import simulation.Simulation;
 
 
@@ -15,7 +16,7 @@ public class EventList
 {
 	private static EventList instance;
 	
-	private ArrayList<Event> list = new ArrayList<Event>();
+	private ArrayList<Event> list;
 	
 	/**
 	 * Returns an instance (object) of the class EventList.
@@ -33,6 +34,15 @@ public class EventList
 	}
 	
 	/**
+	 * Creates an instance of the class EventList.
+	 * 
+	 */
+	private EventList()
+	{
+		this.list = new ArrayList<Event>();
+	}
+	
+	/**
 	 * Adds a new event to the EventList.
 	 * 
 	 * @param event the event to add
@@ -40,6 +50,16 @@ public class EventList
 	public void add(Event event)
 	{
 		this.list.add(event);
+		
+		// TEST
+		Simulation sim = Simulation.getInstance();
+		System.out.println("Simulationszeit: " + sim.getSimulationTimeFormatted());
+		
+		Job job = event.getJob();
+		if (job == null)
+			System.out.println("Event hinzugefügt ohne Job: " + Simulation.calendar2String(event.getEventTime()));
+		else
+			System.out.println("Event hinzugefügt mit Job:  " + Simulation.calendar2String(event.getEventTime()) + ", Jobzeit " + Simulation.calendar2String(job.getStartTime()));
 	}
 
 	/**
@@ -81,6 +101,8 @@ public class EventList
 		{
 			listCopy.add(event);
 		}
+		
+		Collections.sort(listCopy);
 		
 		return listCopy;
 	}

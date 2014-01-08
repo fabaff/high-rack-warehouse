@@ -34,8 +34,8 @@ public class Start
 		// Simulation initialisieren
 		Simulation.setFactor(1);
 		
-		//Simulation.setSimulationType(SimulationType.FACTOR);
-		Simulation.setSimulationType(SimulationType.AS_FAST_AS_POSSIBLE);
+		Simulation.setSimulationType(SimulationType.FACTOR);
+		//Simulation.setSimulationType(SimulationType.AS_FAST_AS_POSSIBLE);
 		
 		Simulation.setStartSimulationTime("2013.12.24 23:59:59.000");
 		Simulation simulation = Simulation.getInstance();
@@ -72,7 +72,7 @@ public class Start
 		}
 		
 		// Jobs einlesen
-		fileName = "job_list1.txt";
+		fileName = "job_list3.txt";
 		readingFiles = new ReadingFiles();
 		try
 		{
@@ -92,7 +92,7 @@ public class Start
 		checkItems();
 		
 		// Events erstellen anhand der JobListe
-		Simulation.createEvents();
+		Simulation.createInitialEvents();
 
 		/*
 		// TEST

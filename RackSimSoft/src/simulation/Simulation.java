@@ -169,10 +169,13 @@ public class Simulation
 				{
 					//System.out.println("SimZeit: " + Simulation.getInstance().getSimulationTimeFormatted());
 					//System.out.println("Event " + Simulation.calendar2String(event.getEventTime()) + " ausgefuehrt, kein Nachfolge-Event mehr");
+					
+					// Aus Jobliste neuen Event erstellen, weil der Job nun faellig ist?
+					if (event.getJob() == null)
+						createEvents();
 				}
+
 				
-				// Aus Jobliste neuen Event erstellen, weil der Job nun faellig ist?
-				createEvents();
 				
 				// Naechsten Event holen
 				event = eventList.getNextEvent();
@@ -233,21 +236,29 @@ public class Simulation
 				// Event generieren
 				// Unterscheiden, ob der Job bereits faellig ist oder nur ein Event als Erinnerung zum generieren eines Events generiert werden soll
 				// Ist der Job faellig, wird der Job entfernt und daraus eine Event generiert
-				// Ist der Job noch nicht faellig, wird per Faelligkeit ein "Erinnerungs-Event" generiert und erst beim ausfuehren dieses Events ein Job-Event generiert
+				// Ist der Job noch nicht faellig, wird per Faelligkeit ein "Erinnerungs-Event" generiert (falls nicht bereits gemacht)
+				// und erst beim ausfuehren dieses Events ein Job-Event generiert
 				if (job.getStartTime().before(getInstance().getSimulationTime()))
 				{
 					event = new Event(job.getStartTime(), job);
+					eventList.add(event);
 					
 					// Job vormerken zum aus Liste entfernen
 					jobRemoveList.add(job);
 				}
 				else
 				{
-					// Erinnerungsevent per Faelligkeit generieren
-					event = new Event(job.getStartTime(), null);
+					// Erinnerungsevent per Faelligkeit generieren, falls nicht bereits gemacht
+					for (Event e : eventList.getEventListCopy())
+					{
+						if ((e.getJob() == null) && (! (e.getEventTime().equals(job.getStartTime()))))
+						{
+							event = new Event(job.getStartTime(), null);
+							eventList.add(event);
+							System.out.println("HANSHANSHANSHANSHANSHANSHANSHANSHANSHANSHANSHANSHANSHANSHANSHANSHANSHANSHANSHANSHANSHANSHANSHANSHANSHANSHANSHANSHANSHANSHANSHANSHANSHANS");
+						}
+					}
 				}
-				
-				eventList.add(event);
 				
 				// RackFeeder aus Tabelle entfernen
 				rackFeederTable.remove(job.getRackFeeder().getRackFeederID());
@@ -262,6 +273,38 @@ public class Simulation
 		for (Job job : jobRemoveList)
 		{
 			jobList.remove(job);
+		}
+	}
+	
+	/**
+	 * Creates Events depending on the job list.
+	 * 
+	 * This events figure to remeber, that there are jobs which start at a later time.
+	 */
+	public static void createInitialEvents()
+	{
+		JobList jobList = JobList.getInstance();
+		Event event;
+		EventList eventList = EventList.getInstance();
+		
+		// JobListe ist aufsteigend sortiert nach Startzeit
+		for (Job job : jobList.getJobList())
+		{
+			// Erinnerungsevent per Faelligkeit generieren, falls nicht bereits gemacht
+			for (Event e : eventList.getEventListCopy())
+			{
+				if ((e.getJob() == null) && (! (e.getEventTime().equals(job.getStartTime()))))
+				{
+					event = new Event(job.getStartTime(), null);
+					eventList.add(event);
+				}
+			}
+			
+			if (eventList.getEventListCopy().size() == 0)
+			{
+				event = new Event(job.getStartTime(), null);
+				eventList.add(event);
+			}
 		}
 	}
 	
