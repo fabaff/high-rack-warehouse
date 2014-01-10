@@ -3,8 +3,6 @@ package calculation;
 
 
 /**
- * @author mschaerer
- *
  * The coordinate is to hold the 4 coordinates X/Y/Z/U in one container.
  */
 public class Coordinate

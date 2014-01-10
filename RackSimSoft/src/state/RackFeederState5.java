@@ -10,8 +10,6 @@ import location.Bin;
 import location.RackFeeder;
 
 /**
- * @author mschaerer
- * 
  * RackFeederState5 stands for an empty RackFeeder inside a bin of the current Gap.
  * This state has a Behavior of IN or OUT.
  *
@@ -78,9 +76,10 @@ public class RackFeederState5 extends RackFeederState
 	protected void moveU(Job job)
 	{
 		RackFeeder rackFeeder = job.getRackFeeder();
-		Bin bin = job.getBin();
+		//Bin bin = job.getBin();
 		
 		// Das RBG aus dem Bin heraus fahren
+		// TODO Bin sollte eine Funktion haben für die Neutralpostition der U-Axhse bzw. X-Achse
 		//rackFeeder.moveU(bin.getU());
 		rackFeeder.moveU(0);
 	}

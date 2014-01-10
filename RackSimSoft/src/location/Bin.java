@@ -4,8 +4,6 @@ package location;
 import calculation.Coordinate;
 
 /**
- * @author mschaerer
- * 
  * The bin is the smallest unit inside the location. The bins takes the item
  * for storage. A bin can only take one item.
  */

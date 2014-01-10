@@ -8,9 +8,19 @@ import calculation.Movement;
 import simulation.Simulation;
 import job.Job;
 
-
+/**
+ * RackFeederState declares and defines functions, which are used to switch between the different states of the RackFeeder.
+ *
+ */
 public abstract class RackFeederState
 {
+	/*
+	 *  TODO
+	 *  Funktionen deklarieren / definieren für das Umlagerungsverhalten
+	 *  Das heisst, wechseln von WAIT nach CHANGEOUT nach CHANGEIN nach WAIT
+	 *  
+	 *  Ebenfalls in entsprechenden Subklassen erweitern / implementieren wo nötig
+	 */
 	protected Behavior behavior;
 	protected Calendar stateStartTime;
 	protected int busyTime;

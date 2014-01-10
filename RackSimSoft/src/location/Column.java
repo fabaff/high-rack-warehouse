@@ -2,12 +2,6 @@
 package location;
 
 /**
- * 
- */
-
-/**
- * @author mschaerer
- *
  * The column is the vertical element of the grid. 
  */
 public class Column

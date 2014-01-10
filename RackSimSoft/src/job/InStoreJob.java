@@ -9,7 +9,8 @@ import location.Bin;
 import location.RackFeeder;
 
 /**
- * @author mschaerer
+ * The OutStoreJob is a complete serie of events, which a rackfeeder executes for outstore items from the location.
+ * It is a speciality of the class Job.
  *
  */
 public class InStoreJob extends Job

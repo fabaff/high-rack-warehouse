@@ -6,9 +6,8 @@ import calculation.Coordinate;
 import item.Item;
 
 /**
- * @author mschaerer
- *
  * The rack feeder is the element which takes the items to the bin in a grid.
+ * 
  */
 public class RackFeeder
 {
@@ -261,23 +260,6 @@ public class RackFeeder
 		this.uLoadingCoordinate = 0;
 	}
 	
-	// DO NOT use this function. It's not allowed to move on all axis at the
-	// same time.
-	/**
-	 * Sets the coordinate of the current rack feeder.
-	 * 
-	 * @param coordinate the coordinate to set
-	 */
-	/*
-	public void setCoordinate(Coordinate coordinate)
-	{
-		this.setX(coordinate.getX());
-		this.setY(coordinate.getY());
-		this.setZ(coordinate.getZ());
-		this.setU(coordinate.getU());
-	}
-	*/
-	
 	/**
 	 * Returns the needed time for load / unload the RackFeeder.
 	 * 
@@ -305,8 +287,7 @@ public class RackFeeder
 	 */
 	public void loadItem(Item item)
 	{
-		// TODO
-		// Exception if rack feeder is not empty
+		// TODO Exception if rack feeder is not empty
 		this.item = item;
 	}
 	

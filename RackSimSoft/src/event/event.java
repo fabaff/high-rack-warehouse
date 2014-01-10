@@ -6,7 +6,7 @@ import java.util.Calendar;
 import job.Job;
 
 /**
- * @author mschaerer
+ * The class Event holds the functionality and information for the simple steps of a Job.
  *
  */
 public class Event implements Comparable<Event>

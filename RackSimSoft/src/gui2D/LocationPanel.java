@@ -43,7 +43,7 @@ public class LocationPanel extends JPanel {
 		int anzahlGassen = GapArray.size();
 		
 		int test = myLocation.countGaps();
-		System.out.println(test);
+		//System.out.println(test);
 		
 		for(Gap gaps : GapArray)
 		{

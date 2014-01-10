@@ -8,8 +8,6 @@ import location.Bin;
 import location.RackFeeder;
 
 /**
- * @author mschaerer
- * 
  * RackFeederState7 stands for an empty RackFeeder in zero-position of the current Gap.
  * This state has a Behavior of IN or OUT.
  *

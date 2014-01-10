@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 
 /**
- * @author mschaerer
- * 
  * The location defines the overall size of the storage unit. The location
  * is unique and can only exists once.
  * The location contains gaps.

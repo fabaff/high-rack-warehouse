@@ -3,8 +3,6 @@ package location;
 import java.util.Hashtable;
 
 /**
- * @author mschaerer
- * 
  * The storage units are divided into columns and rows inside a gap which
  * contains the bins.
  */

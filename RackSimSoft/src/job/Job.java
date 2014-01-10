@@ -11,7 +11,7 @@ import item.Item;
 import item.ItemAllocation;
 
 /**
- * @author mschaerer
+ * The Job is a complete serie of events, which a rackfeeder executes for instore or outstore items from the location. 
  *
  */
 public abstract class Job implements Comparable<Job>

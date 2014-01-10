@@ -9,7 +9,7 @@ import simulation.Simulation;
 
 
 /**
- * @author mschaerer
+ * The class EventList stores all known events. From Outside, only the next event is accessible.
  *
  */
 public class EventList
@@ -54,12 +54,16 @@ public class EventList
 		// TEST
 		Simulation sim = Simulation.getInstance();
 		System.out.println("Simulationszeit: " + sim.getSimulationTimeFormatted());
+		// TEST ENDE
 		
 		Job job = event.getJob();
 		if (job == null)
 			System.out.println("Event hinzugefügt ohne Job: " + Simulation.calendar2String(event.getEventTime()));
 		else
-			System.out.println("Event hinzugefügt mit Job:  " + Simulation.calendar2String(event.getEventTime()) + ", Jobzeit " + Simulation.calendar2String(job.getStartTime()));
+		{
+			System.out.println("Event hinzugefügt mit Job:  " + Simulation.calendar2String(event.getEventTime()));
+			System.out.println("Jobzeit " + Simulation.calendar2String(job.getStartTime()));
+		}
 	}
 
 	/**

@@ -1,9 +1,8 @@
 package location;
 
 /**
- * @author mschaerer
- * 
- * The row is the horizontal element of the grid. 
+ * The row is the horizontal element of the grid.
+ *  
  */
 public class Row
 {

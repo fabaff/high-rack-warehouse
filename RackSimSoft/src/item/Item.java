@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 
 /**
- * @author mschaerer
- * 
  * The item is the unit which can be stored in a bin.
  * The item is unique for its ID, the same ID only can exists once.
  */

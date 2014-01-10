@@ -4,8 +4,6 @@ package state;
 import job.Job;
 
 /**
- * @author mschaerer
- *
  * RackFeederState0 stands for an empty RackFeeder in zero-position of the current Gap, waiting for orders.
  * The current Behavior WAIT can be changed to IN or OUT.
  *

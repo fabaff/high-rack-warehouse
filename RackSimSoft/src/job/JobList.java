@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- * @author mschaerer
+ * The JobList holds all known jobs existing in the simulation.
  *
  */
 public class JobList

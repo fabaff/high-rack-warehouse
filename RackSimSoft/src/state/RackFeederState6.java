@@ -9,8 +9,6 @@ import location.Bin;
 import location.RackFeeder;
 
 /**
- * @author mschaerer
- * 
  * RackFeederState6 stands for an empty RackFeeder in bin-position of the current Gap.
  * This state has a Behavior of IN or OUT.
  *

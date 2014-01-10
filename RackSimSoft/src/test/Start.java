@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Random;
 
+import event.EventList;
 import simulation.Simulation;
 import simulation.Simulation.SimulationType;
 import job.Job;
@@ -19,7 +20,7 @@ import gui2D.GUI;
 import helper.ReadingFiles;
 
 /**
- * @author mschaerer
+ * Die Klasse Start beinhaltet die main Funktion und dient zum starten der Simulationssoftware.
  *
  */
 public class Start
@@ -34,12 +35,12 @@ public class Start
 		// Simulation initialisieren
 		Simulation.setFactor(1);
 		
-		Simulation.setSimulationType(SimulationType.FACTOR);
-		//Simulation.setSimulationType(SimulationType.AS_FAST_AS_POSSIBLE);
+		//Simulation.setSimulationType(SimulationType.FACTOR);
+		Simulation.setSimulationType(SimulationType.AS_FAST_AS_POSSIBLE);
 		
 		Simulation.setStartSimulationTime("2013.12.24 23:59:59.000");
 		Simulation simulation = Simulation.getInstance();
-				
+		
 		// Dateien einlesen
 		// ----------------
 		String fileName;
@@ -72,7 +73,7 @@ public class Start
 		}
 		
 		// Jobs einlesen
-		fileName = "job_list3.txt";
+		fileName = "job_list1.txt";
 		readingFiles = new ReadingFiles();
 		try
 		{
@@ -85,6 +86,15 @@ public class Start
 		}
 		// ++++++++++++++++
 		
+		// TEST
+		JobList jobList = JobList.getInstance();
+		ArrayList<Job> list = jobList.getJobList();
+		for (int i = 0; i < list.size(); i++)
+		{
+			System.out.println("Job " + i + " : " + Simulation.calendar2String(list.get(i).getStartTime()));
+		}
+		// TEST ENDE
+		
 		// Artikel per Zufall auf die Bins verteilen
 		addItems();
 		
@@ -93,31 +103,15 @@ public class Start
 		
 		// Events erstellen anhand der JobListe
 		Simulation.createInitialEvents();
-
-		/*
+		
 		// TEST
-		Location myLocation = Location.getInstance();
-		String str;
-		System.out.println("VORHER:");
-		
-		if (myLocation.getItem("Gasse3-1-Grid6-C-4") != null)
-			str = myLocation.getItem("Gasse3-1-Grid6-C-4").getItemDescription();
-		else
-			str = "<leer>";
-		System.out.println("Artikel in Bin Gasse3-1-Grid6-C-4 : " + str);
-		
-		if (myLocation.getItem("Gasse2-0-Grid3-E-2") != null)
-			str = myLocation.getItem("Gasse2-0-Grid3-E-2").getItemDescription();
-		else
-			str = "<leer>";
-		System.out.println("Artikel in Bin Gasse2-0-Grid3-E-2 : " + str);
-		
-		if (myLocation.getItem("Gasse3-1-Grid6-C-2") != null)
-			str = myLocation.getItem("Gasse3-1-Grid6-C-2").getItemDescription();
-		else
-			str = "<leer>";
-		System.out.println("Artikel in Bin Gasse3-1-Grid6-C-2 : " + str);
-		*/
+		EventList eventList = EventList.getInstance();
+		ArrayList<event.Event> elist = eventList.getEventListCopy();
+		for (int i = 0; i < elist.size(); i++)
+		{
+			System.out.println("Event " + i + " : " + Simulation.calendar2String(elist.get(i).getEventTime()));
+		}
+		// TEST ENDE
 		
 		// GUI starten
 		//GUI.createAndShowGui();
@@ -126,30 +120,6 @@ public class Start
 		simulation.start();
 		
 		System.out.println("Simulation ist beendet");
-		
-		/*
-		// TEST
-		//Location myLocation = Location.getInstance();
-		System.out.println("NACHHER:");
-		
-		if (myLocation.getItem("Gasse3-1-Grid6-C-4") != null)
-			str = myLocation.getItem("Gasse3-1-Grid6-C-4").getItemDescription();
-		else
-			str = "<leer>";
-		System.out.println("Artikel in Bin Gasse3-1-Grid6-C-4 : " + str);
-		
-		if (myLocation.getItem("Gasse2-0-Grid3-E-2") != null)
-			str = myLocation.getItem("Gasse2-0-Grid3-E-2").getItemDescription();
-		else
-			str = "<leer>";
-		System.out.println("Artikel in Bin Gasse2-0-Grid3-E-2 : " + str);
-		
-		if (myLocation.getItem("Gasse3-1-Grid6-C-2") != null)
-			str = myLocation.getItem("Gasse3-1-Grid6-C-2").getItemDescription();
-		else
-			str = "<leer>";
-		System.out.println("Artikel in Bin Gasse3-1-Grid6-C-2 : " + str);
-		*/
 	}
 
 	/**

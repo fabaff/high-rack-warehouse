@@ -32,9 +32,6 @@ public class ReadingFiles {
 	 */
 	public void readArticles(String FileName) throws IOException 
 	{
-		/* Format of the file
-		 * Article-No; Article description
-		 */
 		Path path = Paths.get(FileName);
 		int line = 0;
 		ArrayList<String> errors = new ArrayList<String>();
@@ -70,9 +67,6 @@ public class ReadingFiles {
 	 */
 	public void readLocation(String FileName) throws IOException 
 	{
-		/* Format of the file
-		 * see LocationDefinition.txt
-		 */
 		Path path = Paths.get(FileName);
 		int line = 0;
 		ArrayList<String> errors = new ArrayList<String>();
@@ -235,7 +229,6 @@ public class ReadingFiles {
 					System.out.println(s);
 				}
 			}
-			//System.out.println("Total processed lines: " + line + "\n");
 	    }
 	}
 
@@ -246,9 +239,6 @@ public class ReadingFiles {
 	 */
 	public void readJobs(String FileName) throws IOException 
 	{
-		/* Format of the file
-		 * <Timestamp>;<Operation>;<BinID>;<ItemID>(optional)
-		 */
 		Path path = Paths.get(FileName);
 		int line = 0;
 		ArrayList<String> errors = new ArrayList<String>();
@@ -294,18 +284,6 @@ public class ReadingFiles {
 					System.out.println(s);
 				}
 			}
-			//System.out.println("Total processed lines: " + line + "\n");
 	    }
-	}
-	
-	/**
-	 * For debugging only. Prints the given element to STDOUT aka Console in
-	 * Eclipse.
-	 * 
-	 * @param data The value to print
-	 */	
-	private static void log(Object data)
-	{
-		System.out.println(String.valueOf(data));
 	}
 }

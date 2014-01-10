@@ -6,10 +6,7 @@ import location.RackFeeder;
 
 
 /**
- * The rack feeder is moving inside the gap in the direction of the 
- * y axis and its beam is only able to move in the direction of the z axis.
- * The super position of both moving vectors let the operating unit move
- * inclined in side the yz area of the grid.
+ * This class is used to calculate all relevant informations about the time needed to move the rack feeder.
  */
 
 public class Movement
@@ -42,10 +39,6 @@ public class Movement
 	private double yDecelerationTime = 0;
 	private double zDecelerationTime = 0;
 	private double uDecelerationTime = 0;
-	private double xDecelerationDistance = 0;
-	private double yDecelerationDistance = 0;
-	private double zDecelerationDistance = 0;
-	private double uDecelerationDistance = 0;
 	
 	/**
 	 * Creates a Movement.
@@ -374,10 +367,6 @@ public class Movement
         this.yDecelerationTime = 0;
         this.zDecelerationTime = 0;
         this.uDecelerationTime = 0;
-        this.xDecelerationDistance = 0;
-		this.yDecelerationDistance = 0;
-		this.zDecelerationDistance = 0;
-		this.uDecelerationDistance = 0;
         
 		int totalTime = 0;
 		int axisTime = 0;
@@ -512,7 +501,6 @@ public class Movement
         	// Alle anderen Werte neu berechnen
         	sa = Math.abs(Math.pow(v, 2) / (2 * a));
         	ta = (v / a);
-        	sd = Math.abs(Math.pow(v, 2) / (2 * d));
         	td = Math.abs(v / d);
         	sv = s - (sa + sd);
         	tv = sv / v;
@@ -533,7 +521,6 @@ public class Movement
 				this.xMovingTime = tv;
 				this.xMovingDistance = sv;
 				this.xDecelerationTime = td;
-				this.xDecelerationDistance = sd;
 				
 				break;
 				
@@ -549,7 +536,6 @@ public class Movement
 				this.yMovingTime = tv;
 				this.yMovingDistance = sv;
 				this.yDecelerationTime = td;
-				this.yDecelerationDistance = sd;
 				
 				break;
 				
@@ -565,7 +551,6 @@ public class Movement
 				this.zMovingTime = tv;
 				this.zMovingDistance = sv;
 				this.zDecelerationTime = td;
-				this.zDecelerationDistance = sd;
 				
 				break;
 				
@@ -581,7 +566,6 @@ public class Movement
 				this.uMovingTime = tv;
 				this.uMovingDistance = sv;
 				this.uDecelerationTime = td;
-				this.uDecelerationDistance = sd;
 				
 				break;
 		}
@@ -693,7 +677,7 @@ public class Movement
 	/**
 	 * @author mschaerer
 	 *
-	 * The InnerMovement is a helper class to store all relevant informations for calculating time of moving.
+	 * The InnerMovement is a helper class to store all relevant informations for calculating time of linear moving.
 	 */
 	private class InnerMovement
 	{
@@ -715,16 +699,6 @@ public class Movement
 		private void setSpeed(double speed)
 		{
 			this.speed = speed;
-		}
-		
-		private void setAcceleration(double acceleration)
-		{
-			this.acceleration = acceleration;
-		}
-		
-		private void setDeceleration(double deceleration)
-		{
-			this.deceleration = deceleration;
 		}
 	}
 }

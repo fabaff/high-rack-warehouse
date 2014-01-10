@@ -5,8 +5,9 @@ import java.util.Calendar;
 
 
 /**
- * @author mschaerer
- *
+ * This class is used to handle the different time aspects of the system time and the simulation time.
+ * It's taught to be used only from the Simulation class.
+ * 
  */
 class Time
 {
@@ -87,7 +88,7 @@ class Time
 	 */
 	void proceed(long correction)
 	{
-		this.correction = correction;
+		this.correction += correction;
 	}
 	
 	/**

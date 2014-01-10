@@ -1,8 +1,6 @@
 package location;
 
 /**
- * @author mschaerer
- * 
  * The gap contains two grids of bins. The bins are placed on the left and the
  * right side of the gap. Every gap is associated to a location.
  * The gaps are divided into a left an a right grid.
@@ -79,7 +77,8 @@ public class Gap
 			case 1: this.gridRight = grid;
 				break;
 
-			/* ToDo: Exceptionhandling
+			//TODO Exceptionhandling
+			/*
 			default: throw Exception("Fehler");
 				break;
 			*/

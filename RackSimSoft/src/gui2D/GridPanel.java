@@ -46,13 +46,12 @@ public class GridPanel extends JPanel
 		Grid grid = null;
 		Bin binArray[][];
 		Gap gap1;
-		BinComponent binComponent = null;
 		
 		//Get Size of Grid (Left and Right)
 		
 		if(side==0)
 		{
-			System.out.println("links");
+			//System.out.println("links");
 			
 			
 			columnCount = myLocation.getGap(gap).getGridLeft().getBinArray().length;
@@ -69,7 +68,7 @@ public class GridPanel extends JPanel
 		}
 		else
 		{
-			System.out.println("rechts");
+			//System.out.println("rechts");
 			columnCount = myLocation.getGap(gap).getGridRight().getBinArray().length;
 			
 			gap1 = myLocation.getGap(gap);
@@ -87,7 +86,7 @@ public class GridPanel extends JPanel
 		
 		double gridXSize = grid.getYSize();
 		double gridYSize = grid.getZSize();
-		System.out.println("XSize: " + gridXSize + "YSize: " + gridYSize);
+		//System.out.println("XSize: " + gridXSize + "YSize: " + gridYSize);
 		
 		for(Bin[] bins : binArray)
 		{
@@ -101,8 +100,8 @@ public class GridPanel extends JPanel
 		rectangleHeight = ((HEIGHT-20))/(gridYSize);
 		rectangleWidth = ((WIDTH-20))/(gridXSize);
 		
-		System.out.println(WIDTH*rectangleWidth);
-		System.out.println(HEIGHT*rectangleHeight);
+		//System.out.println(WIDTH*rectangleWidth);
+		//System.out.println(HEIGHT*rectangleHeight);
 		
 		//Calculate side-length of rectangles
 		if(rectangleHeight < rectangleWidth)
@@ -115,9 +114,9 @@ public class GridPanel extends JPanel
 			guiCoordinateFactor = rectangleHeight;
 		}
 		
-		System.out.println(rectangleSide);
-		System.out.println("rectangleHeigth: " + rectangleHeight + " rectangleWidth: " + rectangleWidth);
-		System.out.println("rowCount: " + rowCount + " columntCount" + columnCount);
+		//System.out.println(rectangleSide);
+		//System.out.println("rectangleHeigth: " + rectangleHeight + " rectangleWidth: " + rectangleWidth);
+		//System.out.println("rowCount: " + rowCount + " columntCount" + columnCount);
 		
 		if(side==0)
 		{
@@ -130,7 +129,7 @@ public class GridPanel extends JPanel
 		
 		yOffset = yStart - rectangleSide;
 		
-		System.out.println("\n");
+		//System.out.println("\n");
 		
 		
 		this.setLayout(null);
@@ -150,17 +149,17 @@ public class GridPanel extends JPanel
 		
 		for(Bin[] bins : binArray)
 		{
-			System.out.println("xOffset: " + xOffset + " xStart: " + xStart + "yOffset: " +yOffset + "yStart:" + yStart);
+			//System.out.println("xOffset: " + xOffset + " xStart: " + xStart + "yOffset: " +yOffset + "yStart:" + yStart);
 			
 			int i = 0;
 			for(Bin bin : bins)
 			{
-				
+				/*
 				System.out.println(bin.getBinID());
 				System.out.println(rectangleSide);
 				System.out.println(bin.getY());
 				System.out.println(xOffset);
-				
+				*/
 				
 				JButton binButton = new JButton(bin.getBinID());
 				binButton.setLayout(null);
@@ -178,7 +177,7 @@ public class GridPanel extends JPanel
 				this.add(binButton);
         		
         		xOffset = xOffset + (rectangleSide * xRight);
-        		System.out.println("xOffset: " + xOffset);
+        		//System.out.println("xOffset: " + xOffset);
         		i++;
 			}
 			

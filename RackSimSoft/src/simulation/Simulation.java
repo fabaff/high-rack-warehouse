@@ -5,18 +5,15 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Hashtable;
 
 import job.Job;
 import job.JobList;
-import location.Gap;
-import location.Location;
-import location.RackFeeder;
 import event.Event;
 import event.EventList;
 
 /**
- * @author mschaerer
+ * This class manages all simulation relevant functionality.
+ * It also works as wrapper for the simulation time from class Time.
  *
  */
 public class Simulation
@@ -116,7 +113,9 @@ public class Simulation
 	 */
 	public void start()
 	{
+		// Simulationszeit starten
 		this.time = Time.getInstance(this.myFactor, this.myStartSimulationTime);
+
 		EventList eventList = EventList.getInstance();
 		Event event = eventList.getNextEvent();
 		Calendar nextEventTime = null;
@@ -155,9 +154,6 @@ public class Simulation
 				// Wenn -1, dann kein Nachfolge-Event mehr
 				if (nextEventMillis >= 0)
 				{
-					//System.out.println("SimZeit: " + Simulation.getInstance().getSimulationTimeFormatted());
-					//System.out.println("Event " + Simulation.calendar2String(event.getEventTime()) + " ausgefuehrt, Nachfolge-Event in " + nextEventMillis + " Millisekunden");
-					
 					Calendar calendar = Calendar.getInstance();
 					calendar.setTimeInMillis(currentEventTimeMillis + nextEventMillis);
 					
@@ -167,15 +163,9 @@ public class Simulation
 				}
 				else
 				{
-					//System.out.println("SimZeit: " + Simulation.getInstance().getSimulationTimeFormatted());
-					//System.out.println("Event " + Simulation.calendar2String(event.getEventTime()) + " ausgefuehrt, kein Nachfolge-Event mehr");
-					
 					// Aus Jobliste neuen Event erstellen, weil der Job nun faellig ist?
-					if (event.getJob() == null)
-						createEvents();
+					createEvents(event);
 				}
-
-				
 				
 				// Naechsten Event holen
 				event = eventList.getNextEvent();
@@ -194,13 +184,93 @@ public class Simulation
 	 */
 	public void stop()
 	{
-		
+		// TODO implementieren, so dass eine laufende Simulation vorzeitig beendet werden könnte, ev. noch eine Methode pause() und unpause() implementieren
 	}
+	
 	
 	/**
 	 * Creates Events depending on the job list.
-	 * Just one event per gap is created, even if there are more jobs per gap.
+	 * Just one event per gap is created at the time, even if there are more jobs per gap.
 	 */
+	public static void createEvents(Event event)
+	{
+		// Funktion wird ausgefuehrt
+		// entweder weil Fall 1: ein "normaler" Event ausgefuehrt wurde und kein Nachfolgeevent mehr kommt (die Gasse ist nun frei fuer allfaellige neue Jobs in dieser Gasse)
+		// oder weil Fall 2: ein Erinnerungsevent ausgefuehrt wurde (Job == null)
+		//
+		// Bei Fall 1 ist die Gasse sicher frei und der Event kann sofort generiert werden
+		// Bei Fall 2, muss zuerst geprüft werden, ob die Gasse frei ist. Wenn nicht, einen neuen, spaeteren Erinnerungs-Event generieren.
+					
+		Job currentJob = event.getJob();
+		EventList eventList = EventList.getInstance();
+		Event newEvent;
+		
+		// Aus Jobliste neuen Event erstellen, weil der Job nun faellig ist?
+		JobList jobList = JobList.getInstance();
+		ArrayList<Job> list = jobList.getJobList();
+		Job job = null;
+		if (list.size() != 0)
+		{
+			job = list.get(0);
+		}
+		
+		// Pruefen, ob der naechste Job wirklich faellig ist (da die Jobliste im GUI und in dieser Funktion modifiziert werden kann)
+		if ((job != null) && (! job.getStartTime().after(getInstance().getSimulationTime())))
+		{
+			if (currentJob != null)
+			{
+				// Fall 1
+				newEvent = new Event(job.getStartTime(), job);
+				eventList.add(newEvent);
+				
+				jobList.remove(job);
+			}
+			else
+			{
+				// Fall 2
+				
+				// Pruefen, ob derselbe RackFeeder nicht noch einen aktiven Event hat!
+				// Wenn so, dann warten, bis die Gasse frei ist. Der aktuelle Job wird dann verzoegert gestartet.
+				// Derselbe RackFeeder kann nicht mehrere Jobs gleichzeitig abarbeiten.
+				
+				boolean feederIsFree = true;
+				
+				// Alle RackFeeder, welche Events haben, kontrollieren
+				for (Event e : eventList.getEventListCopy())
+				{
+					Job j = e.getJob();
+					if (j != null)
+					{
+						// RackFeeder vergleichen
+						if (job.getRackFeeder().equals(j.getRackFeeder()))
+						{
+							feederIsFree = false;
+							break;
+						}
+					}
+				}
+				
+				// Wenn der RackFeeder des Jobs noch frei ist, Event generieren
+				// Im anderen Fall wird eine Event generiert werden, sobald die Gasse frei wird (Fall 1)
+				if (feederIsFree)
+				{
+					newEvent = new Event(getInstance().getSimulationTime(), job);
+					eventList.add(newEvent);
+					
+					jobList.remove(job);
+				}
+			}
+		}
+
+		
+		
+		
+		
+		
+		
+		
+	}
+	/*
 	public static void createEvents()
 	{
 		JobList jobList = JobList.getInstance();
@@ -255,7 +325,6 @@ public class Simulation
 						{
 							event = new Event(job.getStartTime(), null);
 							eventList.add(event);
-							System.out.println("HANSHANSHANSHANSHANSHANSHANSHANSHANSHANSHANSHANSHANSHANSHANSHANSHANSHANSHANSHANSHANSHANSHANSHANSHANSHANSHANSHANSHANSHANSHANSHANSHANSHANS");
 						}
 					}
 				}
@@ -275,6 +344,7 @@ public class Simulation
 			jobList.remove(job);
 		}
 	}
+	*/
 	
 	/**
 	 * Creates Events depending on the job list.
@@ -290,21 +360,9 @@ public class Simulation
 		// JobListe ist aufsteigend sortiert nach Startzeit
 		for (Job job : jobList.getJobList())
 		{
-			// Erinnerungsevent per Faelligkeit generieren, falls nicht bereits gemacht
-			for (Event e : eventList.getEventListCopy())
-			{
-				if ((e.getJob() == null) && (! (e.getEventTime().equals(job.getStartTime()))))
-				{
-					event = new Event(job.getStartTime(), null);
-					eventList.add(event);
-				}
-			}
-			
-			if (eventList.getEventListCopy().size() == 0)
-			{
-				event = new Event(job.getStartTime(), null);
-				eventList.add(event);
-			}
+			// Erinnerungsevent per Faelligkeit generieren
+			event = new Event(job.getStartTime(), null);
+			eventList.add(event);
 		}
 	}
 	
@@ -350,6 +408,16 @@ public class Simulation
 	 */
 	public void proceed(long correction)
 	{
+		/*
+		 * TODO
+		 * 
+		 * Exceptionhandling implementieren!
+		 */
+		/*
+		if (correction < 0)
+			throw new Exception("Es darf nicht negativ korrigiert werden!");
+		*/
+		
 		if (this.time != null)
 		{
 			this.time.proceed(correction);

@@ -7,13 +7,16 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 
 /**
- * @author mschaerer
- * 
  * The itemallocation holds the information, which item is stored in which bin.
  * The itemallocation is unique and can only exists once.
  */
 public class ItemAllocation
 {
+	/* TODO
+	 * Funktionalität erweitern, damit Bins gesperrt / reserviert werden können und somit als belegt ausgewiesen werden.
+	 * 
+	 * Ev. muss Klasse Bin auch noch erweitert werden. 
+	 */
 	private static ItemAllocation instance;
 	private String itemAllocationID;
 	private Hashtable<String, ArrayList<Bin>> binListTable = new Hashtable<String, ArrayList<Bin>>();
