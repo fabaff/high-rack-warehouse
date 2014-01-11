@@ -21,6 +21,10 @@ public abstract class Job implements Comparable<Job>
 	private Bin bin;
 	private RackFeeder rackFeeder;
 	protected Behavior behavior;
+	
+	// zur Ausgabe in der Konsole eine ID vergeben
+	private String jobID;
+	private static int nextID = 1;
 
 	/**
 	 * Creates a new Job.
@@ -35,6 +39,10 @@ public abstract class Job implements Comparable<Job>
 		this.item = item;
 		this.bin = bin;
 		this.rackFeeder = rackFeeder;
+		
+		// zur Ausgabe in der Konsole eine ID vergeben
+		this.jobID = String.valueOf(nextID);
+		nextID += 1;
 	}
 	
 	/**
@@ -50,6 +58,21 @@ public abstract class Job implements Comparable<Job>
 		this.item = itemAllocation.getItem(bin.getBinID());
 		this.bin = bin;
 		this.rackFeeder = rackFeeder;
+		
+		// zur Ausgabe in der Konsole eine ID vergeben
+		this.jobID = String.valueOf(nextID);
+		nextID += 1;
+	}
+	
+	/**
+	 * Returns the current job ID.
+	 * Just used for better visualisation in console
+	 * 
+	 * @return the jobID
+	 */
+	public final String getJobID()
+	{
+		return this.jobID;
 	}
 	
 	/**

@@ -27,6 +27,7 @@ public class Simulation
 	private static double factor;
 	private static SimulationType simulationType;
 	private static Calendar startSimulationTime;
+	private static Calendar simulationTime;
 	
 	private double myFactor;
 	private SimulationType mySimulationType;
@@ -53,7 +54,7 @@ public class Simulation
 	 * Creates a Simulation object.
 	 * 
 	 */
-	public Simulation()
+	private Simulation()
 	{
 		this.time = null;
 		this.myFactor = Simulation.factor;
@@ -92,7 +93,7 @@ public class Simulation
 	 */
 	public double getFactor()
 	{
-		return this.myFactor;
+		return this.time.getFactor();
 	}
 	
 	/**
@@ -113,6 +114,14 @@ public class Simulation
 	 */
 	public void start()
 	{
+		// TEST
+		Calendar start = Calendar.getInstance();
+		System.out.println();
+		System.out.println("Simulation wird nun gestartet, aktuelle Systemzeit: " + calendar2String(start));
+		System.out.println("-----------------------------------------------------------------------");
+		int eventCounter = 0;
+		// TEST ENDE
+		
 		// Simulationszeit starten
 		this.time = Time.getInstance(this.myFactor, this.myStartSimulationTime);
 
@@ -125,18 +134,29 @@ public class Simulation
 		while (event != null)
 		{
 			// TEST
-			System.out.println("-----------------------------------------------------------------------");
-			System.out.println("Dieser Event: " + calendar2String(event.getEventTime()));
-			System.out.println("Simulationszeit: " + getInstance().getSimulationTimeFormatted());
+			eventCounter += 1;
+			System.out.println(eventCounter + "   -------------------------------------------------------------------");
+			System.out.println("Simulationszeit: " + getInstance().getCurrentSimulationTimeFormatted());
+			if (event.getJob() != null)
+			{
+				System.out.println("Event zu Job '" + event.getJob().getJobID() + "', RackFeeder '" + event.getJob().getRackFeeder().getRackFeederID() + "' gefunden, Startzeit: " + calendar2String(event.getEventTime()));
+			}
+			else
+			{
+				System.out.println("Erinnerungsevent gefunden, Startzeit: " + calendar2String(event.getEventTime()));	
+			}
 			// TEST ENDE
 			
 			nextEventTime = event.getEventTime();
 			currentEventTimeMillis = nextEventTime.getTimeInMillis();
-			waitMillis = currentEventTimeMillis - getSimulationTime().getTimeInMillis();
+			waitMillis = currentEventTimeMillis - getCurrentSimulationTime().getTimeInMillis();
 			if (waitMillis < 0)
 			{
 				waitMillis = 0;
 			}
+			
+			// wegen Rechenzeit-Verschiebung...
+			setSimulationTime(event.getEventTime());
 			
 			try
 			{
@@ -153,8 +173,9 @@ public class Simulation
 				}
 				
 				// TEST
-				System.out.println("Simulationszeit nach Sleep: " + getInstance().getSimulationTimeFormatted());
-				System.out.println("");
+				System.out.println();
+				System.out.println("Simulationszeit (echt) nach Sleep von " + waitMillis + " ms: " + getInstance().getCurrentSimulationTimeFormatted());
+				System.out.println("Simulationszeit (soll) nach Sleep von " + waitMillis + " ms: " + calendar2String(getSimulationTime()));
 				// TEST ENDE
 				
 				// Event ausfuehren
@@ -166,15 +187,11 @@ public class Simulation
 				if (nextEventMillis >= 0)
 				{
 					Calendar calendar = Calendar.getInstance();
-					calendar.setTimeInMillis(currentEventTimeMillis + waitMillis + nextEventMillis);
-					
+					//HANS calendar.setTimeInMillis(currentEventTimeMillis + waitMillis + nextEventMillis);
+					calendar.setTimeInMillis(currentEventTimeMillis + nextEventMillis);
 					event = new Event(calendar, event.getJob());
 										
 					eventList.add(event);
-					
-					// TEST
-					System.out.println("Nachfolgeevent angelegt: " + calendar2String(event.getEventTime()));
-					// TEST ENDE
 				}
 				else
 				{
@@ -199,6 +216,12 @@ public class Simulation
 			System.out.println("-----------------------------------------------------------------------");
 			// TEST ENDE
 		}
+		
+		// TEST
+		Calendar end = Calendar.getInstance();
+		System.out.println("Simulation wird nun beendet, aktuelle Systemzeit: " + calendar2String(end));
+		System.out.println("Vergangene Systemzeit in Millis: " + (end.getTimeInMillis() - start.getTimeInMillis()));
+		// TEST
 	}
 	
 	/**
@@ -254,9 +277,10 @@ public class Simulation
 					{
 						// Ersten Event fuer diesen Job anlegen, falls der Job faellig ist.
 						// und es sich nicht um die Initialisierung handelt!
-						if  ((! (event == null)) && (! (job.getStartTime().after(getInstance().getSimulationTime()))))
+						if  ((! (event == null)) && (! (job.getStartTime().after(getInstance().getCurrentSimulationTime()))))
 						{
-							Event newEvent = new Event(getInstance().getSimulationTime(), job);
+							//Event newEvent = new Event(getInstance().getSimulationTime(), job);
+							Event newEvent = new Event(event.getEventTime(), job);
 							eventList.add(newEvent);
 							
 							jobRemoveList.add(job);
@@ -304,7 +328,8 @@ public class Simulation
 					// Event anlegen
 					// Ersten Event fuer diesen Job anlegen
 					EventList eventList = EventList.getInstance();
-					Event newEvent = new Event(getInstance().getSimulationTime(), job);
+					//Event newEvent = new Event(getInstance().getSimulationTime(), job);
+					Event newEvent = new Event(event.getEventTime(), job);
 					eventList.add(newEvent);
 					
 					jobList.remove(job);
@@ -339,7 +364,7 @@ public class Simulation
 	 * 
 	 * @return the simulation time
 	 */
-	public Calendar getSimulationTime()
+	public Calendar getCurrentSimulationTime()
 	{
 		Calendar calendar = null;
 		
@@ -356,7 +381,7 @@ public class Simulation
 	 * 
 	 * @return the simulation time
 	 */
-	public String getSimulationTimeFormatted()
+	public String getCurrentSimulationTimeFormatted()
 	{
 		String simulationTime = "";
 		
@@ -369,6 +394,22 @@ public class Simulation
 		return simulationTime;
 	}
 	
+	/**
+	 * @return the nextSimulationTime
+	 */
+	public static Calendar getSimulationTime()
+	{
+		return simulationTime;
+	}
+
+	/**
+	 * @param nextSimulationTime the nextSimulationTime to set
+	 */
+	public static void setSimulationTime(Calendar simulationTime)
+	{
+		Simulation.simulationTime = simulationTime;
+	}
+
 	/**
 	 * Sets the correction in milliseconds, for which the simulation time proceeds forward against the real time.
 	 * 

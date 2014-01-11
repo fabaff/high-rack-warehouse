@@ -52,19 +52,15 @@ public class EventList
 	{
 		this.list.add(event);
 		
+		// TODO
 		// TEST
-		System.out.println("");
-		//System.out.println("1) Simulationszeit: " + sim.getSimulationTimeFormatted());
-		
 		Job job = event.getJob();
 		if (job == null)
-			System.out.println("1) Event hinzugefügt ohne Job, Eventzeit: " + Simulation.calendar2String(event.getEventTime()));
+			System.out.println("Erinnerungsevent hinzugefügt; Eventzeit: " + Simulation.calendar2String(event.getEventTime()));
 		else
 		{
-			System.out.println("1) Event hinzugefügt mit Job, Eventzeit:  " + Simulation.calendar2String(event.getEventTime()));
-			System.out.println("2) Jobzeit (Job): " + Simulation.calendar2String(job.getStartTime()));
+			System.out.println("Event für Job '" + job.getJobID() + "', RackFeeder '" + job.getRackFeeder().getRackFeederID() + "' hinzugefügt; Eventzeit:  " + Simulation.calendar2String(event.getEventTime()));
 		}
-		System.out.println("");
 		// TEST ENDE
 	}
 
@@ -101,32 +97,17 @@ public class EventList
 	 */
 	public boolean checkNextEvent(Job job)
 	{
-		// TEST
-		System.out.println("Job wird geprüft: " + Simulation.calendar2String(job.getStartTime()));
-		// TEST ENDE
-		
 		for (Event event : this.list)
 		{
-			// TEST
-			System.out.println("Event wird geprüft: " + Simulation.calendar2String(event.getEventTime()));
-			// TEST ENDE
-			
 			if (event.getJob() != null)
 			{
 				if (event.getJob().getRackFeeder().equals(job.getRackFeeder()))
 				{
-					// TEST
-					System.out.println("Return FALSE");
-					// TEST ENDE
-					
 					return false;
 				}
 			}
 		}
 		
-		// TEST
-		System.out.println("Return TRUE");
-		// TEST ENDE
 		return true;
 	}
 	
@@ -139,23 +120,8 @@ public class EventList
 	 */
 	public boolean addRememberEvent(Calendar eventTime)
 	{
-		// TEST
-		System.out.println("Prüfen auf Erinnerungen, wenn nötig neue anlegen...");
-		// TEST ENDE
-		
 		for (Event event : this.list)
 		{
-			// TEST
-			if (event.getJob() == null)
-			{
-				System.out.println("Event in Liste: " + Simulation.calendar2String(event.getEventTime()) + " ohne Job");
-			}
-			else
-			{
-				System.out.println("Event in Liste: " + Simulation.calendar2String(event.getEventTime()) + " mit Job");
-			}
-			// TEST ENDE
-			
 			if (event.getJob() == null && Simulation.calendar2String(event.getEventTime()).equals(Simulation.calendar2String(eventTime)))
 			{
 				// Erinnerungsevent besteht bereits, keinen neuen anlegen

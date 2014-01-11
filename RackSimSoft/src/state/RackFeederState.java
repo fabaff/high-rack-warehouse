@@ -39,7 +39,7 @@ public abstract class RackFeederState
 	public RackFeederState(Behavior behavior)
 	{
 		this.behavior = behavior;
-		this.stateStartTime = Simulation.getInstance().getSimulationTime();
+		this.stateStartTime = Simulation.getSimulationTime();
 		this.movement = null;
 	}
 	

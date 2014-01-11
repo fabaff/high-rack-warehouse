@@ -105,6 +105,16 @@ class Time
 	}
 	
 	/**
+	 * Returns the current factor for calculating the simulation time.
+	 * 
+	 * @return the factor
+	 */
+	double getFactor()
+	{
+		return this.factor;
+	}
+	
+	/**
 	 * Converts a time String into a Calendar object.
 	 * The format of the String must be as following:
 	 * YYYY.MM.DD HH:MM:SS.sss

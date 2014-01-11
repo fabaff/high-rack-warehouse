@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Random;
 
-import event.EventList;
 import simulation.Simulation;
 import simulation.Simulation.SimulationType;
 import job.Job;
@@ -35,10 +34,10 @@ public class Start
 		// Simulation initialisieren
 		Simulation.setFactor(1);
 		
-		//Simulation.setSimulationType(SimulationType.FACTOR);
-		Simulation.setSimulationType(SimulationType.AS_FAST_AS_POSSIBLE);
+		Simulation.setSimulationType(SimulationType.FACTOR);
+		//Simulation.setSimulationType(SimulationType.AS_FAST_AS_POSSIBLE);
 		
-		Simulation.setStartSimulationTime("1999.12.31 00:00:00.000");
+		Simulation.setStartSimulationTime("2000.01.01 00:00:00.000");
 		Simulation simulation = Simulation.getInstance();
 		
 		// Dateien einlesen
@@ -91,13 +90,17 @@ public class Start
 		}
 		// ++++++++++++++++
 		
+		// TODO
 		// TEST
+		System.out.println("Bereits bekannte Jobs beim Start der Simulation:");
 		JobList jobList = JobList.getInstance();
 		ArrayList<Job> list = jobList.getJobList();
 		for (int i = 0; i < list.size(); i++)
 		{
-			System.out.println("Job " + i + " : " + Simulation.calendar2String(list.get(i).getStartTime()));
+			Job job = list.get(i);
+			System.out.println("Job: ID = '" + job.getJobID() + "', RackFeeder = '" + job.getRackFeeder().getRackFeederID() + "', Startzeit = " + Simulation.calendar2String(job.getStartTime()));
 		}
+		System.out.println();
 		// TEST ENDE
 		
 		// Artikel per Zufall auf die Bins verteilen
@@ -109,24 +112,16 @@ public class Start
 		// Events erstellen anhand der JobListe
 		Simulation.createEvents(null);
 		
-		// TEST
-		EventList eventList = EventList.getInstance();
-		ArrayList<event.Event> elist = eventList.getEventListCopy();
-		for (int i = 0; i < elist.size(); i++)
-		{
-			System.out.println("Event " + i + " : " + Simulation.calendar2String(elist.get(i).getEventTime()));
-		}
-		System.out.println("");
-		System.out.println("");
-		// TEST ENDE
-		
 		// GUI starten
 		//GUI.createAndShowGui();
 		
 		// Simulation starten
 		simulation.start();
 		
-		System.out.println("Simulation ist beendet");
+		System.out.println();
+		System.out.println("**************************************************************");
+		System.out.println("Simulation ist beendet, keien weiteren Events und Jobs mehr...");
+		System.out.println("**************************************************************");
 	}
 
 	/**
