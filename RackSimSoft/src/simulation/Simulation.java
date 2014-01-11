@@ -161,10 +161,6 @@ public class Simulation
 				waitMillis = 0;
 			}
 			
-			// TEST
-			System.out.println("Wartezeit in ms (echt): " + waitMillis);
-			// TEST ENDE
-			
 			// wegen Rechenzeit-Verschiebung...
 			setSimulationTime(event.getEventTime());
 			
@@ -178,6 +174,10 @@ public class Simulation
 				}
 				else
 				{
+					// TEST
+					System.out.println("Wartezeit in ms (echt): " + waitMillis);
+					// TEST ENDE
+					
 					// Warten bis der Event ausgefuehrt werden muss
 					Thread.sleep(waitMillis);
 				}
@@ -257,7 +257,7 @@ public class Simulation
 		// oder weil Fall 2: ein "normaler" Event ausgefuehrt wurde und kein Nachfolgeevent mehr kommt (der RackFeeder ist nun frei fuer allfaellige neue Jobs in dieser Gasse)
 		//
 		// Bei Fall 1, muss zuerst geprüft werden, ob der RackFeeder frei ist. Wenn nicht, einen neuen, spaeteren Erinnerungs-Event generieren.
-		// Bei Fall 2 ist der RackFeeder sicher frei und der Event kann sofort generiert werden
+		// Bei Fall 2 ist der RackFeeder sicher frei und der Event kann sofort generiert werden (falls faellig)
 		
 		Job lastJob = null;
 		
@@ -312,13 +312,14 @@ public class Simulation
 				// Wo noetig, Jobs aus Liste entfernen
 				for (Job job : jobRemoveList)
 				{
-					list.remove(job);
+					jobList.remove(job);
 				}
 			}
 			else
 			{
 				// Nichts mehr zu tun, kein neuer Job mehr trotz Erinnerungsevent
 				// Job wurde ueber GUI geloescht
+				System.out.println("Erinnerungsevent, aber kein Job mehr gefunden.");
 			}
 		}
 		else
@@ -327,6 +328,7 @@ public class Simulation
 			
 			// Der aktuelle Event war ein normaler Event ohne Nachfolgeevent,
 			// also kann der erste Event fuer den naechsten Job fuer denselben RackFeeder generiert werden (falls vorhanden)
+			// Ist der Job noch nicht faellig, einen Erinnerungsevent anlegen
 			
 			JobList jobList = JobList.getInstance();
 			ArrayList<Job> list = jobList.getJobList();
@@ -336,14 +338,21 @@ public class Simulation
 				// Naechsten Job fuer denselben RackFeeder suchen
 				if (job.getRackFeeder().equals(lastJob.getRackFeeder()))
 				{
-					// Event anlegen
-					// Ersten Event fuer diesen Job anlegen
 					EventList eventList = EventList.getInstance();
-					//Event newEvent = new Event(getInstance().getSimulationTime(), job);
-					Event newEvent = new Event(event.getEventTime(), job);
-					eventList.add(newEvent);
 					
-					jobList.remove(job);
+					// Ersten Event fuer diesen Job anlegen, falls der Job faellig ist.
+					if (! job.getStartTime().after(getInstance().getCurrentSimulationTime()))
+					{
+						Event newEvent = new Event(event.getEventTime(), job);
+						eventList.add(newEvent);
+						
+						jobList.remove(job);
+					}
+					// Ansonsten Erinnerungsevent anlegen.
+					else
+					{
+						eventList.addRememberEvent(job.getStartTime());
+					}
 					
 					// Keine weiteren Events mehr anlegen
 					break;

@@ -32,10 +32,10 @@ public class Start
 	public static void main(String[] args)
 	{
 		// Simulation initialisieren
-		Simulation.setFactor(0.2);
+		Simulation.setFactor(1);
 		
-		Simulation.setSimulationType(SimulationType.FACTOR);
-		//Simulation.setSimulationType(SimulationType.AS_FAST_AS_POSSIBLE);
+		//Simulation.setSimulationType(SimulationType.FACTOR);
+		Simulation.setSimulationType(SimulationType.AS_FAST_AS_POSSIBLE);
 		
 		Simulation.setStartSimulationTime("2000.01.01 00:00:00.000");
 		Simulation simulation = Simulation.getInstance();
