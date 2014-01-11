@@ -32,7 +32,7 @@ public class Start
 	public static void main(String[] args)
 	{
 		// Simulation initialisieren
-		Simulation.setFactor(1);
+		Simulation.setFactor(0.2);
 		
 		Simulation.setSimulationType(SimulationType.FACTOR);
 		//Simulation.setSimulationType(SimulationType.AS_FAST_AS_POSSIBLE);
@@ -120,7 +120,7 @@ public class Start
 		
 		System.out.println();
 		System.out.println("**************************************************************");
-		System.out.println("Simulation ist beendet, keien weiteren Events und Jobs mehr...");
+		System.out.println("Simulation ist beendet, keine weiteren Events und Jobs mehr...");
 		System.out.println("**************************************************************");
 	}
 

@@ -73,6 +73,10 @@ public class Simulation
 	 */
 	public static void setFactor(double factor)
 	{
+		// TODO Exceptionhandling fuer Faktoren <= 0 und ev. auf 3 Nachkommastellen beschränken
+		if (factor <= 0)
+			factor = 1;
+		
 		Simulation.factor = factor;
 	}
 	
@@ -150,10 +154,16 @@ public class Simulation
 			nextEventTime = event.getEventTime();
 			currentEventTimeMillis = nextEventTime.getTimeInMillis();
 			waitMillis = currentEventTimeMillis - getCurrentSimulationTime().getTimeInMillis();
+			// Faktor beruecksichtigen
+			waitMillis = Math.round(waitMillis / this.getFactor());
 			if (waitMillis < 0)
 			{
 				waitMillis = 0;
 			}
+			
+			// TEST
+			System.out.println("Wartezeit in ms (echt): " + waitMillis);
+			// TEST ENDE
 			
 			// wegen Rechenzeit-Verschiebung...
 			setSimulationTime(event.getEventTime());
@@ -220,6 +230,7 @@ public class Simulation
 		// TEST
 		Calendar end = Calendar.getInstance();
 		System.out.println("Simulation wird nun beendet, aktuelle Systemzeit: " + calendar2String(end));
+		System.out.println("                                Start-Systemzeit: " + calendar2String(start));
 		System.out.println("Vergangene Systemzeit in Millis: " + (end.getTimeInMillis() - start.getTimeInMillis()));
 		// TEST
 	}
