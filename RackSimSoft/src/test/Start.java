@@ -38,16 +38,21 @@ public class Start
 		//Simulation.setSimulationType(SimulationType.FACTOR);
 		Simulation.setSimulationType(SimulationType.AS_FAST_AS_POSSIBLE);
 		
-		Simulation.setStartSimulationTime("2013.12.24 23:59:59.000");
+		Simulation.setStartSimulationTime("1999.12.31 00:00:00.000");
 		Simulation simulation = Simulation.getInstance();
 		
 		// Dateien einlesen
 		// ----------------
+		ArrayList<String> files = new ArrayList<String>();
+		files.add("location1.txt");
+		files.add("item_list1.txt");
+		files.add("job_list1.txt");
+		
 		String fileName;
 		ReadingFiles readingFiles;
 		
 		// Lagerort einlesen
-		fileName = "location1.txt";
+		fileName = files.remove(0);
 		readingFiles = new ReadingFiles();
 		try
 		{
@@ -60,7 +65,7 @@ public class Start
 		}
 		
 		// Artikel einlesen
-		fileName = "item_list1.txt";
+		fileName = files.remove(0);
 		readingFiles = new ReadingFiles();
 		try
 		{
@@ -73,7 +78,7 @@ public class Start
 		}
 		
 		// Jobs einlesen
-		fileName = "job_list1.txt";
+		fileName = files.remove(0);
 		readingFiles = new ReadingFiles();
 		try
 		{
@@ -102,7 +107,7 @@ public class Start
 		checkItems();
 		
 		// Events erstellen anhand der JobListe
-		Simulation.createInitialEvents();
+		Simulation.createEvents(null);
 		
 		// TEST
 		EventList eventList = EventList.getInstance();
@@ -111,6 +116,8 @@ public class Start
 		{
 			System.out.println("Event " + i + " : " + Simulation.calendar2String(elist.get(i).getEventTime()));
 		}
+		System.out.println("");
+		System.out.println("");
 		// TEST ENDE
 		
 		// GUI starten

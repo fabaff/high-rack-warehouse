@@ -124,6 +124,12 @@ public class Simulation
 		
 		while (event != null)
 		{
+			// TEST
+			System.out.println("-----------------------------------------------------------------------");
+			System.out.println("Dieser Event: " + calendar2String(event.getEventTime()));
+			System.out.println("Simulationszeit: " + getInstance().getSimulationTimeFormatted());
+			// TEST ENDE
+			
 			nextEventTime = event.getEventTime();
 			currentEventTimeMillis = nextEventTime.getTimeInMillis();
 			waitMillis = currentEventTimeMillis - getSimulationTime().getTimeInMillis();
@@ -146,6 +152,11 @@ public class Simulation
 					Thread.sleep(waitMillis);
 				}
 				
+				// TEST
+				System.out.println("Simulationszeit nach Sleep: " + getInstance().getSimulationTimeFormatted());
+				System.out.println("");
+				// TEST ENDE
+				
 				// Event ausfuehren
 				int nextEventMillis = event.executeEvent();
 				
@@ -155,14 +166,22 @@ public class Simulation
 				if (nextEventMillis >= 0)
 				{
 					Calendar calendar = Calendar.getInstance();
-					calendar.setTimeInMillis(currentEventTimeMillis + nextEventMillis);
+					calendar.setTimeInMillis(currentEventTimeMillis + waitMillis + nextEventMillis);
 					
 					event = new Event(calendar, event.getJob());
 										
 					eventList.add(event);
+					
+					// TEST
+					System.out.println("Nachfolgeevent angelegt: " + calendar2String(event.getEventTime()));
+					// TEST ENDE
 				}
 				else
 				{
+					// TEST
+					System.out.println("Kein Nachfolgeevent. Eventuell Erinnerungsevents oder Startevents anlegen?");
+					// TEST ENDE
+					
 					// Aus Jobliste neuen Event erstellen, weil der Job nun faellig ist?
 					createEvents(event);
 				}
@@ -175,6 +194,10 @@ public class Simulation
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
+			// TEST
+			System.out.println("-----------------------------------------------------------------------");
+			// TEST ENDE
 		}
 	}
 	
@@ -194,157 +217,104 @@ public class Simulation
 	 */
 	public static void createEvents(Event event)
 	{
-		// Funktion wird ausgefuehrt
-		// entweder weil Fall 1: ein "normaler" Event ausgefuehrt wurde und kein Nachfolgeevent mehr kommt (die Gasse ist nun frei fuer allfaellige neue Jobs in dieser Gasse)
-		// oder weil Fall 2: ein Erinnerungsevent ausgefuehrt wurde (Job == null)
+		// Diese Funktion wird ausgefuehrt
+		// zum initialisieren vor dem starten der Simulation (event == null), wird gleich behandelt wie ein Erinnerungsevent,
+		// oder weil Fall 1: ein Erinnerungsevent ausgefuehrt wurde (Job == null)
+		// oder weil Fall 2: ein "normaler" Event ausgefuehrt wurde und kein Nachfolgeevent mehr kommt (der RackFeeder ist nun frei fuer allfaellige neue Jobs in dieser Gasse)
 		//
-		// Bei Fall 1 ist die Gasse sicher frei und der Event kann sofort generiert werden
-		// Bei Fall 2, muss zuerst geprüft werden, ob die Gasse frei ist. Wenn nicht, einen neuen, spaeteren Erinnerungs-Event generieren.
-					
-		Job currentJob = event.getJob();
-		EventList eventList = EventList.getInstance();
-		Event newEvent;
+		// Bei Fall 1, muss zuerst geprüft werden, ob der RackFeeder frei ist. Wenn nicht, einen neuen, spaeteren Erinnerungs-Event generieren.
+		// Bei Fall 2 ist der RackFeeder sicher frei und der Event kann sofort generiert werden
 		
-		// Aus Jobliste neuen Event erstellen, weil der Job nun faellig ist?
-		JobList jobList = JobList.getInstance();
-		ArrayList<Job> list = jobList.getJobList();
-		Job job = null;
-		if (list.size() != 0)
-		{
-			job = list.get(0);
-		}
+		Job lastJob = null;
 		
-		// Pruefen, ob der naechste Job wirklich faellig ist (da die Jobliste im GUI und in dieser Funktion modifiziert werden kann)
-		if ((job != null) && (! job.getStartTime().after(getInstance().getSimulationTime())))
+		// Initialisierung oder Event wurde ausgeführt
+		if (event != null)
+			lastJob = event.getJob();
+		
+		if (lastJob == null)
 		{
-			if (currentJob != null)
+			// Fall 1 oder Initialisierung
+			
+			// Der aktuelle Event war ein Erinnerungsevent,
+			// also naechste Jobs pruefen und Startevents dafuer anlegen falls der RackFeeder frei ist
+			EventList eventList = EventList.getInstance();
+			JobList jobList = JobList.getInstance();
+			ArrayList<Job> list = jobList.getJobList();
+			
+			// Gibt es ueberhaupt noch neue Jobs?
+			if (list.size() != 0)
 			{
-				// Fall 1
-				newEvent = new Event(job.getStartTime(), job);
-				eventList.add(newEvent);
+				ArrayList<Job> jobRemoveList = new ArrayList<Job>();
 				
-				jobList.remove(job);
+				// Alle Jobs pruefen
+				for (Job job : list)
+				{
+					// Pruefen, ob der RackFeeder frei ist und ggf. ersten Event fuer den Job anlegen
+					if (eventList.checkNextEvent(job))
+					{
+						// Ersten Event fuer diesen Job anlegen, falls der Job faellig ist.
+						// und es sich nicht um die Initialisierung handelt!
+						if  ((! (event == null)) && (! (job.getStartTime().after(getInstance().getSimulationTime()))))
+						{
+							Event newEvent = new Event(getInstance().getSimulationTime(), job);
+							eventList.add(newEvent);
+							
+							jobRemoveList.add(job);
+						}
+						// Ansonsten Erinnerungsevent anlegen.
+						else
+						{
+							eventList.addRememberEvent(job.getStartTime());
+						}
+					}
+					else
+					{
+						// Nichts mehr zu tun, Erster Event fuer den naechsten Job wird angelegt,
+						// Sobald der echte Event ausgefuehrt wurde. Dieser Job wird somit verzoegert ausgefuehrt.
+					}
+				}
+				
+				// Wo noetig, Jobs aus Liste entfernen
+				for (Job job : jobRemoveList)
+				{
+					list.remove(job);
+				}
 			}
 			else
 			{
-				// Fall 2
-				
-				// Pruefen, ob derselbe RackFeeder nicht noch einen aktiven Event hat!
-				// Wenn so, dann warten, bis die Gasse frei ist. Der aktuelle Job wird dann verzoegert gestartet.
-				// Derselbe RackFeeder kann nicht mehrere Jobs gleichzeitig abarbeiten.
-				
-				boolean feederIsFree = true;
-				
-				// Alle RackFeeder, welche Events haben, kontrollieren
-				for (Event e : eventList.getEventListCopy())
+				// Nichts mehr zu tun, kein neuer Job mehr trotz Erinnerungsevent
+				// Job wurde ueber GUI geloescht
+			}
+		}
+		else
+		{
+			// Fall 2
+			
+			// Der aktuelle Event war ein normaler Event ohne Nachfolgeevent,
+			// also kann der erste Event fuer den naechsten Job fuer denselben RackFeeder generiert werden (falls vorhanden)
+			
+			JobList jobList = JobList.getInstance();
+			ArrayList<Job> list = jobList.getJobList();
+			
+			for (Job job : list)
+			{
+				// Naechsten Job fuer denselben RackFeeder suchen
+				if (job.getRackFeeder().equals(lastJob.getRackFeeder()))
 				{
-					Job j = e.getJob();
-					if (j != null)
-					{
-						// RackFeeder vergleichen
-						if (job.getRackFeeder().equals(j.getRackFeeder()))
-						{
-							feederIsFree = false;
-							break;
-						}
-					}
-				}
-				
-				// Wenn der RackFeeder des Jobs noch frei ist, Event generieren
-				// Im anderen Fall wird eine Event generiert werden, sobald die Gasse frei wird (Fall 1)
-				if (feederIsFree)
-				{
-					newEvent = new Event(getInstance().getSimulationTime(), job);
+					// Event anlegen
+					// Ersten Event fuer diesen Job anlegen
+					EventList eventList = EventList.getInstance();
+					Event newEvent = new Event(getInstance().getSimulationTime(), job);
 					eventList.add(newEvent);
 					
 					jobList.remove(job);
-				}
-			}
-		}
-
-		
-		
-		
-		
-		
-		
-		
-	}
-	/*
-	public static void createEvents()
-	{
-		JobList jobList = JobList.getInstance();
-		ArrayList<Job> jobRemoveList = new ArrayList<Job>();
-		ArrayList<Gap> gapList = Location.getInstance().getGapListCopy();
-		Hashtable<String, RackFeeder> rackFeederTable = new Hashtable<String, RackFeeder>();
-		RackFeeder rackFeeder;
-		Event event;
-		EventList eventList = EventList.getInstance();
-		
-		// Alle RackFeeder in HashTable abfuellen
-		for (Gap gap : gapList)
-		{
-			rackFeeder = gap.getRackFeeder();
-			rackFeederTable.put(rackFeeder.getRackFeederID(), rackFeeder);
-		}
-		
-		// Alle RackFeeder, welche in Events vorhanden sind, wieder entfernen
-		for (Event e : eventList.getEventListCopy())
-		{
-			if (e.getJob() != null)
-			{
-				rackFeederTable.remove(e.getJob().getRackFeeder().getRackFeederID());
-			}
-		}
-		
-		// JobListe ist aufsteigend sortiert nach Startzeit
-		for (Job job : jobList.getJobList())
-		{
-			// Falls RackFeeder noch in Tabelle, dann kann der Job als Event generiert werden und der RackFeeder aus der Tabelle entfernt werden
-			if (rackFeederTable.get(job.getRackFeeder().getRackFeederID()) != null)
-			{
-				// Event generieren
-				// Unterscheiden, ob der Job bereits faellig ist oder nur ein Event als Erinnerung zum generieren eines Events generiert werden soll
-				// Ist der Job faellig, wird der Job entfernt und daraus eine Event generiert
-				// Ist der Job noch nicht faellig, wird per Faelligkeit ein "Erinnerungs-Event" generiert (falls nicht bereits gemacht)
-				// und erst beim ausfuehren dieses Events ein Job-Event generiert
-				if (job.getStartTime().before(getInstance().getSimulationTime()))
-				{
-					event = new Event(job.getStartTime(), job);
-					eventList.add(event);
 					
-					// Job vormerken zum aus Liste entfernen
-					jobRemoveList.add(job);
-				}
-				else
-				{
-					// Erinnerungsevent per Faelligkeit generieren, falls nicht bereits gemacht
-					for (Event e : eventList.getEventListCopy())
-					{
-						if ((e.getJob() == null) && (! (e.getEventTime().equals(job.getStartTime()))))
-						{
-							event = new Event(job.getStartTime(), null);
-							eventList.add(event);
-						}
-					}
-				}
-				
-				// RackFeeder aus Tabelle entfernen
-				rackFeederTable.remove(job.getRackFeeder().getRackFeederID());
-				
-				// Ev. abbrechen weil keine freien RackFeeder mehr vorhanden?
-				if (rackFeederTable.size() == 0)
+					// Keine weiteren Events mehr anlegen
 					break;
+				}
 			}
 		}
-		
-		// Jobs aus Liste entfernen
-		for (Job job : jobRemoveList)
-		{
-			jobList.remove(job);
-		}
 	}
-	*/
 	
 	/**
 	 * Creates Events depending on the job list.
@@ -354,15 +324,13 @@ public class Simulation
 	public static void createInitialEvents()
 	{
 		JobList jobList = JobList.getInstance();
-		Event event;
 		EventList eventList = EventList.getInstance();
 		
 		// JobListe ist aufsteigend sortiert nach Startzeit
 		for (Job job : jobList.getJobList())
 		{
 			// Erinnerungsevent per Faelligkeit generieren
-			event = new Event(job.getStartTime(), null);
-			eventList.add(event);
+			eventList.addRememberEvent(job.getStartTime());
 		}
 	}
 	
