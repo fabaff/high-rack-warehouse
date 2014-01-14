@@ -4,6 +4,7 @@ package state;
 import item.Item;
 import job.Job;
 import location.RackFeeder;
+import helper.Write2File;
 
 /**
  * RackFeederState1 stands for an empty RackFeeder in zero-position of the current Gap.
@@ -76,6 +77,11 @@ public class RackFeederState1 extends RackFeederState
 		
 		// Den Artikel auf das RBG laden
 		rackFeeder.loadItem(item);
+		
+		// TEST
+		Write2File.write("Der Artikel '" + rackFeeder.getItem().getItemDescription() + "' wurde auf den RackFeeder geladen");
+		Write2File.write();
+		// TEST ENDE
 	}
 	
 	/* (non-Javadoc)

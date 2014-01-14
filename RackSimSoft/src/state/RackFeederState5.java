@@ -1,6 +1,7 @@
 
 package state;
 
+import helper.Write2File;
 import calculation.Distance;
 import calculation.Movement;
 import item.Item;
@@ -82,6 +83,11 @@ public class RackFeederState5 extends RackFeederState
 		// TODO Bin sollte eine Funktion haben für die Neutralpostition der U-Axhse bzw. X-Achse
 		//rackFeeder.moveU(bin.getU());
 		rackFeeder.moveU(0);
+		
+		// TEST
+		Write2File.write("Der RackFeeder ist in U-Richtung gefahren, neue Koordinaten " + rackFeeder.getCoordinate().toString());
+		Write2File.write();
+		// TEST ENDE
 	}
 	
 	/**
@@ -100,6 +106,11 @@ public class RackFeederState5 extends RackFeederState
 		
 		// Den Artikel auf das RBG laden
 		rackFeeder.loadItem(item);
+		
+		// TEST
+		Write2File.write("Der Artikel '" + rackFeeder.getItem().getItemDescription() + "' wurde auf den RackFeeder geladen");
+		Write2File.write();
+		// TEST ENDE
 	}
 	
 	/* (non-Javadoc)

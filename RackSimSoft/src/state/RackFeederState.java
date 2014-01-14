@@ -22,7 +22,7 @@ public abstract class RackFeederState
 	 *  Ebenfalls in entsprechenden Subklassen erweitern / implementieren wo nötig
 	 */
 	protected Behavior behavior;
-	protected Calendar stateStartTime;
+	//protected Calendar stateStartTime;
 	protected int busyTime;
 	protected Movement movement;
 	
@@ -39,7 +39,7 @@ public abstract class RackFeederState
 	public RackFeederState(Behavior behavior)
 	{
 		this.behavior = behavior;
-		this.stateStartTime = Simulation.getSimulationTime();
+		//this.stateStartTime = Simulation.getSimulationTime();
 		this.movement = null;
 	}
 	

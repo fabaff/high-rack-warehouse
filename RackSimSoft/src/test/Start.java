@@ -14,9 +14,12 @@ import simulation.Simulation.SimulationType;
 import job.Job;
 import job.JobList;
 import location.Bin;
+import location.Gap;
+import location.Grid;
 import location.Location;
 import gui2D.GUI;
 import helper.ReadingFiles;
+import helper.Write2File;
 
 /**
  * Die Klasse Start beinhaltet die main Funktion und dient zum starten der Simulationssoftware.
@@ -31,6 +34,10 @@ public class Start
 	 */
 	public static void main(String[] args)
 	{
+		// TEST
+		Write2File.clearFile();
+		// TEST ENDE
+		
 		// Simulation initialisieren
 		Simulation.setFactor(1);
 		
@@ -43,9 +50,9 @@ public class Start
 		// Dateien einlesen
 		// ----------------
 		ArrayList<String> files = new ArrayList<String>();
-		files.add("location1.txt");
-		files.add("item_list1.txt");
-		files.add("job_list1.txt");
+		files.add("location3.txt");
+		files.add("item_list3.txt");
+		files.add("job_list3.txt");
 		
 		String fileName;
 		ReadingFiles readingFiles;
@@ -90,24 +97,33 @@ public class Start
 		}
 		// ++++++++++++++++
 		
-		// TODO
-		// TEST
-		System.out.println("Bereits bekannte Jobs beim Start der Simulation:");
-		JobList jobList = JobList.getInstance();
-		ArrayList<Job> list = jobList.getJobList();
-		for (int i = 0; i < list.size(); i++)
-		{
-			Job job = list.get(i);
-			System.out.println("Job: ID = '" + job.getJobID() + "', RackFeeder = '" + job.getRackFeeder().getRackFeederID() + "', Startzeit = " + Simulation.calendar2String(job.getStartTime()));
-		}
-		System.out.println();
-		// TEST ENDE
-		
 		// Artikel per Zufall auf die Bins verteilen
 		addItems();
 		
 		// Anhand der Jobs sicherstellen, dass Artikel in Bins sind, bzw. diese Bins leer sind
 		checkItems();
+		
+		// TODO
+		// TEST
+		Write2File.write("Lagerplatzzuweisung vor Start der Simulation:");
+		Write2File.write("---------------------------------------------");
+		printLocation();
+		// TEST ENDE
+		
+		// TODO
+		// TEST
+		Write2File.write();
+		Write2File.write("Bereits bekannte Jobs beim Start der Simulation:");
+		Write2File.write("------------------------------------------------");
+		JobList jobList = JobList.getInstance();
+		ArrayList<Job> list = jobList.getJobList();
+		for (int i = 0; i < list.size(); i++)
+		{
+			Job job = list.get(i);
+			Write2File.write("Job: ID = '" + String.format("%1$3s", job.getJobID()) + "', RackFeeder = '" + job.getRackFeeder().getRackFeederID() + "', Startzeit = " + Simulation.calendar2String(job.getStartTime()));
+		}
+		Write2File.write();
+		// TEST ENDE
 		
 		// Events erstellen anhand der JobListe
 		Simulation.createEvents(null);
@@ -118,10 +134,18 @@ public class Start
 		// Simulation starten
 		simulation.start();
 		
-		System.out.println();
-		System.out.println("**************************************************************");
-		System.out.println("Simulation ist beendet, keine weiteren Events und Jobs mehr...");
-		System.out.println("**************************************************************");
+		Write2File.write();
+		Write2File.write("**************************************************************");
+		Write2File.write("Simulation ist beendet, keine weiteren Events und Jobs mehr...");
+		Write2File.write("**************************************************************");
+		
+		// TODO
+		// TEST
+		Write2File.write();
+		Write2File.write("Lagerplatzzuweisung nach der Simulation:");
+		Write2File.write("----------------------------------------");
+		printLocation();
+		// TEST ENDE
 	}
 
 	/**
@@ -195,5 +219,46 @@ public class Start
 				}
 			}	
 		}
+	}
+	
+	/**
+	 * Shows the current location in console
+	 * 
+	 */
+	private static void printLocation()
+	{
+		// TODO Diese Funktion loeschen, sobald GUI ready
+		// Test
+		Location myLocation = Location.getInstance();
+		ItemAllocation itemAllocation = myLocation.getItemAllocation();
+		
+	    Write2File.write("Lagerort:");
+	    Write2File.write("  Name = " + myLocation.getLocationID());
+	    Write2File.write("  Anzahl Gassen: " + myLocation.countGaps());
+	    for (Gap gap : myLocation.getGapListCopy())
+	    {
+	    	Grid grid;
+	    	Write2File.write("    Name: " + gap.getGapID() + ", X-Koordinate: " + gap.getXCoordinate() + ", Breite: " + gap.getXSize());
+	    	grid = gap.getGridLeft();
+	    	Write2File.write("    Grid L: Name: " + grid.getGridID() + ", Tiefe: " + grid.getXSize() + ", Laenge: " + grid.getYSize() + ", Hoehe: " + grid.getZSize());
+	    	grid = gap.getGridRight();
+	    	Write2File.write("    Grid R: Name: " + grid.getGridID() + ", Tiefe: " + grid.getXSize() + ", Laenge: " + grid.getYSize() + ", Hoehe: " + grid.getZSize());
+	    	Write2File.write();
+	    }
+	
+	    Write2File.write("  Anzahl Bin: " + myLocation.getBinList().size());
+	    Write2File.write();
+		
+	    int i = 0;
+	    
+	    for (Bin bin : myLocation.getBinList())
+	    {
+	    	i ++;
+	    	if (itemAllocation.getItem(bin.getBinID()) != null)
+	    		Write2File.write(String.format("%1$3s", "" + i) + " - ID: " + String.format("%1$24s", bin.getBinID()) + ", Artikel: " + String.format("%1$-15s", itemAllocation.getItem(bin.getBinID()).getItemDescription()) + ", Koordinaten: " + bin.getCoordinate().toString());
+	    	else
+	    		Write2File.write(String.format("%1$3s", "" + i) + " - ID: " + String.format("%1$24s", bin.getBinID()) + ", Artikel: " + String.format("%1$-15s", "") + ", Koordinaten: " + bin.getCoordinate().toString());
+	    }
+	    // Test Ende
 	}
 }

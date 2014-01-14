@@ -1,6 +1,8 @@
 
 package state;
 
+import item.Item;
+import helper.Write2File;
 import calculation.Distance;
 import calculation.Movement;
 import job.Job;
@@ -78,6 +80,11 @@ public class RackFeederState2 extends RackFeederState
 		
 		// Das RBG vor das Bin fahren
 		rackFeeder.moveYZ(bin.getY(), bin.getZ());
+		
+		// TEST
+		Write2File.write("Der RackFeeder ist in YZ-Richtung gefahren, neue Koordinaten " + rackFeeder.getCoordinate().toString());
+		Write2File.write();
+		// TEST ENDE
 	}
 	
 	/**
@@ -91,7 +98,13 @@ public class RackFeederState2 extends RackFeederState
 		RackFeeder rackFeeder = job.getRackFeeder();
 		
 		// Den Artikel vom RBG entfernen
-		rackFeeder.unloadItem();
+		//rackFeeder.unloadItem();
+		
+		// TEST
+		Item item = rackFeeder.unloadItem();
+		Write2File.write("Der Artikel '" + item.getItemDescription() + "' wurde vom RackFeeder entfernt");
+		Write2File.write();
+		// TEST ENDE
 	}
 	
 	/* (non-Javadoc)

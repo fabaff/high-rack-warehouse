@@ -1,6 +1,7 @@
 
 package state;
 
+import helper.Write2File;
 import calculation.Distance;
 import calculation.Movement;
 import job.Job;
@@ -78,6 +79,11 @@ public class RackFeederState7 extends RackFeederState
 		
 		// Das RBG vor das Bin fahren
 		rackFeeder.moveYZ(bin.getY(), bin.getZ());
+		
+		// TEST
+		Write2File.write("Der RackFeeder ist in YZ-Richtung gefahren, neue Koordinaten " + rackFeeder.getCoordinate().toString());
+		Write2File.write();
+		// TEST ENDE
 	}
 	
 	/* (non-Javadoc)

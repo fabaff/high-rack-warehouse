@@ -1,6 +1,7 @@
 
 package state;
 
+import helper.Write2File;
 import calculation.Distance;
 import calculation.Movement;
 import item.Item;
@@ -85,6 +86,11 @@ public class RackFeederState4 extends RackFeederState
 		
 		// Den Artikel im Bin einlagern
 		itemAllocation.addItem(item, bin);
+		
+		// TEST
+		Write2File.write("Der Artikel '" + item.getItemDescription() + "' wurde vom RackFeeder entfernt, und im Bin '" + bin.getBinID() + "' eingelagert");
+		Write2File.write();
+		// TEST ENDE
 	}
 	
 	/**
@@ -99,6 +105,11 @@ public class RackFeederState4 extends RackFeederState
 		
 		// Das RBG aus dem Bin heraus fahren
 		rackFeeder.moveU(bin.getU());
+		
+		// TEST
+		Write2File.write("Der RackFeeder ist in U-Richtung gefahren, neue Koordinaten " + rackFeeder.getCoordinate().toString());
+		Write2File.write();
+		// TEST ENDE
 	}
 	
 	/* (non-Javadoc)

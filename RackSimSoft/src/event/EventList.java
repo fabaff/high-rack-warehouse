@@ -7,6 +7,7 @@ import java.util.Collections;
 
 import job.Job;
 import simulation.Simulation;
+import test.Write2File;
 
 
 /**
@@ -56,10 +57,12 @@ public class EventList
 		// TEST
 		Job job = event.getJob();
 		if (job == null)
-			System.out.println("Erinnerungsevent hinzugefügt; Eventzeit: " + Simulation.calendar2String(event.getEventTime()));
+		{
+			Write2File.write("Erinnerungsevent hinzugefuegt; Eventzeit: " + Simulation.calendar2String(event.getEventTime()));
+		}
 		else
 		{
-			System.out.println("Event für Job '" + job.getJobID() + "', RackFeeder '" + job.getRackFeeder().getRackFeederID() + "' hinzugefügt; Eventzeit:  " + Simulation.calendar2String(event.getEventTime()));
+			Write2File.write("Event hinzugefuegt fuer Job '" + job.getJobID() + "', RackFeeder '" + job.getRackFeeder().getRackFeederID() + "'; Eventzeit:  " + Simulation.calendar2String(event.getEventTime()));
 		}
 		// TEST ENDE
 	}
