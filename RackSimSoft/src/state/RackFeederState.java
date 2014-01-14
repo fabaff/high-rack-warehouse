@@ -1,8 +1,6 @@
 
 package state;
 
-import java.util.Calendar;
-
 import calculation.Coordinate;
 import calculation.Movement;
 import simulation.Simulation;
@@ -22,7 +20,6 @@ public abstract class RackFeederState
 	 *  Ebenfalls in entsprechenden Subklassen erweitern / implementieren wo nötig
 	 */
 	protected Behavior behavior;
-	protected Calendar stateStartTime;
 	protected int busyTime;
 	protected Movement movement;
 	
@@ -39,7 +36,6 @@ public abstract class RackFeederState
 	public RackFeederState(Behavior behavior)
 	{
 		this.behavior = behavior;
-		this.stateStartTime = Simulation.getSimulationTime();
 		this.movement = null;
 	}
 	
@@ -105,7 +101,7 @@ public abstract class RackFeederState
 	 * 
 	 * @param busyTime the time the rack feeder needs to reach the next state
 	 */
-	protected void setBusyTime(int busyTime)
+	protected final void setBusyTime(int busyTime)
 	{
 		this.busyTime = busyTime;
 	}

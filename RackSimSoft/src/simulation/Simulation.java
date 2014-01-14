@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import helper.Write2File;
 import job.Job;
 import job.JobList;
 import event.Event;
@@ -22,6 +23,11 @@ public class Simulation
 	{
 		FACTOR, AS_FAST_AS_POSSIBLE
 	}
+	
+	// TODO
+	// TEST, nur zur Ausgabesteuerung Konsole / Datei
+	private static boolean write2File;
+	// TEST ENDE
 	
 	private static Simulation instance;
 	private static double factor;
@@ -118,11 +124,16 @@ public class Simulation
 	 */
 	public void start()
 	{
+		// TODO
 		// TEST
 		Calendar start = Calendar.getInstance();
-		System.out.println();
-		System.out.println("Simulation wird nun gestartet, aktuelle Systemzeit: " + calendar2String(start));
-		System.out.println("-----------------------------------------------------------------------");
+		Write2File.write();
+		Write2File.write("Simulation wird nun gestartet:");
+		Write2File.write("Aktuelle Systemzeit: " + calendar2String(start));
+		Write2File.write("Aktueller Faktor: " + this.myFactor);
+		Write2File.write("Aktueller Modus: " + this.mySimulationType);
+		Write2File.write();
+		Write2File.write("-------------------------------------------------------------------------------------------");
 		int eventCounter = 0;
 		// TEST ENDE
 		
@@ -131,7 +142,6 @@ public class Simulation
 
 		EventList eventList = EventList.getInstance();
 		Event event = eventList.getNextEvent();
-		Calendar nextEventTime = null;
 		long currentEventTimeMillis = 0;
 		long waitMillis = 0;
 		
@@ -139,23 +149,23 @@ public class Simulation
 		{
 			// TEST
 			eventCounter += 1;
-			System.out.println(eventCounter + "   -------------------------------------------------------------------");
-			System.out.println("Simulationszeit: " + getInstance().getCurrentSimulationTimeFormatted());
+			Write2File.write(String.format("%1$-6s", "" + eventCounter) + "   ----------------------------------------------------------------------------------");
+			Write2File.write("Simulationszeit: " + getInstance().getCurrentSimulationTimeFormatted());
 			if (event.getJob() != null)
 			{
-				System.out.println("Event zu Job '" + event.getJob().getJobID() + "', RackFeeder '" + event.getJob().getRackFeeder().getRackFeederID() + "' gefunden, Startzeit: " + calendar2String(event.getEventTime()));
+				Write2File.write("Event zu Job '" + event.getJob().getJobID() + "', RackFeeder '" + event.getJob().getRackFeeder().getRackFeederID() + "' gefunden, Startzeit: " + calendar2String(event.getEventTime()));
 			}
 			else
 			{
-				System.out.println("Erinnerungsevent gefunden, Startzeit: " + calendar2String(event.getEventTime()));	
+				Write2File.write("Erinnerungsevent gefunden, Startzeit: " + calendar2String(event.getEventTime()));	
 			}
 			// TEST ENDE
 			
-			nextEventTime = event.getEventTime();
-			currentEventTimeMillis = nextEventTime.getTimeInMillis();
+			currentEventTimeMillis = event.getEventTime().getTimeInMillis();
 			waitMillis = currentEventTimeMillis - getCurrentSimulationTime().getTimeInMillis();
 			// Faktor beruecksichtigen
 			waitMillis = Math.round(waitMillis / this.getFactor());
+			// Ev. wegen wegen Rechenzeit-Verschiebung bereits im Verzug?
 			if (waitMillis < 0)
 			{
 				waitMillis = 0;
@@ -169,27 +179,38 @@ public class Simulation
 				// Abhaengig vom Typ der Simulation warten oder Zeit manipulieren
 				if (this.mySimulationType == SimulationType.AS_FAST_AS_POSSIBLE)
 				{
+					// TEST
+					Write2File.write();
+					Write2File.write("Wartezeit in ms (simuliert): " + waitMillis);
+					// TEST ENDE
+					
 					// Sofort voranschreiten
 					this.time.proceed(waitMillis);
 				}
 				else
 				{
 					// TEST
-					System.out.println("Wartezeit in ms (echt): " + waitMillis);
+					Write2File.write();
+					Write2File.write("Wartezeit in ms (echt): " + waitMillis);
 					// TEST ENDE
 					
 					// Warten bis der Event ausgefuehrt werden muss
 					Thread.sleep(waitMillis);
 				}
 				
+				// TODO
 				// TEST
-				System.out.println();
-				System.out.println("Simulationszeit (echt) nach Sleep von " + waitMillis + " ms: " + getInstance().getCurrentSimulationTimeFormatted());
-				System.out.println("Simulationszeit (soll) nach Sleep von " + waitMillis + " ms: " + calendar2String(getSimulationTime()));
+				Write2File.write();
+				Write2File.write("Simulationszeit (echt) nach Wartezeit: " + getInstance().getCurrentSimulationTimeFormatted());
+				Write2File.write("Simulationszeit (soll) nach Wartezeit: " + calendar2String(getSimulationTime()));
+				Write2File.write();
 				// TEST ENDE
 				
-				// Event ausfuehren
+				
+				// Event ausfuehren, gibt die benötigte Zeit fuer den naechsten Schritt (bis zum naechsten Event) zurueck
+				// ------------------------------------------------------------------------------------------------------
 				int nextEventMillis = event.executeEvent();
+				
 				
 				// Naechsten Event fuer diesen Job erstellen...
 				// nextEventMillis zeigt die Zeit fuer den naechsten Event an (0..xxx)
@@ -205,8 +226,9 @@ public class Simulation
 				}
 				else
 				{
+					// TODO
 					// TEST
-					System.out.println("Kein Nachfolgeevent. Eventuell Erinnerungsevents oder Startevents anlegen?");
+					Write2File.write("Kein Nachfolgeevent. Eventuell Erinnerungsevents oder Startevents anlegen?");
 					// TEST ENDE
 					
 					// Aus Jobliste neuen Event erstellen, weil der Job nun faellig ist?
@@ -222,17 +244,22 @@ public class Simulation
 				e.printStackTrace();
 			}
 			
+			// TODO
 			// TEST
-			System.out.println("-----------------------------------------------------------------------");
+			Write2File.write("-------------------------------------------------------------------------------------------");
 			// TEST ENDE
 		}
 		
+		// TODO
 		// TEST
 		Calendar end = Calendar.getInstance();
-		System.out.println("Simulation wird nun beendet, aktuelle Systemzeit: " + calendar2String(end));
-		System.out.println("                                Start-Systemzeit: " + calendar2String(start));
-		System.out.println("Vergangene Systemzeit in Millis: " + (end.getTimeInMillis() - start.getTimeInMillis()));
-		// TEST
+		//Write2File.write("Simulation wird nun beendet, aktuelle Systemzeit: " + calendar2String(end));
+		//Write2File.write("                                Start-Systemzeit: " + calendar2String(start));
+		Write2File.write("Simulation wird nun beendet, Start-Systemzeit: " + calendar2String(start));
+		Write2File.write("                          aktuelle Systemzeit: " + calendar2String(end));
+		Write2File.write();
+		Write2File.write("Vergangene Systemzeit in Millis: " + (end.getTimeInMillis() - start.getTimeInMillis()));
+		// TEST ENDE
 	}
 	
 	/**
@@ -288,7 +315,8 @@ public class Simulation
 					{
 						// Ersten Event fuer diesen Job anlegen, falls der Job faellig ist.
 						// und es sich nicht um die Initialisierung handelt!
-						if  ((! (event == null)) && (! (job.getStartTime().after(getInstance().getCurrentSimulationTime()))))
+						//if  ((! (event == null)) && (! (job.getStartTime().after(getInstance().getCurrentSimulationTime()))))
+						if  ((! (event == null)) && (! (job.getStartTime().after(getSimulationTime()))))
 						{
 							//Event newEvent = new Event(getInstance().getSimulationTime(), job);
 							Event newEvent = new Event(event.getEventTime(), job);
@@ -319,7 +347,7 @@ public class Simulation
 			{
 				// Nichts mehr zu tun, kein neuer Job mehr trotz Erinnerungsevent
 				// Job wurde ueber GUI geloescht
-				System.out.println("Erinnerungsevent, aber kein Job mehr gefunden.");
+				Write2File.write("Erinnerungsevent, aber kein Job mehr gefunden.");
 			}
 		}
 		else
@@ -341,7 +369,8 @@ public class Simulation
 					EventList eventList = EventList.getInstance();
 					
 					// Ersten Event fuer diesen Job anlegen, falls der Job faellig ist.
-					if (! job.getStartTime().after(getInstance().getCurrentSimulationTime()))
+					//if (! job.getStartTime().after(getInstance().getCurrentSimulationTime()))
+					if (! job.getStartTime().after(getSimulationTime()))
 					{
 						Event newEvent = new Event(event.getEventTime(), job);
 						eventList.add(newEvent);
@@ -362,21 +391,13 @@ public class Simulation
 	}
 	
 	/**
-	 * Creates Events depending on the job list.
+	 * Returns the current simulation type.
 	 * 
-	 * This events figure to remeber, that there are jobs which start at a later time.
+	 * @return the nextSimulationTime
 	 */
-	public static void createInitialEvents()
+	public SimulationType getSimulationType()
 	{
-		JobList jobList = JobList.getInstance();
-		EventList eventList = EventList.getInstance();
-		
-		// JobListe ist aufsteigend sortiert nach Startzeit
-		for (Job job : jobList.getJobList())
-		{
-			// Erinnerungsevent per Faelligkeit generieren
-			eventList.addRememberEvent(job.getStartTime());
-		}
+		return this.mySimulationType;
 	}
 	
 	/**
@@ -384,7 +405,7 @@ public class Simulation
 	 * 
 	 * @return the simulation time
 	 */
-	public Calendar getCurrentSimulationTime()
+	private Calendar getCurrentSimulationTime()
 	{
 		Calendar calendar = null;
 		
@@ -401,7 +422,7 @@ public class Simulation
 	 * 
 	 * @return the simulation time
 	 */
-	public String getCurrentSimulationTimeFormatted()
+	private String getCurrentSimulationTimeFormatted()
 	{
 		String simulationTime = "";
 		
@@ -478,4 +499,21 @@ public class Simulation
 	{
 		return Time.calendar2String(calendar);
 	}
+
+	// TODO
+	// TEST, nur zur Ausgabesteuerung Konsole / Datei
+	/**
+	 * @return the write2File
+	 */
+	public static boolean isWrite2File() {
+		return write2File;
+	}
+
+	/**
+	 * @param write2File the write2File to set
+	 */
+	public static void setWrite2File(boolean write2File) {
+		Simulation.write2File = write2File;
+	}
+	// TEST
 }

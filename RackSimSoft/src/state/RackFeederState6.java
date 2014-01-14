@@ -1,6 +1,7 @@
 
 package state;
 
+import helper.Write2File;
 import calculation.Coordinate;
 import calculation.Distance;
 import calculation.Movement;
@@ -79,6 +80,11 @@ public class RackFeederState6 extends RackFeederState
 		// Das RBG auf Nullposition fahren
 		Coordinate coordinate = rackFeeder.getLoadingCoordinate();
 		rackFeeder.moveYZ(coordinate.getY(), coordinate.getZ());
+		
+		// TEST
+		Write2File.write("Der RackFeeder ist in YZ-Richtung gefahren, neue Koordinaten " + rackFeeder.getCoordinate().toString());
+		Write2File.write();
+		// TEST ENDE
 	}
 	
 	/**
@@ -93,6 +99,11 @@ public class RackFeederState6 extends RackFeederState
 		
 		// Das RBG in das Bin fahren
 		rackFeeder.moveU(bin.getU());
+		
+		// TEST
+		Write2File.write("Der RackFeeder ist in U-Richtung gefahren, neue Koordinaten " + rackFeeder.getCoordinate().toString());
+		Write2File.write();
+		// TEST ENDE
 	}
 	
 	/* (non-Javadoc)

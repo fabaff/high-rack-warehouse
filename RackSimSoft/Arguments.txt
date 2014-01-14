@@ -1,0 +1,10 @@
+Arguments definition:
+-m (afap | f) // as fast as possible, factor
+-f (double)   // factor 
+-l (int)      // location number, joblist number, itemlist number
+-p (int)      // print type, 0 for file, any other for console 
+
+-m afap -f 2.5 -l 2 -p 0		As fast as possible, Faktor 1 (wird überschrieben), Lagerort 2 laden, Ausgabe in Datei
+-m afap -f 1 -l 3 -p 15		As fast as possible, Faktor 1, Lagerort 3 laden, Ausgabe in Konsole
+-m f -f 2.5 -l 2 -p 14		Mit Faktor, Faktor 2.5, Lagerort 2 laden, Ausgabe in Konsole
+-m f -f 1 -l 3 -p 0			Mit Faktor, Faktor 1, Lagerort 3 laden, Ausgabe in Datei

@@ -29,7 +29,7 @@ public class RackFeeder
 	// TODO diese Einheit pruefen
 	
 	private final double MAX_X_SPEED = 1; // Only relevant for the delivery
-	private final double MAX_Y_SPEED = 0.5; // Speed in y axis
+	private final double MAX_Y_SPEED = 1.5; // Speed in y axis
 	private final double MAX_Z_SPEED = 1; // Speed in z axis
 	private final double MAX_U_SPEED = 1.5; // Loading speed, U is the parallel-axis to X
 	private final double MAX_X_ACCELERATION = 0.5;

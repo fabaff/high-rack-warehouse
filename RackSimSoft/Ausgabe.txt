@@ -1,0 +1,750 @@
+Lagerplatzzuweisung vor Start der Simulation:
+---------------------------------------------
+Lagerort:
+  Name = my location
+  Anzahl Gassen: 3
+    Name: Gasse1, X-Koordinate: 1000, Breite: 1000
+    Grid L: Name: Grid1, Tiefe: 1000, Laenge: 7200, Hoehe: 2500
+    Grid R: Name: Grid2, Tiefe: 1000, Laenge: 7200, Hoehe: 2500
+
+    Name: Gasse2, X-Koordinate: 4000, Breite: 1000
+    Grid L: Name: Grid3, Tiefe: 1000, Laenge: 4800, Hoehe: 1600
+    Grid R: Name: Grid4, Tiefe: 1000, Laenge: 4800, Hoehe: 1600
+
+    Name: Gasse3, X-Koordinate: 6600, Breite: 600
+    Grid L: Name: Grid5, Tiefe: 600, Laenge: 3800, Hoehe: 2200
+    Grid R: Name: Grid6, Tiefe: 600, Laenge: 3800, Hoehe: 2200
+
+  Anzahl Bin: 118
+
+  1 - ID:       Gasse1-0-Grid1-A-1, Artikel: Article 1777   , Koordinaten: (X/Y/Z/U) : 1000/0/0/-1000
+  2 - ID:       Gasse1-0-Grid1-A-2, Artikel:                , Koordinaten: (X/Y/Z/U) : 1000/0/600/-1000
+  3 - ID:       Gasse1-0-Grid1-A-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 1000/0/1400/-1000
+  4 - ID:       Gasse1-0-Grid1-A-4, Artikel:                , Koordinaten: (X/Y/Z/U) : 1000/0/1900/-1000
+  5 - ID:       Gasse1-0-Grid1-B-1, Artikel: Article 1845   , Koordinaten: (X/Y/Z/U) : 1000/1200/0/-1000
+  6 - ID:       Gasse1-0-Grid1-B-2, Artikel:                , Koordinaten: (X/Y/Z/U) : 1000/1200/600/-1000
+  7 - ID:       Gasse1-0-Grid1-B-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 1000/1200/1400/-1000
+  8 - ID:       Gasse1-0-Grid1-B-4, Artikel:                , Koordinaten: (X/Y/Z/U) : 1000/1200/1900/-1000
+  9 - ID:       Gasse1-0-Grid1-C-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 1000/2000/0/-1000
+ 10 - ID:       Gasse1-0-Grid1-C-2, Artikel:                , Koordinaten: (X/Y/Z/U) : 1000/2000/600/-1000
+ 11 - ID:       Gasse1-0-Grid1-C-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 1000/2000/1400/-1000
+ 12 - ID:       Gasse1-0-Grid1-C-4, Artikel:                , Koordinaten: (X/Y/Z/U) : 1000/2000/1900/-1000
+ 13 - ID:       Gasse1-0-Grid1-D-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 1000/2800/0/-1000
+ 14 - ID:       Gasse1-0-Grid1-D-2, Artikel:                , Koordinaten: (X/Y/Z/U) : 1000/2800/600/-1000
+ 15 - ID:       Gasse1-0-Grid1-D-3, Artikel: Article 765    , Koordinaten: (X/Y/Z/U) : 1000/2800/1400/-1000
+ 16 - ID:       Gasse1-0-Grid1-D-4, Artikel:                , Koordinaten: (X/Y/Z/U) : 1000/2800/1900/-1000
+ 17 - ID:       Gasse1-0-Grid1-E-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 1000/4000/0/-1000
+ 18 - ID:       Gasse1-0-Grid1-E-2, Artikel:                , Koordinaten: (X/Y/Z/U) : 1000/4000/600/-1000
+ 19 - ID:       Gasse1-0-Grid1-E-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 1000/4000/1400/-1000
+ 20 - ID:       Gasse1-0-Grid1-E-4, Artikel:                , Koordinaten: (X/Y/Z/U) : 1000/4000/1900/-1000
+ 21 - ID:       Gasse1-0-Grid1-F-1, Artikel: Article 687    , Koordinaten: (X/Y/Z/U) : 1000/5000/0/-1000
+ 22 - ID:       Gasse1-0-Grid1-F-2, Artikel: Article 1914   , Koordinaten: (X/Y/Z/U) : 1000/5000/600/-1000
+ 23 - ID:       Gasse1-0-Grid1-F-3, Artikel: Article 1473   , Koordinaten: (X/Y/Z/U) : 1000/5000/1400/-1000
+ 24 - ID:       Gasse1-0-Grid1-F-4, Artikel: Article 1849   , Koordinaten: (X/Y/Z/U) : 1000/5000/1900/-1000
+ 25 - ID:       Gasse1-0-Grid1-G-1, Artikel: Article 1423   , Koordinaten: (X/Y/Z/U) : 1000/6000/0/-1000
+ 26 - ID:       Gasse1-0-Grid1-G-2, Artikel: Article 30     , Koordinaten: (X/Y/Z/U) : 1000/6000/600/-1000
+ 27 - ID:       Gasse1-0-Grid1-G-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 1000/6000/1400/-1000
+ 28 - ID:       Gasse1-0-Grid1-G-4, Artikel:                , Koordinaten: (X/Y/Z/U) : 1000/6000/1900/-1000
+ 29 - ID:       Gasse1-1-Grid2-A-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 2000/0/0/1000
+ 30 - ID:       Gasse1-1-Grid2-A-2, Artikel: Article 243    , Koordinaten: (X/Y/Z/U) : 2000/0/600/1000
+ 31 - ID:       Gasse1-1-Grid2-A-3, Artikel: Article 628    , Koordinaten: (X/Y/Z/U) : 2000/0/1400/1000
+ 32 - ID:       Gasse1-1-Grid2-A-4, Artikel:                , Koordinaten: (X/Y/Z/U) : 2000/0/1900/1000
+ 33 - ID:       Gasse1-1-Grid2-B-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 2000/1200/0/1000
+ 34 - ID:       Gasse1-1-Grid2-B-2, Artikel:                , Koordinaten: (X/Y/Z/U) : 2000/1200/600/1000
+ 35 - ID:       Gasse1-1-Grid2-B-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 2000/1200/1400/1000
+ 36 - ID:       Gasse1-1-Grid2-B-4, Artikel: Article 1799   , Koordinaten: (X/Y/Z/U) : 2000/1200/1900/1000
+ 37 - ID:       Gasse1-1-Grid2-C-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 2000/2000/0/1000
+ 38 - ID:       Gasse1-1-Grid2-C-2, Artikel:                , Koordinaten: (X/Y/Z/U) : 2000/2000/600/1000
+ 39 - ID:       Gasse1-1-Grid2-C-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 2000/2000/1400/1000
+ 40 - ID:       Gasse1-1-Grid2-C-4, Artikel:                , Koordinaten: (X/Y/Z/U) : 2000/2000/1900/1000
+ 41 - ID:       Gasse1-1-Grid2-D-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 2000/2800/0/1000
+ 42 - ID:       Gasse1-1-Grid2-D-2, Artikel: Article 1203   , Koordinaten: (X/Y/Z/U) : 2000/2800/600/1000
+ 43 - ID:       Gasse1-1-Grid2-D-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 2000/2800/1400/1000
+ 44 - ID:       Gasse1-1-Grid2-D-4, Artikel:                , Koordinaten: (X/Y/Z/U) : 2000/2800/1900/1000
+ 45 - ID:       Gasse1-1-Grid2-E-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 2000/4000/0/1000
+ 46 - ID:       Gasse1-1-Grid2-E-2, Artikel:                , Koordinaten: (X/Y/Z/U) : 2000/4000/600/1000
+ 47 - ID:       Gasse1-1-Grid2-E-3, Artikel: Article 1976   , Koordinaten: (X/Y/Z/U) : 2000/4000/1400/1000
+ 48 - ID:       Gasse1-1-Grid2-E-4, Artikel: Article 1064   , Koordinaten: (X/Y/Z/U) : 2000/4000/1900/1000
+ 49 - ID:       Gasse1-1-Grid2-F-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 2000/5000/0/1000
+ 50 - ID:       Gasse1-1-Grid2-F-2, Artikel: Article 1598   , Koordinaten: (X/Y/Z/U) : 2000/5000/600/1000
+ 51 - ID:       Gasse1-1-Grid2-F-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 2000/5000/1400/1000
+ 52 - ID:       Gasse1-1-Grid2-F-4, Artikel:                , Koordinaten: (X/Y/Z/U) : 2000/5000/1900/1000
+ 53 - ID:       Gasse1-1-Grid2-G-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 2000/6000/0/1000
+ 54 - ID:       Gasse1-1-Grid2-G-2, Artikel:                , Koordinaten: (X/Y/Z/U) : 2000/6000/600/1000
+ 55 - ID:       Gasse1-1-Grid2-G-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 2000/6000/1400/1000
+ 56 - ID:       Gasse1-1-Grid2-G-4, Artikel: Article 1574   , Koordinaten: (X/Y/Z/U) : 2000/6000/1900/1000
+ 57 - ID:       Gasse2-0-Grid3-A-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 4000/0/0/-1000
+ 58 - ID:       Gasse2-0-Grid3-A-2, Artikel:                , Koordinaten: (X/Y/Z/U) : 4000/0/500/-1000
+ 59 - ID:       Gasse2-0-Grid3-A-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 4000/0/1000/-1000
+ 60 - ID:       Gasse2-0-Grid3-B-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 4000/1000/0/-1000
+ 61 - ID:       Gasse2-0-Grid3-B-2, Artikel:                , Koordinaten: (X/Y/Z/U) : 4000/1000/500/-1000
+ 62 - ID:       Gasse2-0-Grid3-B-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 4000/1000/1000/-1000
+ 63 - ID:       Gasse2-0-Grid3-C-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 4000/2000/0/-1000
+ 64 - ID:       Gasse2-0-Grid3-C-2, Artikel:                , Koordinaten: (X/Y/Z/U) : 4000/2000/500/-1000
+ 65 - ID:       Gasse2-0-Grid3-C-3, Artikel: Article 1404   , Koordinaten: (X/Y/Z/U) : 4000/2000/1000/-1000
+ 66 - ID:       Gasse2-0-Grid3-D-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 4000/3200/0/-1000
+ 67 - ID:       Gasse2-0-Grid3-D-2, Artikel:                , Koordinaten: (X/Y/Z/U) : 4000/3200/500/-1000
+ 68 - ID:       Gasse2-0-Grid3-D-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 4000/3200/1000/-1000
+ 69 - ID:       Gasse2-0-Grid3-E-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 4000/3800/0/-1000
+ 70 - ID:       Gasse2-0-Grid3-E-2, Artikel: Article 41     , Koordinaten: (X/Y/Z/U) : 4000/3800/500/-1000
+ 71 - ID:       Gasse2-0-Grid3-E-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 4000/3800/1000/-1000
+ 72 - ID:       Gasse2-1-Grid4-A-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 5000/0/0/1000
+ 73 - ID:       Gasse2-1-Grid4-A-2, Artikel:                , Koordinaten: (X/Y/Z/U) : 5000/0/500/1000
+ 74 - ID:       Gasse2-1-Grid4-A-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 5000/0/1000/1000
+ 75 - ID:       Gasse2-1-Grid4-B-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 5000/1000/0/1000
+ 76 - ID:       Gasse2-1-Grid4-B-2, Artikel:                , Koordinaten: (X/Y/Z/U) : 5000/1000/500/1000
+ 77 - ID:       Gasse2-1-Grid4-B-3, Artikel: Article 869    , Koordinaten: (X/Y/Z/U) : 5000/1000/1000/1000
+ 78 - ID:       Gasse2-1-Grid4-C-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 5000/2000/0/1000
+ 79 - ID:       Gasse2-1-Grid4-C-2, Artikel: Article 1274   , Koordinaten: (X/Y/Z/U) : 5000/2000/500/1000
+ 80 - ID:       Gasse2-1-Grid4-C-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 5000/2000/1000/1000
+ 81 - ID:       Gasse2-1-Grid4-D-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 5000/3200/0/1000
+ 82 - ID:       Gasse2-1-Grid4-D-2, Artikel: Article 159    , Koordinaten: (X/Y/Z/U) : 5000/3200/500/1000
+ 83 - ID:       Gasse2-1-Grid4-D-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 5000/3200/1000/1000
+ 84 - ID:       Gasse2-1-Grid4-E-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 5000/3800/0/1000
+ 85 - ID:       Gasse2-1-Grid4-E-2, Artikel:                , Koordinaten: (X/Y/Z/U) : 5000/3800/500/1000
+ 86 - ID:       Gasse2-1-Grid4-E-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 5000/3800/1000/1000
+ 87 - ID:       Gasse3-0-Grid5-A-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 6600/0/0/-600
+ 88 - ID:       Gasse3-0-Grid5-A-2, Artikel:                , Koordinaten: (X/Y/Z/U) : 6600/0/500/-600
+ 89 - ID:       Gasse3-0-Grid5-A-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 6600/0/1000/-600
+ 90 - ID:       Gasse3-0-Grid5-A-4, Artikel:                , Koordinaten: (X/Y/Z/U) : 6600/0/1600/-600
+ 91 - ID:       Gasse3-0-Grid5-B-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 6600/1000/0/-600
+ 92 - ID:       Gasse3-0-Grid5-B-2, Artikel:                , Koordinaten: (X/Y/Z/U) : 6600/1000/500/-600
+ 93 - ID:       Gasse3-0-Grid5-B-3, Artikel: Article 722    , Koordinaten: (X/Y/Z/U) : 6600/1000/1000/-600
+ 94 - ID:       Gasse3-0-Grid5-B-4, Artikel:                , Koordinaten: (X/Y/Z/U) : 6600/1000/1600/-600
+ 95 - ID:       Gasse3-0-Grid5-C-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 6600/2000/0/-600
+ 96 - ID:       Gasse3-0-Grid5-C-2, Artikel:                , Koordinaten: (X/Y/Z/U) : 6600/2000/500/-600
+ 97 - ID:       Gasse3-0-Grid5-C-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 6600/2000/1000/-600
+ 98 - ID:       Gasse3-0-Grid5-C-4, Artikel:                , Koordinaten: (X/Y/Z/U) : 6600/2000/1600/-600
+ 99 - ID:       Gasse3-0-Grid5-D-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 6600/3200/0/-600
+100 - ID:       Gasse3-0-Grid5-D-2, Artikel: Article 1496   , Koordinaten: (X/Y/Z/U) : 6600/3200/500/-600
+101 - ID:       Gasse3-0-Grid5-D-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 6600/3200/1000/-600
+102 - ID:       Gasse3-0-Grid5-D-4, Artikel:                , Koordinaten: (X/Y/Z/U) : 6600/3200/1600/-600
+103 - ID:       Gasse3-1-Grid6-A-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 7200/0/0/600
+104 - ID:       Gasse3-1-Grid6-A-2, Artikel:                , Koordinaten: (X/Y/Z/U) : 7200/0/500/600
+105 - ID:       Gasse3-1-Grid6-A-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 7200/0/1000/600
+106 - ID:       Gasse3-1-Grid6-A-4, Artikel: Article 1003   , Koordinaten: (X/Y/Z/U) : 7200/0/1600/600
+107 - ID:       Gasse3-1-Grid6-B-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 7200/1000/0/600
+108 - ID:       Gasse3-1-Grid6-B-2, Artikel:                , Koordinaten: (X/Y/Z/U) : 7200/1000/500/600
+109 - ID:       Gasse3-1-Grid6-B-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 7200/1000/1000/600
+110 - ID:       Gasse3-1-Grid6-B-4, Artikel: Article 180    , Koordinaten: (X/Y/Z/U) : 7200/1000/1600/600
+111 - ID:       Gasse3-1-Grid6-C-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 7200/2000/0/600
+112 - ID:       Gasse3-1-Grid6-C-2, Artikel:                , Koordinaten: (X/Y/Z/U) : 7200/2000/500/600
+113 - ID:       Gasse3-1-Grid6-C-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 7200/2000/1000/600
+114 - ID:       Gasse3-1-Grid6-C-4, Artikel:                , Koordinaten: (X/Y/Z/U) : 7200/2000/1600/600
+115 - ID:       Gasse3-1-Grid6-D-1, Artikel: Article 585    , Koordinaten: (X/Y/Z/U) : 7200/3200/0/600
+116 - ID:       Gasse3-1-Grid6-D-2, Artikel:                , Koordinaten: (X/Y/Z/U) : 7200/3200/500/600
+117 - ID:       Gasse3-1-Grid6-D-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 7200/3200/1000/600
+118 - ID:       Gasse3-1-Grid6-D-4, Artikel:                , Koordinaten: (X/Y/Z/U) : 7200/3200/1600/600
+
+Bereits bekannte Jobs beim Start der Simulation:
+------------------------------------------------
+Job: ID = '  3', RackFeeder = 'Gasse3', Startzeit = 2000.01.01 00:00:00.100
+Job: ID = '  2', RackFeeder = 'Gasse3', Startzeit = 2000.01.01 00:00:00.200
+Job: ID = '  1', RackFeeder = 'Gasse1', Startzeit = 2000.01.01 00:00:00.300
+Job: ID = '  4', RackFeeder = 'Gasse2', Startzeit = 2000.01.01 00:00:00.400
+
+Erinnerungsevent hinzugefuegt; Eventzeit: 2000.01.01 00:00:00.100
+Erinnerungsevent hinzugefuegt; Eventzeit: 2000.01.01 00:00:00.200
+Erinnerungsevent hinzugefuegt; Eventzeit: 2000.01.01 00:00:00.300
+Erinnerungsevent hinzugefuegt; Eventzeit: 2000.01.01 00:00:00.400
+
+Simulation wird nun gestartet:
+Aktuelle Systemzeit: 2014.01.16 14:10:20.625
+Aktueller Faktor: 1.0
+Aktueller Modus: AS_FAST_AS_POSSIBLE
+
+-------------------------------------------------------------------------------------------
+1        ----------------------------------------------------------------------------------
+Simulationszeit: 2000:01:01 00:00:00.003
+Erinnerungsevent gefunden, Startzeit: 2000.01.01 00:00:00.100
+
+Wartezeit in ms (simuliert): 96
+
+Simulationszeit (echt) nach Wartezeit: 2000:01:01 00:00:00.101
+Simulationszeit (soll) nach Wartezeit: 2000.01.01 00:00:00.100
+
+Kein Nachfolgeevent. Eventuell Erinnerungsevents oder Startevents anlegen?
+Event hinzugefuegt fuer Job '3', RackFeeder 'Gasse3'; Eventzeit:  2000.01.01 00:00:00.100
+-------------------------------------------------------------------------------------------
+2        ----------------------------------------------------------------------------------
+Simulationszeit: 2000:01:01 00:00:00.106
+Event zu Job '3', RackFeeder 'Gasse3' gefunden, Startzeit: 2000.01.01 00:00:00.100
+
+Wartezeit in ms (simuliert): 0
+
+Simulationszeit (echt) nach Wartezeit: 2000:01:01 00:00:00.108
+Simulationszeit (soll) nach Wartezeit: 2000.01.01 00:00:00.100
+
+Event hinzugefuegt fuer Job '3', RackFeeder 'Gasse3'; Eventzeit:  2000.01.01 00:00:01.100
+-------------------------------------------------------------------------------------------
+3        ----------------------------------------------------------------------------------
+Simulationszeit: 2000:01:01 00:00:00.110
+Erinnerungsevent gefunden, Startzeit: 2000.01.01 00:00:00.200
+
+Wartezeit in ms (simuliert): 89
+
+Simulationszeit (echt) nach Wartezeit: 2000:01:01 00:00:00.201
+Simulationszeit (soll) nach Wartezeit: 2000.01.01 00:00:00.200
+
+Kein Nachfolgeevent. Eventuell Erinnerungsevents oder Startevents anlegen?
+-------------------------------------------------------------------------------------------
+4        ----------------------------------------------------------------------------------
+Simulationszeit: 2000:01:01 00:00:00.205
+Erinnerungsevent gefunden, Startzeit: 2000.01.01 00:00:00.300
+
+Wartezeit in ms (simuliert): 95
+
+Simulationszeit (echt) nach Wartezeit: 2000:01:01 00:00:00.301
+Simulationszeit (soll) nach Wartezeit: 2000.01.01 00:00:00.300
+
+Kein Nachfolgeevent. Eventuell Erinnerungsevents oder Startevents anlegen?
+Event hinzugefuegt fuer Job '1', RackFeeder 'Gasse1'; Eventzeit:  2000.01.01 00:00:00.300
+-------------------------------------------------------------------------------------------
+5        ----------------------------------------------------------------------------------
+Simulationszeit: 2000:01:01 00:00:00.304
+Event zu Job '1', RackFeeder 'Gasse1' gefunden, Startzeit: 2000.01.01 00:00:00.300
+
+Wartezeit in ms (simuliert): 0
+
+Simulationszeit (echt) nach Wartezeit: 2000:01:01 00:00:00.306
+Simulationszeit (soll) nach Wartezeit: 2000.01.01 00:00:00.300
+
+Event hinzugefuegt fuer Job '1', RackFeeder 'Gasse1'; Eventzeit:  2000.01.01 00:00:02.969
+-------------------------------------------------------------------------------------------
+6        ----------------------------------------------------------------------------------
+Simulationszeit: 2000:01:01 00:00:00.311
+Erinnerungsevent gefunden, Startzeit: 2000.01.01 00:00:00.400
+
+Wartezeit in ms (simuliert): 88
+
+Simulationszeit (echt) nach Wartezeit: 2000:01:01 00:00:00.400
+Simulationszeit (soll) nach Wartezeit: 2000.01.01 00:00:00.400
+
+Kein Nachfolgeevent. Eventuell Erinnerungsevents oder Startevents anlegen?
+Event hinzugefuegt fuer Job '4', RackFeeder 'Gasse2'; Eventzeit:  2000.01.01 00:00:00.400
+-------------------------------------------------------------------------------------------
+7        ----------------------------------------------------------------------------------
+Simulationszeit: 2000:01:01 00:00:00.402
+Event zu Job '4', RackFeeder 'Gasse2' gefunden, Startzeit: 2000.01.01 00:00:00.400
+
+Wartezeit in ms (simuliert): 0
+
+Simulationszeit (echt) nach Wartezeit: 2000:01:01 00:00:00.403
+Simulationszeit (soll) nach Wartezeit: 2000.01.01 00:00:00.400
+
+Event hinzugefuegt fuer Job '4', RackFeeder 'Gasse2'; Eventzeit:  2000.01.01 00:00:02.936
+-------------------------------------------------------------------------------------------
+8        ----------------------------------------------------------------------------------
+Simulationszeit: 2000:01:01 00:00:00.405
+Event zu Job '3', RackFeeder 'Gasse3' gefunden, Startzeit: 2000.01.01 00:00:01.100
+
+Wartezeit in ms (simuliert): 694
+
+Simulationszeit (echt) nach Wartezeit: 2000:01:01 00:00:01.100
+Simulationszeit (soll) nach Wartezeit: 2000.01.01 00:00:01.100
+
+Der Artikel 'Article 1' wurde auf den RackFeeder geladen
+
+Event hinzugefuegt fuer Job '3', RackFeeder 'Gasse3'; Eventzeit:  2000.01.01 00:00:02.702
+-------------------------------------------------------------------------------------------
+9        ----------------------------------------------------------------------------------
+Simulationszeit: 2000:01:01 00:00:01.104
+Event zu Job '3', RackFeeder 'Gasse3' gefunden, Startzeit: 2000.01.01 00:00:02.702
+
+Wartezeit in ms (simuliert): 1597
+
+Simulationszeit (echt) nach Wartezeit: 2000:01:01 00:00:02.702
+Simulationszeit (soll) nach Wartezeit: 2000.01.01 00:00:02.702
+
+Der RackFeeder ist in YZ-Richtung gefahren, neue Koordinaten (X/Y/Z/U) : 6600/2000/1600/0
+
+Event hinzugefuegt fuer Job '3', RackFeeder 'Gasse3'; Eventzeit:  2000.01.01 00:00:03.105
+-------------------------------------------------------------------------------------------
+10       ----------------------------------------------------------------------------------
+Simulationszeit: 2000:01:01 00:00:02.706
+Event zu Job '4', RackFeeder 'Gasse2' gefunden, Startzeit: 2000.01.01 00:00:02.936
+
+Wartezeit in ms (simuliert): 229
+
+Simulationszeit (echt) nach Wartezeit: 2000:01:01 00:00:02.936
+Simulationszeit (soll) nach Wartezeit: 2000.01.01 00:00:02.936
+
+Der RackFeeder ist in YZ-Richtung gefahren, neue Koordinaten (X/Y/Z/U) : 4000/3800/500/0
+
+Event hinzugefuegt fuer Job '4', RackFeeder 'Gasse2'; Eventzeit:  2000.01.01 00:00:03.605
+-------------------------------------------------------------------------------------------
+11       ----------------------------------------------------------------------------------
+Simulationszeit: 2000:01:01 00:00:02.939
+Event zu Job '1', RackFeeder 'Gasse1' gefunden, Startzeit: 2000.01.01 00:00:02.969
+
+Wartezeit in ms (simuliert): 29
+
+Simulationszeit (echt) nach Wartezeit: 2000:01:01 00:00:02.970
+Simulationszeit (soll) nach Wartezeit: 2000.01.01 00:00:02.969
+
+Der RackFeeder ist in YZ-Richtung gefahren, neue Koordinaten (X/Y/Z/U) : 1000/4000/1400/0
+
+Event hinzugefuegt fuer Job '1', RackFeeder 'Gasse1'; Eventzeit:  2000.01.01 00:00:03.638
+-------------------------------------------------------------------------------------------
+12       ----------------------------------------------------------------------------------
+Simulationszeit: 2000:01:01 00:00:02.973
+Event zu Job '3', RackFeeder 'Gasse3' gefunden, Startzeit: 2000.01.01 00:00:03.105
+
+Wartezeit in ms (simuliert): 132
+
+Simulationszeit (echt) nach Wartezeit: 2000:01:01 00:00:03.106
+Simulationszeit (soll) nach Wartezeit: 2000.01.01 00:00:03.105
+
+Der RackFeeder ist in U-Richtung gefahren, neue Koordinaten (X/Y/Z/U) : 6600/2000/1600/600
+
+Event hinzugefuegt fuer Job '3', RackFeeder 'Gasse3'; Eventzeit:  2000.01.01 00:00:04.105
+-------------------------------------------------------------------------------------------
+13       ----------------------------------------------------------------------------------
+Simulationszeit: 2000:01:01 00:00:03.108
+Event zu Job '4', RackFeeder 'Gasse2' gefunden, Startzeit: 2000.01.01 00:00:03.605
+
+Wartezeit in ms (simuliert): 496
+
+Simulationszeit (echt) nach Wartezeit: 2000:01:01 00:00:03.605
+Simulationszeit (soll) nach Wartezeit: 2000.01.01 00:00:03.605
+
+Der RackFeeder ist in U-Richtung gefahren, neue Koordinaten (X/Y/Z/U) : 4000/3800/500/-1000
+
+Event hinzugefuegt fuer Job '4', RackFeeder 'Gasse2'; Eventzeit:  2000.01.01 00:00:04.605
+-------------------------------------------------------------------------------------------
+14       ----------------------------------------------------------------------------------
+Simulationszeit: 2000:01:01 00:00:03.608
+Event zu Job '1', RackFeeder 'Gasse1' gefunden, Startzeit: 2000.01.01 00:00:03.638
+
+Wartezeit in ms (simuliert): 30
+
+Simulationszeit (echt) nach Wartezeit: 2000:01:01 00:00:03.639
+Simulationszeit (soll) nach Wartezeit: 2000.01.01 00:00:03.638
+
+Der RackFeeder ist in U-Richtung gefahren, neue Koordinaten (X/Y/Z/U) : 1000/4000/1400/1000
+
+Event hinzugefuegt fuer Job '1', RackFeeder 'Gasse1'; Eventzeit:  2000.01.01 00:00:04.638
+-------------------------------------------------------------------------------------------
+15       ----------------------------------------------------------------------------------
+Simulationszeit: 2000:01:01 00:00:03.641
+Event zu Job '3', RackFeeder 'Gasse3' gefunden, Startzeit: 2000.01.01 00:00:04.105
+
+Wartezeit in ms (simuliert): 463
+
+Simulationszeit (echt) nach Wartezeit: 2000:01:01 00:00:04.105
+Simulationszeit (soll) nach Wartezeit: 2000.01.01 00:00:04.105
+
+Der Artikel 'Article 1' wurde vom RackFeeder entfernt, und im Bin 'Gasse3-1-Grid6-C-4' eingelagert
+
+Event hinzugefuegt fuer Job '3', RackFeeder 'Gasse3'; Eventzeit:  2000.01.01 00:00:04.508
+-------------------------------------------------------------------------------------------
+16       ----------------------------------------------------------------------------------
+Simulationszeit: 2000:01:01 00:00:04.107
+Event zu Job '3', RackFeeder 'Gasse3' gefunden, Startzeit: 2000.01.01 00:00:04.508
+
+Wartezeit in ms (simuliert): 400
+
+Simulationszeit (echt) nach Wartezeit: 2000:01:01 00:00:04.509
+Simulationszeit (soll) nach Wartezeit: 2000.01.01 00:00:04.508
+
+Der RackFeeder ist in U-Richtung gefahren, neue Koordinaten (X/Y/Z/U) : 6600/2000/1600/0
+
+Event hinzugefuegt fuer Job '3', RackFeeder 'Gasse3'; Eventzeit:  2000.01.01 00:00:06.110
+-------------------------------------------------------------------------------------------
+17       ----------------------------------------------------------------------------------
+Simulationszeit: 2000:01:01 00:00:04.511
+Event zu Job '4', RackFeeder 'Gasse2' gefunden, Startzeit: 2000.01.01 00:00:04.605
+
+Wartezeit in ms (simuliert): 93
+
+Simulationszeit (echt) nach Wartezeit: 2000:01:01 00:00:04.605
+Simulationszeit (soll) nach Wartezeit: 2000.01.01 00:00:04.605
+
+Der Artikel 'Article 41' wurde auf den RackFeeder geladen
+
+Event hinzugefuegt fuer Job '4', RackFeeder 'Gasse2'; Eventzeit:  2000.01.01 00:00:05.274
+-------------------------------------------------------------------------------------------
+18       ----------------------------------------------------------------------------------
+Simulationszeit: 2000:01:01 00:00:04.608
+Event zu Job '1', RackFeeder 'Gasse1' gefunden, Startzeit: 2000.01.01 00:00:04.638
+
+Wartezeit in ms (simuliert): 30
+
+Simulationszeit (echt) nach Wartezeit: 2000:01:01 00:00:04.639
+Simulationszeit (soll) nach Wartezeit: 2000.01.01 00:00:04.638
+
+Der Artikel 'Article 1976' wurde auf den RackFeeder geladen
+
+Event hinzugefuegt fuer Job '1', RackFeeder 'Gasse1'; Eventzeit:  2000.01.01 00:00:05.307
+-------------------------------------------------------------------------------------------
+19       ----------------------------------------------------------------------------------
+Simulationszeit: 2000:01:01 00:00:04.641
+Event zu Job '4', RackFeeder 'Gasse2' gefunden, Startzeit: 2000.01.01 00:00:05.274
+
+Wartezeit in ms (simuliert): 632
+
+Simulationszeit (echt) nach Wartezeit: 2000:01:01 00:00:05.274
+Simulationszeit (soll) nach Wartezeit: 2000.01.01 00:00:05.274
+
+Der RackFeeder ist in U-Richtung gefahren, neue Koordinaten (X/Y/Z/U) : 4000/3800/500/-1000
+
+Event hinzugefuegt fuer Job '4', RackFeeder 'Gasse2'; Eventzeit:  2000.01.01 00:00:07.810
+-------------------------------------------------------------------------------------------
+20       ----------------------------------------------------------------------------------
+Simulationszeit: 2000:01:01 00:00:05.277
+Event zu Job '1', RackFeeder 'Gasse1' gefunden, Startzeit: 2000.01.01 00:00:05.307
+
+Wartezeit in ms (simuliert): 29
+
+Simulationszeit (echt) nach Wartezeit: 2000:01:01 00:00:05.307
+Simulationszeit (soll) nach Wartezeit: 2000.01.01 00:00:05.307
+
+Der RackFeeder ist in U-Richtung gefahren, neue Koordinaten (X/Y/Z/U) : 1000/4000/1400/1000
+
+Event hinzugefuegt fuer Job '1', RackFeeder 'Gasse1'; Eventzeit:  2000.01.01 00:00:07.976
+-------------------------------------------------------------------------------------------
+21       ----------------------------------------------------------------------------------
+Simulationszeit: 2000:01:01 00:00:05.310
+Event zu Job '3', RackFeeder 'Gasse3' gefunden, Startzeit: 2000.01.01 00:00:06.110
+
+Wartezeit in ms (simuliert): 800
+
+Simulationszeit (echt) nach Wartezeit: 2000:01:01 00:00:06.111
+Simulationszeit (soll) nach Wartezeit: 2000.01.01 00:00:06.110
+
+Der RackFeeder ist in YZ-Richtung gefahren, neue Koordinaten (X/Y/Z/U) : 6600/0/0/0
+
+Event hinzugefuegt fuer Job '3', RackFeeder 'Gasse3'; Eventzeit:  2000.01.01 00:00:06.110
+-------------------------------------------------------------------------------------------
+22       ----------------------------------------------------------------------------------
+Simulationszeit: 2000:01:01 00:00:06.113
+Event zu Job '3', RackFeeder 'Gasse3' gefunden, Startzeit: 2000.01.01 00:00:06.110
+
+Wartezeit in ms (simuliert): 0
+
+Simulationszeit (echt) nach Wartezeit: 2000:01:01 00:00:06.115
+Simulationszeit (soll) nach Wartezeit: 2000.01.01 00:00:06.110
+
+Kein Nachfolgeevent. Eventuell Erinnerungsevents oder Startevents anlegen?
+Event hinzugefuegt fuer Job '2', RackFeeder 'Gasse3'; Eventzeit:  2000.01.01 00:00:06.110
+-------------------------------------------------------------------------------------------
+23       ----------------------------------------------------------------------------------
+Simulationszeit: 2000:01:01 00:00:06.117
+Event zu Job '2', RackFeeder 'Gasse3' gefunden, Startzeit: 2000.01.01 00:00:06.110
+
+Wartezeit in ms (simuliert): 0
+
+Simulationszeit (echt) nach Wartezeit: 2000:01:01 00:00:06.119
+Simulationszeit (soll) nach Wartezeit: 2000.01.01 00:00:06.110
+
+Event hinzugefuegt fuer Job '2', RackFeeder 'Gasse3'; Eventzeit:  2000.01.01 00:00:07.110
+-------------------------------------------------------------------------------------------
+24       ----------------------------------------------------------------------------------
+Simulationszeit: 2000:01:01 00:00:06.121
+Event zu Job '2', RackFeeder 'Gasse3' gefunden, Startzeit: 2000.01.01 00:00:07.110
+
+Wartezeit in ms (simuliert): 988
+
+Simulationszeit (echt) nach Wartezeit: 2000:01:01 00:00:07.110
+Simulationszeit (soll) nach Wartezeit: 2000.01.01 00:00:07.110
+
+Der Artikel 'Article 123' wurde auf den RackFeeder geladen
+
+Event hinzugefuegt fuer Job '2', RackFeeder 'Gasse3'; Eventzeit:  2000.01.01 00:00:08.446
+-------------------------------------------------------------------------------------------
+25       ----------------------------------------------------------------------------------
+Simulationszeit: 2000:01:01 00:00:07.113
+Event zu Job '4', RackFeeder 'Gasse2' gefunden, Startzeit: 2000.01.01 00:00:07.810
+
+Wartezeit in ms (simuliert): 696
+
+Simulationszeit (echt) nach Wartezeit: 2000:01:01 00:00:07.810
+Simulationszeit (soll) nach Wartezeit: 2000.01.01 00:00:07.810
+
+Der RackFeeder ist in YZ-Richtung gefahren, neue Koordinaten (X/Y/Z/U) : 4000/0/0/-1000
+
+Event hinzugefuegt fuer Job '4', RackFeeder 'Gasse2'; Eventzeit:  2000.01.01 00:00:08.810
+-------------------------------------------------------------------------------------------
+26       ----------------------------------------------------------------------------------
+Simulationszeit: 2000:01:01 00:00:07.813
+Event zu Job '1', RackFeeder 'Gasse1' gefunden, Startzeit: 2000.01.01 00:00:07.976
+
+Wartezeit in ms (simuliert): 162
+
+Simulationszeit (echt) nach Wartezeit: 2000:01:01 00:00:07.976
+Simulationszeit (soll) nach Wartezeit: 2000.01.01 00:00:07.976
+
+Der RackFeeder ist in YZ-Richtung gefahren, neue Koordinaten (X/Y/Z/U) : 1000/0/0/1000
+
+Event hinzugefuegt fuer Job '1', RackFeeder 'Gasse1'; Eventzeit:  2000.01.01 00:00:08.976
+-------------------------------------------------------------------------------------------
+27       ----------------------------------------------------------------------------------
+Simulationszeit: 2000:01:01 00:00:07.978
+Event zu Job '2', RackFeeder 'Gasse3' gefunden, Startzeit: 2000.01.01 00:00:08.446
+
+Wartezeit in ms (simuliert): 467
+
+Simulationszeit (echt) nach Wartezeit: 2000:01:01 00:00:08.446
+Simulationszeit (soll) nach Wartezeit: 2000.01.01 00:00:08.446
+
+Der RackFeeder ist in YZ-Richtung gefahren, neue Koordinaten (X/Y/Z/U) : 6600/2000/500/0
+
+Event hinzugefuegt fuer Job '2', RackFeeder 'Gasse3'; Eventzeit:  2000.01.01 00:00:08.849
+-------------------------------------------------------------------------------------------
+28       ----------------------------------------------------------------------------------
+Simulationszeit: 2000:01:01 00:00:08.449
+Event zu Job '4', RackFeeder 'Gasse2' gefunden, Startzeit: 2000.01.01 00:00:08.810
+
+Wartezeit in ms (simuliert): 361
+
+Simulationszeit (echt) nach Wartezeit: 2000:01:01 00:00:08.811
+Simulationszeit (soll) nach Wartezeit: 2000.01.01 00:00:08.810
+
+Der Artikel 'Article 41' wurde vom RackFeeder entfernt
+
+Event hinzugefuegt fuer Job '4', RackFeeder 'Gasse2'; Eventzeit:  2000.01.01 00:00:08.810
+-------------------------------------------------------------------------------------------
+29       ----------------------------------------------------------------------------------
+Simulationszeit: 2000:01:01 00:00:08.813
+Event zu Job '4', RackFeeder 'Gasse2' gefunden, Startzeit: 2000.01.01 00:00:08.810
+
+Wartezeit in ms (simuliert): 0
+
+Simulationszeit (echt) nach Wartezeit: 2000:01:01 00:00:08.814
+Simulationszeit (soll) nach Wartezeit: 2000.01.01 00:00:08.810
+
+Kein Nachfolgeevent. Eventuell Erinnerungsevents oder Startevents anlegen?
+-------------------------------------------------------------------------------------------
+30       ----------------------------------------------------------------------------------
+Simulationszeit: 2000:01:01 00:00:08.815
+Event zu Job '2', RackFeeder 'Gasse3' gefunden, Startzeit: 2000.01.01 00:00:08.849
+
+Wartezeit in ms (simuliert): 33
+
+Simulationszeit (echt) nach Wartezeit: 2000:01:01 00:00:08.850
+Simulationszeit (soll) nach Wartezeit: 2000.01.01 00:00:08.849
+
+Der RackFeeder ist in U-Richtung gefahren, neue Koordinaten (X/Y/Z/U) : 6600/2000/500/600
+
+Event hinzugefuegt fuer Job '2', RackFeeder 'Gasse3'; Eventzeit:  2000.01.01 00:00:09.849
+-------------------------------------------------------------------------------------------
+31       ----------------------------------------------------------------------------------
+Simulationszeit: 2000:01:01 00:00:08.852
+Event zu Job '1', RackFeeder 'Gasse1' gefunden, Startzeit: 2000.01.01 00:00:08.976
+
+Wartezeit in ms (simuliert): 123
+
+Simulationszeit (echt) nach Wartezeit: 2000:01:01 00:00:08.976
+Simulationszeit (soll) nach Wartezeit: 2000.01.01 00:00:08.976
+
+Der Artikel 'Article 1976' wurde vom RackFeeder entfernt
+
+Event hinzugefuegt fuer Job '1', RackFeeder 'Gasse1'; Eventzeit:  2000.01.01 00:00:08.976
+-------------------------------------------------------------------------------------------
+32       ----------------------------------------------------------------------------------
+Simulationszeit: 2000:01:01 00:00:08.978
+Event zu Job '1', RackFeeder 'Gasse1' gefunden, Startzeit: 2000.01.01 00:00:08.976
+
+Wartezeit in ms (simuliert): 0
+
+Simulationszeit (echt) nach Wartezeit: 2000:01:01 00:00:08.980
+Simulationszeit (soll) nach Wartezeit: 2000.01.01 00:00:08.976
+
+Kein Nachfolgeevent. Eventuell Erinnerungsevents oder Startevents anlegen?
+-------------------------------------------------------------------------------------------
+33       ----------------------------------------------------------------------------------
+Simulationszeit: 2000:01:01 00:00:08.981
+Event zu Job '2', RackFeeder 'Gasse3' gefunden, Startzeit: 2000.01.01 00:00:09.849
+
+Wartezeit in ms (simuliert): 867
+
+Simulationszeit (echt) nach Wartezeit: 2000:01:01 00:00:09.849
+Simulationszeit (soll) nach Wartezeit: 2000.01.01 00:00:09.849
+
+Der Artikel 'Article 123' wurde vom RackFeeder entfernt, und im Bin 'Gasse3-1-Grid6-C-2' eingelagert
+
+Event hinzugefuegt fuer Job '2', RackFeeder 'Gasse3'; Eventzeit:  2000.01.01 00:00:10.252
+-------------------------------------------------------------------------------------------
+34       ----------------------------------------------------------------------------------
+Simulationszeit: 2000:01:01 00:00:09.851
+Event zu Job '2', RackFeeder 'Gasse3' gefunden, Startzeit: 2000.01.01 00:00:10.252
+
+Wartezeit in ms (simuliert): 400
+
+Simulationszeit (echt) nach Wartezeit: 2000:01:01 00:00:10.253
+Simulationszeit (soll) nach Wartezeit: 2000.01.01 00:00:10.252
+
+Der RackFeeder ist in U-Richtung gefahren, neue Koordinaten (X/Y/Z/U) : 6600/2000/500/0
+
+Event hinzugefuegt fuer Job '2', RackFeeder 'Gasse3'; Eventzeit:  2000.01.01 00:00:11.588
+-------------------------------------------------------------------------------------------
+35       ----------------------------------------------------------------------------------
+Simulationszeit: 2000:01:01 00:00:10.255
+Event zu Job '2', RackFeeder 'Gasse3' gefunden, Startzeit: 2000.01.01 00:00:11.588
+
+Wartezeit in ms (simuliert): 1332
+
+Simulationszeit (echt) nach Wartezeit: 2000:01:01 00:00:11.588
+Simulationszeit (soll) nach Wartezeit: 2000.01.01 00:00:11.588
+
+Der RackFeeder ist in YZ-Richtung gefahren, neue Koordinaten (X/Y/Z/U) : 6600/0/0/0
+
+Event hinzugefuegt fuer Job '2', RackFeeder 'Gasse3'; Eventzeit:  2000.01.01 00:00:11.588
+-------------------------------------------------------------------------------------------
+36       ----------------------------------------------------------------------------------
+Simulationszeit: 2000:01:01 00:00:11.590
+Event zu Job '2', RackFeeder 'Gasse3' gefunden, Startzeit: 2000.01.01 00:00:11.588
+
+Wartezeit in ms (simuliert): 0
+
+Simulationszeit (echt) nach Wartezeit: 2000:01:01 00:00:11.591
+Simulationszeit (soll) nach Wartezeit: 2000.01.01 00:00:11.588
+
+Kein Nachfolgeevent. Eventuell Erinnerungsevents oder Startevents anlegen?
+-------------------------------------------------------------------------------------------
+Simulation wird nun beendet, Start-Systemzeit: 2014.01.16 14:10:20.625
+                          aktuelle Systemzeit: 2014.01.16 14:10:20.768
+
+Vergangene Systemzeit in Millis: 143
+
+**************************************************************
+Simulation ist beendet, keine weiteren Events und Jobs mehr...
+**************************************************************
+
+Lagerplatzzuweisung nach der Simulation:
+----------------------------------------
+Lagerort:
+  Name = my location
+  Anzahl Gassen: 3
+    Name: Gasse1, X-Koordinate: 1000, Breite: 1000
+    Grid L: Name: Grid1, Tiefe: 1000, Laenge: 7200, Hoehe: 2500
+    Grid R: Name: Grid2, Tiefe: 1000, Laenge: 7200, Hoehe: 2500
+
+    Name: Gasse2, X-Koordinate: 4000, Breite: 1000
+    Grid L: Name: Grid3, Tiefe: 1000, Laenge: 4800, Hoehe: 1600
+    Grid R: Name: Grid4, Tiefe: 1000, Laenge: 4800, Hoehe: 1600
+
+    Name: Gasse3, X-Koordinate: 6600, Breite: 600
+    Grid L: Name: Grid5, Tiefe: 600, Laenge: 3800, Hoehe: 2200
+    Grid R: Name: Grid6, Tiefe: 600, Laenge: 3800, Hoehe: 2200
+
+  Anzahl Bin: 118
+
+  1 - ID:       Gasse1-0-Grid1-A-1, Artikel: Article 1777   , Koordinaten: (X/Y/Z/U) : 1000/0/0/-1000
+  2 - ID:       Gasse1-0-Grid1-A-2, Artikel:                , Koordinaten: (X/Y/Z/U) : 1000/0/600/-1000
+  3 - ID:       Gasse1-0-Grid1-A-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 1000/0/1400/-1000
+  4 - ID:       Gasse1-0-Grid1-A-4, Artikel:                , Koordinaten: (X/Y/Z/U) : 1000/0/1900/-1000
+  5 - ID:       Gasse1-0-Grid1-B-1, Artikel: Article 1845   , Koordinaten: (X/Y/Z/U) : 1000/1200/0/-1000
+  6 - ID:       Gasse1-0-Grid1-B-2, Artikel:                , Koordinaten: (X/Y/Z/U) : 1000/1200/600/-1000
+  7 - ID:       Gasse1-0-Grid1-B-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 1000/1200/1400/-1000
+  8 - ID:       Gasse1-0-Grid1-B-4, Artikel:                , Koordinaten: (X/Y/Z/U) : 1000/1200/1900/-1000
+  9 - ID:       Gasse1-0-Grid1-C-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 1000/2000/0/-1000
+ 10 - ID:       Gasse1-0-Grid1-C-2, Artikel:                , Koordinaten: (X/Y/Z/U) : 1000/2000/600/-1000
+ 11 - ID:       Gasse1-0-Grid1-C-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 1000/2000/1400/-1000
+ 12 - ID:       Gasse1-0-Grid1-C-4, Artikel:                , Koordinaten: (X/Y/Z/U) : 1000/2000/1900/-1000
+ 13 - ID:       Gasse1-0-Grid1-D-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 1000/2800/0/-1000
+ 14 - ID:       Gasse1-0-Grid1-D-2, Artikel:                , Koordinaten: (X/Y/Z/U) : 1000/2800/600/-1000
+ 15 - ID:       Gasse1-0-Grid1-D-3, Artikel: Article 765    , Koordinaten: (X/Y/Z/U) : 1000/2800/1400/-1000
+ 16 - ID:       Gasse1-0-Grid1-D-4, Artikel:                , Koordinaten: (X/Y/Z/U) : 1000/2800/1900/-1000
+ 17 - ID:       Gasse1-0-Grid1-E-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 1000/4000/0/-1000
+ 18 - ID:       Gasse1-0-Grid1-E-2, Artikel:                , Koordinaten: (X/Y/Z/U) : 1000/4000/600/-1000
+ 19 - ID:       Gasse1-0-Grid1-E-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 1000/4000/1400/-1000
+ 20 - ID:       Gasse1-0-Grid1-E-4, Artikel:                , Koordinaten: (X/Y/Z/U) : 1000/4000/1900/-1000
+ 21 - ID:       Gasse1-0-Grid1-F-1, Artikel: Article 687    , Koordinaten: (X/Y/Z/U) : 1000/5000/0/-1000
+ 22 - ID:       Gasse1-0-Grid1-F-2, Artikel: Article 1914   , Koordinaten: (X/Y/Z/U) : 1000/5000/600/-1000
+ 23 - ID:       Gasse1-0-Grid1-F-3, Artikel: Article 1473   , Koordinaten: (X/Y/Z/U) : 1000/5000/1400/-1000
+ 24 - ID:       Gasse1-0-Grid1-F-4, Artikel: Article 1849   , Koordinaten: (X/Y/Z/U) : 1000/5000/1900/-1000
+ 25 - ID:       Gasse1-0-Grid1-G-1, Artikel: Article 1423   , Koordinaten: (X/Y/Z/U) : 1000/6000/0/-1000
+ 26 - ID:       Gasse1-0-Grid1-G-2, Artikel: Article 30     , Koordinaten: (X/Y/Z/U) : 1000/6000/600/-1000
+ 27 - ID:       Gasse1-0-Grid1-G-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 1000/6000/1400/-1000
+ 28 - ID:       Gasse1-0-Grid1-G-4, Artikel:                , Koordinaten: (X/Y/Z/U) : 1000/6000/1900/-1000
+ 29 - ID:       Gasse1-1-Grid2-A-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 2000/0/0/1000
+ 30 - ID:       Gasse1-1-Grid2-A-2, Artikel: Article 243    , Koordinaten: (X/Y/Z/U) : 2000/0/600/1000
+ 31 - ID:       Gasse1-1-Grid2-A-3, Artikel: Article 628    , Koordinaten: (X/Y/Z/U) : 2000/0/1400/1000
+ 32 - ID:       Gasse1-1-Grid2-A-4, Artikel:                , Koordinaten: (X/Y/Z/U) : 2000/0/1900/1000
+ 33 - ID:       Gasse1-1-Grid2-B-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 2000/1200/0/1000
+ 34 - ID:       Gasse1-1-Grid2-B-2, Artikel:                , Koordinaten: (X/Y/Z/U) : 2000/1200/600/1000
+ 35 - ID:       Gasse1-1-Grid2-B-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 2000/1200/1400/1000
+ 36 - ID:       Gasse1-1-Grid2-B-4, Artikel: Article 1799   , Koordinaten: (X/Y/Z/U) : 2000/1200/1900/1000
+ 37 - ID:       Gasse1-1-Grid2-C-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 2000/2000/0/1000
+ 38 - ID:       Gasse1-1-Grid2-C-2, Artikel:                , Koordinaten: (X/Y/Z/U) : 2000/2000/600/1000
+ 39 - ID:       Gasse1-1-Grid2-C-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 2000/2000/1400/1000
+ 40 - ID:       Gasse1-1-Grid2-C-4, Artikel:                , Koordinaten: (X/Y/Z/U) : 2000/2000/1900/1000
+ 41 - ID:       Gasse1-1-Grid2-D-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 2000/2800/0/1000
+ 42 - ID:       Gasse1-1-Grid2-D-2, Artikel: Article 1203   , Koordinaten: (X/Y/Z/U) : 2000/2800/600/1000
+ 43 - ID:       Gasse1-1-Grid2-D-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 2000/2800/1400/1000
+ 44 - ID:       Gasse1-1-Grid2-D-4, Artikel:                , Koordinaten: (X/Y/Z/U) : 2000/2800/1900/1000
+ 45 - ID:       Gasse1-1-Grid2-E-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 2000/4000/0/1000
+ 46 - ID:       Gasse1-1-Grid2-E-2, Artikel:                , Koordinaten: (X/Y/Z/U) : 2000/4000/600/1000
+ 47 - ID:       Gasse1-1-Grid2-E-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 2000/4000/1400/1000
+ 48 - ID:       Gasse1-1-Grid2-E-4, Artikel: Article 1064   , Koordinaten: (X/Y/Z/U) : 2000/4000/1900/1000
+ 49 - ID:       Gasse1-1-Grid2-F-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 2000/5000/0/1000
+ 50 - ID:       Gasse1-1-Grid2-F-2, Artikel: Article 1598   , Koordinaten: (X/Y/Z/U) : 2000/5000/600/1000
+ 51 - ID:       Gasse1-1-Grid2-F-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 2000/5000/1400/1000
+ 52 - ID:       Gasse1-1-Grid2-F-4, Artikel:                , Koordinaten: (X/Y/Z/U) : 2000/5000/1900/1000
+ 53 - ID:       Gasse1-1-Grid2-G-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 2000/6000/0/1000
+ 54 - ID:       Gasse1-1-Grid2-G-2, Artikel:                , Koordinaten: (X/Y/Z/U) : 2000/6000/600/1000
+ 55 - ID:       Gasse1-1-Grid2-G-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 2000/6000/1400/1000
+ 56 - ID:       Gasse1-1-Grid2-G-4, Artikel: Article 1574   , Koordinaten: (X/Y/Z/U) : 2000/6000/1900/1000
+ 57 - ID:       Gasse2-0-Grid3-A-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 4000/0/0/-1000
+ 58 - ID:       Gasse2-0-Grid3-A-2, Artikel:                , Koordinaten: (X/Y/Z/U) : 4000/0/500/-1000
+ 59 - ID:       Gasse2-0-Grid3-A-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 4000/0/1000/-1000
+ 60 - ID:       Gasse2-0-Grid3-B-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 4000/1000/0/-1000
+ 61 - ID:       Gasse2-0-Grid3-B-2, Artikel:                , Koordinaten: (X/Y/Z/U) : 4000/1000/500/-1000
+ 62 - ID:       Gasse2-0-Grid3-B-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 4000/1000/1000/-1000
+ 63 - ID:       Gasse2-0-Grid3-C-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 4000/2000/0/-1000
+ 64 - ID:       Gasse2-0-Grid3-C-2, Artikel:                , Koordinaten: (X/Y/Z/U) : 4000/2000/500/-1000
+ 65 - ID:       Gasse2-0-Grid3-C-3, Artikel: Article 1404   , Koordinaten: (X/Y/Z/U) : 4000/2000/1000/-1000
+ 66 - ID:       Gasse2-0-Grid3-D-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 4000/3200/0/-1000
+ 67 - ID:       Gasse2-0-Grid3-D-2, Artikel:                , Koordinaten: (X/Y/Z/U) : 4000/3200/500/-1000
+ 68 - ID:       Gasse2-0-Grid3-D-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 4000/3200/1000/-1000
+ 69 - ID:       Gasse2-0-Grid3-E-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 4000/3800/0/-1000
+ 70 - ID:       Gasse2-0-Grid3-E-2, Artikel:                , Koordinaten: (X/Y/Z/U) : 4000/3800/500/-1000
+ 71 - ID:       Gasse2-0-Grid3-E-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 4000/3800/1000/-1000
+ 72 - ID:       Gasse2-1-Grid4-A-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 5000/0/0/1000
+ 73 - ID:       Gasse2-1-Grid4-A-2, Artikel:                , Koordinaten: (X/Y/Z/U) : 5000/0/500/1000
+ 74 - ID:       Gasse2-1-Grid4-A-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 5000/0/1000/1000
+ 75 - ID:       Gasse2-1-Grid4-B-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 5000/1000/0/1000
+ 76 - ID:       Gasse2-1-Grid4-B-2, Artikel:                , Koordinaten: (X/Y/Z/U) : 5000/1000/500/1000
+ 77 - ID:       Gasse2-1-Grid4-B-3, Artikel: Article 869    , Koordinaten: (X/Y/Z/U) : 5000/1000/1000/1000
+ 78 - ID:       Gasse2-1-Grid4-C-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 5000/2000/0/1000
+ 79 - ID:       Gasse2-1-Grid4-C-2, Artikel: Article 1274   , Koordinaten: (X/Y/Z/U) : 5000/2000/500/1000
+ 80 - ID:       Gasse2-1-Grid4-C-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 5000/2000/1000/1000
+ 81 - ID:       Gasse2-1-Grid4-D-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 5000/3200/0/1000
+ 82 - ID:       Gasse2-1-Grid4-D-2, Artikel: Article 159    , Koordinaten: (X/Y/Z/U) : 5000/3200/500/1000
+ 83 - ID:       Gasse2-1-Grid4-D-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 5000/3200/1000/1000
+ 84 - ID:       Gasse2-1-Grid4-E-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 5000/3800/0/1000
+ 85 - ID:       Gasse2-1-Grid4-E-2, Artikel:                , Koordinaten: (X/Y/Z/U) : 5000/3800/500/1000
+ 86 - ID:       Gasse2-1-Grid4-E-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 5000/3800/1000/1000
+ 87 - ID:       Gasse3-0-Grid5-A-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 6600/0/0/-600
+ 88 - ID:       Gasse3-0-Grid5-A-2, Artikel:                , Koordinaten: (X/Y/Z/U) : 6600/0/500/-600
+ 89 - ID:       Gasse3-0-Grid5-A-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 6600/0/1000/-600
+ 90 - ID:       Gasse3-0-Grid5-A-4, Artikel:                , Koordinaten: (X/Y/Z/U) : 6600/0/1600/-600
+ 91 - ID:       Gasse3-0-Grid5-B-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 6600/1000/0/-600
+ 92 - ID:       Gasse3-0-Grid5-B-2, Artikel:                , Koordinaten: (X/Y/Z/U) : 6600/1000/500/-600
+ 93 - ID:       Gasse3-0-Grid5-B-3, Artikel: Article 722    , Koordinaten: (X/Y/Z/U) : 6600/1000/1000/-600
+ 94 - ID:       Gasse3-0-Grid5-B-4, Artikel:                , Koordinaten: (X/Y/Z/U) : 6600/1000/1600/-600
+ 95 - ID:       Gasse3-0-Grid5-C-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 6600/2000/0/-600
+ 96 - ID:       Gasse3-0-Grid5-C-2, Artikel:                , Koordinaten: (X/Y/Z/U) : 6600/2000/500/-600
+ 97 - ID:       Gasse3-0-Grid5-C-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 6600/2000/1000/-600
+ 98 - ID:       Gasse3-0-Grid5-C-4, Artikel:                , Koordinaten: (X/Y/Z/U) : 6600/2000/1600/-600
+ 99 - ID:       Gasse3-0-Grid5-D-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 6600/3200/0/-600
+100 - ID:       Gasse3-0-Grid5-D-2, Artikel: Article 1496   , Koordinaten: (X/Y/Z/U) : 6600/3200/500/-600
+101 - ID:       Gasse3-0-Grid5-D-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 6600/3200/1000/-600
+102 - ID:       Gasse3-0-Grid5-D-4, Artikel:                , Koordinaten: (X/Y/Z/U) : 6600/3200/1600/-600
+103 - ID:       Gasse3-1-Grid6-A-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 7200/0/0/600
+104 - ID:       Gasse3-1-Grid6-A-2, Artikel:                , Koordinaten: (X/Y/Z/U) : 7200/0/500/600
+105 - ID:       Gasse3-1-Grid6-A-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 7200/0/1000/600
+106 - ID:       Gasse3-1-Grid6-A-4, Artikel: Article 1003   , Koordinaten: (X/Y/Z/U) : 7200/0/1600/600
+107 - ID:       Gasse3-1-Grid6-B-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 7200/1000/0/600
+108 - ID:       Gasse3-1-Grid6-B-2, Artikel:                , Koordinaten: (X/Y/Z/U) : 7200/1000/500/600
+109 - ID:       Gasse3-1-Grid6-B-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 7200/1000/1000/600
+110 - ID:       Gasse3-1-Grid6-B-4, Artikel: Article 180    , Koordinaten: (X/Y/Z/U) : 7200/1000/1600/600
+111 - ID:       Gasse3-1-Grid6-C-1, Artikel:                , Koordinaten: (X/Y/Z/U) : 7200/2000/0/600
+112 - ID:       Gasse3-1-Grid6-C-2, Artikel: Article 123    , Koordinaten: (X/Y/Z/U) : 7200/2000/500/600
+113 - ID:       Gasse3-1-Grid6-C-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 7200/2000/1000/600
+114 - ID:       Gasse3-1-Grid6-C-4, Artikel: Article 1      , Koordinaten: (X/Y/Z/U) : 7200/2000/1600/600
+115 - ID:       Gasse3-1-Grid6-D-1, Artikel: Article 585    , Koordinaten: (X/Y/Z/U) : 7200/3200/0/600
+116 - ID:       Gasse3-1-Grid6-D-2, Artikel:                , Koordinaten: (X/Y/Z/U) : 7200/3200/500/600
+117 - ID:       Gasse3-1-Grid6-D-3, Artikel:                , Koordinaten: (X/Y/Z/U) : 7200/3200/1000/600
+118 - ID:       Gasse3-1-Grid6-D-4, Artikel:                , Koordinaten: (X/Y/Z/U) : 7200/3200/1600/600
