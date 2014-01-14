@@ -1,0 +1,6 @@
+Arguments definition:
+-m (afap | f) // as fast as possible, factor
+-f (double)   // factor 
+-l (int)      // location number, joblist number, itemlist number
+
+-m afap -f 2.5 -l 1

@@ -34,15 +34,85 @@ public class Start
 	 */
 	public static void main(String[] args)
 	{
+		// Standardwerte setzen, werden ev. via Argumente ueberschrieben
+		double factor = 1;
+		SimulationType simulationType = SimulationType.AS_FAST_AS_POSSIBLE;
+		int locationNumber = 1;
+		
+		// TEST
+		int argLength = args.length;
+		if (argLength > 0)
+		{
+			int pos = 0;
+			String arg1 = args[pos];
+			String arg2 = "";
+			
+			while (pos < argLength)
+			{
+				arg1 = args[pos];
+				arg2 = "";
+				
+				switch (arg1)
+				{
+					// Modus
+					case "-m" :
+						pos += 1;
+						arg2 = args[pos];
+						switch (arg2)
+						{
+							case "afap" :
+								simulationType = SimulationType.AS_FAST_AS_POSSIBLE;
+								break;
+								
+							case "f" :
+								simulationType = SimulationType.FACTOR;
+								break;
+						}
+						break;
+					
+					// Faktor
+					case "-f" :
+						try
+						{
+							pos += 1;
+							arg2 = args[pos];
+							factor = Double.parseDouble(arg2);
+	                    }
+						catch (NumberFormatException e)
+	                    {
+	                    	System.out.println("Argument passed with -f must be double!");
+	                    }
+						
+						break;
+					
+						// Faktor
+					case "-l" :
+						try
+						{
+							pos += 1;
+							arg2 = args[pos];
+							locationNumber = Integer.parseInt(arg2);
+	                    }
+						catch (NumberFormatException e)
+	                    {
+	                    	System.out.println("Argument passed with -l must be int!");
+	                    }
+						
+						break;
+				}
+				
+				pos += 1;
+			}
+		}
+		// TEST ENDE
+		
 		// TEST
 		Write2File.clearFile();
 		// TEST ENDE
 		
 		// Simulation initialisieren
-		Simulation.setFactor(1);
-		
-		//Simulation.setSimulationType(SimulationType.FACTOR);
-		Simulation.setSimulationType(SimulationType.AS_FAST_AS_POSSIBLE);
+		Simulation.setFactor(factor);
+		Simulation.setSimulationType(simulationType);
 		
 		Simulation.setStartSimulationTime("2000.01.01 00:00:00.000");
 		Simulation simulation = Simulation.getInstance();
@@ -50,9 +120,9 @@ public class Start
 		// Dateien einlesen
 		// ----------------
 		ArrayList<String> files = new ArrayList<String>();
-		files.add("location3.txt");
-		files.add("item_list3.txt");
-		files.add("job_list3.txt");
+		files.add("location" + locationNumber + ".txt");
+		files.add("item_list" + locationNumber + ".txt");
+		files.add("job_list" + locationNumber + ".txt");
 		
 		String fileName;
 		ReadingFiles readingFiles;

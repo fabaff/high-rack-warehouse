@@ -122,9 +122,12 @@ public class Simulation
 		// TEST
 		Calendar start = Calendar.getInstance();
 		Write2File.write();
-		Write2File.write("Simulation wird nun gestartet, aktuelle Systemzeit: " + calendar2String(start));
-		Write2File.write("-------------------------------------------------------------------------------------------");
+		Write2File.write("Simulation wird nun gestartet:");
+		Write2File.write("Aktuelle Systemzeit: " + calendar2String(start));
+		Write2File.write("Aktueller Faktor: " + this.myFactor);
+		Write2File.write("Aktueller Modus: " + this.mySimulationType);
 		Write2File.write();
+		Write2File.write("-------------------------------------------------------------------------------------------");
 		int eventCounter = 0;
 		// TEST ENDE
 		

@@ -7,7 +7,7 @@ import java.util.Collections;
 
 import job.Job;
 import simulation.Simulation;
-import test.Write2File;
+import helper.Write2File;
 
 
 /**
