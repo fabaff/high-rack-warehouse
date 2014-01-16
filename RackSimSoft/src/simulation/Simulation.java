@@ -24,6 +24,11 @@ public class Simulation
 		FACTOR, AS_FAST_AS_POSSIBLE
 	}
 	
+	// TODO
+	// TEST, nur zur Ausgabesteuerung Konsole / Datei
+	private static boolean write2File;
+	// TEST ENDE
+	
 	private static Simulation instance;
 	private static double factor;
 	private static SimulationType simulationType;
@@ -119,6 +124,7 @@ public class Simulation
 	 */
 	public void start()
 	{
+		// TODO
 		// TEST
 		Calendar start = Calendar.getInstance();
 		Write2File.write();
@@ -136,7 +142,6 @@ public class Simulation
 
 		EventList eventList = EventList.getInstance();
 		Event event = eventList.getNextEvent();
-		Calendar nextEventTime = null;
 		long currentEventTimeMillis = 0;
 		long waitMillis = 0;
 		
@@ -156,11 +161,11 @@ public class Simulation
 			}
 			// TEST ENDE
 			
-			nextEventTime = event.getEventTime();
-			currentEventTimeMillis = nextEventTime.getTimeInMillis();
+			currentEventTimeMillis = event.getEventTime().getTimeInMillis();
 			waitMillis = currentEventTimeMillis - getCurrentSimulationTime().getTimeInMillis();
 			// Faktor beruecksichtigen
 			waitMillis = Math.round(waitMillis / this.getFactor());
+			// Ev. wegen wegen Rechenzeit-Verschiebung bereits im Verzug?
 			if (waitMillis < 0)
 			{
 				waitMillis = 0;
@@ -193,6 +198,7 @@ public class Simulation
 					Thread.sleep(waitMillis);
 				}
 				
+				// TODO
 				// TEST
 				Write2File.write();
 				Write2File.write("Simulationszeit (echt) nach Wartezeit: " + getInstance().getCurrentSimulationTimeFormatted());
@@ -200,9 +206,11 @@ public class Simulation
 				Write2File.write();
 				// TEST ENDE
 				
+				
 				// Event ausfuehren, gibt die benötigte Zeit fuer den naechsten Schritt (bis zum naechsten Event) zurueck
 				// ------------------------------------------------------------------------------------------------------
 				int nextEventMillis = event.executeEvent();
+				
 				
 				// Naechsten Event fuer diesen Job erstellen...
 				// nextEventMillis zeigt die Zeit fuer den naechsten Event an (0..xxx)
@@ -218,6 +226,7 @@ public class Simulation
 				}
 				else
 				{
+					// TODO
 					// TEST
 					Write2File.write("Kein Nachfolgeevent. Eventuell Erinnerungsevents oder Startevents anlegen?");
 					// TEST ENDE
@@ -235,11 +244,13 @@ public class Simulation
 				e.printStackTrace();
 			}
 			
+			// TODO
 			// TEST
 			Write2File.write("-------------------------------------------------------------------------------------------");
 			// TEST ENDE
 		}
 		
+		// TODO
 		// TEST
 		Calendar end = Calendar.getInstance();
 		//Write2File.write("Simulation wird nun beendet, aktuelle Systemzeit: " + calendar2String(end));
@@ -248,7 +259,7 @@ public class Simulation
 		Write2File.write("                          aktuelle Systemzeit: " + calendar2String(end));
 		Write2File.write();
 		Write2File.write("Vergangene Systemzeit in Millis: " + (end.getTimeInMillis() - start.getTimeInMillis()));
-		// TEST
+		// TEST ENDE
 	}
 	
 	/**
@@ -380,24 +391,6 @@ public class Simulation
 	}
 	
 	/**
-	 * Creates Events depending on the job list.
-	 * 
-	 * This events figure to remeber, that there are jobs which start at a later time.
-	 */
-	public static void createInitialEvents()
-	{
-		JobList jobList = JobList.getInstance();
-		EventList eventList = EventList.getInstance();
-		
-		// JobListe ist aufsteigend sortiert nach Startzeit
-		for (Job job : jobList.getJobList())
-		{
-			// Erinnerungsevent per Faelligkeit generieren
-			eventList.addRememberEvent(job.getStartTime());
-		}
-	}
-	
-	/**
 	 * Returns the current simulation type.
 	 * 
 	 * @return the nextSimulationTime
@@ -412,7 +405,7 @@ public class Simulation
 	 * 
 	 * @return the simulation time
 	 */
-	public Calendar getCurrentSimulationTime()
+	private Calendar getCurrentSimulationTime()
 	{
 		Calendar calendar = null;
 		
@@ -429,7 +422,7 @@ public class Simulation
 	 * 
 	 * @return the simulation time
 	 */
-	public String getCurrentSimulationTimeFormatted()
+	private String getCurrentSimulationTimeFormatted()
 	{
 		String simulationTime = "";
 		
@@ -506,4 +499,21 @@ public class Simulation
 	{
 		return Time.calendar2String(calendar);
 	}
+
+	// TODO
+	// TEST, nur zur Ausgabesteuerung Konsole / Datei
+	/**
+	 * @return the write2File
+	 */
+	public static boolean isWrite2File() {
+		return write2File;
+	}
+
+	/**
+	 * @param write2File the write2File to set
+	 */
+	public static void setWrite2File(boolean write2File) {
+		Simulation.write2File = write2File;
+	}
+	// TEST
 }

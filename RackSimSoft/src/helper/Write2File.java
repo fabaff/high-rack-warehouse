@@ -6,7 +6,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import simulation.Simulation;
-import simulation.Simulation.SimulationType;
 
 /**
  * Hilfsklasse zum visualisieren der Simulation.
@@ -43,7 +42,8 @@ public class Write2File
 	
 	public static void write(String message)
 	{
-		if (Simulation.getInstance().getSimulationType() == SimulationType.AS_FAST_AS_POSSIBLE)
+		//if (Simulation.getInstance().getSimulationType() == SimulationType.AS_FAST_AS_POSSIBLE)
+		if (Simulation.isWrite2File())
 		{
 			// Datei anlegen
 			file = new File(fileName);

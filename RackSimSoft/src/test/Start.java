@@ -17,7 +17,7 @@ import location.Bin;
 import location.Gap;
 import location.Grid;
 import location.Location;
-import gui2D.GUI;
+//import gui2D.GUI;
 import helper.ReadingFiles;
 import helper.Write2File;
 
@@ -38,6 +38,7 @@ public class Start
 		double factor = 1;
 		SimulationType simulationType = SimulationType.AS_FAST_AS_POSSIBLE;
 		int locationNumber = 1;
+		int writeType = 1;  // == 0 --> Datei "Ausgabe.txt", <> 0 --> auf Konsole
 		
 		// TEST
 		int argLength = args.length;
@@ -85,7 +86,7 @@ public class Start
 						
 						break;
 					
-						// Faktor
+					// Lagerort
 					case "-l" :
 						try
 						{
@@ -99,6 +100,21 @@ public class Start
 	                    }
 						
 						break;
+						
+					// Ausgabe
+					case "-p" :
+						try
+						{
+							pos += 1;
+							arg2 = args[pos];
+							writeType = Integer.parseInt(arg2);
+	                    }
+						catch (NumberFormatException e)
+	                    {
+	                    	System.out.println("Argument passed with -p must be int!");
+	                    }
+						
+						break;
 				}
 				
 				pos += 1;
@@ -108,6 +124,7 @@ public class Start
 		
 		// TEST
 		Write2File.clearFile();
+		Simulation.setWrite2File(writeType == 0);
 		// TEST ENDE
 		
 		// Simulation initialisieren
