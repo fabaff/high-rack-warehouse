@@ -10,7 +10,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="event.Event" project="RackSimSoft" file="/RackSimSoft/src/event/event.java" 
+  <class id="2" language="java" name="event.Event" project="RackSimSoft" file="/RackSimSoft/src/event/Event.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="425" y="112"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 

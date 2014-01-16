@@ -20,50 +20,50 @@
     </display>  
   </class>  
   <association id="3">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="4" name="itemTable"/>      
+      <multiplicity id="5" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="6">    
     <bendpoint x="522" y="307"/>    
     <bendpoint x="401" y="307"/>    
     <bendpoint x="401" y="195"/>    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="4" name="itemList"/>      
-      <multiplicity id="5" minimum="0" maximum="2147483647">        
+      <attribute id="7" name="itemList"/>      
+      <multiplicity id="8" minimum="0" maximum="2147483647">        
         <position height="16" width="21" x="415" y="189"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="6">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="7" name="itemTable"/>      
-      <multiplicity id="8" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
   <association id="9">    
-    <bendpoint x="551" y="306"/>    
-    <bendpoint x="664" y="306"/>    
-    <bendpoint x="664" y="198"/>    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="10" name="itemTable"/>      
-      <multiplicity id="11" minimum="0" maximum="2147483647">        
-        <position height="16" width="21" x="638" y="190"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="12">    
     <bendpoint x="157" y="308"/>    
     <bendpoint x="328" y="308"/>    
     <bendpoint x="328" y="189"/>    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="13" name="instance"/>      
-      <multiplicity id="14" minimum="0" maximum="1">        
+      <attribute id="10" name="instance"/>      
+      <multiplicity id="11" minimum="0" maximum="1">        
         <position height="16" width="23" x="293" y="186"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="12">    
+    <bendpoint x="551" y="306"/>    
+    <bendpoint x="664" y="306"/>    
+    <bendpoint x="664" y="198"/>    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="13" name="itemTable"/>      
+      <multiplicity id="14" minimum="0" maximum="2147483647">        
+        <position height="16" width="21" x="638" y="190"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
