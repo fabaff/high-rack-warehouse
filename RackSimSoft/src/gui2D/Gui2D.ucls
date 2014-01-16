@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class-diagram version="1.1.4" icons="true" always-add-relationships="true" generalizations="true" realizations="true" 
-  associations="true" dependencies="true" nesting-relationships="true">  
+<class-diagram version="1.1.4" icons="true" automaticImage="PNG" always-add-relationships="true" generalizations="true" 
+  realizations="true" associations="true" dependencies="true" nesting-relationships="true">  
   <class id="1" language="java" name="gui2D.LocationPanel" project="RackSimSoft" 
     file="/RackSimSoft/src/gui2D/LocationPanel.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="75" y="91"/>    
@@ -39,7 +39,7 @@
   </class>  
   <dependency id="5">    
     <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="3"/>  
+    <end type="TARGET" refId="1"/>  
   </dependency>  
   <dependency id="6">    
     <end type="SOURCE" refId="4"/>    
@@ -47,7 +47,7 @@
   </dependency>  
   <dependency id="7">    
     <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="1"/>  
+    <end type="TARGET" refId="3"/>  
   </dependency>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     accessors="true" visibility="true">    

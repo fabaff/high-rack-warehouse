@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class-diagram version="1.1.4" icons="true" always-add-relationships="true" generalizations="true" realizations="true" 
-  associations="true" dependencies="true" nesting-relationships="true">  
+<class-diagram version="1.1.4" icons="true" automaticImage="PNG" always-add-relationships="true" generalizations="true" 
+  realizations="true" associations="true" dependencies="true" nesting-relationships="true">  
   <class id="1" language="java" name="calculation.Movement.InnerMovement" project="RackSimSoft" 
     file="/RackSimSoft/src/calculation/Movement.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="142" y="214"/>    
+    <position height="-1" width="-1" x="138" y="218"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -38,34 +38,34 @@
     </display>  
   </class>  
   <association id="5">    
-    <bendpoint x="636" y="50"/>    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="6" name="distance"/>      
+    <bendpoint x="950" y="50"/>    
+    <bendpoint x="950" y="350"/>    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="6" name="targetCoordinate"/>      
       <multiplicity id="7" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
+    <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <nesting id="8">    
+  <association id="8">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="9" name="startCoordinate"/>      
+      <multiplicity id="10" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="11">    
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="1"/>  
   </nesting>  
-  <association id="9">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="10" name="startCoordinate"/>      
-      <multiplicity id="11" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
   <association id="12">    
-    <bendpoint x="950" y="50"/>    
-    <bendpoint x="950" y="349"/>    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="13" name="targetCoordinate"/>      
+    <bendpoint x="636" y="50"/>    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="13" name="distance"/>      
       <multiplicity id="14" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
+    <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <dependency id="15">    

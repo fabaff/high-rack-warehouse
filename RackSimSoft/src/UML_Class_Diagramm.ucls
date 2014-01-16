@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class-diagram version="1.1.4" icons="false" always-add-relationships="false" generalizations="true" realizations="true" 
-  associations="true" dependencies="false" nesting-relationships="true">  
+<class-diagram version="1.1.4" icons="false" automaticImage="PNG" always-add-relationships="false" 
+  generalizations="true" realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
   <class id="1" language="java" name="calculation.Movement" project="RackSimSoft" 
     file="/RackSimSoft/src/calculation/Movement.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="436" y="443"/>    
@@ -110,103 +110,107 @@
     </display>  
   </enumeration>  
   <association id="13">    
-    <bendpoint x="995" y="230"/>    
-    <bendpoint x="746" y="230"/>    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="14" name="binArray"/>      
-      <multiplicity id="15" minimum="0" maximum="2147483647"/>    
+    <bendpoint x="802" y="24"/>    
+    <bendpoint x="995" y="24"/>    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="14" name="gridLeft"/>      
+      <multiplicity id="15" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="10" navigable="true"/>    
+    <end type="TARGET" refId="9" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="16">    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="17" name="movement"/>      
-      <multiplicity id="18" minimum="0" maximum="1"/>    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="17" name="itemTable"/>      
+      <multiplicity id="18" minimum="0" maximum="2147483647"/>    
     </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
+    <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="19">    
+    <bendpoint x="676" y="139"/>    
+    <bendpoint x="354" y="139"/>    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="20" name="rackFeeder"/>      
+      <multiplicity id="21" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="22">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="12"/>  
+  </nesting>  
+  <association id="23">    
     <bendpoint x="1047" y="124"/>    
     <bendpoint x="1047" y="317"/>    
     <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="20" name="binTable"/>      
-      <multiplicity id="21" minimum="0" maximum="2147483647"/>    
+      <attribute id="24" name="binTable"/>      
+      <multiplicity id="25" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="10" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="22">    
-    <bendpoint x="755" y="601"/>    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="23" name="behavior"/>      
-      <multiplicity id="24" minimum="0" maximum="1"/>    
+  <association id="26">    
+    <bendpoint x="995" y="230"/>    
+    <bendpoint x="746" y="230"/>    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="27" name="binArray"/>      
+      <multiplicity id="28" minimum="0" maximum="2147483647"/>    
     </end>    
-    <end type="TARGET" refId="12" navigable="true"/>    
+    <end type="TARGET" refId="10" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="25">    
+  <association id="29">    
+    <bendpoint x="357" y="25"/>    
+    <bendpoint x="758" y="25"/>    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="30" name="gapTable"/>      
+      <multiplicity id="31" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="32">    
+    <bendpoint x="758" y="195"/>    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="33" name="gap"/>      
+      <multiplicity id="34" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="35">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="36" name="gridRight"/>      
+      <multiplicity id="37" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="38">    
     <bendpoint x="437" y="237"/>    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="26" name="rackFeeder">        
+      <attribute id="39" name="rackFeeder">        
         <position height="18" width="63" x="408" y="208"/>      
       </attribute>      
-      <multiplicity id="27" minimum="0" maximum="1">        
+      <multiplicity id="40" minimum="0" maximum="1">        
         <position height="16" width="23" x="442" y="224"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <nesting id="28">    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="12"/>  
-  </nesting>  
-  <association id="29">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="30" name="gridRight"/>      
-      <multiplicity id="31" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="9" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="32">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="33" name="itemTable"/>      
-      <multiplicity id="34" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="35">    
+  <association id="41">    
     <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="36" name="bin">        
-        <position height="18" width="22" x="679" y="336"/>      
+      <attribute id="42" name="rackFeeder">        
+        <position height="18" width="63" x="287" y="227"/>      
       </attribute>      
-      <multiplicity id="37" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="10" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="38">    
-    <bendpoint x="676" y="139"/>    
-    <bendpoint x="354" y="139"/>    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="39" name="rackFeeder"/>      
-      <multiplicity id="40" minimum="0" maximum="1"/>    
+      <multiplicity id="43" minimum="0" maximum="1">        
+        <position height="16" width="23" x="326" y="245"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="41">    
-    <bendpoint x="357" y="25"/>    
-    <bendpoint x="758" y="25"/>    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="42" name="gapTable"/>      
-      <multiplicity id="43" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="44">    
@@ -218,87 +222,83 @@
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="47">    
-    <bendpoint x="758" y="195"/>    
     <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="48" name="gap"/>      
+      <attribute id="48" name="item"/>      
       <multiplicity id="49" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
+    <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="50">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="51" name="itemAllocation"/>      
-      <multiplicity id="52" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="53">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="54" name="job"/>      
-      <multiplicity id="55" minimum="0" maximum="1"/>    
+      <attribute id="51" name="job"/>      
+      <multiplicity id="52" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="56">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="57" name="gapList"/>      
-      <multiplicity id="58" minimum="0" maximum="2147483647"/>    
+  <association id="53">    
+    <bendpoint x="755" y="601"/>    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="54" name="behavior"/>      
+      <multiplicity id="55" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="56">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="57" name="bin">        
+        <position height="18" width="22" x="679" y="336"/>      
+      </attribute>      
+      <multiplicity id="58" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="59">    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="60" name="item"/>      
-      <multiplicity id="61" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="62">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="63" name="item"/>      
-      <multiplicity id="64" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="65">    
     <bendpoint x="395" y="280"/>    
     <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="66" name="state">        
+      <attribute id="60" name="state">        
         <position height="18" width="32" x="675" y="393"/>      
       </attribute>      
-      <multiplicity id="67" minimum="0" maximum="1">        
-        <position height="16" width="23" x="708" y="400"/>      
+      <multiplicity id="61" minimum="0" maximum="1">        
+        <position height="16" width="23" x="670" y="415"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="11" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <association id="62">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="63" name="movement"/>      
+      <multiplicity id="64" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="65">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="66" name="itemAllocation"/>      
+      <multiplicity id="67" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <association id="68">    
-    <bendpoint x="802" y="24"/>    
-    <bendpoint x="995" y="24"/>    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="69" name="gridLeft"/>      
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="69" name="item"/>      
       <multiplicity id="70" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="9" navigable="true"/>    
+    <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="71">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="72" name="rackFeeder">        
-        <position height="18" width="63" x="287" y="227"/>      
-      </attribute>      
-      <multiplicity id="73" minimum="0" maximum="1">        
-        <position height="16" width="23" x="326" y="245"/>      
-      </multiplicity>    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="72" name="gapList"/>      
+      <multiplicity id="73" minimum="0" maximum="2147483647"/>    
     </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
+    <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="false" 
