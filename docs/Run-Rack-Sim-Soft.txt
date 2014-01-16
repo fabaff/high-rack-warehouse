@@ -1,0 +1,14 @@
+Tipps zum Ausführen der Rack-Sim-Soft Applikation:
+
+Command Line Windows:
+
+cd\
+cd <Laufwerk>:\<Pfad zu high-rack-warehouse>\RackSimSoft\bin\
+
+java test.Start <Parameter>
+
+e.g.:
+
+cd\
+cd workspace\high-rack-warehouse\RackSimSoft\bin\
+java test.Start
