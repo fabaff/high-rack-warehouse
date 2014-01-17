@@ -5,11 +5,11 @@ Der Aufbau des Hochregallagers wurde in diverse Bereiche unterteilt. Die wichtig
 Die Basiseinheit ist Milimeter. Es ist jedoch möglich mit anderen SI-Einheiten (m, dm oder cm) zu arbeiten.
 %
 \subsection{Hochregal}
-Das gesamte Hochregallager, oder auch der Lagerort, wird durch ein einzelnes Objekt dargestellen. Dieses Objekt enthält alle benötigten Informationen und ist als Singleton implementiert. Das heisst, dass auf die Gassen, das Regal und die Lagerfächer direkt zugegriffen werden kann. Dies biete eine komfortables Arbeiten bei der Simulation und soll auch eine einfache Implementierung der Visualisierung. Weiter bietet es den Vorteil, dass alle Informationen über die Elemente des Lagerortes immer verfügbar sind und abgefragt werden können. GetInstance() und den entsprechenden Get-Methoden de Objekts auf jedes einzelne Element des Lagerorts zugegriffen werden.
+Das gesamte Hochregallager, oder auch der Lagerort, wird durch ein einzelnes Objekt dargestellt. Dieses Objekt enthält alle benötigten Informationen und ist als Singleton implementiert. Das heisst, dass auf die Gassen, das Regal und die Lagerfächer direkt zugegriffen werden kann. Dies bietet eine komfortables Arbeiten bei der Simulation und soll auch eine einfache Implementierung der Visualisierung ermöglichen. Weiter bietet es den Vorteil, dass alle Informationen über die Elemente des Lagerortes immer verfügbar sind und abgefragt werden können. Mit GetInstance() und den entsprechenden Get-Methoden des jeweils untergeordeneten Objekts kann auf jedes einzelne Element des Lagerorts zugegriffen werden.
 %
 \subsection{Regalbediengerät}
-Innerhalb der Gasse bewegt sich nur das Regalbediengerät. Die Klasse RackFeeder bildet dies ab. In vorherigen Abschnitt wurde auf die zulässigen Bewegungen eingegangen. Die maximalen Beschleuigungen, Verzögerungen und die Geschwindigkeit sind innerhalb dieses Klasse als Standwerte definiert. Bei Bedarf lassen sie sich überschreiben.\\
-Das Regalbediengerät (Rackfeader) kann nicht beliebige Bewengungen auchführen. Die einzig gültigen Bewegung sind durch einen vollständiges Objekt definiert, es sind nur drei Bewegungen zulässig: 
+Innerhalb der Gasse bewegt sich nur das Regalbediengerät. Die Klasse RackFeeder bildet dies ab. Im vorherigen Abschnitt wurde auf die zulässigen Bewegungen eingegangen. Die maximalen Beschleuigungen, Verzögerungen und die Geschwindigkeit sind innerhalb dieser Klasse als Standardwerte definiert. Bei Bedarf lassen sie sich überschreiben.\\
+Das Regalbediengerät (RackFeeder) kann nicht beliebige Bewengungen auchführen. Die einzig gültigen Bewegung sind durch ein vollständiges Objekt definiert, es sind nur drei Bewegungen zulässig: 
 %
 \begin{itemize}
   \item Bewegung in yz-Achse
@@ -20,7 +20,7 @@ Das Regalbediengerät (Rackfeader) kann nicht beliebige Bewengungen auchführen.
 Dies verhindert, dass der RackFeeder physikalisch unmögliche Bewegungen ausführen kann und stellt sicher, dass in jedem Zustand nur die darin gültigen Bewegungen ausgeführt werden können.
 %
 \subsection{Ereignisse}
-Innerhalb des Systems wurden die Ereignisse (Events) in die Operationen Einlagern und Auslagern zerlegt. Die Verzweigungen sind in den nachfolgenden Abbildungen in gelb dargestellt. Der Startpunkt ist blau. 
+Innerhalb des Systems wurden die Ereignisse (Events) in die Operationen Einlagern und Auslagern zerlegt. Die Verzweigungen sind in den nachfolgenden Abbildungen in gelb dargestellt. Der Startpunkt ist blau und entspricht dem Verhalten im Wartemodus. 
 %
 \begin{figure}[H]
 \subfigure[Einlagern]{\includegraphics[width=0.49\textwidth]{images/einlagern.png}}\hfill
@@ -28,7 +28,7 @@ Innerhalb des Systems wurden die Ereignisse (Events) in die Operationen Einlager
 \caption{Verhalten}
 \end{figure}
 %
-Die nachfolgende Tabelle zeigt auf der links Seite die Einlagerunf und auf der rechten Seite die Auslagerung.
+Die nachfolgende Tabelle zeigt auf der linken Seite die Einlagerung und auf der rechten Seite die Auslagerung.
 %
 \begin{table}[H]
   \begin{center}   
