@@ -1,5 +1,5 @@
 \section{Modellierung}
-Der Aufbau des Hochregallagers wurde in diverse Bereiche unterteilt. Die wichtigsten sind das Hochregal selber, auch das Regalbediengerät. Weitere sind die entsprechenden Zustände/Ereignisse, die innerhalb des Hochregallagers auftreten können. 
+Der Aufbau des Hochregallagers wurde in diverse Bereiche unterteilt. Die wichtigsten sind das Hochregal selbst, wie auch das Regalbediengerät. Weitere sind die entsprechenden Zustände/Ereignisse, die innerhalb des Hochregallagers auftreten können. 
 %
 \subsection{Einheiten}
 Die Basiseinheit ist Milimeter. Es ist jedoch möglich mit anderen SI-Einheiten (m, dm oder cm) zu arbeiten.
@@ -9,7 +9,7 @@ Das gesamte Hochregallager, oder auch der Lagerort, wird durch ein einzelnes Obj
 %
 \subsection{Regalbediengerät}
 Innerhalb der Gasse bewegt sich nur das Regalbediengerät. Die Klasse RackFeeder bildet dies ab. Im vorherigen Abschnitt wurde auf die zulässigen Bewegungen eingegangen. Die maximalen Beschleuigungen, Verzögerungen und die Geschwindigkeit sind innerhalb dieser Klasse als Standardwerte definiert. Bei Bedarf lassen sie sich überschreiben.\\
-Das Regalbediengerät (RackFeeder) kann nicht beliebige Bewengungen auchführen. Die einzig gültigen Bewegung sind durch ein vollständiges Objekt definiert, es sind nur drei Bewegungen zulässig: 
+Das Regalbediengerät (RackFeeder) kann nicht beliebige Bewegungen auchführen. Die einzig gültigen Bewegungen sind durch ein vollständiges Objekt definiert, es sind nur drei Bewegungen zulässig: 
 %
 \begin{itemize}
   \item Bewegung in yz-Achse
@@ -48,7 +48,7 @@ Die nachfolgende Tabelle zeigt auf der linken Seite die Einlagerung und auf der 
 \end{table}
 %	
 \subsection{Architektur}
-Die Unterteilung der Anwendung erfolgte in einen Teil für die Modellierung, Simulation und die Visualisierung. Diese Trennung macht die Anwendung in Bezug auf geänderte Lagerorte und Simulationensszenarien, oder auch für Optimierungen flexibel.
+Die Unterteilung der Anwendung erfolgte in einen Teil für die Modellierung, einen für die Simulation und einen für die Visualisierung. Diese Trennung macht die Anwendung in Bezug auf geänderte Lagerorte und Simulationensszenarien, oder auch für Optimierungen flexibel.
 %
 %
 \begin{figure}[H]

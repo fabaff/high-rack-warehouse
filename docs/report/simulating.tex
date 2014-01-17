@@ -4,12 +4,11 @@ Die Simulation wurde als ereignisgesteuerte Echtzeitsimulation implementiert. Di
 Es könnten während der laufenden Simulation weitere Aufträge hinzugefügt werden. Die Startzeit des Auftrags muss allerdings die aktuelle Simulationszeit übersteigen. Bei der Eingabe von zusätzlichen Aufträgen ist das Zeitformat zu berücksichtigen. Diese Funktion ist momentan nicht implementiert.
 \\
 Für jeden zukünftigen Auftrag wird ein Erinnerungsereignis in die Ereignisliste eingetragen mit Ereigniszeit = Startzeit des Auftrags. Dies dient dazu, dass die Simulation selbst nur die Ereignisliste abarbeiten kann, indem die Simulation jeweils das früheste Ereignis aus der Liste entfernt, anhand der Simulationszeit die benötigte Wartezeit berechnet und dann exakt zur richtigen Simulationszeit das Ereignis ausführt. In der Regel führt jedes Ereignis zu einem Nachfolgeereignis, welches
-wiederum in die Ereignisliste eingetragen wird. Dieser Vorgang wird solange wiederholt, bis die Ereignisliste leer ist, wodurch die Simulation dadurch
-beendet wird.
+wiederum in die Ereignisliste eingetragen wird. Dieser Vorgang wird solange wiederholt, bis die Ereignisliste leer ist, wodurch die Simulation beendet wird.
 %
 \subsection{Spezialfälle}
-Einzig das letzte Ereignis eines Auftrags sowie unter Umständen ein Erinnerungsereignis können dazuführen, dass kein Nachfolgeereignis mehr erstellt wird. Dies ist der Fall, wenn für die aktuelle Gasse keine weiteren Aufträge mehr vorhanden sind oder überhaupt keine Aufträge mehr zur Abarbeitung bereitstehen.\\
-Würden keine Erinnerungsereignisse generiert, sondern direkt das erste Ereignis des entsprechenden Auftrags, wäre es schwierig  zusätzliche Aufträge, die vor dem anderen Ereignis startet, in die Ereignisliste einzufügen und diese Liste entsprechend zu bereinigen.\\
+Einzig das letzte Ereignis eines Auftrags sowie unter Umständen ein Erinnerungsereignis können dazu führen, dass kein Nachfolgeereignis mehr erstellt wird. Dies ist der Fall, wenn für die aktuelle Gasse keine weiteren Aufträge mehr vorhanden sind oder überhaupt keine Aufträge mehr zur Abarbeitung bereitstehen.\\
+Würden keine Erinnerungsereignisse generiert, sondern direkt das erste Ereignis des entsprechenden Auftrags, wäre es schwierig  zusätzliche Aufträge, die vor dem anderen Ereignis starten, in die Ereignisliste einzufügen und diese Liste entsprechend zu bereinigen.\\
 Dies wäre aber notwendig, da ansonsten zwei unterschiedliche Aufträge in derselben Gasse parallel ausgeführt würden. Dies ist aber physikalisch unmöglich und darf in der Simulation nicht geschehen! Bei jedem Erinnerungsereignis wird deshalb nur die Auftragsliste auf fällige Aufträge geprüft und bei Bedarf das erste Ereignis für diese Aufträge generiert. Es werden aber nur Ereignisse generiert für Aufträge von Gassen, welche nicht bereits durch andere, momentan ausgeführte Aufträge blockiert sind. Für diese Prüfung wird wiederum die Ereignisliste herangezogen.\\
 %
 \subsection{Berechnung Simulationszeit}
@@ -33,7 +32,7 @@ Aktuelle Simulationszeit [ms] = Simulationsstartzeit [ms] \\
 Der Korrekturwert bleibt bei der Echtzeitsimulation immer 0, weshalb für beide Simualtionsmodi dieselbe Formel verwendet werden kann.
 %
 \subsection{Fehler durch Rechenzeit und dessen Kompensation}
-Es gibt nun aber Fälle, in denen die Ereignisse anhand der aktuellen Simulationszeit zu spät ausgeführt werden. Dies dadurch, dass mehrere Ereignisse die gleiche oder zumindest eine kurz aufeinanderfolgende Startzeit haben. Der Grund für die Verzögerung ist, dass ja das \textit{ausführen} der Ereignisse Rechenzeit benötigt und die Berechnung der aktuellen Simulationszeit auf der Systemzeit beruht. Diese Verzögerungen würden sich summieren und müssen unbedingt kompensiert werden.\\
+Es gibt nun aber Fälle, in denen die Ereignisse anhand der aktuellen Simulationszeit zu spät ausgeführt werden. Dies kommt daher, dass mehrere Ereignisse die gleiche oder zumindest eine kurz aufeinanderfolgende Startzeit haben. Der Grund für die Verzögerung ist, dass ja das \textit{ausführen} der Ereignisse Rechenzeit benötigt und die Berechnung der aktuellen Simulationszeit auf der Systemzeit beruht. Diese Verzögerungen würden sich summieren und müssen unbedingt kompensiert werden.\\
 Also wird für die Nachfolgeereignisse nicht die aktuelle Simulationszeit als Basis zur Berechnung der Startzeit des Nachfolgeereignisses verwendet, sondern die Startzeit seines Vorgängerereignisses. Die aktuelle Simulationszeit wird also nur verwendet, um die Wartezeit bis zur Ausführung des nächsten Ereignisse zu berechnen und um zu jedem Zeitpunkt der Simulation den entsprechenden Zustand bzw. die aktuellen Koordinaten der Regalbediengeräte zu berechnen
 %
 \subsection{Mögliche Strategien}
@@ -113,7 +112,7 @@ Mit Faktor, Faktor 1, Lagerort 3 laden, Ausgabe in Datei
 \end{verbatim}
 %
 \subsection{Erzeugung der Eingabedaten}
-Für die Simulation werden flache Text-Dateien verwendet, welche die relevanten Daten in einer Strichpunkt-getrennten Schreibweise enthalten. Es werden eine Definition des Lagerorts, einer Liste mit Artikeln und einer Auftragsiste. 
+Für die Simulation werden flache Text-Dateien verwendet, welche die relevanten Daten in einer Strichpunkt-getrennten Schreibweise enthalten. Es werden eine Definition des Lagerorts, eine Liste mit Artikeln und eine Auftragsiste eingelesen. 
 %
 \paragraph{Lagerort-Liste (locationX.txt)}
 \begin{verbatim}
