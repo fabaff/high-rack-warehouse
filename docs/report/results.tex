@@ -1,11 +1,99 @@
 \section{Resultate}
-asdf
-asdf
-sadf
-asdf
-asd
-f
-asdfadsf
-asdfadsfdsaf
+Die Ausgabe des Durchlaufs wird in der Konsole ausgeben. Es sind die folgenden Informationen vorhanden:
+%
+\begin{itemize}
+  \item Kompletter Lagerort
+  \item Lagerplätze und deren Belegung
+  \item Bekannte Job beim Simulationsstart
+  \item Gewählte Parameter
+  \item Neue Zustand des gesamten Lagerorts
+\end{itemize}
+
+\begin{verbatim}
+Lagerplatzzuweisung vor Start der Simulation:
+---------------------------------------------
+Lagerort:
+  Name = my location 2
+  Anzahl Gassen: 5
+    Name: Gasse1, X-Koordinate: 1000, Breite: 1000
+    Grid L: Name: Grid1, Tiefe: 1000, Laenge: 20400, Hoehe: 11250
+    Grid R: Name: Grid2, Tiefe: 1000, Laenge: 20400, Hoehe: 11250
+
+    Name: Gasse2, X-Koordinate: 4000, Breite: 1000
+    Grid L: Name: Grid3, Tiefe: 1000, Laenge: 4800, Hoehe: 1600
+    Grid R: Name: Grid4, Tiefe: 1000, Laenge: 4800, Hoehe: 1600
+
+ [snip]
+
+  Anzahl Bin: 710
+
+  1 - ID: Gasse1-0-Grid1-A-1, Artikel:            
+          , Koordinaten: (X/Y/Z/U) : 1000/0/0/-1000
+  2 - ID: Gasse1-0-Grid1-A-2, Artikel:            
+          , Koordinaten: (X/Y/Z/U) : 1000/0/600/-1000
+  3 - ID: Gasse1-0-Grid1-A-3, Artikel:            
+          , Koordinaten: (X/Y/Z/U) : 1000/0/1400/-1000
+  4 - ID: Gasse1-0-Grid1-A-4, Artikel:            
+          , Koordinaten: (X/Y/Z/U) : 1000/0/1900/-1000
+  5 - ID: Gasse1-0-Grid1-A-5, Artikel:            
+          , Koordinaten: (X/Y/Z/U) : 1000/0/2500/-1000
+  6 - ID: Gasse1-0-Grid1-A-6, Artikel: Article 828
+          , Koordinaten: (X/Y/Z/U) : 1000/0/3250/-1000
+  7 - ID: Gasse1-0-Grid1-A-7, Artikel:            
+          , Koordinaten: (X/Y/Z/U) : 1000/0/4050/-1000
+  8 - ID: Gasse1-0-Grid1-A-8, Artikel: Article 447
+          , Koordinaten: (X/Y/Z/U) : 1000/0/4550/-1000
+ [snip]
+709 - ID: Gasse5-1-Grid10-D-3, Artikel:           
+          , Koordinaten: (X/Y/Z/U) : 14000/3200/1000/1000
+710 - ID: Gasse5-1-Grid10-D-4, Artikel: Article 1382
+          , Koordinaten: (X/Y/Z/U) : 14000/3200/1600/1000
+
+Bereits bekannte Jobs beim Start der Simulation:
+------------------------------------------------
+Job: ID = '  4', RackFeeder = 'Gasse3', Startzeit = 2000.01.01 00:00:00.049
+Job: ID = '  2', RackFeeder = 'Gasse2', Startzeit = 2000.01.01 00:00:00.050
+Job: ID = '  3', RackFeeder = 'Gasse3', Startzeit = 2000.01.01 00:00:02.321
+[snip]
+
+Erinnerungsevent hinzugefuegt; Eventzeit: 2000.01.01 00:00:00.049
+Erinnerungsevent hinzugefuegt; Eventzeit: 2000.01.01 00:00:00.050
+[snip]
+
+Simulation wird nun gestartet:
+Aktuelle Systemzeit: 2014.01.17 12:48:50.657
+Aktueller Faktor: 1.0
+Aktueller Modus: AS_FAST_AS_POSSIBLE
+
+---------------------------------------------------
+1        -------------------------------------------------
+Simulationszeit: 2000:01:01 00:00:00.003
+Erinnerungsevent gefunden, Startzeit: 2000.01.01 00:00:00.049
+
+Wartezeit in ms (simuliert): 45
+
+Simulationszeit (echt) nach Wartezeit: 2000:01:01 00:00:00.050
+Simulationszeit (soll) nach Wartezeit: 2000.01.01 00:00:00.049
+
+Kein Nachfolgeevent. Eventuell Erinnerungsevents oder Startevents anlegen?
+Event hinzugefuegt fuer Job '4', RackFeeder 'Gasse3'; 
+  Eventzeit:  2000.01.01 00:00:00.049
+-------------------------------------------------
+2        ------------------------------------------
+Simulationszeit: 2000:01:01 00:00:00.079
+[snip]
+Wartezeit in ms (simuliert): 0
+
+Simulationszeit (echt) nach Wartezeit: 2000:01:01 00:10:07.744
+Simulationszeit (soll) nach Wartezeit: 2000.01.01 00:10:07.740
+
+Kein Nachfolgeevent. Eventuell Erinnerungsevents oder Startevents anlegen?
+----------------------------------------------------
+Simulation wird nun beendet, Start-Systemzeit: 2014.01.17 12:48:50.657
+                          aktuelle Systemzeit: 2014.01.17 12:48:51.140
+
+Vergangene Systemzeit in Millis: 483
+\end{verbatim}
+Die komplette Ausgabe kann auch in eine Datei geschrieben werden, was eine später Vergleich der Durchgänge ermöglicht.
 
 %EOF

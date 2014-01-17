@@ -1,154 +1,73 @@
 \section{Modellierung}
-Der Aufbau des Hochregallagers wurde in diverse Bereiche unterteilt. Die wichtigsten sind das Hochregal selber, auch auch das Regalbediengerät und und die entsprechenden Zustände/Ereignisse, die innerhalb des Hochregallagers auftreten können. 
+Der Aufbau des Hochregallagers wurde in diverse Bereiche unterteilt. Die wichtigsten sind das Hochregal selber, auch das Regalbediengerät. Weitere sind die entsprechenden Zustände/Ereignisse, die innerhalb des Hochregallagers auftreten können. 
 %
 \subsection{Einheiten}
 Die Basiseinheit ist Milimeter. Es ist jedoch möglich mit anderen SI-Einheiten (m, dm oder cm) zu arbeiten.
 %
 \subsection{Hochregal}
-Das gesamt Hochregallager wird durch ein einzelnes Objekt dargestellen. Dieses Objekt enthält alle benötigten Informationen. Das heisst, dass auf die Gassen, das Regal und die Lagerfächer direkt zugegriffen werden kann. Dies biete eine komfortables Arbeiten bei der Simulation. Weiter bietet es den Vorteil, dass alle Informationen über die Elemente des Lagerortes immer verfügbar sind und abgefragt werden können.
+Das gesamte Hochregallager, oder auch der Lagerort, wird durch ein einzelnes Objekt dargestellen. Dieses Objekt enthält alle benötigten Informationen und ist als Singleton implementiert. Das heisst, dass auf die Gassen, das Regal und die Lagerfächer direkt zugegriffen werden kann. Dies biete eine komfortables Arbeiten bei der Simulation und soll auch eine einfache Implementierung der Visualisierung. Weiter bietet es den Vorteil, dass alle Informationen über die Elemente des Lagerortes immer verfügbar sind und abgefragt werden können. GetInstance() und den entsprechenden Get-Methoden de Objekts auf jedes einzelne Element des Lagerorts zugegriffen werden.
 %
 \subsection{Regalbediengerät}
-Innerhalb der Gasse bewegt sich nur das Regalbediengerät. Die Klasse RackFeeder bildet dies ab. In vorherigen Abschnitt wurde auf die zulässigen Bewegungen eingegangen. Die maximalen Beschleuigungen, Verzögerungen und die Geschwindigkeit sind innerhalb dieses Klasse als Standwerte definiert. Bei Bedarf lassen sie sich überschreiben. Das Regalbediengerät 
+Innerhalb der Gasse bewegt sich nur das Regalbediengerät. Die Klasse RackFeeder bildet dies ab. In vorherigen Abschnitt wurde auf die zulässigen Bewegungen eingegangen. Die maximalen Beschleuigungen, Verzögerungen und die Geschwindigkeit sind innerhalb dieses Klasse als Standwerte definiert. Bei Bedarf lassen sie sich überschreiben.\\
+Das Regalbediengerät (Rackfeader) kann nicht beliebige Bewengungen auchführen. Die einzig gültigen Bewegung sind durch einen vollständiges Objekt definiert, es sind nur drei Bewegungen zulässig: 
+%
+\begin{itemize}
+  \item Bewegung in yz-Achse
+  \item Bewegung in x-Achse (dies ist vorhanden, jedoch wird es nicht verwendet, da in der Realität die Operationen in der Vorzone von einem zusätzlichen System wahrgenommen werden)
+  \item Bewegung in u-Achse (in das Regalfach hinein zum Be- und Entladen des Lagergütes)
+\end{itemize}
+%
+Dies verhindert, dass der RackFeeder physikalisch unmögliche Bewegungen ausführen kann und stellt sicher, dass in jedem Zustand nur die darin gültigen Bewegungen ausgeführt werden können.
 %
 \subsection{Ereignisse}
-Innerhalb des Systems wurden die Ereignisse (Events) in die Operationen Einlagern, Umlagern und Auslagern zerlegt. Die Verzweigungen sind in den nachfolgenden Abbildungen in gelb dargestellt. Der Startpunkt ist blau. 
-%
-% Im Verhalten Einlagern
-% 
-% 1.1 RBG auf 0/0 leer
-% 2 RBG auf 0/0 beladen
-% 3 RBG auf Y/Z beladen
-% 4 RBG auf X beladen
-% 5 RBG auf X leer
-% 6 RBG auf Y/Z leer
-% 1.2 RBG auf 0/0 leer
-% 
-% Im Verhalten Auslagern
-% 
-% 1.1 RBG auf 0/0 leer
-% 6 RBG auf Y/Z leer
-% 5 RBG auf X leer
-% 4 RBG auf X beladen
-% 3 RBG auf Y/Z beladen
-% 2 RBG auf 0/0 beladen
-% 1.2 RBG auf 0/0 leer
-% 
-% Nachfolgendens Entladen
-% 
-% 7 RBG auf Y1/Z1 leer -> dann in normalen Entlade-Zuklus
-% 
-% Im Verhalten Umlagern
-% 
-% 6 RBG auf Y/Z leer
-% 5 RBG auf X leer
-% 4 RBG auf X beladen
-% 3 RBG auf Y/Z beladen
-% 8 RBG neues Lagerfach !!
-% 3 RBG auf Y/Z beladen
-% 4 RBG auf X beladen
-% 5 RBG auf X leer
-% 6 RBG auf Y/Z leer -> 7 oder 1
-% 
-% Änderungen
-% 7 und 8
+Innerhalb des Systems wurden die Ereignisse (Events) in die Operationen Einlagern und Auslagern zerlegt. Die Verzweigungen sind in den nachfolgenden Abbildungen in gelb dargestellt. Der Startpunkt ist blau. 
 %
 \begin{figure}[H]
-  \begin{center}
-    \includegraphics[width=0.3\textwidth]{images/einlagern.png}
-    \caption{Einlagern}
-    \label{fig:in}
-  \end{center}
+\subfigure[Einlagern]{\includegraphics[width=0.49\textwidth]{images/einlagern.png}}\hfill
+\subfigure[Auslagern]{\includegraphics[width=0.49\textwidth]{images/auslagern.png}}
+\caption{Verhalten}
 \end{figure}
 %
-\begin{figure}[H]
-  \begin{center}
-    \includegraphics[width=0.3\textwidth]{images/umlagern.png}
-    \caption{Umlagern}
-    \label{fig:move}
-  \end{center}
-\end{figure}
+Die nachfolgende Tabelle zeigt auf der links Seite die Einlagerunf und auf der rechten Seite die Auslagerung.
 %
-\begin{figure}[H]
-  \begin{center}
-    \includegraphics[width=0.3\textwidth]{images/auslagern.png}
-    \caption{Auslagern}
-    \label{fig:out}
-  \end{center}
-\end{figure}
-%
-
-\subsection{Zustände}
-
-\subsubsection{Global}
-\begin{enumerate}
-  \item Get next free Gap
-  \item Select Gap (first to be free?)
-  \item .1 Assign Item to Bin
-  \item .2 Send Item to Gap
-  \item .3 Set RBG to 0.0
-  \item Load Item to RBG
-  \item Store Item in Bin
-\end{enumerate}
-%
-\subsubsection{Gassen}
-
-\paragraph{RBG Einlagern}
-
 \begin{table}[H]
-  \caption{Einlagerung}
-  \label{tab:ins}
-
-  \begin{center}
-    \begin{tabular}{ccc}
-
-		Eventnr.	& Koord.	& Zustand \\
+  \begin{center}   
+    \begin{tabular}{ccc|c|ccc}
+		Eventnr.&	Koord.&	Zustand & & Eventnr.&	Koord.&	Zustand\\
 		\hline
-		1 &			0/0 	& empty\\
-		2 &			0/0 	& loaded\\
-		3 &			y/z 	& loaded\\
-		4 	&		x 		& loaded\\
-		5 &			x 		& empty\\
-		6 &			y/z 	& empty\\
-		1	&		0/0		& empty\\
-		7 &					& sleep\\
+		1 &			0/0 &	empty & & 1 &			0/0 	&empty\\
+		2 &			0/0 &	loaded & & 6 &			y/z 	&empty\\
+		3 &			y/z &	loaded & & 5 &			x 		&empty\\
+		4 &			x 	&	loaded & & 4 &			x 		&loaded\\
+		5 	&		x 	&	empty & & 3 &			y/z 	&loaded\\
+		6 	&		y/z &	empty & & 2 &			0/0 	&loaded\\
+		1	&		0/0	&	empty & & 1	&		0/0		&empty\\
+		7 &					&sleep& & 7 &					&sleep\\
     \end{tabular}
   \end{center}
-\end{table}	
-\paragraph{RBG Auslagern}
-
-\begin{table}[H]
-  \caption{Auslagerung}
-  \label{tab:outs}
-
-  \begin{center}
-    \begin{tabular}{ccc}
-		Eventnr.&	Koord.&	Zustand\\
-		\hline
-		1 &			0/0 	&empty\\
-		6 &			y/z 	&empty\\
-		5 &			x 		&empty\\
-		4 &			x 		&loaded\\
-		3 &			y/z 	&loaded\\
-		2 &			0/0 	&loaded\\
-		1	&		0/0		&empty\\
-		7 &					&sleep \\
-    \end{tabular}
-  \end{center}
-\end{table}	
-%
-\subsection{Bewegungen}
-
-
-
-%
-\subsection{Steuer-Daten}
-
-%
+\end{table}
+%	
 \subsection{Architektur}
-Die Unterteilung der Anwendung erfolgte in einen Teil für die Modellierung, Simulation und die Visualisierung.  
-
-
-
+Die Unterteilung der Anwendung erfolgte in einen Teil für die Modellierung, Simulation und die Visualisierung. Diese Trennung macht die Anwendung in Bezug auf geänderte Lagerorte und Simulationensszenarien, oder auch für Optimierungen flexibel.
+%
+%
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.6\textwidth]{images/package_diagramm.png}
+    \caption{Package-Diagramm}
+    \label{fig:packages}
+  \end{center}
+\end{figure}
+%
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.6\textwidth]{images/class_diagramm.png}
+    \caption{Class-Diagramm}
+    \label{fig:class}
+  \end{center}
+\end{figure}
+%
+Die weiteren Diagramme befinden sich im Anhang.
 
 
 %EOF

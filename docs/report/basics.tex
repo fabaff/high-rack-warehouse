@@ -12,7 +12,7 @@ Im Sinne eines Hochregallager besteht eine Gasse aus einer rechten und einer lin
 
 %
 \subsection{Allgemeine Grundlagen}
-Dieser Abschnitt enthält Details allgemeiner Natur, damit im weiteren Verlauf des Dokuments Unklarheiten vermieden werden können. Die Sprache innerhalb des Source Code ist Englisch, während die Dokumentationssprache Deutsch ist. Die wichtigsten Benennungen sind in \ref{tab:desc} ersichtlich.
+Dieser Abschnitt enthält Details allgemeiner Natur, damit im weiteren Verlauf des Dokuments Unklarheiten vermieden werden können. Die Sprache innerhalb des Source Code ist Englisch, während die Dokumentationssprache Deutsch ist. Die wichtigsten Benennungen sind in Tabelle \ref{tab:desc} ersichtlich.
 %
 \begin{table}[H]
   \caption{Benennungen}
@@ -68,7 +68,6 @@ Für die zweidimensionale Darstellung wird eine Lagergasse gemäss Abbildung \re
     \label{fig:klapp}
   \end{center}
 \end{figure}
-
 %
 \subsection{Mathematische Grundlagen}
 Das Regalbediengerät bewegt sich in der Gasse zwischen den Lagerwänden auf der y- und der z-Achse. Der Arm des Regalbediengerät verfährt auf der y-Achse und der Ausleger auf der z-Achse. Die Bewegungen auf beiden Achsen lassen somit entsprechend der elektromechanischen Steuerung beliebige Verfahrwege auf der yz-Ebene zu. Die Graduierung der Bewegungsbahn wird durch die Grösse der Inkremente bestimmt.
@@ -89,10 +88,14 @@ Ein Grenzfall tritt auf, wenn die zu bewältigende Strecke kleiner wird als die 
 v = \sqrt{\frac{2 \cdot s \cdot a \cdot d}{(a+d)}}
 \end{equation}
 %
-\subsection{Simulationstechnische Grundlagen}
+Anhand dieser Formel lässt sich der optimale Verlauf der Bewegung innerhalb der Regalwand bestimmen.
 %
-
-
-
-
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.6\textwidth]{images/motion.png}
+    \caption{Bewegung}
+    \label{fig:beweg}
+  \end{center}
+\end{figure}
+%
 %EOF
